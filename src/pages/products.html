@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AD Textile | Artistry in Every Thread</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f1f3fc",
+                        "primary-fixed": "#d6e3ff",
+                        "primary-container": "#0f1c30",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3037",
+                        "secondary": "#735c00",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d7dae3",
+                        "on-primary-container": "#78849d",
+                        "outline-variant": "#c4c6cf",
+                        "on-secondary-container": "#776005",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed": "#1a1c1a",
+                        "surface-tint": "#525f76",
+                        "on-primary-fixed-variant": "#3b475d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2e3df",
+                        "inverse-on-surface": "#eef0fa",
+                        "primary": "#000000",
+                        "surface-container-highest": "#e0e2eb",
+                        "on-tertiary-container": "#838481",
+                        "secondary-fixed-dim": "#e3c466",
+                        "outline": "#75777d",
+                        "secondary-fixed": "#ffe088",
+                        "inverse-primary": "#bac7e2",
+                        "surface-container-high": "#e6e8f1",
+                        "secondary-container": "#fddd7c",
+                        "on-background": "#181c22",
+                        "on-primary-fixed": "#0f1c30",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container": "#ebedf7",
+                        "surface-bright": "#f9f9ff",
+                        "primary-fixed-dim": "#bac7e2",
+                        "on-surface-variant": "#44474d",
+                        "on-surface": "#181c22",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#1a1c1a",
+                        "on-secondary-fixed": "#231b00",
+                        "tertiary-fixed-dim": "#c6c7c3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#574500",
+                        "surface-variant": "#e0e2eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#454744"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "section-gap-sm": "80px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "section-gap-lg": "160px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 70%, #ffffff 100%);
+        }
+        .card-shadow:hover {
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed w-full top-0 z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary" href="index.html">AD Textile</a>
+<div class="hidden lg:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="products.html">Products</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="infrastructure.html">Infrastructure</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">Story</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="sustainability.html">Sustainability</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="certifications.html">Certifications</a>
+</div>
+<a class="bg-primary text-on-primary px-8 py-3 font-label-md text-label-md hover:scale-95 transition-all duration-200 inline-block text-center" href="contact.html">Contact Us</a>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtbilCEvMKva5JzezR-IkLqGRWaExp3H_ppNHNFpSEN3u0w4811g8yd51xfoyjaL_A_VpJja9_AYb2YkeD8-ym5tQrM84hhI_b50MEcHvWF0GC4ck8tGeYtqXiarYxnWlUYQf0EFovJ1zLET56bxbxlOSLqteCDLEPGChQpEa5L4kx2hhkTC9FqMu21Yxgt5IUw83MaEBd6Xwq9tnamPPvV_ZXR-6M_ikH91P2gcVF_uswVF_Ytx63vVd4"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Artistry in Every Thread.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Elevating global interiors through precision-engineered textiles and sustainable manufacturing excellence.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<a class="bg-primary text-on-primary px-10 py-5 font-label-md text-label-md hover:scale-95 transition-transform inline-block" href="#table">Explore Collection</a>
+<a class="border border-primary text-primary px-10 py-5 font-label-md text-label-md hover:bg-surface-container-high transition-colors inline-block" href="infrastructure.html">Our Process</a>
+</div>
+</div>
+</section>
+<!-- Sub-Navigation / Filter -->
+<section class="sticky top-20 z-40 bg-surface border-b border-outline-variant/30 py-6">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex gap-10 overflow-x-auto no-scrollbar w-full">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="products.html#table">Table Linen</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="products.html#kitchen">Kitchen Linen</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="heritage-bed-linen.html">Bed Linen</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="living-linen.html">Living Linen</a>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="py-section-gap-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Table Linen -->
+<div class="group relative overflow-hidden bg-white border border-outline-variant/30 card-shadow transition-all duration-500" id="table">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An editorial shot of a sophisticated dining table set with premium linen tablecloth and napkins in a natural sand tone. The fabric features a slight intentional wrinkle and raw fringed edges for an organic yet luxurious feel. Artisanal ceramic plates and gold cutlery are carefully placed on the textile surface. Warm, diffused lighting creates a serene and established atmosphere suitable for a global commerce catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-2p1jq9B5cab5Qsu-UGCCMniPN0jfEqKzuTyZKBQG0xIof2S5LFW3NL0rhz84Lz6bAsBsM2RnS7DxNox5ZliI4fUQhxC18dr82E5_x-9yYTTASiExjEImAxE4WF79WWQ7c_6Q9CmE2QRJcWSCjoXL4n1LlYazpczVaJhQzX3LZXiTEAtEmICIucdUBaGn2VQC9V8512EMhKhuzytmUJR8i8u4K7ww4WlgLOh4vl7B3yeS_04TtK1h6Tq_c_a_6F7M5DFZunfrNIQ"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-4 block">Table Linen</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Refined Dining</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Table cloths, table mats, runners, chair pads and co-ordinated sets — minimalist designs for sophisticated table settings that command attention in any space.</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary group/link" href="products.html#table">
+                            View Details
+                            <span class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2: Kitchen Linen -->
+<div class="group relative overflow-hidden bg-white border border-outline-variant/30 card-shadow transition-all duration-500" id="kitchen">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A minimalist and high-end kitchen scene featuring stacked premium linen kitchen towels on a white marble countertop. The towels have a refined herringbone texture in soft oatmeal and cream colors. Subtle natural morning light streams through a nearby window, illuminating the fabric fibers. The mood is clean, professional, and sophisticated, reflecting a corporate manufacturing aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-o8n5chBX-29oz68ZM82dAFfoy70qOr_I0WTlXhRjkqWnI5x4j66I3-PBkhcnb8YoLzBrKTTEt9Bhd2EALY__17O0cgul_C35qSQu8SAOC-d8fv_3ujI4G0H3-VtZCufe94TnVH7RkGmsxfLjsoyOmqGz75I7EZ_3EPD3zzdwdoqDBXhvN2gI1polpx4E2sVwMuXVd7-swkexEWqVg8WNrSotEP9yYVyhANofZhnGojS_eWVksdHRIw5OHUqok4Smm9dK3VUUOxQ"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-4 block">Kitchen Linen</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Culinary Elegance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Aprons, mittens and complete kitchen sets — premium textures designed for the rigors of modern gastronomy and high-end hospitality.</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary group/link" href="products.html#kitchen">
+                            View Details
+                            <span class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 3: Bed Linen -->
+<div class="group relative overflow-hidden bg-white border border-outline-variant/30 card-shadow transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A close-up view of a luxury bed dressed in crisp, high-thread-count white cotton linens. The bedding includes a perfectly layered duvet and plush pillows with subtle top-stitch details. The scene is bathed in soft, high-key lighting, emphasizing the purity and softness of the textiles. The background features a neutral-toned upholstered headboard, creating an atmosphere of architectural calm and premium comfort." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0kXCzrplXjWLXtXY3-Op3woPtu-7n3T0z68FZQURBgpFHEAea5sOMsoVXQosNffaZ3qd79ucJV6uprNkW4uXLnSBWgt0gxPsRfG7J24Oz1y389mm6DYm2uqvkTGRT7-JUCLn2yOqDX5HVfNJ_E94qgHawmfjOZ_NAu6t-VbbFCh3E9o5CP9ZmwhSdVCc4Y1SVd3DUNj-WfqFiuV_d1WgCHuIx090glfyoUCwd4oF06_5FwIFMvup9H_Y5AFh8rSxpyZ_QuytwwQY"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-4 block">Bed Linen</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Serene Comfort</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Bed spreads, bedding, cushions, quilts and rest bedding — luxury linens engineered for a restful, refined night's sleep.</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary group/link" href="heritage-bed-linen.html">
+                            View Details
+                            <span class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 4: Living Linen -->
+<div class="group relative overflow-hidden bg-white border border-outline-variant/30 card-shadow transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A softly lit living room interior featuring tall windows dressed with flowing, precisely tailored curtains in a natural neutral tone. The fabric drapes in clean architectural folds, catching diffused daylight. The scene is minimal, warm, and refined, reflecting sophisticated interior textile craftsmanship for a global home-furnishings catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFxP6dsScvxuNN7RtuRgmCwK-qjpRSr4fODNdQ2AxZViouhfOjfFIA0nOa4dVRcPhkE9dWMHLGeDeTSHfq06Hxejs-Uof3b_ZTaGE0G78ufCk2zpa93WdhUuu2A9VZoYh2kqfDl2tp3nZV-jAGK010ik5iuRN2YhLwma_cqO9QIKyzVZxfY17azDtQGF3RU-Mt4Wlof3DbPeomcwNJHRqJSjyE4SjA7YiyjLl8UEjcXBr_yil1_wGxkW3Xfi2yOFuFIi5dcrGz0rI"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-4 block">Living Linen</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Framed in Light</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Precision-tailored curtains that shape light and texture across living spaces, finished to the same exacting standards as every AD Textile product.</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary group/link" href="living-linen.html">
+                            View Details
+                            <span class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Garments (external, sister company) -->
+<div class="mt-gutter border border-dashed border-outline-variant p-10 flex flex-col md:flex-row items-center justify-between gap-6 bg-surface-container-low">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-primary">checkroom</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-1">Garments</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Manufactured by our sister company and sold via a separate site.</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary border border-primary px-8 py-4 hover:bg-primary hover:text-on-primary transition-colors" href="http://adtsaral.in/" rel="noopener" target="_blank">
+                    Garments — via our sister company
+                    <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+</section>
+<!-- Process Highlight (Bento Style) -->
+<section class="py-section-gap-lg bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8 flex flex-col justify-center">
+<h2 class="font-headline-xl text-headline-xl mb-6">Vertical Integration</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-8">From raw fiber to finished product, we maintain total control over every stage of manufacturing in-house — dyeing, weaving, printing &amp; embroidery, cutting &amp; stitching, checking &amp; finishing, and packing. This ensures unparalleled consistency and adherence to global quality standards.</p>
+<div class="flex flex-wrap gap-3 mt-4">
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Dyeing</span>
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Weaving</span>
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Printing &amp; Embroidery</span>
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Cutting &amp; Stitching</span>
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Checking &amp; Finishing</span>
+<span class="px-4 py-2 border border-outline-variant font-label-md text-label-md uppercase tracking-widest">Packing</span>
+</div>
+</div>
+<div class="md:col-span-4 aspect-square bg-white border border-outline-variant flex items-center justify-center p-12 text-center group transition-colors hover:bg-primary-container">
+<div>
+<span class="material-symbols-outlined text-6xl text-primary mb-6 group-hover:text-primary-fixed">factory</span>
+<h4 class="font-headline-lg text-headline-lg mb-2 group-hover:text-white">Smart Manufacturing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-primary-container">Advanced robotics paired with artisan oversight.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap-lg">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<div class="border-y border-outline-variant py-24">
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-xl mb-8">Ready to Partner with AD Textile?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Discuss your procurement needs with our specialist team and discover how our manufacturing scale can support your retail goals.</p>
+<a class="inline-block bg-primary text-on-primary px-16 py-6 font-label-md text-label-md shadow-xl hover:bg-secondary transition-all" href="contact.html">Schedule a Consultation</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-tertiary-container border-t border-outline-variant py-section-gap-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<a class="font-headline-lg text-headline-lg font-bold text-primary" href="index.html">AD Textile</a>
+<p class="font-body-md text-body-md text-on-surface-variant">Manufacturing premium home textiles for global excellence since 1990. Exporting worldwide since 1992.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="tel:+919994399077">
+<span class="material-symbols-outlined text-sm">call</span>
+</a>
+<a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="contact.html">
+<span class="material-symbols-outlined text-sm">mail</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2">Company</h5>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="infrastructure.html">Our Infrastructure</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="sustainability.html">Sustainability</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="certifications.html">Certifications</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="products.html">Our Products</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2">Quick Links</h5>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="privacy.html">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="terms.html">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="infrastructure.html#packing">Export &amp; Packing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Company Profile</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2">Get in Touch</h5>
+<p class="text-sm text-on-surface-variant">1/104, Sanjay Nagar, Erode Road,<br/>Athur Post, Karur – 639002,<br/>Tamil Nadu, India</p>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="mailto:senthil@adtextile.com">senthil@adtextile.com</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="tel:+919994399077">+91 999 43 99 077</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-outline-variant/30 flex justify-between items-center flex-wrap gap-4">
+<p class="font-label-md text-label-md text-on-surface-variant">© 2026 Angayeeammal Devarajan Textile Pvt. Ltd. (AD Textile). All rights reserved.</p>
+<div class="flex gap-8">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Karur, Tamil Nadu, India</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll interaction for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('h-16', 'bg-surface/95');
+                nav.classList.remove('h-20', 'bg-surface/80');
+            } else {
+                nav.classList.remove('h-16', 'bg-surface/95');
+                nav.classList.add('h-20', 'bg-surface/80');
+            }
+        });
+
+        // Hover interaction script for product cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+<div class="fixed bottom-8 right-8 z-50 font-body-md" id="ai-assistant-container">
+<!-- Chat Window -->
+<div class="hidden absolute bottom-20 right-0 w-[380px] h-[550px] flex flex-col overflow-hidden rounded-xl border border-white/20 shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0" id="chat-window">
+<!-- Shader Background Layer -->
+<div class="absolute inset-0 -z-10 opacity-40">
+<canvas class="w-full h-full" id="shader-canvas"></canvas>
+</div>
+<!-- Glassmorphic Overlay -->
+<div class="absolute inset-0 -z-10 bg-white/10 backdrop-blur-xl"></div>
+<!-- Header -->
+<div class="p-6 border-b border-white/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white">smart_toy</span>
+</div>
+<div>
+<h4 class="font-label-md text-primary">AD Textile Assistant</h4>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">Live</span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors" id="close-chat">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+<div class="bg-white/20 backdrop-blur-md p-4 rounded-lg rounded-tl-none max-w-[85%] border border-white/30">
+<p class="text-sm text-primary">Hi, I'm AD Textile Assistant. How can I help you today?</p>
+</div>
+<!-- Quick Question Chips -->
+<div class="flex flex-wrap gap-2 mt-2">
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Product Information</button>
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Manufacturing</button>
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Infrastructure</button>
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Quality</button>
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Certifications</button>
+<button class="px-3 py-1.5 bg-white/40 hover:bg-white/60 border border-white/20 rounded-full text-xs text-primary transition-all">Contact Sales</button>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-6 border-t border-white/10">
+<div class="relative">
+<input class="w-full bg-white/30 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary/50 placeholder:text-on-surface-variant/60" placeholder="Type your message..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Trigger Button (FAB) -->
+<button class="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform group relative" id="chat-trigger">
+<span class="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></span>
+<span class="material-symbols-outlined text-3xl relative z-10">chat_bubble</span>
+</button>
+<script>
+        (function() {
+            const trigger = document.getElementById('chat-trigger');
+            const windowEl = document.getElementById('chat-window');
+            const closeBtn = document.getElementById('close-chat');
+            const canvas = document.getElementById('shader-canvas');
+
+            function toggleChat() {
+                const isOpen = !windowEl.classList.contains('hidden');
+                if (isOpen) {
+                    windowEl.classList.add('translate-y-4', 'opacity-0');
+                    setTimeout(() => windowEl.classList.add('hidden'), 300);
+                } else {
+                    windowEl.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        windowEl.classList.remove('translate-y-4', 'opacity-0');
+                    });
+                    initShader();
+                }
+            }
+
+            trigger.addEventListener('click', toggleChat);
+            closeBtn.addEventListener('click', toggleChat);
+
+            function initShader() {
+                if (canvas.dataset.initialized) return;
+                const gl = canvas.getContext('webgl');
+                if (!gl) return;
+
+                const vsSource = `attribute vec2 position; varying vec2 v_texCoord; void main() { v_texCoord = position * 0.5 + 0.5; gl_Position = vec4(position, 0.0, 1.0); }`;
+                const fsSource = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+
+    // Create a subtle, flowing glass-like background
+    float noise = sin(uv.x * 10.0 + u_time * 0.5) * cos(uv.y * 10.0 + u_time * 0.5);
+    noise += sin(uv.x * 20.0 - u_time * 0.8) * cos(uv.y * 15.0 + u_time * 1.2) * 0.5;
+
+    // Base colors from the "Industrial Elegance" theme
+    // Deep Navy: #000a1e -> vec3(0.0, 0.039, 0.117)
+    // Primary/Accent: Derived from theme
+    vec3 color1 = vec3(0.0, 0.04, 0.12); // Deep Navy
+    vec3 color2 = vec3(0.1, 0.15, 0.25); // Lighter blue-grey
+
+    vec3 finalColor = mix(color1, color2, noise * 0.2 + 0.5);
+
+    // Add a slight "glint" or highlight
+    float glint = pow(max(0.0, sin(uv.x * 5.0 + uv.y * 2.0 + u_time)), 20.0) * 0.1;
+    finalColor += glint;
+
+    gl_FragColor = vec4(finalColor, 0.8);
+}`;
+
+                function createShader(gl, type, source) {
+                    const shader = gl.createShader(type);
+                    gl.shaderSource(shader, source);
+                    gl.compileShader(shader);
+                    return shader;
+                }
+
+                const program = gl.createProgram();
+                gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vsSource));
+                gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource));
+                gl.linkProgram(program);
+                gl.useProgram(program);
+
+                const buffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+                const posLoc = gl.getAttribLocation(program, 'position');
+                gl.enableVertexAttribArray(posLoc);
+                gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+                const timeLoc = gl.getUniformLocation(program, 'u_time');
+                const resLoc = gl.getUniformLocation(program, 'u_resolution');
+
+                function render(time) {
+                    canvas.width = canvas.clientWidth;
+                    canvas.height = canvas.clientHeight;
+                    gl.viewport(0, 0, canvas.width, canvas.height);
+                    gl.uniform1f(timeLoc, time * 0.001);
+                    gl.uniform2f(resLoc, canvas.width, canvas.height);
+                    gl.drawArrays(gl.TRIANGLES, 0, 6);
+                    requestAnimationFrame(render);
+                }
+                requestAnimationFrame(render);
+                canvas.dataset.initialized = 'true';
+            }
+        })();
+    </script>
+</div>
+</body></html>
