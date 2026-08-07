@@ -1,7 +1,10 @@
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
+import RevealText from '../components/motion/RevealText.jsx'
+import ThreadPath from '../components/motion/ThreadPath.jsx'
 
 const INSPECTION_STEPS = [
   {
@@ -68,6 +71,8 @@ const TESTING_PRACTICES = [
 ]
 
 function Certifications() {
+  const timelineRef = useRef(null)
+
   return (
     <>
       {/* Hero Section */}
@@ -90,9 +95,14 @@ function Certifications() {
             <span className="font-label-md text-secondary uppercase tracking-[0.2em] mb-4 block">
               Quality Assurance
             </span>
-            <h1 className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight mb-8">
+            <RevealText
+              as="h1"
+              scrollTriggered={false}
+              delay={0.2}
+              className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight mb-8"
+            >
               Global Standards. Uncompromising Quality.
-            </h1>
+            </RevealText>
             <p className="font-body-lg text-body-lg text-white/80 mb-8 max-w-xl">
               Elevating industrial manufacturing through rigorous certification and state-of-the-art laboratory testing
               across our entire global supply chain.
@@ -121,9 +131,17 @@ function Certifications() {
             </p>
           </div>
 
-          <div className="relative space-y-24 md:space-y-32">
-            {/* Native Tailwind vertical timeline line */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/50 hidden md:block" />
+          <div ref={timelineRef} className="relative space-y-24 md:space-y-32">
+            <ThreadPath
+              d="M4,0 L4,1000"
+              viewBox="0 0 8 1000"
+              trigger={timelineRef}
+              start="top 75%"
+              end="bottom 45%"
+              scrub={0.6}
+              strokeWidth={4}
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block"
+            />
 
             {INSPECTION_STEPS.map((step, idx) => (
               <motion.div

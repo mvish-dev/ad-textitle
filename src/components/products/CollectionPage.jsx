@@ -1,16 +1,20 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
 import Container from '../ui/Container.jsx'
 import Button from '../ui/Button.jsx'
 import Icon from '../ui/Icon.jsx'
 import ProductGallery from '../ui/ProductGallery.jsx'
+import RevealText from '../motion/RevealText.jsx'
+import { gsap } from '../../lib/motion.js'
 import { COLLECTIONS, COLLECTIONS_META, COLLECTION_ORDER } from '../../data/productCollections.js'
 
 const GALLERY_ANCHOR = 'collection-gallery'
 
 function CollectionPage({ collectionKey }) {
   const scrollRef = useRef(null)
+  const heroImageRef = useRef(null)
   const config = COLLECTIONS[collectionKey]
   const contactHref = `/contact?category=${encodeURIComponent(config.contactCategory)}`
   const relatedCollections = COLLECTION_ORDER.filter((code) => code !== config.category).map(
@@ -24,11 +28,23 @@ function CollectionPage({ collectionKey }) {
     }
   }
 
+  useGSAP(
+    () => {
+      if (!heroImageRef.current) return
+      gsap.fromTo(
+        heroImageRef.current,
+        { clipPath: 'inset(0 0 0 100%)' },
+        { clipPath: 'inset(0 0 0 0%)', duration: 1.1, ease: 'power3.inOut', delay: 0.1 }
+      )
+    },
+    { dependencies: [collectionKey] }
+  )
+
   return (
     <>
       {/* Hero Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden min-h-[80vh] pt-20 bg-background text-left">
-        <div className="relative overflow-hidden group">
+        <div ref={heroImageRef} className="relative overflow-hidden group">
           <img
             className="w-full h-full object-cover transition-transform duration-[8s] group-hover:scale-105"
             alt={config.hero.imageAlt}
@@ -38,9 +54,9 @@ function CollectionPage({ collectionKey }) {
         </div>
         <div className="flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-16 bg-[#F8F7F4] border-l border-outline-variant/20">
           <span className="eyebrow mb-4">{config.hero.eyebrow}</span>
-          <h1 className="font-display-lg text-display-lg-mobile md:text-5xl mb-8 leading-tight">
+          <RevealText as="h1" scrollTriggered={false} delay={0.3} className="font-display-lg text-display-lg-mobile md:text-5xl mb-8 leading-tight">
             {config.hero.title} <em>{config.hero.titleAccent}</em>
-          </h1>
+          </RevealText>
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-xl leading-relaxed">
             {config.hero.description}
           </p>
@@ -254,7 +270,11 @@ function CollectionPage({ collectionKey }) {
               </button>
             </div>
           </div>
-          <div ref={scrollRef} className="flex gap-gutter overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8">
+          <div
+            ref={scrollRef}
+            data-cursor-label="Drag"
+            className="flex gap-gutter overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8"
+          >
             {relatedCollections.map((related) => (
               <div key={related.slug} className="min-w-[320px] md:min-w-[420px] snap-start group">
                 <div className="aspect-video overflow-hidden rounded-xl mb-6 relative shadow-sm">

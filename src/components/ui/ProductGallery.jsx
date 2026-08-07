@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
 import Icon from './Icon.jsx'
+import { gsap, Flip } from '../../lib/motion.js'
 
 // Dynamic imports of images in Vite
 const bedLinenGlob = import.meta.glob('../../assets/BL/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true })
@@ -111,9 +113,27 @@ function ProductGallery({ category = 'ALL' }) {
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [sortBy, setSortBy] = useState('asc')
 
+  const gridRef = useRef(null)
+  const flipStateRef = useRef(null)
+
+  // Capture the current card positions before a filter/sort/load-more
+  // change so the post-render effect below can Flip them into their new
+  // layout instead of hard-cutting.
+  const captureFlipState = () => {
+    if (gridRef.current) {
+      flipStateRef.current = Flip.getState(gridRef.current.querySelectorAll('.product-card'))
+    }
+  }
+
   const handleTabChange = (tab) => {
+    captureFlipState()
     setActiveTab(tab)
     setVisibleCount(ITEMS_PER_PAGE)
+  }
+
+  const handleSortChange = (value) => {
+    captureFlipState()
+    setSortBy(value)
   }
 
   // Filter items based on activeTab
@@ -139,8 +159,26 @@ function ProductGallery({ category = 'ALL' }) {
   const hasMore = sortedProducts.length > visibleCount
 
   const handleLoadMore = () => {
+    captureFlipState()
     setVisibleCount(prev => prev + ITEMS_PER_PAGE)
   }
+
+  useGSAP(
+    () => {
+      if (!flipStateRef.current) return
+      Flip.from(flipStateRef.current, {
+        duration: 0.6,
+        ease: 'power2.inOut',
+        stagger: 0.03,
+        absolute: true,
+        onEnter: (elements) =>
+          gsap.fromTo(elements, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.03 }),
+        onLeave: (elements) => gsap.to(elements, { opacity: 0, scale: 0.92, duration: 0.3 }),
+      })
+      flipStateRef.current = null
+    },
+    { dependencies: [activeTab, sortBy, visibleCount], scope: gridRef }
+  )
 
   const handleInquiry = (product) => {
     setSelectedProduct(null)
@@ -194,7 +232,7 @@ function ProductGallery({ category = 'ALL' }) {
           <select
             id="sortBy"
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => handleSortChange(e.target.value)}
             className="bg-white border border-outline-variant/30 rounded-lg px-3 py-1.5 focus:border-secondary outline-none cursor-pointer font-semibold text-xs text-primary"
           >
             <option value="asc">Code (Ascending)</option>
@@ -203,69 +241,63 @@ function ProductGallery({ category = 'ALL' }) {
         </div>
       </div>
 
-      {/* Product Grid */}
-      <motion.div 
-        layout
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-      >
-        <AnimatePresence mode="popLayout">
-          {visibleProducts.map((product) => {
-            const details = getProductDetails(product)
-            return (
-              <motion.div
-                layout
-                key={product.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="group relative overflow-hidden bg-white border border-outline-variant/20 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full"
-                onClick={() => setSelectedProduct(product)}
-              >
-                <div className="aspect-square w-full overflow-hidden bg-surface-container-low relative shrink-0">
-                  <img
-                    src={product.url}
-                    alt={details.name}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  {/* Glassmorphic Category Label */}
-                  <div className="absolute top-3 left-3 bg-primary/75 backdrop-blur-md px-2.5 py-1 rounded text-[9px] font-bold uppercase tracking-wider text-white z-10">
-                    {product.category}
-                  </div>
+      {/* Product Grid — re-flows via GSAP Flip on filter/sort/load-more
+          instead of a hard cut, so cards that stay visible glide to their
+          new position and only genuinely new/removed cards fade. */}
+      <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {visibleProducts.map((product) => {
+          const details = getProductDetails(product)
+          return (
+            <div
+              key={product.id}
+              data-flip-id={product.id}
+              data-cursor-label="View"
+              className="product-card group relative overflow-hidden bg-white border border-outline-variant/20 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full"
+              onClick={() => setSelectedProduct(product)}
+            >
+              <div className="aspect-square w-full overflow-hidden bg-surface-container-low relative shrink-0">
+                <img
+                  src={product.url}
+                  alt={details.name}
+                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                  loading="lazy"
+                />
+                {/* Glassmorphic Category Label */}
+                <div className="absolute top-3 left-3 bg-primary/75 backdrop-blur-md px-2.5 py-1 rounded text-[9px] font-bold uppercase tracking-wider text-white z-10">
+                  {product.category}
                 </div>
-                <div className="p-4 border-t border-outline-variant/10 flex flex-col justify-between flex-grow text-left">
-                  <div>
-                    <p className="text-[10px] text-secondary font-bold tracking-widest uppercase mb-1">
-                      {product.id}
-                    </p>
-                    <h4 className="font-headline-lg text-sm text-primary font-semibold truncate">
-                      {details.name}
-                    </h4>
-                    <p className="text-[11px] text-on-surface-variant mt-1.5 line-clamp-1">
-                      {details.composition}
-                    </p>
-                  </div>
-                  
-                  {/* Direct Get Quote E-commerce CTA Button */}
-                  <div className="mt-4 pt-3 border-t border-outline-variant/5">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation() // Prevent modal trigger
-                        handleInquiry(product)
-                      }}
-                      className="w-full py-2 bg-transparent hover:bg-primary border border-primary text-primary hover:text-white font-label-md text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
-                    >
-                      Get Quote
-                      <Icon name="arrow_forward" className="text-[10px] shrink-0" />
-                    </button>
-                  </div>
+              </div>
+              <div className="p-4 border-t border-outline-variant/10 flex flex-col justify-between flex-grow text-left">
+                <div>
+                  <p className="text-[10px] text-secondary font-bold tracking-widest uppercase mb-1">
+                    {product.id}
+                  </p>
+                  <h4 className="font-headline-lg text-sm text-primary font-semibold truncate">
+                    {details.name}
+                  </h4>
+                  <p className="text-[11px] text-on-surface-variant mt-1.5 line-clamp-1">
+                    {details.composition}
+                  </p>
                 </div>
-              </motion.div>
-            )
-          })}
-        </AnimatePresence>
-      </motion.div>
+
+                {/* Direct Get Quote E-commerce CTA Button */}
+                <div className="mt-4 pt-3 border-t border-outline-variant/5">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation() // Prevent modal trigger
+                      handleInquiry(product)
+                    }}
+                    className="w-full py-2 bg-transparent hover:bg-primary border border-primary text-primary hover:text-white font-label-md text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                  >
+                    Get Quote
+                    <Icon name="arrow_forward" className="text-[10px] shrink-0" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
 
       {/* No products found */}
       {filteredProducts.length === 0 && (

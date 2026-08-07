@@ -1,9 +1,32 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
+import { gsap, EASE } from '../../lib/motion.js'
 
 function Footer() {
+  const gridRef = useRef(null)
+
+  useGSAP(
+    () => {
+      if (!gridRef.current) return
+      gsap.from(gridRef.current.children, {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: EASE.out,
+        stagger: 0.1,
+        scrollTrigger: { trigger: gridRef.current, start: 'top 90%', once: true },
+      })
+    },
+    { scope: gridRef }
+  )
+
   return (
     <footer className="bg-[#07101F] text-white/55 pt-20 pb-8 px-margin-mobile md:px-margin-desktop">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-12 border-b border-white/7">
+      <div
+        ref={gridRef}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-12 border-b border-white/7"
+      >
         <div>
           <Link className="font-headline-lg text-[1.75rem] font-bold text-white mb-4 inline-block" to="/">
             AD <span className="text-secondary">Textile</span>

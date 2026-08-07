@@ -6,6 +6,7 @@ import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import ProductGallery from '../components/ui/ProductGallery.jsx'
 import Breadcrumbs from '../components/ui/Breadcrumbs.jsx'
+import RevealText from '../components/motion/RevealText.jsx'
 
 // Import slideshow images
 import slide1 from '../assets/img/slides/img-1.jpg'
@@ -52,9 +53,14 @@ function Products() {
             <span className="font-label-md text-label-md text-secondary bg-white/15 backdrop-blur-md px-4 py-2 mb-6 inline-block border border-secondary/30 rounded-full tracking-[0.15em] uppercase">
               Core Collections
             </span>
-            <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">
+            <RevealText
+              as="h1"
+              scrollTriggered={false}
+              delay={0.2}
+              className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6"
+            >
               Artistry in Every Thread.
-            </h1>
+            </RevealText>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
               Elevating global interiors through precision-engineered textiles and sustainable manufacturing excellence.
             </p>

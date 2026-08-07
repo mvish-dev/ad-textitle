@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import Button from '../components/ui/Button.jsx'
+import RevealText from '../components/motion/RevealText.jsx'
+import ThreadPath from '../components/motion/ThreadPath.jsx'
 
 // Import slide images
 import slide1 from '../assets/img/slides/img-1.jpg'
@@ -83,6 +85,7 @@ const SLIDES = [slide1, slide2, slide3]
 function About() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
+  const timelineRef = useRef(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -110,9 +113,14 @@ function About() {
             <span className="font-label-md text-label-md uppercase tracking-[0.2em] text-white/90 mb-6 block">
               Established 1990
             </span>
-            <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8">
+            <RevealText
+              as="h1"
+              scrollTriggered={false}
+              delay={0.2}
+              className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8"
+            >
               Legacy in <span className="italic font-normal text-secondary-fixed">Every</span> Thread.
-            </h1>
+            </RevealText>
             <div className="w-24 h-1 bg-secondary mx-auto" />
           </motion.div>
         </div>
@@ -159,9 +167,17 @@ function About() {
             <h2 className="section-title">Milestones of <em>Progress</em></h2>
             <div className="divider mx-auto" />
           </div>
-          <div className="relative space-y-24">
-            {/* Native Tailwind vertical timeline line */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/50 hidden md:block" />
+          <div ref={timelineRef} className="relative space-y-24">
+            <ThreadPath
+              d="M4,0 L4,1000"
+              viewBox="0 0 8 1000"
+              trigger={timelineRef}
+              start="top 75%"
+              end="bottom 45%"
+              scrub={0.6}
+              strokeWidth={4}
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block"
+            />
 
             {TIMELINE.map((event, idx) => (
               <motion.div

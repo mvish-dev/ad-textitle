@@ -1,8 +1,16 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
+import RevealText from '../components/motion/RevealText.jsx'
+import MagneticButton from '../components/motion/MagneticButton.jsx'
+import WebGLScene from '../components/motion/WebGLScene.jsx'
+import LottieIcon from '../components/motion/LottieIcon.jsx'
+import pulseRing from '../assets/lottie/pulse-ring.json'
+import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
 
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
@@ -110,6 +118,50 @@ const COMPLIANCE_MARKS = [
 ]
 
 function Home() {
+  const journeySectionRef = useRef(null)
+  const journeyTrackRef = useRef(null)
+  const journeyPathRef = useRef(null)
+
+  useGSAP(
+    () => {
+      const section = journeySectionRef.current
+      const track = journeyTrackRef.current
+      const path = journeyPathRef.current
+      if (!section || !track || !path || prefersReducedMotion()) return undefined
+
+      const mm = gsap.matchMedia()
+
+      mm.add('(min-width: 1024px)', () => {
+        const length = path.getTotalLength()
+        gsap.set(path, { strokeDasharray: length, strokeDashoffset: length })
+
+        const getScrollDistance = () => Math.max(0, track.scrollWidth - section.offsetWidth)
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${getScrollDistance() + section.offsetWidth * 0.4}`,
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        tl.to(track, { x: () => -getScrollDistance(), ease: 'none' }, 0).to(
+          path,
+          { strokeDashoffset: 0, ease: 'none' },
+          0
+        )
+
+        return () => {}
+      })
+
+      return () => mm.revert()
+    },
+    { scope: journeySectionRef }
+  )
+
   return (
     <>
       {/* Hero */}
@@ -121,11 +173,31 @@ function Home() {
             src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1800&q=85&auto=format&fit=crop"
             alt="A modern textile manufacturing facility with large weaving machines."
           />
-          <div 
-            className="absolute inset-0 z-10" 
+          <div
+            className="absolute inset-0 z-10"
             style={{ background: 'linear-gradient(160deg, rgba(10, 16, 30, 0.82) 0%, rgba(10, 16, 30, 0.52) 55%, rgba(10, 16, 30, 0.74) 100%)' }}
           />
         </div>
+
+        {/* Ambient thread/particle backdrop — degrades to the photo above if WebGL is unavailable */}
+        <WebGLScene
+          loader={() => import('../components/motion/HeroCanvas.jsx')}
+          className="z-[12] mix-blend-screen"
+          sparkleCount={70}
+        />
+
+        {/* The one interactive 3D piece on the site — a woven-thread knot the
+            visitor can drag to orbit. Desktop only: touch drag would fight
+            page scroll, and it needs room to not collide with the hero copy. */}
+        {!isTouchDevice() && (
+          <div
+            className="hidden lg:block absolute right-0 top-0 w-[52%] h-full z-[13] opacity-80"
+            data-cursor-label="Drag"
+          >
+            <WebGLScene loader={() => import('../components/motion/WeaveModel.jsx')} />
+          </div>
+        )}
+
         <Container className="relative z-20 flex justify-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -133,10 +205,10 @@ function Home() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="max-w-[820px] text-center flex flex-col items-center"
           >
-            <div 
+            <div
               className="flex items-center gap-3 text-secondary uppercase font-body-md mb-6"
-              style={{ 
-                fontSize: '0.70rem', 
+              style={{
+                fontSize: '0.70rem',
                 letterSpacing: '0.28em',
                 fontWeight: '600'
               }}
@@ -145,10 +217,13 @@ function Home() {
               <span>Est. 1990 — Karur, India</span>
               <span className="w-[26px] h-[1px] bg-secondary" />
             </div>
-            <h1 
+            <RevealText
+              as="h1"
+              scrollTriggered={false}
+              delay={0.35}
               className="font-display-lg text-white mb-8 font-semibold"
-              style={{ 
-                fontSize: 'clamp(2.4rem, 6vw, 4.8rem)', 
+              style={{
+                fontSize: 'clamp(2.4rem, 6vw, 4.8rem)',
                 lineHeight: '1.12',
                 letterSpacing: '-0.02em'
               }}
@@ -156,8 +231,8 @@ function Home() {
               Crafting Premium <br />
               <em className="text-secondary italic">Home Textiles</em> <br />
               for the Global Market
-            </h1>
-            <p 
+            </RevealText>
+            <p
               className="text-white/80 mb-10 max-w-[52ch] mx-auto leading-relaxed font-body-md"
               style={{ fontSize: 'clamp(0.88rem, 1.6vw, 1.02rem)' }}
             >
@@ -165,9 +240,11 @@ function Home() {
               worldwide. We deliver precision-engineered textiles to the world's leading retailers.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button to="/products" variant="primary" size="md">
-                Explore Products
-              </Button>
+              <MagneticButton>
+                <Button to="/products" variant="primary" size="md">
+                  Explore Products
+                </Button>
+              </MagneticButton>
               <Button to="/infrastructure" variant="outline" size="md" className="text-white border-white/40">
                 Our Infrastructure
               </Button>
@@ -239,8 +316,9 @@ function Home() {
         </Container>
       </section>
 
-      {/* Manufacturing Journey Timeline */}
-      <section className="py-section-gap-lg bg-primary text-white relative overflow-hidden">
+      {/* Manufacturing Journey Timeline — pinned horizontal scroll on desktop,
+          the connecting thread drawing in lockstep with the steps sliding by. */}
+      <section ref={journeySectionRef} className="py-section-gap-lg bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-radial-gradient from-secondary/5 to-transparent pointer-events-none" />
         <Container>
           <div className="text-center mb-20">
@@ -248,48 +326,58 @@ function Home() {
             <h2 className="section-title !text-white">Vertical Integrated <em>Journey</em></h2>
             <div className="divider mx-auto" />
           </div>
-          <div className="relative overflow-x-auto pb-8 no-scrollbar">
-            <div className="flex min-w-[1100px] items-start justify-between relative px-8">
-              {/* horizontal line connector */}
-              <div className="absolute top-[28px] left-[50px] right-[50px] h-[1px] bg-secondary/20 z-0 hidden lg:block" />
+        </Container>
+        <div className={`relative overflow-x-auto no-scrollbar ${prefersReducedMotion() ? '' : 'lg:overflow-hidden'}`}>
+          <div
+            ref={journeyTrackRef}
+            className="flex items-start gap-16 lg:gap-20 px-8 md:px-margin-desktop w-max relative pb-4"
+          >
+            <svg
+              className="absolute top-[28px] left-8 h-[2px] z-0 hidden lg:block overflow-visible"
+              style={{ width: 'calc(100% - 4rem)' }}
+              viewBox="0 0 1000 2"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path ref={journeyPathRef} d="M0,1 L1000,1" stroke="#C59D5F" strokeWidth="4" strokeLinecap="round" fill="none" />
+            </svg>
 
-              {JOURNEY_STEPS.map((step, index) => (
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="flex-1 flex flex-col items-center text-center group relative z-10"
-                >
-                  <div className="w-14 h-14 rounded-full bg-white/5 border border-secondary/20 flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:border-secondary transition-all duration-300 group-hover:shadow-[0_0_0_8px_rgba(197,157,95,0.12)]">
-                    <span className="font-label-md text-secondary group-hover:text-white transition-colors">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <h4 className="font-label-md text-[0.78rem] mb-2 text-white/80 group-hover:text-secondary transition-colors font-semibold uppercase tracking-wider">
-                    {step}
-                  </h4>
-                </motion.div>
-              ))}
-
+            {JOURNEY_STEPS.map((step, index) => (
               <motion.div
+                key={step}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: JOURNEY_STEPS.length * 0.08 }}
-                className="flex-1 flex flex-col items-center text-center group relative z-10"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="w-[168px] shrink-0 flex flex-col items-center text-center group relative z-10"
               >
-                <div className="w-14 h-14 rounded-full bg-secondary border border-secondary flex items-center justify-center mb-6 text-white group-hover:shadow-[0_0_0_8px_rgba(197,157,95,0.12)] transition-shadow duration-300">
-                  <Icon name="shopping_bag" className="text-xl" />
+                <div className="w-14 h-14 rounded-full bg-white/5 border border-secondary/20 flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:border-secondary transition-all duration-300 group-hover:shadow-[0_0_0_8px_rgba(197,157,95,0.12)]">
+                  <span className="font-label-md text-secondary group-hover:text-white transition-colors">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
                 </div>
-                <h4 className="font-label-md text-[0.78rem] mb-2 text-secondary font-semibold uppercase tracking-wider">
-                  Export
+                <h4 className="font-label-md text-[0.78rem] mb-2 text-white/80 group-hover:text-secondary transition-colors font-semibold uppercase tracking-wider">
+                  {step}
                 </h4>
               </motion.div>
-            </div>
+            ))}
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: JOURNEY_STEPS.length * 0.08 }}
+              className="w-[168px] shrink-0 flex flex-col items-center text-center group relative z-10"
+            >
+              <div className="w-14 h-14 rounded-full bg-secondary border border-secondary flex items-center justify-center mb-6 text-white group-hover:shadow-[0_0_0_8px_rgba(197,157,95,0.12)] transition-shadow duration-300">
+                <Icon name="shopping_bag" className="text-xl" />
+              </div>
+              <h4 className="font-label-md text-[0.78rem] mb-2 text-secondary font-semibold uppercase tracking-wider">
+                Export
+              </h4>
+            </motion.div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Why Choose Us Grid */}
@@ -308,7 +396,10 @@ function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {EDGE_POINTS.map((point) => (
                   <div key={point.title} className="bg-white rounded-lg p-6 border border-outline-variant/20 shadow-sm transition-all duration-300 hover:shadow-md">
-                    <Icon name={point.icon} className="text-secondary text-4xl mb-4" />
+                    <div className="relative w-11 h-11 mb-4">
+                      <LottieIcon animationData={pulseRing} className="absolute inset-0 w-full h-full" />
+                      <Icon name={point.icon} className="relative text-secondary text-4xl" />
+                    </div>
                     <h4 className="font-label-md text-primary mb-2 font-semibold text-[0.9rem] uppercase tracking-wider">{point.title}</h4>
                     <p className="text-on-surface-variant text-xs leading-relaxed">{point.description}</p>
                   </div>
@@ -424,14 +515,16 @@ function Home() {
                 opportunities.
               </p>
             </div>
-            <Button
-              to="/contact"
-              variant="primary"
-              size="lg"
-              className="relative z-10 !bg-white !text-primary px-12 py-6 hover:!bg-secondary-fixed shadow-xl"
-            >
-              Contact Us
-            </Button>
+            <MagneticButton className="inline-block relative z-10">
+              <Button
+                to="/contact"
+                variant="primary"
+                size="lg"
+                className="!bg-white !text-primary px-12 py-6 hover:!bg-secondary-fixed shadow-xl"
+              >
+                Contact Us
+              </Button>
+            </MagneticButton>
           </div>
         </Container>
       </section>

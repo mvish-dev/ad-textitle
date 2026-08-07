@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 function CustomCursor() {
   const [hovered, setHovered] = useState(false)
+  const [label, setLabel] = useState('')
   const [isMobile, setIsMobile] = useState(false)
 
   // Motion values for smooth tracking
@@ -27,6 +28,8 @@ function CustomCursor() {
 
     const handleMouseOver = (e) => {
       const target = e.target
+      const labelSource = target.closest?.('[data-cursor-label]')
+
       if (
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
@@ -35,12 +38,15 @@ function CustomCursor() {
         target.closest('[role="button"]') ||
         target.closest('input') ||
         target.closest('textarea') ||
-        target.closest('select')
+        target.closest('select') ||
+        labelSource
       ) {
         setHovered(true)
       } else {
         setHovered(false)
       }
+
+      setLabel(labelSource ? labelSource.dataset.cursorLabel : '')
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -56,7 +62,7 @@ function CustomCursor() {
 
   // Dimension states
   const dotSize = 8
-  const ringSize = hovered ? 46 : 28
+  const ringSize = label ? 64 : hovered ? 46 : 28
   return (
     <>
       {/* Inner Filled Dot */}
@@ -69,13 +75,17 @@ function CustomCursor() {
           height: dotSize,
           translateX: '-50%',
           translateY: '-50%',
+          opacity: label ? 0 : 1,
         }}
         transition={{ type: 'spring', stiffness: 1000, damping: 50 }}
       />
 
-      {/* Outer Hollow Ring */}
+      {/* Outer Hollow Ring, doubling as a contextual "View"/"Drag" label when
+          hovering elements tagged with data-cursor-label */}
       <motion.div
-        className="fixed top-0 left-0 border-[1.5px] border-[#C59D5F] rounded-full pointer-events-none z-[9998] shadow-[0_0_6px_rgba(197,157,95,0.3)]"
+        className={`fixed top-0 left-0 border-[1.5px] border-[#C59D5F] rounded-full pointer-events-none z-[9998] shadow-[0_0_6px_rgba(197,157,95,0.3)] flex items-center justify-center ${
+          label ? 'bg-primary/90' : ''
+        }`}
         style={{
           x: ringX,
           y: ringY,
@@ -85,12 +95,19 @@ function CustomCursor() {
         animate={{
           width: ringSize,
           height: ringSize,
+          opacity: 1,
         }}
         transition={{
           width: { type: 'spring', stiffness: 350, damping: 25 },
           height: { type: 'spring', stiffness: 350, damping: 25 },
         }}
-      />
+      >
+        {label && (
+          <span className="text-[9px] font-semibold uppercase tracking-wider text-white whitespace-nowrap">
+            {label}
+          </span>
+        )}
+      </motion.div>
     </>
   )
 }

@@ -4,6 +4,17 @@ import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import Button from '../components/ui/Button.jsx'
+import RevealText from '../components/motion/RevealText.jsx'
+import MagneticButton from '../components/motion/MagneticButton.jsx'
+
+// Approximate positions (as % of the map image box) for AD Textile's origin
+// plus a couple of representative export destinations — purely decorative,
+// not a precise geographic projection.
+const MAP_MARKERS = [
+  { label: 'Karur, India — HQ', top: '52%', left: '65%', size: 'lg' },
+  { label: 'European export lane', top: '30%', left: '46%', size: 'sm' },
+  { label: 'North American export lane', top: '34%', left: '18%', size: 'sm' },
+]
 
 function Contact() {
   const location = useLocation()
@@ -29,9 +40,9 @@ function Contact() {
             <span className="eyebrow">
               Global Partners
             </span>
-            <h1 className="section-title mb-8 leading-tight">
+            <RevealText as="h1" scrollTriggered={false} delay={0.2} className="section-title mb-8 leading-tight">
               Connect with Global <em>Excellence</em>
-            </h1>
+            </RevealText>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
               Bridging international design with vertically integrated manufacturing scale. Our global infrastructure is
               ready to support your retail expansion.
@@ -57,6 +68,22 @@ function Contact() {
                 alt="Minimalist world map graphic centering on India"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJTryBEnKjTrnkY7hWkXpXOLjWNLZ-eOSuna80CHlsg0yg89Yd-4PLWy0FEShiikdo006DnWlOLulsPCzzY_B0R_8IunMMMbwE5DYJrzZrRklZ4rMmXcRzds5JHdX5Bf-tzeu5cvrpcyNF5QB69yXvHPBXQQv1ts_ONCMcG4e9lvfB4ny9I5mmf4kAJoDFsMuyR0OFAgvWffpr80oTtZ5vIxdJKhMYp86PkWIIyzquwfWm_6e6zTB8NE1Xrts32ZJaN5MOnjxFZ7E"
               />
+              {/* Pulsing export-lane markers */}
+              {MAP_MARKERS.map((marker) => {
+                const dotSize = marker.size === 'lg' ? 'w-3 h-3' : 'w-2 h-2'
+                const ringSize = marker.size === 'lg' ? 'w-3 h-3' : 'w-2 h-2'
+                return (
+                  <span
+                    key={marker.label}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ top: marker.top, left: marker.left }}
+                    title={marker.label}
+                  >
+                    <span className={`absolute inset-0 ${ringSize} rounded-full bg-secondary animate-ping opacity-60`} />
+                    <span className={`relative block ${dotSize} rounded-full bg-secondary shadow-[0_0_6px_rgba(197,157,95,0.7)]`} />
+                  </span>
+                )
+              })}
             </div>
           </motion.div>
         </Container>
@@ -115,13 +142,15 @@ function Contact() {
                     required
                   />
                 </div>
-                <button
-                  className="w-full py-4.5 bg-primary hover:bg-[#1E293B] text-white font-label-md text-xs font-semibold uppercase tracking-widest transition-all rounded-full flex items-center justify-center gap-3 cursor-pointer shadow-[0_8px_32px_rgba(15,23,42,0.15)] hover:shadow-lg hover:-translate-y-0.5"
-                  type="submit"
-                >
-                  Send Inquiry
-                  <Icon name="arrow_forward" />
-                </button>
+                <MagneticButton className="block w-full" strength={0.15}>
+                  <button
+                    className="w-full py-4.5 bg-primary hover:bg-[#1E293B] text-white font-label-md text-xs font-semibold uppercase tracking-widest transition-all rounded-full flex items-center justify-center gap-3 cursor-pointer shadow-[0_8px_32px_rgba(15,23,42,0.15)] hover:shadow-lg hover:-translate-y-0.5"
+                    type="submit"
+                  >
+                    Send Inquiry
+                    <Icon name="arrow_forward" />
+                  </button>
+                </MagneticButton>
               </form>
             </motion.div>
 

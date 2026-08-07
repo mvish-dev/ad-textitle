@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import MagneticButton from '../motion/MagneticButton.jsx'
 
 const NAV_LINKS = [
   { label: 'Products', to: '/products' },
@@ -91,12 +92,14 @@ function Header() {
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
-              <Link
-                to="/contact"
-                className="inline-block text-center font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 bg-gradient-to-br from-secondary to-[#A8834A] text-white shadow-[0_8px_32px_rgba(197,157,95,0.25)] hover:shadow-[0_14px_40px_rgba(197,157,95,0.40)] px-6 py-2.5 text-[0.78rem] tracking-wider uppercase"
-              >
-                Contact Us
-              </Link>
+              <MagneticButton strength={0.25}>
+                <Link
+                  to="/contact"
+                  className="inline-block text-center font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 bg-gradient-to-br from-secondary to-[#A8834A] text-white shadow-[0_8px_32px_rgba(197,157,95,0.25)] hover:shadow-[0_14px_40px_rgba(197,157,95,0.40)] px-6 py-2.5 text-[0.78rem] tracking-wider uppercase"
+                >
+                  Contact Us
+                </Link>
+              </MagneticButton>
             </div>
 
             <button
