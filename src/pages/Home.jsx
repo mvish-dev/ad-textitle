@@ -11,7 +11,7 @@ import MovingBorderButton from '../components/motion/MovingBorderButton.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import LottieIcon from '../components/motion/LottieIcon.jsx'
 import pulseRing from '../assets/lottie/pulse-ring.json'
-import { gsap, prefersReducedMotion } from '../lib/motion.js'
+import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
 
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
@@ -186,12 +186,29 @@ function Home() {
           className="z-[12] mix-blend-screen"
         />
 
-        <Container className="relative z-20 w-full">
+        {/* Interactive centerpiece: a braided-rope "AD" sculpture, fixed in
+            place on the right — it never follows the cursor, only rotates
+            in place when dragged. The "Drag" cursor label is toggled by the
+            sculpture itself (only while actually hovering it, not this
+            whole column) — see WeaveSculpture.jsx. Desktop only: touch drag
+            would fight page scroll. */}
+        {!isTouchDevice() && (
+          <div className="hidden lg:block absolute right-0 top-0 h-full z-[14]" style={{ width: '42%' }}>
+            <WebGLScene loader={() => import('../components/motion/WeaveSculpture.jsx')} />
+          </div>
+        )}
+
+        {/* pointer-events-none here because this container spans the full
+            hero width even though its content is left-aligned — without
+            it, its empty right-hand portion would sit above (z-20) and
+            silently swallow every pointer event meant for the sculpture
+            (z-14) underneath. Re-enabled on the actual content block below. */}
+        <Container className="relative z-20 w-full pointer-events-none">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="max-w-[560px] text-left flex flex-col items-start"
+            className="max-w-[560px] text-left flex flex-col items-start pointer-events-auto"
           >
             <div
               className="flex items-center gap-3 text-secondary uppercase font-body-md mb-7"

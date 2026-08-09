@@ -21,12 +21,7 @@ function CustomCursor() {
     }
     checkDevice()
 
-    const handleMouseMove = (e) => {
-      mouseX.set(e.clientX)
-      mouseY.set(e.clientY)
-    }
-
-    const handleMouseOver = (e) => {
+    const evaluateTarget = (e) => {
       const target = e.target
       const labelSource = target.closest?.('[data-cursor-label]')
 
@@ -49,12 +44,21 @@ function CustomCursor() {
       setLabel(labelSource ? labelSource.dataset.cursorLabel : '')
     }
 
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
+      // Also re-evaluate the label on every move, not just on discrete
+      // mouseover transitions — a canvas-backed target (e.g. the WeaveModel
+      // sculpture) can toggle its own data-cursor-label attribute in/out as
+      // the pointer moves across it without the DOM target itself ever
+      // changing, so a plain mouseover listener would never see it flip.
+      evaluateTarget(e)
+    }
+
     window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseover', handleMouseOver)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseover', handleMouseOver)
     }
   }, [mouseX, mouseY])
 
