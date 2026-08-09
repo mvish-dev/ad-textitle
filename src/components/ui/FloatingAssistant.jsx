@@ -86,9 +86,9 @@ function FloatingAssistant() {
   }, [open])
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 font-body-md">
+    <div className="fixed bottom-6 right-6 z-50 font-body-md">
       {open && (
-        <div className="absolute bottom-20 right-0 w-[380px] max-w-[90vw] h-[550px] flex flex-col overflow-hidden rounded-xl border border-white/20 shadow-2xl">
+        <div className="absolute bottom-16 right-0 w-[380px] max-w-[90vw] h-[550px] flex flex-col overflow-hidden rounded-xl border border-white/20 shadow-2xl">
           <div className="absolute inset-0 -z-10 opacity-40">
             <canvas ref={canvasRef} className="w-full h-full" />
           </div>
@@ -151,12 +151,11 @@ function FloatingAssistant() {
 
       <button
         type="button"
-        className="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform group relative"
+        className="w-11 h-11 bg-primary/90 text-white/90 rounded-full shadow-md flex items-center justify-center hover:scale-105 hover:opacity-100 transition-all opacity-80"
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? 'Close AD Textile Assistant' : 'Open AD Textile Assistant'}
       >
-        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
-        <Icon name="chat_bubble" className="text-3xl relative z-10" />
+        <Icon name="chat_bubble" className="text-lg" />
       </button>
     </div>
   )

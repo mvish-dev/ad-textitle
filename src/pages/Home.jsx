@@ -7,10 +7,11 @@ import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import MagneticButton from '../components/motion/MagneticButton.jsx'
+import MovingBorderButton from '../components/motion/MovingBorderButton.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import LottieIcon from '../components/motion/LottieIcon.jsx'
 import pulseRing from '../assets/lottie/pulse-ring.json'
-import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
+import { gsap, prefersReducedMotion } from '../lib/motion.js'
 
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
@@ -165,92 +166,84 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-screen min-h-[680px] flex items-center justify-center bg-primary text-white overflow-hidden">
+      <section className="relative h-screen min-h-[680px] flex items-center bg-primary text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            className="w-full h-full object-cover scale-[1.06]"
+            className="w-full h-full object-cover scale-[1.08] blur-[1.5px]"
             style={{ objectPosition: 'center 40%' }}
             src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1800&q=85&auto=format&fit=crop"
             alt="A modern textile manufacturing facility with large weaving machines."
           />
           <div
             className="absolute inset-0 z-10"
-            style={{ background: 'linear-gradient(160deg, rgba(10, 16, 30, 0.82) 0%, rgba(10, 16, 30, 0.52) 55%, rgba(10, 16, 30, 0.74) 100%)' }}
+            style={{ background: 'linear-gradient(160deg, rgba(10, 16, 30, 0.90) 0%, rgba(10, 16, 30, 0.62) 55%, rgba(10, 16, 30, 0.86) 100%)' }}
           />
         </div>
 
-        {/* Ambient thread/particle backdrop — degrades to the photo above if WebGL is unavailable */}
+        {/* Ambient cursor-reactive particle field — degrades to the photo above if WebGL is unavailable */}
         <WebGLScene
           loader={() => import('../components/motion/HeroCanvas.jsx')}
           className="z-[12] mix-blend-screen"
-          sparkleCount={70}
         />
 
-        {/* The one interactive 3D piece on the site — a woven-thread knot the
-            visitor can drag to orbit. Desktop only: touch drag would fight
-            page scroll, and it needs room to not collide with the hero copy. */}
-        {!isTouchDevice() && (
-          <div
-            className="hidden lg:block absolute right-0 top-0 w-[52%] h-full z-[13] opacity-80"
-            data-cursor-label="Drag"
-          >
-            <WebGLScene loader={() => import('../components/motion/WeaveModel.jsx')} />
-          </div>
-        )}
-
-        <Container className="relative z-20 flex justify-center w-full">
+        <Container className="relative z-20 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="max-w-[820px] text-center flex flex-col items-center"
+            className="max-w-[560px] text-left flex flex-col items-start"
           >
             <div
-              className="flex items-center gap-3 text-secondary uppercase font-body-md mb-6"
-              style={{
-                fontSize: '0.70rem',
-                letterSpacing: '0.28em',
-                fontWeight: '600'
-              }}
+              className="flex items-center gap-3 text-secondary uppercase font-body-md mb-7"
+              style={{ fontSize: '0.66rem', letterSpacing: '0.32em', fontWeight: '600' }}
             >
               <span className="w-[26px] h-[1px] bg-secondary" />
-              <span>Est. 1990 — Karur, India</span>
-              <span className="w-[26px] h-[1px] bg-secondary" />
+              <span>Est. 1990 · Karur, India</span>
             </div>
+
             <RevealText
               as="h1"
               scrollTriggered={false}
               delay={0.35}
-              className="font-display-lg text-white mb-8 font-semibold"
+              className="font-display-lg text-white font-semibold"
               style={{
-                fontSize: 'clamp(2.4rem, 6vw, 4.8rem)',
-                lineHeight: '1.12',
-                letterSpacing: '-0.02em'
+                fontSize: 'clamp(2.6rem, 5.2vw, 4.4rem)',
+                lineHeight: '1.08',
+                letterSpacing: '-0.02em',
               }}
             >
-              Crafting Premium <br />
-              <em className="text-secondary italic">Home Textiles</em> <br />
-              for the Global Market
+              Premium Home Textiles
             </RevealText>
+
             <p
-              className="text-white/80 mb-10 max-w-[52ch] mx-auto leading-relaxed font-body-md"
-              style={{ fontSize: 'clamp(0.88rem, 1.6vw, 1.02rem)' }}
+              className="font-body-md text-white/70 mt-4 mb-10 font-light"
+              style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.3rem)', letterSpacing: '0.01em' }}
             >
-              Over three decades of manufacturing excellence, innovative craftsmanship, and trusted partnerships
-              worldwide. We deliver precision-engineered textiles to the world's leading retailers.
+              Crafted for the Global Market.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+
+            <div className="flex flex-wrap items-center gap-8">
               <MagneticButton>
-                <Button to="/products" variant="primary" size="md">
-                  Explore Products
-                </Button>
+                <MovingBorderButton to="/products" size="md">
+                  Explore Products <Icon name="arrow_right_alt" />
+                </MovingBorderButton>
               </MagneticButton>
-              <Button to="/infrastructure" variant="outline" size="md" className="text-white border-white/40">
-                Our Infrastructure
-              </Button>
+              <Link
+                to="/about"
+                className="font-label-md text-[0.78rem] tracking-wider text-white/65 hover:text-white uppercase border-b border-transparent hover:border-white/50 transition-all pb-1"
+              >
+                Discover Our Story
+              </Link>
             </div>
           </motion.div>
         </Container>
+
+        <div className="absolute bottom-9 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/45">
+          <span className="font-label-md text-[0.6rem] tracking-[0.32em] uppercase">Scroll to Explore</span>
+          <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
+            <Icon name="arrow_downward" className="text-sm" />
+          </motion.span>
+        </div>
       </section>
 
       {/* Trust Indicators */}

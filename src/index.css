@@ -232,6 +232,17 @@ body {
   }
 }
 
+/* Used by MovingBorderButton: a constant-speed rotation. The apparent speed
+   of the highlight around a stadium-shaped border is not constant — it's
+   slowest at the flat mid-edges and fastest through the rounded ends —
+   because that's what a fixed angular velocity looks like once projected
+   onto a straight edge, not because the rotation itself eases. */
+@keyframes moving-border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .kenburns {
   animation: kenburns 22s ease-in-out infinite alternate;
   will-change: transform;
