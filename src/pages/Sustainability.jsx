@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
+import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 // Import sustainability videos
 import envCareVideo from '../assets/videos/Environmental Care.mp4'
@@ -12,13 +13,21 @@ function Sustainability() {
     <>
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[700px] flex items-end pb-32 pt-20 bg-primary">
-        <div className="absolute inset-0 z-0">
-          <div
-            className="w-full h-full bg-cover bg-center brightness-70 scale-[1.02]"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop')",
-            }}
+        <div className="absolute inset-0 z-0 bg-primary">
+          <WebGLScene
+            loader={() => import('../components/motion/LightRays.jsx')}
+            className="absolute inset-0"
+            fallback={<div className="absolute inset-0 bg-primary" />}
+            raysOrigin="top-center"
+            raysColor="#F4E4C8"
+            raysSpeed={1.1}
+            lightSpread={0.9}
+            rayLength={1.8}
+            fadeDistance={1.1}
+            saturation={0.85}
+            followMouse
+            mouseInfluence={0.12}
+            noiseAmount={0.05}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
         </div>

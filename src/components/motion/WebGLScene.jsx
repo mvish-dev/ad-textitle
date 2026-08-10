@@ -5,7 +5,13 @@ function detectWebGL() {
   if (prefersReducedMotion() || typeof window === 'undefined') return false
   try {
     const canvas = document.createElement('canvas')
-    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'))
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
+    // Release this throwaway context immediately rather than leaving it for
+    // GC — otherwise every mount (React StrictMode double-invokes this) eats
+    // into the browser's small per-page WebGL context budget, starving the
+    // real scene the check was gating.
+    gl?.getExtension('WEBGL_lose_context')?.loseContext()
+    return !!gl
   } catch {
     return false
   }

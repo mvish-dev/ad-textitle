@@ -1,47 +1,28 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import ProductGallery from '../components/ui/ProductGallery.jsx'
 import Breadcrumbs from '../components/ui/Breadcrumbs.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
-
-// Import slideshow images
-import slide1 from '../assets/img/slides/img-1.jpg'
-import slide2 from '../assets/img/slides/img-2.jpg'
-import slide3 from '../assets/img/slides/img-3.jpg'
-
-const SLIDES = [slide1, slide2, slide3]
+import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 function Products() {
-  const [activeSlide, setActiveSlide] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % SLIDES.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center pt-20 bg-primary">
         <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeSlide}
-              src={SLIDES[activeSlide]}
-              alt="Premium home textiles"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 0.7, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="absolute inset-0 w-full h-full object-cover brightness-[0.85]"
-            />
-          </AnimatePresence>
+          <WebGLScene
+            loader={() => import('../components/motion/Silk.jsx')}
+            className="absolute inset-0"
+            fallback={<div className="absolute inset-0 bg-primary" />}
+            color="#8A6D3B"
+            speed={2.2}
+            scale={1.1}
+            noiseIntensity={1.1}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-10" />
         </div>
         <div className="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl">

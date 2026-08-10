@@ -5,6 +5,7 @@ import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
+import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 const INSPECTION_STEPS = [
   {
@@ -78,10 +79,18 @@ function Certifications() {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden pt-20 bg-primary">
         <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover brightness-70 scale-[1.02]"
-            alt="Research laboratory with modern equipment"
-            src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=85&auto=format&fit=crop"
+          <WebGLScene
+            loader={() => import('../components/motion/Lightfall.jsx')}
+            className="absolute inset-0"
+            fallback={<div className="absolute inset-0 bg-primary" />}
+            colors={['#F4E4C8', '#C59D5F', '#8A6D3B']}
+            backgroundColor="#0F172A"
+            speed={0.55}
+            streakCount={3}
+            glow={1.3}
+            density={0.5}
+            zoom={3.4}
+            backgroundGlow={0.35}
           />
           <div className="absolute inset-0 bg-primary/40" />
         </div>

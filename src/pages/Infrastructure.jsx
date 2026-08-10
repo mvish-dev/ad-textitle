@@ -132,9 +132,13 @@ function Infrastructure() {
             <div className="chapter-inner grid grid-cols-1 md:grid-cols-2 h-full w-full">
               <div className="relative flex flex-col justify-center px-margin-mobile md:px-margin-desktop bg-primary text-white overflow-hidden">
                 <WebGLScene
-                  loader={() => import('../components/motion/HeroCanvas.jsx')}
-                  className="opacity-40 mix-blend-screen"
-                  sparkleCount={40}
+                  loader={() => import('../components/motion/LiquidEther.jsx')}
+                  className="absolute inset-0 opacity-50 mix-blend-screen pointer-events-none"
+                  colors={['#C59D5F', '#334155', '#F4E4C8']}
+                  autoDemo
+                  autoSpeed={0.4}
+                  autoIntensity={1.6}
+                  resolution={0.4}
                 />
                 <div className="relative z-10">
                   <span className="eyebrow !text-secondary mb-4">01 / Coloration</span>

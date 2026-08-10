@@ -5,6 +5,7 @@ import Icon from '../components/ui/Icon.jsx'
 import Button from '../components/ui/Button.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
+import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 // Import slide images
 import slide1 from '../assets/img/slides/img-1.jpg'
@@ -99,10 +100,17 @@ function About() {
       {/* Hero */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
         <div className="absolute inset-0 bg-primary/45 z-10" />
-        <img
-          alt="Close-up of raw textile fibers"
-          className="absolute inset-0 w-full h-full object-cover scale-[1.04]"
-          src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1800&q=85&auto=format&fit=crop"
+        <WebGLScene
+          loader={() => import('../components/motion/Particles.jsx')}
+          className="absolute inset-0"
+          fallback={<div className="absolute inset-0 bg-primary" />}
+          particleColors={['#C59D5F', '#F4E4C8', '#ffffff']}
+          particleCount={260}
+          particleSpread={11}
+          speed={0.08}
+          particleBaseSize={90}
+          alphaParticles
+          disableRotation={false}
         />
         <div className="relative z-20 text-center px-margin-mobile">
           <motion.div

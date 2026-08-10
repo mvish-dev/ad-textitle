@@ -6,6 +6,7 @@ import Icon from '../components/ui/Icon.jsx'
 import Button from '../components/ui/Button.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import MagneticButton from '../components/motion/MagneticButton.jsx'
+import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 // Approximate positions (as % of the map image box) for AD Textile's origin
 // plus a couple of representative export destinations — purely decorative,
@@ -62,7 +63,21 @@ function Contact() {
           >
             {/* World Map Graphic Background */}
             <div className="w-full h-full opacity-10 absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px]" />
-            <div className="relative w-full aspect-square md:aspect-auto h-full flex items-center justify-center">
+            {/* Orb — a soft glowing focal point tucked behind a corner of the
+                map, standing in for the "global reach" pulse the markers
+                already gesture at. Kept to its own square box (rather than
+                stretched across the whole wide panel) so its sphere renders
+                as a full circle instead of a cropped arc. */}
+            <div className="absolute w-64 h-64 md:w-80 md:h-80 -top-12 -right-8 z-0 pointer-events-none">
+              <WebGLScene
+                loader={() => import('../components/motion/Orb.jsx')}
+                className="absolute inset-0 opacity-80"
+                hue={128}
+                hoverIntensity={0.2}
+                backgroundColor="#0F172A"
+              />
+            </div>
+            <div className="relative z-10 w-full aspect-square md:aspect-auto h-full flex items-center justify-center">
               <img
                 className="w-full h-full object-contain brightness-95"
                 alt="Minimalist world map graphic centering on India"

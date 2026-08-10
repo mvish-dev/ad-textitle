@@ -145,6 +145,14 @@ function Home() {
             end: () => `+=${getScrollDistance() + section.offsetWidth * 0.4}`,
             scrub: 1,
             pin: true,
+            // `<main>` (this section's parent, in Layout.jsx) is `flex
+            // flex-col`. GSAP silently disables pinSpacing by default for
+            // any pinned element whose parent is display:flex, since it
+            // can't always safely reserve extra space in a flex layout —
+            // without forcing it back on here, no scroll room gets
+            // reserved for the pin at all, so the next section slides up
+            // and collides with this one while it's still pinned.
+            pinSpacing: true,
             invalidateOnRefresh: true,
           },
         })
@@ -166,56 +174,59 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-screen min-h-[680px] flex items-center bg-primary text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover scale-[1.08] blur-[1.5px]"
-            style={{ objectPosition: 'center 40%' }}
-            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1800&q=85&auto=format&fit=crop"
-            alt="A modern textile manufacturing facility with large weaving machines."
-          />
-          <div
-            className="absolute inset-0 z-10"
-            style={{ background: 'linear-gradient(160deg, rgba(10, 16, 30, 0.90) 0%, rgba(10, 16, 30, 0.62) 55%, rgba(10, 16, 30, 0.86) 100%)' }}
-          />
-        </div>
-
-        {/* Ambient cursor-reactive particle field — degrades to the photo above if WebGL is unavailable */}
+      <section className="relative min-h-[600px] py-32 md:py-40 flex items-center bg-primary text-white overflow-hidden">
+        {/* Ferrofluid WebGL background — degrades to a static navy/gold
+            radial gradient if WebGL is unavailable. Mouse interaction is
+            disabled on touch devices since there's no hover to react to. */}
         <WebGLScene
-          loader={() => import('../components/motion/HeroCanvas.jsx')}
-          className="z-[12] mix-blend-screen"
+          loader={() => import('../components/motion/Ferrofluid.jsx')}
+          className="absolute inset-0 z-0"
+          fallback={
+            <div
+              className="absolute inset-0 z-0"
+              style={{
+                background:
+                  'radial-gradient(120% 120% at 25% 20%, #1e293b 0%, #0F172A 55%, #080b14 100%)',
+              }}
+            />
+          }
+          colors={['#334155', '#C59D5F', '#F4E4C8']}
+          speed={0.45}
+          scale={1.8}
+          turbulence={1.1}
+          fluidity={0.12}
+          rimWidth={0.24}
+          sharpness={2.3}
+          shimmer={1.4}
+          glow={2.1}
+          flowDirection="up"
+          mouseInteraction={!isTouchDevice()}
+          mouseStrength={0.9}
+          mouseRadius={0.4}
         />
 
-        {/* Interactive centerpiece: a braided-rope "AD" sculpture, fixed in
-            place on the right — it never follows the cursor, only rotates
-            in place when dragged. The "Drag" cursor label is toggled by the
-            sculpture itself (only while actually hovering it, not this
-            whole column) — see WeaveSculpture.jsx. Desktop only: touch drag
-            would fight page scroll. */}
-        {!isTouchDevice() && (
-          <div className="hidden lg:block absolute right-0 top-0 h-full z-[14]" style={{ width: '42%' }}>
-            <WebGLScene loader={() => import('../components/motion/WeaveSculpture.jsx')} />
-          </div>
-        )}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(60% 75% at 50% 50%, rgba(10,16,30,0.82) 0%, rgba(10,16,30,0.58) 45%, rgba(10,16,30,0.3) 72%, rgba(10,16,30,0.5) 100%)',
+          }}
+        />
 
-        {/* pointer-events-none here because this container spans the full
-            hero width even though its content is left-aligned — without
-            it, its empty right-hand portion would sit above (z-20) and
-            silently swallow every pointer event meant for the sculpture
-            (z-14) underneath. Re-enabled on the actual content block below. */}
-        <Container className="relative z-20 w-full pointer-events-none">
+        <Container className="relative z-20 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="max-w-[560px] text-left flex flex-col items-start pointer-events-auto"
+            className="max-w-[900px] mx-auto text-center flex flex-col items-center"
           >
             <div
-              className="flex items-center gap-3 text-secondary uppercase font-body-md mb-7"
+              className="flex items-center justify-center gap-3 text-secondary uppercase font-body-md mb-7"
               style={{ fontSize: '0.66rem', letterSpacing: '0.32em', fontWeight: '600' }}
             >
               <span className="w-[26px] h-[1px] bg-secondary" />
               <span>Est. 1990 · Karur, India</span>
+              <span className="w-[26px] h-[1px] bg-secondary" />
             </div>
 
             <RevealText
@@ -227,19 +238,21 @@ function Home() {
                 fontSize: 'clamp(2.6rem, 5.2vw, 4.4rem)',
                 lineHeight: '1.08',
                 letterSpacing: '-0.02em',
+                textShadow: '0 2px 24px rgba(0,0,0,0.55)',
               }}
             >
               Premium Home Textiles
             </RevealText>
 
             <p
-              className="font-body-md text-white/70 mt-4 mb-10 font-light"
+              className="font-body-md text-white/85 mt-4 mb-10 font-light max-w-[620px]"
               style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.3rem)', letterSpacing: '0.01em' }}
             >
-              Crafted for the Global Market.
+              Crafted for the Global Market. From raw fibre to finished textile, we deliver premium kitchen,
+              table, bed and living linens engineered for global retailers and hospitality brands.
             </p>
 
-            <div className="flex flex-wrap items-center gap-8">
+            <div className="flex flex-wrap items-center justify-center gap-8">
               <MagneticButton>
                 <MovingBorderButton to="/products" size="md">
                   Explore Products <Icon name="arrow_right_alt" />
@@ -247,20 +260,13 @@ function Home() {
               </MagneticButton>
               <Link
                 to="/about"
-                className="font-label-md text-[0.78rem] tracking-wider text-white/65 hover:text-white uppercase border-b border-transparent hover:border-white/50 transition-all pb-1"
+                className="font-label-md text-[0.78rem] tracking-wider text-white/80 hover:text-white uppercase border-b border-transparent hover:border-white/50 transition-all pb-1"
               >
                 Discover Our Story
               </Link>
             </div>
           </motion.div>
         </Container>
-
-        <div className="absolute bottom-9 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/45">
-          <span className="font-label-md text-[0.6rem] tracking-[0.32em] uppercase">Scroll to Explore</span>
-          <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
-            <Icon name="arrow_downward" className="text-sm" />
-          </motion.span>
-        </div>
       </section>
 
       {/* Trust Indicators */}

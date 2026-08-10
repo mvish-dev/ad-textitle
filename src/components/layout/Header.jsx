@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import MagneticButton from '../motion/MagneticButton.jsx'
 
 const NAV_LINKS = [
+  { label: 'Home', to: '/' },
   { label: 'Products', to: '/products' },
   { label: 'Infrastructure', to: '/infrastructure' },
   { label: 'Story', to: '/about' },
@@ -60,15 +61,20 @@ function Header() {
     : 'font-headline-lg text-[1.55rem] font-bold tracking-tight text-white transition-colors duration-300'
 
   const linkClass = ({ isActive }) => {
-    const baseClass = 'relative text-[0.82rem] font-medium tracking-wider transition-colors duration-300 pb-1'
+    const baseClass =
+      'relative inline-block text-[0.82rem] font-medium tracking-wider transition-colors duration-300 pb-1 ' +
+      "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-full " +
+      'after:bg-secondary after:origin-center after:transition-transform after:duration-500 ' +
+      'after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100'
+    const underlineState = isActive ? 'after:scale-x-100' : 'after:scale-x-0'
     if (isScrolledState) {
       return isActive
-        ? `${baseClass} text-primary border-b-2 border-secondary`
-        : `${baseClass} text-on-background/80 hover:text-primary`
+        ? `${baseClass} ${underlineState} text-primary`
+        : `${baseClass} ${underlineState} text-on-background/80 hover:text-primary`
     } else {
       return isActive
-        ? `${baseClass} text-white border-b-2 border-secondary`
-        : `${baseClass} text-white/80 hover:text-white`
+        ? `${baseClass} ${underlineState} text-white`
+        : `${baseClass} ${underlineState} text-white/80 hover:text-white`
     }
   }
 
@@ -83,7 +89,7 @@ function Header() {
           <ul className="hidden lg:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
-                <NavLink to={link.to} className={linkClass}>
+                <NavLink to={link.to} end={link.to === '/'} className={linkClass}>
                   {link.label}
                 </NavLink>
               </li>
