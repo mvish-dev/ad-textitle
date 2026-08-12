@@ -6,6 +6,8 @@ import Button from '../components/ui/Button.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import SpotlightCard from '../components/ui/SpotlightCard.jsx'
+import TiltedCard from '../components/ui/TiltedCard.jsx'
 
 // Import slide images
 import slide1 from '../assets/img/slides/img-1.jpg'
@@ -87,6 +89,39 @@ function About() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
   const timelineRef = useRef(null)
+  
+  // Real-time active scroll tracker for timeline elements
+  const [activeMilestone, setActiveMilestone] = useState('')
+  const milestoneRefs = useRef({})
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = window.innerHeight * 0.55 // Target activation height: center-ish of screen
+      let currentActive = ''
+      let minDistance = Infinity
+
+      Object.entries(milestoneRefs.current).forEach(([year, element]) => {
+        if (!element) return
+        const rect = element.getBoundingClientRect()
+        const elementCenter = rect.top + rect.height / 2
+        const distance = Math.abs(elementCenter - threshold)
+
+        // Select the element closest to the center line that is within active viewport range
+        if (distance < minDistance && rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2) {
+          minDistance = distance
+          currentActive = year
+        }
+      })
+
+      if (currentActive) {
+        setActiveMilestone(currentActive)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Trigger initially to capture starting position
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -97,9 +132,9 @@ function About() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-primary/45 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/45 to-transparent z-10" />
         <WebGLScene
           loader={() => import('../components/motion/Particles.jsx')}
           className="absolute inset-0"
@@ -112,151 +147,216 @@ function About() {
           alphaParticles
           disableRotation={false}
         />
-        <div className="relative z-20 text-center px-margin-mobile">
+        
+        <div className="relative z-20 text-center px-margin-mobile w-full max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="bg-primary/60 backdrop-blur-md border border-white/10 p-12 md:p-16 rounded-2xl shadow-2xl space-y-6 max-w-2xl mx-auto"
           >
-            <span className="font-label-md text-label-md uppercase tracking-[0.2em] text-white/90 mb-6 block">
+            <span className="font-label-md text-xs uppercase tracking-[0.25em] text-secondary mb-2 block font-semibold">
               Established 1990
             </span>
             <RevealText
               as="h1"
               scrollTriggered={false}
               delay={0.2}
-              className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8"
+              className="font-display-lg text-display-lg-mobile md:text-5xl text-white leading-tight font-light"
             >
-              Legacy in <span className="italic font-normal text-secondary-fixed">Every</span> Thread.
+              Legacy in <span className="italic font-normal text-secondary">Every</span> Thread.
             </RevealText>
-            <div className="w-24 h-1 bg-secondary mx-auto" />
+            <div className="w-24 h-[1.5px] bg-secondary mx-auto mt-4" />
           </motion.div>
         </div>
       </section>
 
       {/* Company Story */}
-      <section className="py-section-gap-lg bg-background">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-          <div className="lg:col-span-5">
-            <span className="eyebrow">Our Profile</span>
-            <h2 className="section-title mb-8 leading-tight">
-              Quality products. On-time delivery. Continuous <em>improvement</em>.
+      <section className="py-24 bg-background">
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+          
+          {/* Left Text */}
+          <div className="lg:col-span-6 space-y-6">
+            <span className="eyebrow bg-secondary/10 px-3 py-1 rounded-full text-[0.7rem] inline-block">
+              Our Profile
+            </span>
+            <h2 className="section-title text-3xl md:text-4xl leading-tight font-light text-primary font-serif">
+              Quality products. On-time delivery. Continuous <em className="italic text-secondary font-normal font-serif">improvement</em>.
             </h2>
             <div className="divider" />
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 text-on-surface/80 font-body-md space-y-6">
-            <p>
-              For over three decades, AD Textile has been helping international brands transform ideas into
-              premium-quality home textile products. With fully integrated manufacturing — from dyeing and weaving
-              to stitching and quality inspection — we deliver consistent quality, dependable lead times, and
-              flexible manufacturing solutions under one roof.
-            </p>
-            <p>
-              We believe in delivering superior products and services that give our customers a competitive advantage
-              through high-end fabrics, strict quality checks, and structured environmental management.
-            </p>
-            <div className="pt-6">
-              <button
-                onClick={() => setIsVideoModalOpen(true)}
-                className="inline-flex items-center gap-3 bg-primary hover:bg-[#1E293B] text-white px-8 py-4 rounded-full shadow hover:scale-103 transition-all duration-300 font-semibold uppercase tracking-wider text-xs cursor-pointer border border-white/10"
-              >
-                <Icon name="play_circle" className="text-secondary text-xl" />
-                Watch Our Story Video
-              </button>
+            <div className="text-on-surface/80 font-body-md text-sm md:text-base space-y-5 leading-relaxed pt-2">
+              <p>
+                For over three decades, AD Textile has been helping international brands transform ideas into
+                premium-quality home textile products. With fully integrated manufacturing — from dyeing and weaving
+                to stitching and quality inspection — we deliver consistent quality, dependable lead times, and
+                flexible manufacturing solutions under one roof.
+              </p>
+              <p>
+                We believe in delivering superior products and services that give our customers a competitive advantage
+                through high-end fabrics, strict quality checks, and structured environmental management.
+              </p>
             </div>
           </div>
+
+          {/* Right Video Trigger Card */}
+          <div className="lg:col-span-6 flex justify-center">
+            <TiltedCard tiltMax={8} className="w-full max-w-lg">
+              <div
+                onClick={() => setIsVideoModalOpen(true)}
+                className="aspect-video sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative border border-outline-variant/35 bg-primary cursor-pointer group"
+              >
+                {/* Fallback image as backdrop */}
+                <img
+                  src={slide1}
+                  alt="Corporate facility"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
+                />
+                
+                {/* Ambient glow */}
+                <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-all duration-300 z-10" />
+
+                {/* Animated Play Button */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white gap-4">
+                  <div className="w-20 h-20 rounded-full bg-white/10 group-hover:bg-secondary/90 backdrop-blur-md flex items-center justify-center text-white group-hover:text-white transition-all duration-300 shadow-xl border border-white/20 group-hover:border-transparent">
+                    <Icon name="play_arrow" className="text-4xl translate-x-0.5" />
+                  </div>
+                  <span className="font-label-md text-xs font-semibold uppercase tracking-widest text-white drop-shadow-md">
+                    Watch Our Story
+                  </span>
+                </div>
+              </div>
+            </TiltedCard>
+          </div>
+
         </Container>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-section-gap-lg bg-white" id="journey">
+      {/* Milestones Scroll Timeline Section */}
+      <section className="py-24 bg-white" id="journey" ref={timelineRef}>
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-20 space-y-4 max-w-lg mx-auto">
             <span className="eyebrow">Our Journey</span>
-            <h2 className="section-title">Milestones of <em>Progress</em></h2>
+            <RevealText as="h2" className="section-title text-3xl font-light text-primary leading-tight">
+              Milestones of <em className="italic text-secondary font-normal font-serif">Progress</em>
+            </RevealText>
             <div className="divider mx-auto" />
           </div>
-          <div ref={timelineRef} className="relative space-y-24">
+
+          <div className="relative space-y-20 md:space-y-24">
+            
+            {/* Thread Path Line */}
             <ThreadPath
               d="M4,0 L4,1000"
               viewBox="0 0 8 1000"
               trigger={timelineRef}
-              start="top 75%"
-              end="bottom 45%"
+              start="top 65%"
+              end="bottom 50%"
               scrub={0.6}
-              strokeWidth={4}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block"
+              strokeWidth={3}
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block opacity-60"
             />
 
-            {TIMELINE.map((event, idx) => (
-              <motion.div
-                key={event.year}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08 }}
-                className="flex flex-col md:flex-row items-center justify-center gap-gutter relative"
-              >
-                {event.align === 'right' ? (
-                  <>
-                    <div className="w-full md:w-[45%] md:text-right">
-                      {event.small ? (
-                        <span className="font-label-md text-label-md uppercase tracking-widest text-secondary block mb-2 font-semibold">
-                          {event.year}
-                        </span>
-                      ) : (
-                        <span className="font-display-lg text-4xl md:text-5xl text-secondary block mb-2 font-bold">
-                          {event.year}
-                        </span>
-                      )}
-                      <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">{event.title}</h3>
-                      <p className="font-body-md text-[0.88rem] text-on-surface-variant leading-relaxed md:ml-auto md:max-w-md">
-                        {event.description}
-                      </p>
-                    </div>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary border-4 border-white rounded-full hidden md:block z-10 shadow-md" />
-                    <div className="w-full md:w-[45%]" />
-                  </>
-                ) : (
-                  <>
-                    <div className="w-full md:w-[45%]" />
-                    <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary border-4 border-white rounded-full hidden md:block z-10 shadow-md" />
-                    <div className="w-full md:w-[45%] md:text-left">
-                      {event.small ? (
-                        <span className="font-label-md text-label-md uppercase tracking-widest text-secondary block mb-2 font-semibold">
-                          {event.year}
-                        </span>
-                      ) : (
-                        <span className="font-display-lg text-4xl md:text-5xl text-secondary block mb-2 font-bold">
-                          {event.year}
-                        </span>
-                      )}
-                      <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">{event.title}</h3>
-                      <p className="font-body-md text-[0.88rem] text-on-surface-variant leading-relaxed md:max-w-md">
-                        {event.description}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </motion.div>
-            ))}
+            {TIMELINE.map((event, idx) => {
+              const isActive = activeMilestone === event.year
+              return (
+                <motion.div
+                  key={event.year}
+                  ref={(el) => {
+                    milestoneRefs.current[event.year] = el
+                  }}
+                  className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative"
+                >
+                  {event.align === 'right' ? (
+                    <>
+                      {/* Left: Card content */}
+                      <div className="w-full md:w-[45%] md:text-right transition-all duration-300">
+                        <SpotlightCard
+                          className={`p-8 rounded-2xl border transition-all duration-500 text-left ${
+                            isActive
+                              ? 'bg-slate-50/80 border-secondary shadow-lg scale-103'
+                              : 'bg-background/40 border-outline-variant/20 opacity-70'
+                          }`}
+                        >
+                          <span
+                            className={`font-display-lg text-4xl md:text-5xl block mb-2 font-bold tracking-tight transition-all duration-300 ${
+                              isActive ? 'text-secondary drop-shadow-[0_2px_8px_rgba(197,157,95,0.2)]' : 'text-slate-300'
+                            }`}
+                          >
+                            {event.year}
+                          </span>
+                          <h3 className="font-serif text-xl font-bold text-primary mb-3">{event.title}</h3>
+                          <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
+                            {event.description}
+                          </p>
+                        </SpotlightCard>
+                      </div>
+
+                      {/* Timeline Central Node */}
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full hidden md:block z-20 shadow-md border-4 border-white transition-all duration-300 ${
+                          isActive ? 'bg-secondary scale-130' : 'bg-primary'
+                        }`}
+                      />
+                      
+                      {/* Right empty spacer */}
+                      <div className="w-full md:w-[45%] hidden md:block" />
+                    </>
+                  ) : (
+                    <>
+                      {/* Left empty spacer */}
+                      <div className="w-full md:w-[45%] hidden md:block" />
+
+                      {/* Timeline Central Node */}
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full hidden md:block z-20 shadow-md border-4 border-white transition-all duration-300 ${
+                          isActive ? 'bg-secondary scale-130' : 'bg-primary'
+                        }`}
+                      />
+
+                      {/* Right: Card content */}
+                      <div className="w-full md:w-[45%] md:text-left transition-all duration-300">
+                        <SpotlightCard
+                          className={`p-8 rounded-2xl border transition-all duration-500 text-left ${
+                            isActive
+                              ? 'bg-slate-50/80 border-secondary shadow-lg scale-103'
+                              : 'bg-background/40 border-outline-variant/20 opacity-70'
+                          }`}
+                        >
+                          <span
+                            className={`font-display-lg text-4xl md:text-5xl block mb-2 font-bold tracking-tight transition-all duration-300 ${
+                              isActive ? 'text-secondary drop-shadow-[0_2px_8px_rgba(197,157,95,0.2)]' : 'text-slate-300'
+                            }`}
+                          >
+                            {event.year}
+                          </span>
+                          <h3 className="font-serif text-xl font-bold text-primary mb-3">{event.title}</h3>
+                          <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
+                            {event.description}
+                          </p>
+                        </SpotlightCard>
+                      </div>
+                    </>
+                  )}
+                </motion.div>
+              )
+            })}
           </div>
         </Container>
       </section>
 
-      {/* Our Manufacturing Strength */}
-      <section className="py-section-gap-lg bg-background" id="manufacturing-strength">
+      {/* Manufacturing Strength Section */}
+      <section className="py-24 bg-background" id="manufacturing-strength">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 space-y-4 max-w-xl mx-auto">
             <span className="eyebrow">What We're Built On</span>
-            <h2 className="section-title">Our Manufacturing <em>Strength</em></h2>
+            <h2 className="section-title text-3xl font-light text-primary">Our Manufacturing <em className="italic text-secondary font-normal font-serif">Strength</em></h2>
             <div className="divider mx-auto" />
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-6 leading-relaxed">
-              Every product we ship is backed by manufacturing we own end to end — no subcontracted stages, no
-              hand-offs between unrelated factories.
+            <p className="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed">
+              Every product we ship is backed by manufacturing we own end to end — no subcontracted stages, no hand-offs between unrelated factories.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-12">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               {
                 icon: 'factory',
@@ -278,22 +378,21 @@ function About() {
                 title: '2-Layer AQL Inspection',
                 description: 'In-line checks at every stage, plus a final AQL-standard inspection before dispatch.',
               },
-            ].map((item, index, arr) => (
-              <div
+            ].map((item) => (
+              <SpotlightCard
                 key={item.title}
-                className={`text-center p-8 bg-white border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
-                  index < arr.length - 1 ? 'border-b md:border-b-0 md:border-r' : ''
-                }`}
+                className="bg-white border border-outline-variant/30 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:shadow-md transition-all"
               >
-                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-6">
-                  <Icon name={item.icon} className="text-3xl text-secondary" />
+                <div className="w-14 h-14 bg-secondary/10 flex items-center justify-center rounded-xl mb-6">
+                  <Icon name={item.icon} className="text-2xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-xl text-primary mb-4 font-semibold">{item.title}</h4>
+                <h4 className="font-serif text-lg text-primary mb-3 font-semibold leading-tight">{item.title}</h4>
                 <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{item.description}</p>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
-          <div className="text-center">
+
+          <div className="text-center pt-4">
             <Button to="/manufacturing" variant="outline" className="text-primary border-primary">
               See Our Manufacturing Process
             </Button>
@@ -301,68 +400,72 @@ function About() {
         </Container>
       </section>
 
-      {/* Our Global Reach */}
-      <section className="py-section-gap-lg bg-primary text-white overflow-hidden" id="global-reach">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-          <div className="lg:col-span-6">
-            <span className="eyebrow !text-secondary">Beyond Our Borders</span>
-            <h2 className="font-display-lg text-4xl md:text-5xl text-white mb-8 leading-tight">
-              Our Global <em className="text-secondary-fixed">Reach</em>
+      {/* Global Reach Section */}
+      <section className="py-24 bg-primary text-white overflow-hidden" id="global-reach">
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div className="lg:col-span-6 space-y-6">
+            <span className="eyebrow bg-secondary/15 px-3 py-1 rounded-full text-[0.68rem] text-secondary tracking-widest uppercase">
+              Beyond Our Borders
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
+              Our Global <em className="italic text-secondary font-serif font-normal">Reach</em>
             </h2>
-            <p className="font-body-lg text-body-lg text-white/75 mb-10 leading-relaxed max-w-lg">
-              We began exporting to the international market in 1992, and today AD Textile products reach global
-              markets, having served major retailers across international channels.
+            <p className="font-body-md text-white/70 leading-relaxed text-sm md:text-base">
+              We began exporting to the international market in 1992, and today AD Textile products reach global markets, having served major retailers across international channels.
             </p>
-            <Button to="/exports" variant="secondary">
-              Explore Our Export Capabilities
-            </Button>
-          </div>
-          <div className="lg:col-span-6 grid grid-cols-2 gap-6">
-            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
-              <p className="font-headline-xl text-3xl font-bold text-white mb-2">1992</p>
-              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
-                Exporting Since
-              </p>
-            </div>
-            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
-              <p className="font-headline-xl text-3xl font-bold text-white mb-2">Global</p>
-              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
-                Retail Markets Served
-              </p>
-            </div>
-            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
-              <p className="font-headline-xl text-3xl font-bold text-white mb-2">1990</p>
-              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
-                Manufacturing Since
-              </p>
-            </div>
-            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
-              <p className="font-headline-xl text-3xl font-bold text-white mb-2">Direct</p>
-              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
-                Buyer Relationships
-              </p>
+            <div className="pt-2">
+              <Button to="/exports" variant="secondary">
+                Explore Our Export Capabilities
+              </Button>
             </div>
           </div>
+
+          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+            {[
+              { year: '1992', label: 'Exporting Since' },
+              { year: 'Global', label: 'Retail Markets Served' },
+              { year: '1990', label: 'Manufacturing Since' },
+              { year: 'Direct', label: 'Buyer Relationships' },
+            ].map((stat) => (
+              <SpotlightCard
+                key={stat.label}
+                spotlightColor="rgba(255, 255, 255, 0.08)"
+                className="p-6 bg-white/5 border border-white/10 rounded-2xl"
+              >
+                <p className="font-serif text-2xl md:text-3xl font-bold text-white mb-1.5">{stat.year}</p>
+                <p className="text-[0.65rem] uppercase tracking-widest text-white/50 font-semibold leading-normal">
+                  {stat.label}
+                </p>
+              </SpotlightCard>
+            ))}
+          </div>
+
         </Container>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-section-gap-lg bg-background">
-        <Container className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+      {/* Mission & Vision Section */}
+      <section className="py-24 bg-background">
+        <Container className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="group p-12 bg-white border border-outline-variant/30 rounded-xl hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md"
+            className="w-full"
           >
-            <Icon name="verified" className="text-secondary text-5xl mb-8" />
-            <h3 className="font-headline-lg text-2xl text-primary mb-6 font-semibold">Our Mission</h3>
-            <p className="font-body-md text-[0.88rem] text-on-surface-variant leading-relaxed">
-              To create high-quality home textile products through fully integrated manufacturing, continuous
-              innovation, ethical business practices, and exceptional customer service — helping our partners
-              succeed in global markets.
-            </p>
+            <SpotlightCard className="bg-white border border-outline-variant/30 rounded-2xl p-10 md:p-12 h-full shadow-sm hover:shadow-md transition-all space-y-6">
+              <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                <Icon name="verified" className="text-2xl" />
+              </div>
+              <h3 className="font-serif text-2xl text-primary font-bold">Our Mission</h3>
+              <p className="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed">
+                To create high-quality home textile products through fully integrated manufacturing, continuous
+                innovation, ethical business practices, and exceptional customer service — helping our partners
+                succeed in global markets.
+              </p>
+            </SpotlightCard>
           </motion.div>
 
           <motion.div
@@ -370,120 +473,158 @@ function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="group p-12 bg-primary text-white border border-primary rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
+            className="w-full"
           >
-            <Icon name="visibility" className="text-secondary text-5xl mb-8" />
-            <h3 className="font-headline-lg text-2xl text-white mb-6 font-semibold">Our Vision</h3>
-            <p className="font-body-md text-[0.88rem] text-white/70 leading-relaxed">
-              To become the preferred global manufacturing partner for premium home textile brands by delivering
-              excellence, innovation, and sustainable value.
-            </p>
+            <SpotlightCard
+              spotlightColor="rgba(255, 255, 255, 0.08)"
+              className="bg-primary text-white border border-white/5 rounded-2xl p-10 md:p-12 h-full shadow-lg hover:shadow-xl transition-all space-y-6"
+            >
+              <div className="w-12 h-12 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary">
+                <Icon name="visibility" className="text-2xl" />
+              </div>
+              <h3 className="font-serif text-2xl text-white font-bold">Our Vision</h3>
+              <p className="font-body-md text-xs md:text-sm text-white/70 leading-relaxed">
+                To become the preferred global manufacturing partner for premium home textile brands by delivering
+                excellence, innovation, and sustainable value.
+              </p>
+            </SpotlightCard>
           </motion.div>
+
         </Container>
       </section>
 
-      {/* Our People */}
-      <section className="py-section-gap-lg bg-white animate-fade-in">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-          <div className="lg:col-span-5 relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-xl shadow-md border border-outline-variant/30 relative bg-surface-container-low">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={activeSlide}
-                  src={SLIDES[activeSlide]}
-                  alt="AD Textile Facility and Production"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </AnimatePresence>
-            </div>
+      {/* Our People (Slideshow Carousel Redesign) */}
+      <section className="py-24 bg-white">
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Slideshow image wrap */}
+          <div className="lg:col-span-5 flex justify-center">
+            <TiltedCard tiltMax={6} className="w-full max-w-md">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl border border-outline-variant/30 relative bg-surface-container-low">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeSlide}
+                    src={SLIDES[activeSlide]}
+                    alt="AD Textile Facility and Production"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+                
+                {/* Visual indicators overlay */}
+                <div className="absolute bottom-6 left-6 z-20 flex gap-2">
+                  {SLIDES.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveSlide(i)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
+                        activeSlide === i ? 'bg-secondary w-6' : 'bg-white/40'
+                      }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </TiltedCard>
           </div>
-          <div className="lg:col-span-6 lg:col-start-7 py-12 lg:py-0">
-            <span className="eyebrow">The Human Element</span>
-            <h2 className="section-title mb-8">Our <em>People</em></h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-12 opacity-80 leading-relaxed">
-              At AD Textile, our strength comes not just from our infrastructure, but from our skilled human
-              resources. We conduct regular training programs on new technologies to keep our workforce updated, and
-              it is this skilled workforce that brings the unique finishing touch to every product we make.
+
+          <div className="lg:col-span-7 space-y-6">
+            <span className="eyebrow bg-secondary/10 px-3 py-1 rounded-full text-[0.7rem] inline-block">
+              The Human Element
+            </span>
+            <h2 className="section-title text-3xl font-light text-primary leading-tight font-serif">
+              Our <em className="italic text-secondary font-normal font-serif">People</em>
+            </h2>
+            <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base">
+              At AD Textile, our strength comes not just from our infrastructure, but from our skilled human resources. We conduct regular training programs on new technologies to keep our workforce updated, and it is this skilled workforce that brings the unique finishing touch to every product we make.
             </p>
           </div>
+
         </Container>
       </section>
 
-      {/* Core Values */}
-      <section className="py-section-gap-lg bg-background">
+      {/* Core Values Section */}
+      <section className="py-24 bg-background">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 space-y-4 max-w-xl mx-auto">
             <span className="eyebrow">Beliefs & Values</span>
-            <h2 className="section-title">Core <em>Values</em></h2>
+            <h2 className="section-title text-3xl font-light text-primary">Core <em className="italic text-secondary font-normal font-serif">Values</em></h2>
             <div className="divider mx-auto" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-            {CORE_VALUES.map((value, index) => (
-              <div
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CORE_VALUES.map((value) => (
+              <SpotlightCard
                 key={value.title}
-                className={`text-center p-8 bg-white border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
-                  index < CORE_VALUES.length - 1 ? 'border-b md:border-b-0 md:border-r' : ''
-                }`}
+                className="bg-white border border-outline-variant/30 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:shadow-md transition-all"
               >
-                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-6">
-                  <Icon name={value.icon} className="text-3xl text-secondary" />
+                <div className="w-14 h-14 bg-secondary/10 flex items-center justify-center rounded-xl mb-6">
+                  <Icon name={value.icon} className="text-2xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-xl text-primary mb-4 font-semibold">{value.title}</h4>
+                <h4 className="font-serif text-lg text-primary mb-3 font-semibold leading-tight">{value.title}</h4>
                 <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{value.description}</p>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Environmental & CSR */}
-      <section className="relative min-h-[80vh] flex items-center py-section-gap-lg overflow-hidden bg-primary text-white">
-        <div className="absolute inset-0 opacity-20 z-0">
+      {/* Environmental & CSR Section */}
+      <section className="relative min-h-[85vh] flex items-center py-24 overflow-hidden bg-primary text-white">
+        <div className="absolute inset-0 opacity-15 z-0 pointer-events-none">
           <img
             alt="Modern sustainable manufacturing facility"
-            className="w-full h-full object-cover scale-[1.02]"
+            className="w-full h-full object-cover scale-[1.03]"
             src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop"
           />
         </div>
-        <div className="absolute inset-0 bg-primary/60 z-10" />
-        <Container className="relative z-20 max-w-4xl mx-auto text-center">
-          <span className="eyebrow !text-secondary mb-8 block">
-            Environmental Care &amp; CSR
-          </span>
-          <h2 className="font-display-lg text-4xl md:text-5xl text-white mb-10 leading-tight">
-            Caring for our environment and our community.
-          </h2>
-          <p className="font-body-lg text-body-lg mb-12 text-white/80 leading-relaxed">
-            Our environmental care program includes an Effluent Treatment Plant, a Reverse Osmosis Plant, and a
-            Vibratory Shear Enhanced Process (VSEP) plant, and we use only Azo-free dyes across our dyeing
-            operations. We believe industrial success is meaningless without ecological and social responsibility.
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary/90 z-10" />
+
+        <Container className="relative z-20 max-w-4xl mx-auto text-center space-y-12">
+          <div className="space-y-6">
+            <span className="eyebrow bg-secondary/15 px-3 py-1 rounded-full text-[0.68rem] text-secondary tracking-widest uppercase inline-block">
+              Environmental Care &amp; CSR
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight max-w-2xl mx-auto">
+              Caring for our environment and our <em className="italic text-secondary font-serif font-normal">community</em>.
+            </h2>
+            <div className="w-20 h-[1.5px] bg-secondary mx-auto mt-4" />
+          </div>
+
+          <p className="font-body-md text-white/80 max-w-3xl mx-auto leading-relaxed text-sm md:text-base">
+            Our environmental care program includes an Effluent Treatment Plant, a Reverse Osmosis Plant, and a Vibratory Shear Enhanced Process (VSEP) plant, and we use only Azo-free dyes across our dyeing operations. We believe industrial success is meaningless without ecological and social responsibility.
           </p>
-          <div className="flex flex-wrap justify-center gap-10 mb-12">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 text-left">
             {ENVIRONMENTAL_PROGRAMS.map((program) => (
-              <div key={program.title} className="flex items-center gap-4 text-left">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center">
-                  <Icon name={program.icon} className="text-secondary text-2xl" />
+              <SpotlightCard
+                key={program.title}
+                spotlightColor="rgba(255, 255, 255, 0.06)"
+                className="p-6 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4"
+              >
+                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center shrink-0">
+                  <Icon name={program.icon} className="text-secondary text-xl" />
                 </div>
                 <div>
-                  <p className="font-bold text-[0.9rem]">{program.title}</p>
-                  <p className="text-xs opacity-60 mt-0.5">{program.caption}</p>
+                  <p className="font-bold text-xs text-white leading-normal">{program.title}</p>
+                  <p className="text-[0.65rem] opacity-60 mt-0.5 leading-normal">{program.caption}</p>
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
-          <div className="pt-8 border-t border-white/10">
-            <p className="font-label-md text-xs uppercase tracking-widest text-secondary mb-6 font-semibold">
+
+          <div className="pt-8 border-t border-white/5 space-y-6">
+            <p className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
               Community Programs
             </p>
-            <div className="flex flex-wrap justify-center gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
               {COMMUNITY_PROGRAMS.map((program) => (
-                <div key={program.label} className="flex items-center gap-3">
-                  <Icon name={program.icon} className="text-secondary text-2xl" />
-                  <p className="text-xs text-white/80">{program.label}</p>
+                <div key={program.label} className="flex items-center gap-3 bg-white/5 border border-white/5 p-4 rounded-xl">
+                  <Icon name={program.icon} className="text-secondary text-xl shrink-0" />
+                  <p className="text-[0.7rem] text-white/80 leading-normal">{program.label}</p>
                 </div>
               ))}
             </div>
@@ -491,17 +632,16 @@ function About() {
         </Container>
       </section>
 
-      {/* CTA */}
-      <section className="py-section-gap-lg bg-background text-center px-margin-mobile">
-        <Container className="max-w-4xl mx-auto">
-          <h2 className="font-display-lg text-display-lg-mobile md:text-headline-xl text-primary mb-8">
-            Be Part of Our Journey
+      {/* CTA Section */}
+      <section className="py-24 bg-background text-center">
+        <Container className="max-w-3xl mx-auto space-y-8">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-primary leading-tight">
+            Be Part of Our <em className="italic text-secondary font-serif font-normal">Journey</em>
           </h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant mb-12">
-            Whether you're a global brand looking for a manufacturing partner or simply want to learn more
-            about what we do, the thread starts here.
+          <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base max-w-xl mx-auto">
+            Whether you're a global brand looking for a manufacturing partner or simply want to learn more about what we do, the thread starts here.
           </p>
-          <div className="flex justify-center">
+          <div className="pt-2">
             <Button to="/contact" size="lg">
               Contact Us
             </Button>

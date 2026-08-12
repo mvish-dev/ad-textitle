@@ -47,21 +47,6 @@ function CapabilityPage({ badge, title, subtitle, heroLoader, heroProps, section
         </Container>
       </section>
 
-      {/* Sticky sub-nav */}
-      <section className="sticky top-20 z-40 bg-background border-b border-outline-variant/30 py-6">
-        <Container className="flex gap-10 overflow-x-auto no-scrollbar w-full">
-          {sections.map((section) => (
-            <a
-              key={section.id}
-              className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap"
-              href={`#${section.id}`}
-            >
-              {section.navLabel || section.title}
-            </a>
-          ))}
-        </Container>
-      </section>
-
       {/* Sections */}
       {sections.map((section, index) => (
         <section
