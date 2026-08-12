@@ -17,14 +17,14 @@ const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
   { icon: 'public', title: 'Export Since 1992', caption: 'Global Reach' },
   { icon: 'verified', title: 'SA8000 & ISO 14001', caption: 'Compliant' },
-  { icon: 'fact_check', title: '5-Level Inspection', caption: 'Quality Cycle' },
+  { icon: 'fact_check', title: '2-Layer AQL Inspection', caption: 'Quality System' },
 ]
 
 const CATEGORIES = [
   {
     title: 'Kitchen Linen',
     description: 'Aprons, mittens and kitchen sets for sophisticated culinary spaces.',
-    href: '/products#kitchen',
+    href: '/products',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDNwMAmERcdNtmtoAUEd_p2N3Oa3ieJi4SHc__8Pd3ylDKv60RTfy5EQy10YJKXg2oMzWQd8YL_GLEATGQtvS_-nQMTFRR7QoWTr3MYErLFIFzg2hvsES-4iGgjcqZPSiIlmLjph6PPfdhZ9K6MwRKFQY70-96pCBlSC86TGAOu0GeplWoHKYyXBPU8rYYHmNGXp4wWDZzHmVXm2GaZvAFja1nCHxQ6vM6xbGzt3eM48Ckuwdy6rwscTjAhvN7x3_8mpYjzi_dW9i4',
     alt: 'Top-down editorial shot of high-quality kitchen linens featuring waffle weave and herringbone textures.',
@@ -32,7 +32,7 @@ const CATEGORIES = [
   {
     title: 'Table Linen',
     description: 'Table cloths, mats, runners and chair pads for distinguished dining.',
-    href: '/products#table',
+    href: '/products',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuC3IJi5DTrXdm8jRPxK9wfaeZ8zb8-kfsxAqnSGjkC6HP-9kNvaTFgyyqe6TXAo_VGvnTfyI4cUYbWYe4bXbce3uUte5RxwlLlx6HSJjRPtuXI_mf2ObHY76nvLbI9w8QDB7MxkvHnbLVQfoq1wZX_LZ0boyq2l8WJ-M7SplPDLgLQNKhCMJOyDDPTGiTkBtyCtpsQkYBS7N7j4od0_Lf8svSQqiufiyZ9hfgcgIAFain-YBoQD9YFn8slG82igYHNlLQvQrwGllVU',
     alt: 'Table Linen Collection',
@@ -59,7 +59,7 @@ const JOURNEY_STEPS = [
   'Raw Material',
   'Dyeing',
   'Weaving',
-  'Printing',
+  'Knitting',
   'Stitching',
   'Quality Control',
   'Packing',
@@ -69,12 +69,12 @@ const EDGE_POINTS = [
   {
     icon: 'factory',
     title: 'Modern Manufacturing',
-    description: '56 automatic looms weaving up to 360cm width with double insertion.',
+    description: 'Somet Rapier looms weaving 1 million metres of fabric every month.',
   },
   {
     icon: 'high_quality',
     title: 'Strict Quality',
-    description: '5-level inspection cycle, verified by SGS, Texanlabs and the Textile Committee.',
+    description: '2-layer inspection system — in-line checks plus a final AQL-standard clearance.',
   },
   {
     icon: 'school',
@@ -92,8 +92,8 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
   {
     title: 'Precision Weaving Unit',
     description:
-      'Equipped with 56 automatic looms weaving dobby, satin, satin-stripe and twill patterns up to 360cm width.',
-    href: '/infrastructure#weaving',
+      'Somet Super Excel Rapier Looms weaving 1 million metres of premium fabric every month.',
+    href: '/manufacturing#weaving',
     linkLabel: 'Technical Specifications',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuC6UIg_my9ndoQxb-vJN2giWKEECHywzzxEjsL8xRgDH9MqV1aW2r9J4AduCdEnCa-EXV5H-VetS2s4mshhPtJcYFAD3qR1Tr9E1GkwlA5VH-REXwZ9kpxeCh_JJJcUPaA7HVkya_ZQ3Iz2L4utVIITWvLdF8j_2FzNI1n-_xQE-4If9vMWPEtIqpVu7bIBRDPHacRaJRIAX4n7bNEWM99CaQo1qBZ_kver0BMePTS_DUp3ovmDbjE3fSDFvn87e1QBvOu_NzPprfs',
@@ -102,8 +102,8 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
   {
     title: 'Advanced Finishing Hub',
     description:
-      'Rotary and manual printing with Tajima & Barudan embroidery machines (9 colors) and an in-house design studio.',
-    href: '/infrastructure#printing',
+      'Garuda and Toshiba embroidery machines with 54 heads (10–12 thread colours) and precision digitising.',
+    href: '/manufacturing#embroidery',
     linkLabel: 'Process Overview',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDGR0CkgYRw78qoYAjf-dzT5EPSS7fUmKhzhwT_lHjB23zBsEyJ6m06AjjJ3PZDRKRBoJ93LUbRKSs_0FLKxyBRLdyDvbhU0s_tMgmzonvcFdseZxhjxIve-huknqBM91Z_FmLzmPEZOTvLMZwXMy8y8GHg-YPVAIm4gODzlDpGdwUhdQkg_ztiYw5njXnUXVWIPMlThCU7D_OSaaiTuOVWtUhgbzQeX9Hl3ooXkKpAuJuZmcuU1Srnk6nlpwi0BuxXnKkwYs8LNSI',
@@ -114,8 +114,8 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
 const COMPLIANCE_MARKS = [
   { icon: 'workspace_premium', label: 'SA8000' },
   { icon: 'eco', label: 'ISO 14001' },
-  { icon: 'science', label: 'TESTED BY SGS' },
-  { icon: 'verified', label: 'TEXANLABS & TEXTILE COMMITTEE' },
+  { icon: 'fact_check', label: '2-LAYER AQL INSPECTION' },
+  { icon: 'verified', label: 'CERTIFIED MANUFACTURING FACILITY' },
 ]
 
 function Home() {

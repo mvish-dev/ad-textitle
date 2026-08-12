@@ -31,7 +31,7 @@ function Layout({ children }) {
     return () => clearTimeout(timer)
   }, [pathname])
 
-  const showFooter = pathname !== '/infrastructure'
+  const showFooter = pathname !== '/manufacturing'
 
   return (
     <div className="bg-background text-on-background font-body-md overflow-x-hidden">

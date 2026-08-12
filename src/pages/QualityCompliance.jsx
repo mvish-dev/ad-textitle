@@ -9,34 +9,24 @@ import WebGLScene from '../components/motion/WebGLScene.jsx'
 
 const INSPECTION_STEPS = [
   {
-    levels: 'LEVELS 1–2 · RAW MATERIAL',
-    title: 'Incoming Material Checks',
+    levels: 'LAYER 1 · IN-LINE',
+    title: 'In-Line Inspection',
     description:
-      'The first levels of our inspection cycle begin before a single fiber reaches the production floor, with incoming raw materials checked so that only suitable stock moves into weaving, dyeing, and printing.',
+      'Quality checks happen at every stage of production — not just at the end — across weaving, dyeing, knitting, cutting, embroidery and stitching, so issues are caught and corrected as they happen.',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCCFkk_vBrMce8f7lUDpZ2Sk5VpVynHijyuKbtHHXmaPkLGl3LFHCCRhFjehokNhl05QmI73BlA3F8qyMm1a7KxulxYZugaDApG46ZNPoG5r2qdc3uBUF9Rzwq6-RfDCtWvjMSs8uUsB-c1VUfyU4nvTxOCeJgIH82Q6e5NHkO-njrCNYoG_rkA8CwxFwkk_6NMlvipaCJfsIfamR3dG8aufklXsE2rLZaoWG5Squtk51AKbt7eyzZtSg8siwfGbguNcxO5rQYWdt0',
-    alt: 'Incoming Material Checks',
+    alt: 'In-Line Production Inspection',
     align: 'right',
   },
   {
-    levels: 'LEVELS 3–4 · IN-PROCESS',
-    title: 'In-Process Laboratory Testing',
+    levels: 'LAYER 2 · FINAL AQL',
+    title: 'Final AQL Inspection',
     description:
-      'Because quality control is part of every process, our laboratory measures and analyzes product parameters at each stage of weaving, dyeing, and finishing — not only once production is complete.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuC11FYWM-cPNNt6hAn3dSIiFRt9rG_xK8xZys7IO6dqXib4fCvZsI0Uz34f9AGprZIlHXP7v-3H8u0ej4_pSo4SOLBSk5guaJ9VMoRx4_tvooHT6bqehOIf4thxNBonTKkAH97r5DCUMQ9Kxtj3dbPkf7aSjKl62Kzbo8hWY1wbvYpuO5X_HLmoXKLynuIzN2Kfx0Vtdd57cRVolnPI5EGJiILubw6nKG0V47AlPXvd2ug3cBrdE2u-zW9Jzm2LiMkuRYHFWEmwvTQ',
-    alt: 'In-Process Laboratory Testing',
-    align: 'left',
-  },
-  {
-    levels: 'LEVEL 5 · FINAL SHIPMENT',
-    title: 'Final Shipment Clearance',
-    description:
-      'The fifth and final level of the cycle confirms every order is fit for dispatch, with third-party test reports provided by SGS, Texanlabs, the Textile Committee, and other competent authorities.',
+      'Every order undergoes a final AQL-standard inspection before dispatch, with each product evaluated for measurement accuracy, appearance, and packing — ensuring zero-compromise quality in every batch.',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuA0ZBFhfpiZpem_nFLokK1YXX6-BYL2OPF91ZNlETlMuVz1eJyxd1p9wK-6BZTAKaOUjbWs44bJ7ZKr-z1TfkOv2k-Z8hOlIwChTNvlxdB0G3zxaqpx1k8-3xMGRtmevMGXIDrVHugpbdTt76Myj7_YCnzJd1yTnlfZlRcmbwxgw7cMu1vwdx4OBw3MQIvP0nB6wRpbPi7A1PrGi06gntvVyl3O2nobGbchxAydtSfl2AnyIRJVAjLiYCkBRAc3vW38vy3QWNeDurs',
-    alt: 'Final Shipment Clearance',
-    align: 'right',
+    alt: 'Final AQL-Standard Inspection Before Dispatch',
+    align: 'left',
   },
 ]
 
@@ -51,7 +41,7 @@ const TESTING_PRACTICES = [
   {
     num: '02',
     icon: 'palette',
-    title: 'Wet & Dry Rubing',
+    title: 'Wet & Dry Rubbing',
     description:
       'Color transfer is checked under both wet and dry rubbing conditions, in line with the wet, dry rubbing and light-fastness standards applied in our dyeing unit.',
   },
@@ -67,11 +57,42 @@ const TESTING_PRACTICES = [
     icon: 'science',
     title: 'Azo-Free Dye Verification',
     description:
-      'Every dyeing batch uses Azo-free dyes only, with compliance verified through third-party testing from SGS, Texanlabs, and the Textile Committee.',
+      'Every dyeing batch uses Azo-free dyes only, verified through the same 2-layer inspection system — in-line checks and final AQL-standard clearance — applied across production.',
   },
 ]
 
-function Certifications() {
+const SOCIAL_PROGRAMS = [
+  { icon: 'gavel', label: 'Fair wages and lawful working hours across all facilities' },
+  { icon: 'health_and_safety', label: 'Workplace safety and prohibition of forced or child labor' },
+  { icon: 'accessibility_new', label: 'Employment opportunities for the physically challenged' },
+  { icon: 'volunteer_activism', label: 'A feeding programme for around 400 blind and deaf children' },
+  { icon: 'school', label: 'Education scholarships for the needy' },
+]
+
+const PRODUCT_COMPLIANCE_POINTS = [
+  {
+    icon: 'eco',
+    title: 'Azo-Free Dyes Only',
+    description: 'Every dyeing batch is restricted to Azo-free dyes, in conformance with governing-body norms.',
+  },
+  {
+    icon: 'shield',
+    title: 'Restricted Substances',
+    description: 'Products are manufactured to keep within restricted-substance limits expected by global retailers.',
+  },
+  {
+    icon: 'family_restroom',
+    title: 'Safe for Everyday Use',
+    description: 'Finishing processes are chosen to keep fabric safe for skin contact across every product line.',
+  },
+  {
+    icon: 'verified_user',
+    title: 'OEKO-TEX Aligned',
+    description: 'Product-level compliance practices are aligned with OEKO-TEX expectations for home textiles.',
+  },
+]
+
+function QualityCompliance() {
   const timelineRef = useRef(null)
 
   return (
@@ -102,7 +123,7 @@ function Certifications() {
             className="max-w-2xl bg-primary/80 backdrop-blur-md p-10 md:p-12 text-white border-l-4 border-secondary rounded-r-2xl"
           >
             <span className="font-label-md text-secondary uppercase tracking-[0.2em] mb-4 block">
-              Quality Assurance
+              Quality &amp; Compliance
             </span>
             <RevealText
               as="h1"
@@ -117,7 +138,7 @@ function Certifications() {
               across our entire global supply chain.
             </p>
             <div className="flex gap-4">
-              <Button href="#certifications-grid" variant="secondary">
+              <Button href="#certifications" variant="secondary">
                 View Certificates
               </Button>
             </div>
@@ -125,18 +146,17 @@ function Certifications() {
         </Container>
       </section>
 
-      {/* Luxury Timeline */}
-      <section className="py-section-gap-lg bg-background overflow-hidden">
+      {/* Quality Control */}
+      <section className="py-section-gap-lg bg-background overflow-hidden" id="quality-control">
         <Container>
           <div className="text-center mb-24 max-w-3xl mx-auto">
-            <span className="eyebrow">Our System</span>
+            <span className="eyebrow">Quality Control</span>
             <h2 className="section-title">The Journey of <em>Quality</em></h2>
             <div className="divider mx-auto" />
             <p className="text-on-surface-variant font-body-lg mt-6 leading-relaxed">
-              Quality control is built into every process, not applied at the end of it. Our modern laboratory carries
-              out a range of tests to measure and analyze product parameters at each stage, and a five-level inspection
-              cycle is used to safeguard quality from raw material through to final shipment — verified by SGS,
-              Texanlabs, the Textile Committee, and other competent authorities.
+              Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every
+              product meets the highest standards of quality and accuracy — in-line checks at every stage of
+              production, followed by a final AQL-standard inspection before dispatch.
             </p>
           </div>
 
@@ -200,8 +220,93 @@ function Certifications() {
         </Container>
       </section>
 
-      {/* Certifications Grid */}
-      <section className="py-section-gap-lg bg-white" id="certifications-grid">
+      {/* Testing */}
+      <section className="py-section-gap-lg bg-[#0F172A] text-white" id="testing">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+            <div className="md:col-span-4 bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl flex flex-col justify-center">
+              <span className="eyebrow !text-secondary mb-4">Laboratory</span>
+              <h2 className="font-headline-xl text-3xl mb-6">Rigorous Testing Practices</h2>
+              <p className="text-white/70 text-xs leading-relaxed">
+                Our dyeing process is checked against wet, dry rubbing and light-fastness standards, with every stage of
+                production backed by our two-layer AQL inspection system.
+              </p>
+            </div>
+            <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {TESTING_PRACTICES.map((item, idx) => (
+                <motion.div
+                  key={item.num}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-secondary transition-all"
+                >
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center rounded-lg">
+                      <Icon name={item.icon} className="text-2xl text-secondary" />
+                    </div>
+                    <span className="font-display-lg text-4xl text-white/15 font-bold">{item.num}</span>
+                  </div>
+                  <h5 className="font-headline-lg text-lg mb-2 text-white font-semibold">{item.title}</h5>
+                  <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Laboratory & Inspection (supporting detail for Testing) */}
+      <section className="py-section-gap-lg bg-background">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="eyebrow">Instrumentation</span>
+              <h2 className="section-title mb-8">Precision-First <em>Facilities</em></h2>
+              <p className="text-on-surface-variant font-body-lg mb-8 leading-relaxed">
+                Our primary testing laboratory is equipped with the latest European and American instrumentation, manned
+                by a team of specialist textile engineers and PhD-level researchers.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
+                    <Icon name="biotech" className="text-xl" />
+                  </div>
+                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Spectrophotometric Color Matching</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
+                    <Icon name="texture" className="text-xl" />
+                  </div>
+                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Pilling &amp; Abrasion Resistance Testers</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
+                    <Icon name="air" className="text-xl" />
+                  </div>
+                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Air Permeability &amp; Moisture Management</span>
+                </li>
+              </ul>
+            </div>
+            <div className="relative group cursor-crosshair hidden md:block">
+              <img
+                className="w-full aspect-[4/5] object-cover rounded-2xl border border-outline-variant/30 shadow-lg group-hover:scale-[1.01] transition-transform duration-700"
+                alt="Textile scientists in laboratory coats"
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80&auto=format&fit=crop"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-secondary p-8 text-white rounded-xl shadow-lg max-w-xs">
+                <p className="text-[10px] uppercase tracking-widest font-semibold text-white/80 mb-2">Quality Assurance</p>
+                <p className="font-headline-lg text-2xl font-bold text-white">2-Layer AQL Inspection</p>
+                <p className="text-[10px] mt-2 text-white/70 italic leading-relaxed">In-Line Checks + Final Dispatch Clearance</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Certifications */}
+      <section className="py-section-gap-lg bg-white" id="certifications">
         <Container>
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-xl">
@@ -268,87 +373,65 @@ function Certifications() {
         </Container>
       </section>
 
-      {/* Quality Standards Section (Bento Grid Style) */}
-      <section className="py-section-gap-lg bg-[#0F172A] text-white">
+      {/* Social Compliance */}
+      <section className="py-section-gap-lg bg-background" id="social-compliance">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            <div className="md:col-span-4 bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl flex flex-col justify-center">
-              <span className="eyebrow !text-secondary mb-4">Laboratory</span>
-              <h2 className="font-headline-xl text-3xl mb-6">Rigorous Testing Practices</h2>
-              <p className="text-white/70 text-xs leading-relaxed">
-                Our dyeing process is checked against wet, dry rubbing and light-fastness standards, with every stage of
-                production backed by our five-level quality inspection cycle.
-              </p>
-            </div>
-            <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {TESTING_PRACTICES.map((item, idx) => (
-                <motion.div
-                  key={item.num}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-secondary transition-all"
-                >
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center rounded-lg">
-                      <Icon name={item.icon} className="text-2xl text-secondary" />
-                    </div>
-                    <span className="font-display-lg text-4xl text-white/15 font-bold">{item.num}</span>
-                  </div>
-                  <h5 className="font-headline-lg text-lg mb-2 text-white font-semibold">{item.title}</h5>
-                  <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="eyebrow">People First</span>
+            <h2 className="section-title">Social <em>Compliance</em></h2>
+            <div className="divider mx-auto" />
+            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
+              As a corporate entity in compliance with SA8000, we extend our responsibility beyond the factory floor —
+              to fair labor practices and to the communities we operate in.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter">
+            {SOCIAL_PROGRAMS.map((program) => (
+              <motion.div
+                key={program.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center text-center gap-4 p-6 bg-white border border-outline-variant/30 rounded-xl shadow-sm"
+              >
+                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
+                  <Icon name={program.icon} className="text-3xl text-secondary" />
+                </div>
+                <p className="text-xs text-on-surface-variant leading-relaxed">{program.label}</p>
+              </motion.div>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Laboratory & Inspection */}
-      <section className="py-section-gap-lg bg-background">
+      {/* Product Compliance */}
+      <section className="py-section-gap-lg bg-white" id="product-compliance">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="eyebrow">Instrumentation</span>
-              <h2 className="section-title mb-8">Precision-First <em>Facilities</em></h2>
-              <p className="text-on-surface-variant font-body-lg mb-8 leading-relaxed">
-                Our primary testing laboratory is equipped with the latest European and American instrumentation, manned
-                by a team of specialist textile engineers and PhD-level researchers.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
-                    <Icon name="biotech" className="text-xl" />
-                  </div>
-                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Spectrophotometric Color Matching</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
-                    <Icon name="texture" className="text-xl" />
-                  </div>
-                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Pilling &amp; Abrasion Resistance Testers</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-secondary shadow-sm">
-                    <Icon name="air" className="text-xl" />
-                  </div>
-                  <span className="font-body-md text-xs font-semibold text-primary uppercase tracking-wider">Air Permeability &amp; Moisture Management</span>
-                </li>
-              </ul>
-            </div>
-            <div className="relative group cursor-crosshair hidden md:block">
-              <img
-                className="w-full aspect-[4/5] object-cover rounded-2xl border border-outline-variant/30 shadow-lg group-hover:scale-[1.01] transition-transform duration-700"
-                alt="Textile scientists in laboratory coats"
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80&auto=format&fit=crop"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-secondary p-8 text-white rounded-xl shadow-lg max-w-xs">
-                <p className="text-[10px] uppercase tracking-widest font-semibold text-white/80 mb-2">Quality Assurance</p>
-                <p className="font-headline-lg text-2xl font-bold text-white">5-Level Inspection</p>
-                <p className="text-[10px] mt-2 text-white/70 italic leading-relaxed">Reports by SGS, Texanlabs &amp; Textile Committee</p>
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="eyebrow">At the Product Level</span>
+            <h2 className="section-title">Product <em>Compliance</em></h2>
+            <div className="divider mx-auto" />
+            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
+              Compliance doesn't stop at the factory — it's built into every product that leaves it, from the dyes we
+              use to the finish on the fabric.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            {PRODUCT_COMPLIANCE_POINTS.map((point, index) => (
+              <div
+                key={point.title}
+                className={`text-center p-8 bg-background border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
+                  index < PRODUCT_COMPLIANCE_POINTS.length - 1 ? 'border-b md:border-b-0 md:border-r' : ''
+                }`}
+              >
+                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-6">
+                  <Icon name={point.icon} className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-xl text-primary mb-4 font-semibold">{point.title}</h4>
+                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{point.description}</p>
               </div>
-            </div>
+            ))}
           </div>
         </Container>
       </section>
@@ -377,4 +460,4 @@ function Certifications() {
   )
 }
 
-export default Certifications
+export default QualityCompliance

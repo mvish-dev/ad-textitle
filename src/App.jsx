@@ -7,9 +7,12 @@ import AnimatedPage from './components/layout/AnimatedPage.jsx'
 const Home = lazy(() => import('./pages/Home.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
-const Infrastructure = lazy(() => import('./pages/Infrastructure.jsx'))
+const Manufacturing = lazy(() => import('./pages/Manufacturing.jsx'))
+const DesignDevelopment = lazy(() => import('./pages/DesignDevelopment.jsx'))
+const PrivateLabel = lazy(() => import('./pages/PrivateLabel.jsx'))
+const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
 const Sustainability = lazy(() => import('./pages/Sustainability.jsx'))
-const Certifications = lazy(() => import('./pages/Certifications.jsx'))
+const Exports = lazy(() => import('./pages/Exports.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const LivingLinen = lazy(() => import('./pages/LivingLinen.jsx'))
 const HeritageBedLinen = lazy(() => import('./pages/HeritageBedLinen.jsx'))
@@ -30,9 +33,12 @@ function App() {
             <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
             <Route path="about" element={<AnimatedPage><About /></AnimatedPage>} />
             <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
-            <Route path="infrastructure" element={<AnimatedPage><Infrastructure /></AnimatedPage>} />
+            <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
+            <Route path="design-development" element={<AnimatedPage><DesignDevelopment /></AnimatedPage>} />
+            <Route path="private-label" element={<AnimatedPage><PrivateLabel /></AnimatedPage>} />
+            <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
             <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
-            <Route path="certifications" element={<AnimatedPage><Certifications /></AnimatedPage>} />
+            <Route path="exports" element={<AnimatedPage><Exports /></AnimatedPage>} />
             <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
             <Route path="living-linen" element={<AnimatedPage><LivingLinen /></AnimatedPage>} />
             <Route path="heritage-bed-linen" element={<AnimatedPage><HeritageBedLinen /></AnimatedPage>} />

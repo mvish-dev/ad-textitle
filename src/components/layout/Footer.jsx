@@ -56,8 +56,13 @@ function Footer() {
           <div className="text-[0.72rem] font-semibold tracking-[0.16em] uppercase text-white/88 mb-2">Company</div>
           <ul className="space-y-2.5">
             <li>
-              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/infrastructure">
-                Our Infrastructure
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/manufacturing">
+                Manufacturing
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/design-development">
+                Design &amp; Development
               </Link>
             </li>
             <li>
@@ -66,8 +71,8 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/certifications">
-                Certifications
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/quality-compliance">
+                Quality &amp; Compliance
               </Link>
             </li>
             <li>
@@ -82,6 +87,26 @@ function Footer() {
           <div className="text-[0.72rem] font-semibold tracking-[0.16em] uppercase text-white/88 mb-2">Quick Links</div>
           <ul className="space-y-2.5">
             <li>
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/private-label">
+                Private Label &amp; Custom Mfg.
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/exports">
+                Exports
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/manufacturing#packing">
+                Export &amp; Packing
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/about">
+                Company Profile
+              </Link>
+            </li>
+            <li>
               <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/privacy">
                 Privacy Policy
               </Link>
@@ -89,16 +114,6 @@ function Footer() {
             <li>
               <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/terms">
                 Terms of Service
-              </Link>
-            </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/infrastructure#packing">
-                Export &amp; Packing
-              </Link>
-            </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/42 hover:text-secondary transition-colors duration-200" to="/about">
-                Company Profile
               </Link>
             </li>
           </ul>

@@ -146,9 +146,10 @@ function About() {
           </div>
           <div className="lg:col-span-6 lg:col-start-7 text-on-surface/80 font-body-md space-y-6">
             <p>
-              AD Textile was established in 1990 as a manufacturer of home textile products. We began exporting to the
-              international market in 1992, and today we export our products to global markets, having served major
-              retailers across international channels.
+              For over three decades, AD Textile has been helping international brands transform ideas into
+              premium-quality home textile products. With fully integrated manufacturing — from dyeing and weaving
+              to stitching and quality inspection — we deliver consistent quality, dependable lead times, and
+              flexible manufacturing solutions under one roof.
             </p>
             <p>
               We believe in delivering superior products and services that give our customers a competitive advantage
@@ -168,10 +169,10 @@ function About() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-section-gap-lg bg-white">
+      <section className="py-section-gap-lg bg-white" id="journey">
         <Container>
           <div className="text-center mb-16">
-            <span className="eyebrow">Our Evolution</span>
+            <span className="eyebrow">Our Journey</span>
             <h2 className="section-title">Milestones of <em>Progress</em></h2>
             <div className="divider mx-auto" />
           </div>
@@ -243,6 +244,108 @@ function About() {
         </Container>
       </section>
 
+      {/* Our Manufacturing Strength */}
+      <section className="py-section-gap-lg bg-background" id="manufacturing-strength">
+        <Container>
+          <div className="text-center mb-16">
+            <span className="eyebrow">What We're Built On</span>
+            <h2 className="section-title">Our Manufacturing <em>Strength</em></h2>
+            <div className="divider mx-auto" />
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-6 leading-relaxed">
+              Every product we ship is backed by manufacturing we own end to end — no subcontracted stages, no
+              hand-offs between unrelated factories.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-12">
+            {[
+              {
+                icon: 'factory',
+                title: 'Vertically Integrated',
+                description: 'Dyeing, weaving, embroidery, cutting, stitching and packing, all under one roof.',
+              },
+              {
+                icon: 'grid_4x4',
+                title: 'Somet Rapier Looms',
+                description: 'Weaving 1 million metres of premium fabric every month.',
+              },
+              {
+                icon: 'format_color_fill',
+                title: '3 Tons/Day Dyeing',
+                description: 'Italian Cheese Dyeing Machines, for superior dye penetration and colour fastness.',
+              },
+              {
+                icon: 'verified',
+                title: '2-Layer AQL Inspection',
+                description: 'In-line checks at every stage, plus a final AQL-standard inspection before dispatch.',
+              },
+            ].map((item, index, arr) => (
+              <div
+                key={item.title}
+                className={`text-center p-8 bg-white border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
+                  index < arr.length - 1 ? 'border-b md:border-b-0 md:border-r' : ''
+                }`}
+              >
+                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-6">
+                  <Icon name={item.icon} className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-xl text-primary mb-4 font-semibold">{item.title}</h4>
+                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Button to="/manufacturing" variant="outline" className="text-primary border-primary">
+              See Our Manufacturing Process
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      {/* Our Global Reach */}
+      <section className="py-section-gap-lg bg-primary text-white overflow-hidden" id="global-reach">
+        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+          <div className="lg:col-span-6">
+            <span className="eyebrow !text-secondary">Beyond Our Borders</span>
+            <h2 className="font-display-lg text-4xl md:text-5xl text-white mb-8 leading-tight">
+              Our Global <em className="text-secondary-fixed">Reach</em>
+            </h2>
+            <p className="font-body-lg text-body-lg text-white/75 mb-10 leading-relaxed max-w-lg">
+              We began exporting to the international market in 1992, and today AD Textile products reach global
+              markets, having served major retailers across international channels.
+            </p>
+            <Button to="/exports" variant="secondary">
+              Explore Our Export Capabilities
+            </Button>
+          </div>
+          <div className="lg:col-span-6 grid grid-cols-2 gap-6">
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <p className="font-headline-xl text-3xl font-bold text-white mb-2">1992</p>
+              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
+                Exporting Since
+              </p>
+            </div>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <p className="font-headline-xl text-3xl font-bold text-white mb-2">Global</p>
+              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
+                Retail Markets Served
+              </p>
+            </div>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <p className="font-headline-xl text-3xl font-bold text-white mb-2">1990</p>
+              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
+                Manufacturing Since
+              </p>
+            </div>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <p className="font-headline-xl text-3xl font-bold text-white mb-2">Direct</p>
+              <p className="font-label-md text-xs uppercase tracking-widest text-white/60 font-semibold">
+                Buyer Relationships
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Mission & Vision */}
       <section className="py-section-gap-lg bg-background">
         <Container className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
@@ -256,9 +359,9 @@ function About() {
             <Icon name="verified" className="text-secondary text-5xl mb-8" />
             <h3 className="font-headline-lg text-2xl text-primary mb-6 font-semibold">Our Mission</h3>
             <p className="font-body-md text-[0.88rem] text-on-surface-variant leading-relaxed">
-              To manufacture products of outstanding quality that give our customers a competitive advantage through
-              superior products and value. To attain higher level of efficiency through continuous training and
-              empowering higher skills.
+              To create high-quality home textile products through fully integrated manufacturing, continuous
+              innovation, ethical business practices, and exceptional customer service — helping our partners
+              succeed in global markets.
             </p>
           </motion.div>
 
@@ -272,9 +375,8 @@ function About() {
             <Icon name="visibility" className="text-secondary text-5xl mb-8" />
             <h3 className="font-headline-lg text-2xl text-white mb-6 font-semibold">Our Vision</h3>
             <p className="font-body-md text-[0.88rem] text-white/70 leading-relaxed">
-              To manufacture textile products to international standards, to be customer focused in quality and
-              design, competitive pricing by adopting latest technology and innovative methods of product
-              architecture.
+              To become the preferred global manufacturing partner for premium home textile brands by delivering
+              excellence, innovation, and sustainable value.
             </p>
           </motion.div>
         </Container>

@@ -68,7 +68,7 @@ export const COLLECTIONS = {
       {
         icon: 'verified',
         title: 'Heavy-Duty Stitching',
-        text: 'Stitched with extra-reinforced threads and dynamic stress-point backing on industrial Juki machines, ensuring they withstand active daily kitchen usage.',
+        text: 'Stitched with extra-reinforced threads and dynamic stress-point backing on our 200-machine Jack sewing floor, ensuring they withstand active daily kitchen usage.',
       },
       {
         icon: 'eco',
@@ -77,8 +77,8 @@ export const COLLECTIONS = {
       },
       {
         icon: 'shield',
-        title: 'SGS & Laboratory Certified',
-        text: 'Our kitchen towels pass strict absorbance parameters and shrink resistance tests verified in-house and through competent third-party labs like SGS.',
+        title: '2-Layer AQL Inspection',
+        text: 'Our kitchen towels pass strict absorbance parameters and shrink resistance tests, verified through in-line checks and a final AQL-standard inspection before dispatch.',
       },
     ],
   },
@@ -123,8 +123,8 @@ export const COLLECTIONS = {
       },
       {
         icon: 'shield',
-        title: 'SGS Tested Durability',
-        text: 'Tested thoroughly by SGS to verify high seam strength, color-fastness, and minimal shrinkage over hundreds of wash cycles.',
+        title: 'AQL-Tested Durability',
+        text: 'Verified through our 2-layer AQL inspection system for high seam strength, color-fastness, and minimal shrinkage over hundreds of wash cycles.',
       },
     ],
   },
@@ -159,8 +159,8 @@ export const COLLECTIONS = {
     features: [
       {
         icon: 'verified',
-        title: '5-Level Quality Control',
-        text: 'Every batch passes a five-level inspection cycle, with testing referenced against reports from SGS, Texanlabs and the Textile Committee before it ships.',
+        title: '2-Layer AQL Inspection',
+        text: 'Every batch passes in-line checks at every stage of production, plus a final AQL-standard inspection before it ships.',
       },
       {
         icon: 'eco',
@@ -170,7 +170,7 @@ export const COLLECTIONS = {
       {
         icon: 'shield',
         title: 'Built for Everyday Use',
-        text: 'Cut and stitched on Juki and Brother machinery by a trained, experienced workforce, built for the demands of hospitality and residential use alike.',
+        text: 'Cut and stitched on our 200-machine Jack sewing floor by a trained workforce of 100 skilled and 100 semi-skilled professionals, built for the demands of hospitality and residential use alike.',
       },
     ],
     integrity: {
@@ -220,17 +220,17 @@ export const COLLECTIONS = {
         {
           icon: 'grid_on',
           title: 'In-House Weaving',
-          text: '56 automatic Repair looms weaving dobby, satin, satin-stripe and twill constructions up to 360cm width, so large curtain panels come off a single continuous run.',
+          text: 'Somet Super Excel Rapier Looms weaving 1 million metres of fabric a month, so large curtain panels come off a single continuous run.',
         },
         {
           icon: 'content_cut',
           title: 'Tailored Finishing',
-          text: 'Cut and stitched on Juki and Brother machinery by a trained, experienced workforce, then checked through our multi-parameter finishing inspection.',
+          text: 'Cut and stitched on our 200-machine Jack sewing floor by a trained, experienced workforce, then checked through our 2-layer AQL inspection system.',
         },
         {
           icon: 'design_services',
           title: 'Made to Your Brief',
-          text: 'Our in-house design studio, rotary and manual printing, and Tajima & Barudan embroidery machines (9 colours) support custom patterns and finishes.',
+          text: 'Our in-house design studio and Garuda & Toshiba embroidery machines (54 heads, 10–12 colours) support custom patterns and finishes.',
         },
       ],
       footnote: 'Looking for specific widths, weaves or finishes?',
@@ -238,8 +238,8 @@ export const COLLECTIONS = {
     features: [
       {
         icon: 'verified',
-        title: '5-Level Quality Control',
-        text: 'Every batch passes a five-level inspection cycle, with testing referenced against reports from SGS, Texanlabs and the Textile Committee before it ships.',
+        title: '2-Layer AQL Inspection',
+        text: 'Every batch passes in-line checks at every stage of production, plus a final AQL-standard inspection before it ships.',
       },
       {
         icon: 'eco',

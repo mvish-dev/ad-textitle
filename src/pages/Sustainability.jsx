@@ -52,22 +52,20 @@ function Sustainability() {
         </Container>
       </section>
 
-      {/* Environmental Care Section */}
-      <section className="py-section-gap-lg bg-background">
+      {/* Sustainable Materials */}
+      <section className="py-section-gap-lg bg-background" id="sustainable-materials">
         <Container>
           <div className="grid grid-cols-1 gap-gutter mb-16">
             <div>
               <span className="eyebrow">Eco Stewardship</span>
-              <h2 className="section-title mb-6">Environmental <em>Care</em></h2>
+              <h2 className="section-title mb-6">Sustainable <em>Materials</em></h2>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-                We operate at the intersection of heavy industry and environmental stewardship, ensuring that our global
-                footprint is as refined as our textiles.
+                What goes into a fabric matters as much as how it's made. Our material choices start with
+                responsible sourcing and Azo-free dyeing, right from the first stage of production.
               </p>
             </div>
           </div>
-          {/* Bento Grid for Environmental Initiatives */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {/* Item 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -85,13 +83,46 @@ function Sustainability() {
               </div>
               <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />
             </motion.div>
-            {/* Item 2 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
+            >
+              <div className="mb-10">
+                <Icon name="grass" className="text-5xl text-secondary mb-6 block" />
+                <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">Responsible Fiber Sourcing</h3>
+                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
+                  Raw material is checked before it ever reaches the production floor, so only suitable, quality
+                  fiber moves into weaving, dyeing and finishing.
+                </p>
+              </div>
+              <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Responsible Manufacturing */}
+      <section className="py-section-gap-lg bg-white border-t border-outline-variant/20" id="responsible-manufacturing">
+        <Container>
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <span className="eyebrow">Process Responsibility</span>
+            <h2 className="section-title">Responsible <em>Manufacturing</em></h2>
+            <div className="divider mx-auto" />
+            <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 leading-relaxed">
+              We operate at the intersection of heavy industry and environmental stewardship, ensuring that our
+              footprint is as refined as our textiles.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-background p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
             >
               <div className="mb-10">
                 <Icon name="water_damage" className="text-5xl text-secondary mb-6 block" />
@@ -103,13 +134,12 @@ function Sustainability() {
               </div>
               <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />
             </motion.div>
-            {/* Item 3 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-background p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
             >
               <div className="mb-10">
                 <Icon name="rebase" className="text-5xl text-secondary mb-6 block" />
@@ -125,12 +155,12 @@ function Sustainability() {
         </Container>
       </section>
 
-      {/* Sustainability in Motion */}
-      <section className="py-section-gap-lg bg-white border-t border-b border-outline-variant/20">
+      {/* Environmental Practices */}
+      <section className="py-section-gap-lg bg-background" id="environmental-practices">
         <Container>
           <div className="text-center mb-16">
             <span className="eyebrow">Operations in Detail</span>
-            <h2 className="section-title">Sustainability in <em>Motion</em></h2>
+            <h2 className="section-title">Environmental <em>Practices</em></h2>
             <div className="divider mx-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -170,22 +200,65 @@ function Sustainability() {
               </div>
             </div>
           </div>
+
+          {/* CSR Programs */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-white border border-outline-variant/30 rounded-2xl p-12 max-w-4xl mx-auto shadow-sm mt-gutter"
+          >
+            <h3 className="font-headline-lg text-2xl text-primary mb-6 text-center font-semibold">
+              Our Corporate Social Responsibility
+            </h3>
+            <p className="font-body-md text-xs text-on-surface-variant text-center max-w-2xl mx-auto mb-10 leading-relaxed">
+              As a corporate entity in compliance with SA8000 and ISO 14001 standards, we extend our responsibility
+              beyond the factory floor into the communities we operate in.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
+                  <Icon name="accessibility_new" className="text-3xl text-secondary" />
+                </div>
+                <p className="text-xs text-on-surface-variant leading-relaxed">
+                  Employment opportunities for the physically challenged
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
+                  <Icon name="volunteer_activism" className="text-3xl text-secondary" />
+                </div>
+                <p className="text-xs text-on-surface-variant leading-relaxed">
+                  A feeding programme for around 400 blind and deaf children
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
+                  <Icon name="school" className="text-3xl text-secondary" />
+                </div>
+                <p className="text-xs text-on-surface-variant leading-relaxed">
+                  Education scholarships for the needy
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </Container>
       </section>
 
-      {/* Social Responsibility & Certifications */}
-      <section className="py-section-gap-lg bg-white">
+      {/* Sustainability Certifications */}
+      <section className="py-section-gap-lg bg-white" id="sustainability-certifications">
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <span className="eyebrow">Global Standards</span>
-            <h2 className="section-title">Integrity &amp; <em>Compliance</em></h2>
+            <h2 className="section-title">Sustainability <em>Certifications</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
               Our operations are validated by recognized certification bodies, ensuring ethical labor practices and
               environmental management across our facility.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-2xl mx-auto mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-2xl mx-auto">
             {/* Cert 1: SA8000 */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -227,48 +300,6 @@ function Sustainability() {
               </p>
             </motion.div>
           </div>
-          {/* CSR Programs */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-surface-container border border-outline-variant/30 rounded-2xl p-12 max-w-4xl mx-auto shadow-sm"
-          >
-            <h3 className="font-headline-lg text-2xl text-primary mb-6 text-center font-semibold">
-              Our Corporate Social Responsibility
-            </h3>
-            <p className="font-body-md text-xs text-on-surface-variant text-center max-w-2xl mx-auto mb-10 leading-relaxed">
-              As a corporate entity in compliance with SA8000 and ISO 14001 standards, we extend our responsibility
-              beyond the factory floor into the communities we operate in.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-              <div className="flex flex-col items-center text-center gap-4">
-                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
-                  <Icon name="accessibility_new" className="text-3xl text-secondary" />
-                </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">
-                  Employment opportunities for the physically challenged
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center gap-4">
-                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
-                  <Icon name="volunteer_activism" className="text-3xl text-secondary" />
-                </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">
-                  A feeding programme for around 400 blind and deaf children
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center gap-4">
-                <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
-                  <Icon name="school" className="text-3xl text-secondary" />
-                </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">
-                  Education scholarships for the needy
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </Container>
       </section>
 

@@ -9,13 +9,17 @@ import WebGLScene from '../components/motion/WebGLScene.jsx'
 import { gsap, prefersReducedMotion } from '../lib/motion.js'
 import { scrollTo } from '../lib/lenis.js'
 
-// Only Printing & Embroidery keeps video (framed, with a grain treatment).
-// The rest use static photography with a Ken Burns zoom instead of low-quality footage.
-import printingVideo from '../assets/videos/Prinitng & Embroidery.mp4'
+// Only Embroidery keeps video (framed, with a grain treatment). The rest use
+// static photography with a Ken Burns zoom instead of low-quality footage.
+// Photography below is placeholder stock, standing in for client-supplied
+// facility photos on the newer chapters (Knitting, Warehouse) added for the
+// updated sitemap — reused from the closest existing chapter where a
+// dedicated photo isn't available yet.
+import embroideryVideo from '../assets/videos/Prinitng & Embroidery.mp4'
 
 const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1800&q=85&auto=format&fit=crop'
 const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1800&q=85&auto=format&fit=crop'
-const stitchingPhoto =
+const cuttingPhoto =
   'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1800&q=85&auto=format&fit=crop'
 const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1800&q=85&auto=format&fit=crop'
 const packingPhoto =
@@ -24,18 +28,21 @@ const packingPhoto =
 const SIDE_NAV_ITEMS = [
   { id: 'dyeing', icon: 'format_color_fill', label: 'Dyeing' },
   { id: 'weaving', icon: 'grid_4x4', label: 'Weaving' },
-  { id: 'printing', icon: 'auto_awesome', label: 'Printing & Embroidery' },
-  { id: 'cutting', icon: 'content_cut', label: 'Cutting & Stitching' },
-  { id: 'quality', icon: 'verified', label: 'Quality' },
-  { id: 'packing', icon: 'inventory_2', label: 'Export & Packing' },
+  { id: 'knitting', icon: 'texture', label: 'Knitting' },
+  { id: 'cutting', icon: 'content_cut', label: 'Cutting' },
+  { id: 'embroidery', icon: 'auto_awesome', label: 'Embroidery' },
+  { id: 'stitching', icon: 'design_services', label: 'Stitching' },
+  { id: 'checking-quality', icon: 'verified', label: 'Checking & QC' },
+  { id: 'packing', icon: 'inventory_2', label: 'Packing' },
+  { id: 'warehouse', icon: 'warehouse', label: 'Warehouse' },
 ]
 
 // Straight vertical thread that draws top-to-bottom as the visitor moves
-// through the six chapters below — the same ThreadPath component used on
+// through the chapters below — the same ThreadPath component used on
 // Home/About/Certifications, configured as a progress rail here.
 const RAIL_PATH = 'M4,0 L4,400'
 
-function Infrastructure() {
+function Manufacturing() {
   const journeyRef = useRef(null)
   const [activeChapter, setActiveChapter] = useState(SIDE_NAV_ITEMS[0].id)
 
@@ -48,7 +55,7 @@ function Infrastructure() {
     // the original layout), so chapters just stack and reveal normally —
     // no pinning, no scrub, nothing to fight a small viewport for.
     mm.add('(min-width: 768px)', () => {
-      const chapters = gsap.utils.toArray('.infra-chapter')
+      const chapters = gsap.utils.toArray('.mfg-chapter')
 
       chapters.forEach((section, i) => {
         const inner = section.querySelector('.chapter-inner')
@@ -89,7 +96,7 @@ function Infrastructure() {
   return (
     <div className="relative">
       {/* SideNavBar — now a live progress rail, not just a static list */}
-      <aside className="fixed left-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-6 items-center bg-transparent hidden md:flex">
+      <aside className="fixed left-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-5 items-center bg-transparent hidden md:flex">
         <ThreadPath
           d={RAIL_PATH}
           viewBox="0 0 8 400"
@@ -128,7 +135,7 @@ function Infrastructure() {
       <main className="w-full bg-background">
         <div ref={journeyRef} className="relative">
           {/* Chapter 1: Dyeing */}
-          <section className="infra-chapter h-screen w-full relative overflow-hidden" id="dyeing">
+          <section className="mfg-chapter h-screen w-full relative overflow-hidden" id="dyeing">
             <div className="chapter-inner grid grid-cols-1 md:grid-cols-2 h-full w-full">
               <div className="relative flex flex-col justify-center px-margin-mobile md:px-margin-desktop bg-primary text-white overflow-hidden">
                 <WebGLScene
@@ -143,23 +150,23 @@ function Infrastructure() {
                 <div className="relative z-10">
                   <span className="eyebrow !text-secondary mb-4">01 / Coloration</span>
                   <h2 className="section-title !text-white mb-6">
-                    Eco-Conscious <em>Color</em> Science
+                    Precision <em>Color</em> Science
                   </h2>
                   <p className="font-body-md text-[0.88rem] text-white/80 mb-12 max-w-lg leading-relaxed">
-                    AD Textile is an eco-friendly organization that uses only Azo-free dyes across its dyeing operations.
-                    Quality is maintained through wet and dry rubbing tests alongside light-fastness standards at every
-                    stage.
+                    Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior
+                    dye penetration, exceptional colour fastness, and consistent quality across a wide variety of
+                    yarn types and blends.
                   </p>
                   <div className="grid grid-cols-2 gap-6 max-w-lg">
                     <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
                       <Icon name="format_color_fill" className="text-secondary mb-3 text-3xl block" />
-                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">Azo-Free Dyes</p>
-                      <p className="text-xs text-white/50 mt-1">Eco-Friendly Standard</p>
+                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">Italian Cheese Dyeing</p>
+                      <p className="text-xs text-white/50 mt-1">Imported Machines</p>
                     </div>
                     <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
                       <Icon name="monitoring" className="text-secondary mb-3 text-3xl block" />
-                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">4 Tons/Day</p>
-                      <p className="text-xs text-white/50 mt-1">Installed Capacity</p>
+                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">3 Tons/Day</p>
+                      <p className="text-xs text-white/50 mt-1">Daily Production Capacity</p>
                     </div>
                   </div>
                 </div>
@@ -176,7 +183,7 @@ function Infrastructure() {
           </section>
 
           {/* Chapter 2: Weaving */}
-          <section className="infra-chapter h-screen w-full relative" id="weaving">
+          <section className="mfg-chapter h-screen w-full relative" id="weaving">
             <div className="absolute inset-0 z-0 bg-primary overflow-hidden">
               <img
                 src={weavingPhoto}
@@ -192,22 +199,22 @@ function Infrastructure() {
                   <div>
                     <h2 className="font-headline-xl text-3xl mb-4 leading-tight">The Architecture of Fabric</h2>
                     <p className="font-body-md text-[0.88rem] text-white/80 leading-relaxed">
-                      Our modern weaving unit is equipped with 56 automatic Repair looms. The loom shed weaves dobby,
-                      satin, satin-striped, and twill patterns, with the capacity to produce fabric up to 360cm in width
-                      using double insertion.
+                      Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the
+                      production of premium woven fabrics with exceptional precision, consistency, and durability
+                      across a wide range of yarn counts.
                     </p>
                   </div>
                   <div className="flex flex-col justify-end gap-6">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-px bg-secondary" />
                       <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        56 Automatic Repair Looms
+                        Somet Super Excel Rapier Looms
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-px bg-secondary" />
                       <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        Up to 360cm Width, Double Insertion
+                        1 Million Metres / Month
                       </span>
                     </div>
                   </div>
@@ -216,67 +223,57 @@ function Infrastructure() {
             </div>
           </section>
 
-          {/* Chapter 3: Printing & Embroidery */}
-          <section className="infra-chapter h-screen w-full relative" id="printing">
-            <div className="chapter-inner flex flex-col md:flex-row h-full">
-              <div className="w-full md:w-3/5 h-1/2 md:h-full relative overflow-hidden bg-surface-container-low film-grain">
-                <video
-                  src={printingVideo}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[8s] scale-102 hover:scale-105 grayscale-[30%] contrast-105 brightness-95 saturate-75"
-                  poster="https://lh3.googleusercontent.com/aida-public/AB6AXuACyn2DW5X1P7CxfLYcOcwjvlBdHP0An0-NRtuj3qMA-DNRjbTfhqQglskD6I0BdFlwqpEcPASh-LXz9Xjz5UCVLrJkbQnNMeB8knb5QZJM5-YB3cwWB4Tjt3RV3fRknGSbuQns4smdWsBq1NTXGMl77Wvn0gOFzZn-O0TzBNkilGgZeHhrpUtOIXUcmZNDZQHyzW8AcgyQOxRPrXjsheUJVF6I4NPE7BPJ2PflbUc37OrXX3kTvju73qDQlzNZYd8RFwx6SG-yZoI"
+          {/* Chapter 3: Knitting */}
+          <section className="mfg-chapter h-screen w-full relative overflow-hidden" id="knitting">
+            <div className="chapter-inner grid grid-cols-1 md:grid-cols-2 h-full w-full">
+              <div className="relative order-2 md:order-1 group overflow-hidden h-full hidden md:block bg-surface-container-low">
+                <img
+                  src={weavingPhoto}
+                  alt="Knitted fabric structures at AD Textile"
+                  className="absolute inset-0 w-full h-full object-cover kenburns"
                 />
-                <div className="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none" />
-                <div className="absolute inset-0 shadow-[inset_0_0_80px_30px_rgba(15,23,42,0.35)] pointer-events-none" />
+                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500" />
               </div>
-              <div className="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-l border-outline-variant/20">
-                <span className="eyebrow mb-4 block">03 / Embellishment</span>
-                <h2 className="section-title mb-6">
-                  Printing &amp; <em>Embroidery</em>
+              <div className="relative order-1 md:order-2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop bg-primary text-white">
+                <span className="eyebrow !text-secondary mb-4">03 / Loop Formation</span>
+                <h2 className="section-title !text-white mb-6">
+                  Precision in Every <em>Loop</em>
                 </h2>
-                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-8 leading-relaxed">
-                  Our rotary and manual printing facilities produce a wide range of designs and patterns. Intricate
-                  embroidery is achieved using imported Tajima and Barudan machines, complemented by an in-house design
-                  studio for exclusive designs.
+                <p className="font-body-md text-[0.88rem] text-white/80 mb-12 max-w-lg leading-relaxed">
+                  Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting
+                  Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from
+                  infant baby socks to football socks — supported by a fully integrated composite unit for linking,
+                  washing, setting and ironing.
                 </p>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      Rotary &amp; Manual Printing
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      Tajima &amp; Barudan Embroidery (9 Colors)
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      In-House Design Studio
-                    </span>
-                  </li>
-                </ul>
+                <div className="grid grid-cols-2 gap-6 max-w-lg">
+                  <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
+                    <Icon name="texture" className="text-secondary mb-3 text-3xl block" />
+                    <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">50 Knitting Machines</p>
+                    <p className="text-xs text-white/50 mt-1">Imported Korean, Single Cylinder</p>
+                  </div>
+                  <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
+                    <Icon name="tune" className="text-secondary mb-3 text-3xl block" />
+                    <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">5 Lakh Pairs/Month</p>
+                    <p className="text-xs text-white/50 mt-1">Production Capacity</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Chapter 4: Cutting & Stitching */}
-          <section className="infra-chapter h-screen w-full relative" id="cutting">
+          {/* Chapter 4: Cutting */}
+          <section className="mfg-chapter h-screen w-full relative" id="cutting">
             <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
               <div className="md:col-span-5 text-primary">
                 <span className="eyebrow mb-4">04 / Precision</span>
                 <h2 className="section-title mb-6">
-                  Cutting &amp; <em>Stitching</em>
+                  <em>Cutting</em>
                 </h2>
                 <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-12 leading-relaxed">
-                  Cutting and stitching demand precision, ensured by an efficient, trained and skilled workforce managed
-                  by experienced supervisors. Production runs on Juki and Brother sewing machines throughout.
+                  Our in-house cutting facility is designed to deliver precision, consistency and efficiency across
+                  every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate
+                  pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for
+                  high-quality finished products.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button to="/contact" variant="primary">
@@ -289,16 +286,99 @@ function Infrastructure() {
               </div>
               <div className="md:col-span-7 aspect-[4/3] rounded-2xl border border-outline-variant/20 shadow-lg hidden md:block overflow-hidden bg-surface-container-low relative">
                 <img
-                  src={stitchingPhoto}
-                  alt="Juki and Brother sewing machines at AD Textile"
+                  src={cuttingPhoto}
+                  alt="Precision fabric cutting at AD Textile"
                   className="absolute inset-0 w-full h-full object-cover kenburns"
                 />
               </div>
             </div>
           </section>
 
-          {/* Chapter 5: Quality */}
-          <section className="infra-chapter h-screen w-full relative" id="quality">
+          {/* Chapter 5: Embroidery */}
+          <section className="mfg-chapter h-screen w-full relative" id="embroidery">
+            <div className="chapter-inner flex flex-col md:flex-row h-full">
+              <div className="w-full md:w-3/5 h-1/2 md:h-full relative overflow-hidden bg-surface-container-low film-grain">
+                <video
+                  src={embroideryVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[8s] scale-102 hover:scale-105 grayscale-[30%] contrast-105 brightness-95 saturate-75"
+                  poster="https://lh3.googleusercontent.com/aida-public/AB6AXuACyn2DW5X1P7CxfLYcOcwjvlBdHP0An0-NRtuj3qMA-DNRjbTfhqQglskD6I0BdFlwqpEcPASh-LXz9Xjz5UCVLrJkbQnNMeB8knb5QZJM5-YB3cwWB4Tjt3RV3fRknGSbuQns4smdWsBq1NTXGMl77Wvn0gOFzZn-O0TzBNkilGgZeHhrpUtOIXUcmZNDZQHyzW8AcgyQOxRPrXjsheUJVF6I4NPE7BPJ2PflbUc37OrXX3kTvju73qDQlzNZYd8RFwx6SG-yZoI"
+                />
+                <div className="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none" />
+                <div className="absolute inset-0 shadow-[inset_0_0_80px_30px_rgba(15,23,42,0.35)] pointer-events-none" />
+              </div>
+              <div className="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-l border-outline-variant/20">
+                <span className="eyebrow mb-4 block">05 / Embellishment</span>
+                <h2 className="section-title mb-6">
+                  <em>Embroidery</em>
+                </h2>
+                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-8 leading-relaxed">
+                  Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines,
+                  featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities,
+                  and precision digitising — delivering intricate, premium designs across our home textile ranges.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-4">
+                    <Icon name="check_circle" className="text-secondary text-xl" />
+                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
+                      Garuda &amp; Toshiba, 54 Heads (10–12 Colours)
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <Icon name="check_circle" className="text-secondary text-xl" />
+                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
+                      Precision Digitising
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <Icon name="check_circle" className="text-secondary text-xl" />
+                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
+                      Dedicated Sampling Capabilities
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Chapter 6: Stitching */}
+          <section className="mfg-chapter h-screen w-full relative" id="stitching">
+            <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+              <div className="md:col-span-7 aspect-[4/3] rounded-2xl border border-outline-variant/20 shadow-lg hidden md:block overflow-hidden bg-surface-container-low relative order-2 md:order-1">
+                <img
+                  src={cuttingPhoto}
+                  alt="Stitching production line at AD Textile"
+                  className="absolute inset-0 w-full h-full object-cover kenburns"
+                />
+              </div>
+              <div className="md:col-span-5 text-primary order-1 md:order-2">
+                <span className="eyebrow mb-4">06 / Construction</span>
+                <h2 className="section-title mb-6">
+                  <em>Stitching</em>
+                </h2>
+                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-12 leading-relaxed">
+                  Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by
+                  a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and
+                  sock linking operations — converting cut and embroidered panels into finished, quality-checked
+                  pieces at high volume.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button to="/contact" variant="primary">
+                    Get In Touch
+                  </Button>
+                  <Button to="/contact" variant="outline" className="text-primary border-primary">
+                    Request Details
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Chapter 7: Checking & Quality Control */}
+          <section className="mfg-chapter h-screen w-full relative" id="checking-quality">
             <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="relative hidden lg:block">
                 <div className="w-full aspect-square border-[16px] border-white shadow-xl rounded-2xl overflow-hidden bg-surface-container-low relative">
@@ -314,14 +394,14 @@ function Infrastructure() {
                 </div>
               </div>
               <div>
-                <span className="eyebrow mb-4 block">05 / Assurance</span>
+                <span className="eyebrow mb-4 block">07 / Assurance</span>
                 <h2 className="section-title mb-6">
-                  The Standard of <em>Excellence</em>
+                  Checking &amp; Quality <em>Control</em>
                 </h2>
                 <p className="font-body-lg text-[0.95rem] text-on-surface-variant mb-12 leading-relaxed">
-                  Quality control is part of every process at AD Textile. Our modern laboratory carries out various tests
-                  at every stage of production, following a 5-level inspection cycle — testified by reports from SGS,
-                  Texanlabs, Textile Committee, and other competent authorities.
+                  Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every
+                  product meets the highest standards of quality and accuracy — evaluated for measurement accuracy,
+                  appearance, and packing at every stage.
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start gap-6">
@@ -329,9 +409,9 @@ function Infrastructure() {
                       01
                     </div>
                     <div>
-                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">Visual Inspection</p>
+                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">In-Line Inspection</p>
                       <p className="text-xs text-on-surface-variant">
-                        Multi-stage assessment across our 5-level inspection cycle.
+                        Layer 1: quality checks at every stage of production, not just at the end.
                       </p>
                     </div>
                   </div>
@@ -340,9 +420,9 @@ function Infrastructure() {
                       02
                     </div>
                     <div>
-                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">Lab Certification</p>
+                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">Final AQL Inspection</p>
                       <p className="text-xs text-on-surface-variant">
-                        Tested and certified by SGS, Texanlabs &amp; Textile Committee.
+                        Layer 2: final AQL-standard inspection before dispatch, for zero-compromise quality.
                       </p>
                     </div>
                   </div>
@@ -351,8 +431,8 @@ function Infrastructure() {
             </div>
           </section>
 
-          {/* Chapter 6: Export & Packing */}
-          <section className="infra-chapter h-screen w-full relative" id="packing">
+          {/* Chapter 8: Packing */}
+          <section className="mfg-chapter h-screen w-full relative" id="packing">
             <div className="absolute inset-0 z-0 opacity-15 bg-primary overflow-hidden">
               <img
                 src={packingPhoto}
@@ -361,9 +441,9 @@ function Infrastructure() {
               />
             </div>
             <div className="chapter-inner relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-center items-center text-center text-primary">
-              <span className="eyebrow mb-4 block">06 / Fulfilment</span>
+              <span className="eyebrow mb-4 block">08 / Fulfilment</span>
               <h2 className="section-title mb-8 max-w-4xl">
-                Export &amp; <em>Packing</em>
+                <em>Packing</em>
               </h2>
               <p className="font-body-lg text-[0.95rem] text-on-surface-variant max-w-3xl mb-12 leading-relaxed">
                 AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements —
@@ -392,6 +472,47 @@ function Infrastructure() {
               </div>
             </div>
           </section>
+
+          {/* Chapter 9: Warehouse */}
+          <section className="mfg-chapter h-screen w-full relative" id="warehouse">
+            <div className="absolute inset-0 z-0 bg-primary overflow-hidden">
+              <img
+                src={packingPhoto}
+                alt="Warehouse and finished-goods storage at AD Textile"
+                className="w-full h-full object-cover opacity-40 brightness-75 kenburns"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
+            </div>
+            <div className="chapter-inner relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-end pb-24">
+              <div className="bg-primary/85 backdrop-blur-md p-10 md:p-12 border border-white/10 rounded-2xl max-w-4xl text-white shadow-xl">
+                <span className="eyebrow !text-secondary mb-4 block">09 / Storage &amp; Fulfilment</span>
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div>
+                    <h2 className="font-headline-xl text-3xl mb-4 leading-tight">Warehouse</h2>
+                    <p className="font-body-md text-[0.88rem] text-white/80 leading-relaxed">
+                      Our warehouse manages raw material storage, work-in-progress staging and finished-goods
+                      consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every
+                      order accounted for from production floor to container.
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-end gap-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-px bg-secondary" />
+                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
+                        Organized Racking &amp; Inventory Tracking
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-px bg-secondary" />
+                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
+                        Finished-Goods Consolidation for Dispatch
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
 
         {/* Stats & Footer CTA — arrives naturally after the pinned journey, not pinned itself */}
@@ -400,15 +521,15 @@ function Infrastructure() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter text-center border-y border-outline-variant/30 py-20 bg-white rounded-2xl shadow-sm">
               <div className="py-4">
                 <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={56} />
+                  <CountUp end={1} suffix="M" />
                 </p>
                 <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  Automatic Looms
+                  Metres/Month Weaving
                 </p>
               </div>
               <div className="py-4 border-t md:border-t-0 md:border-x border-outline-variant/30">
                 <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={4} suffix=" Tons/Day" />
+                  <CountUp end={3} suffix=" Tons/Day" />
                 </p>
                 <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
                   Dyeing Capacity
@@ -416,10 +537,10 @@ function Infrastructure() {
               </div>
               <div className="py-4 border-t md:border-t-0 md:border-r border-outline-variant/30">
                 <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={5} suffix="-Level" />
+                  <CountUp end={2} suffix="-Layer" />
                 </p>
                 <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  Quality Inspection
+                  AQL Quality Inspection
                 </p>
               </div>
               <div className="py-4 border-t md:border-t-0">
@@ -444,4 +565,4 @@ function Infrastructure() {
   )
 }
 
-export default Infrastructure
+export default Manufacturing

@@ -104,17 +104,36 @@ function Contact() {
         </Container>
       </section>
 
+      {/* Sub-Navigation */}
+      <section className="sticky top-20 z-40 bg-background border-b border-outline-variant/30 py-6">
+        <Container className="flex gap-10 overflow-x-auto no-scrollbar w-full">
+          <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="#sales-enquiry">
+            Sales Enquiry &amp; Quotes
+          </a>
+          <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="#factory-location">
+            Factory Location
+          </a>
+          <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="#contact-details">
+            Contact Details
+          </a>
+          <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap" href="#map">
+            Google Map
+          </a>
+        </Container>
+      </section>
+
       {/* Contact Grid */}
       <section className="py-section-gap-lg bg-background">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            {/* Left: Contact Form */}
+            {/* Left: Contact Form (Sales Enquiry / Request a Quote) */}
             <motion.div
+              id="sales-enquiry"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 bg-white p-8 md:p-12 border border-outline-variant/30 rounded-2xl shadow-sm"
+              className="lg:col-span-7 bg-white p-8 md:p-12 border border-outline-variant/30 rounded-2xl shadow-sm scroll-mt-40"
             >
               <h2 className="font-headline-lg text-2xl mb-8 font-semibold text-primary">Direct Inquiry</h2>
               <form
@@ -173,10 +192,12 @@ function Contact() {
             <div className="lg:col-span-5 flex flex-col justify-between py-4">
               <div className="space-y-10">
                 <motion.div
+                  id="factory-location"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
+                  className="scroll-mt-40"
                 >
                   <h3 className="font-label-md text-xs text-secondary uppercase mb-4 flex items-center gap-2 font-semibold tracking-wider">
                     <i className="fa-solid fa-industry text-xs" /> Our Facility
@@ -246,8 +267,8 @@ function Contact() {
         </Container>
       </section>
 
-      {/* Information Cards */}
-      <section className="py-section-gap-lg bg-[#F3F2EF]">
+      {/* Information Cards (Contact Details) */}
+      <section className="py-section-gap-lg bg-[#F3F2EF] scroll-mt-40" id="contact-details">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
             {/* Card 1: D. Senthil Kumar */}
@@ -332,7 +353,7 @@ function Contact() {
       </section>
 
       {/* Interactive Map Section */}
-      <section className="relative h-[480px] w-full overflow-hidden border-t border-b border-outline-variant/30 animate-fadeIn" id="map">
+      <section className="relative h-[480px] w-full overflow-hidden border-t border-b border-outline-variant/30 animate-fadeIn scroll-mt-20" id="map">
         <div className="w-full h-full bg-surface-dim relative overflow-hidden">
           <iframe
             title="AD Textile Location Map"
