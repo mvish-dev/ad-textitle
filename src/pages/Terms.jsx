@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import Container from '../components/ui/Container.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 function Terms() {
   return (
     <Container className="pt-32 pb-section-gap-lg max-w-3xl mx-auto">
+      <Seo title="Terms of Service" description="The terms governing use of the AD Textile website and our manufacturing and export services." />
       <h1 className="font-headline-xl text-headline-xl text-primary mb-4">Terms of Service</h1>
       <p className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-12">
         Last updated: 2026

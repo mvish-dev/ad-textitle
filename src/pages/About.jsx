@@ -8,6 +8,7 @@ import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 // Import slide images
 import slide1 from '../assets/img/slides/img-1.jpg'
@@ -132,6 +133,10 @@ function About() {
 
   return (
     <>
+      <Seo
+        title="About Us"
+        description="For over three decades, AD Textile has helped international brands turn ideas into premium home textile products through fully integrated manufacturing — from dyeing and weaving to stitching and quality inspection."
+      />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/45 to-transparent z-10" />
@@ -256,7 +261,7 @@ function About() {
               className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block opacity-60"
             />
 
-            {TIMELINE.map((event, idx) => {
+            {TIMELINE.map((event) => {
               const isActive = activeMilestone === event.year
               return (
                 <motion.div

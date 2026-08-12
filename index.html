@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,15 +11,53 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
     />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+
     <title>AD Textile | Global Excellence in Manufacturing</title>
+    <!-- No static <meta name="description"> here: every route renders its own
+         via <Seo> (src/components/common/Seo.jsx). React only de-duplicates
+         title/meta/link tags it rendered itself, not pre-existing static
+         markup — a static description tag here would sit alongside the
+         per-route one instead of being replaced by it. -->
+    <meta name="theme-color" content="#0F172A" />
+
+    <!-- Open Graph / social share defaults. Static (not per-route): this is a
+         client-rendered SPA, and social-card scrapers generally don't execute
+         JS, so only what's here at load time is ever seen by them. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AD Textile" />
+    <meta property="og:title" content="AD Textile | Global Excellence in Manufacturing" />
+    <meta
+      property="og:description"
+      content="Vertically integrated home textile manufacturing and exports from Karur, India — kitchen, table, bed and living linen for global retail brands since 1990."
+    />
+    <meta property="og:image" content="/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AD Textile | Global Excellence in Manufacturing" />
+    <meta
+      name="twitter:description"
+      content="Vertically integrated home textile manufacturing and exports from Karur, India — kitchen, table, bed and living linen for global retail brands since 1990."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AD Textile",
+        "legalName": "Angayeeammal Devarajan Textile Pvt. Ltd.",
+        "description": "Vertically integrated home textile manufacturer and exporter producing kitchen, table, bed and living linen for global retail brands since 1990.",
+        "foundingDate": "1990",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1/104, Sanjay Nagar, Erode Road, Athur Post",
+          "addressLocality": "Karur",
+          "postalCode": "639002",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "IN"
+        },
+        "telephone": "+91-9994399077",
+        "email": "senthil@adtextile.com"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

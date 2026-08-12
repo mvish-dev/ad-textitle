@@ -1,4 +1,5 @@
 import CapabilityPage from '../components/layout/CapabilityPage.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
 const labPhoto =
@@ -94,19 +95,25 @@ const SECTIONS = [
 
 function PrivateLabel() {
   return (
-    <CapabilityPage
-      badge="Private Label & Custom Manufacturing"
-      title="Your Brand. Our Manufacturing Scale."
-      subtitle="From OEM production to fully custom private-label programs, we build home textile collections that carry your name, backed by 30+ years of vertically integrated manufacturing."
-      heroLoader={() => import('../components/motion/Silk.jsx')}
-      heroProps={{ color: '#8A6D3B', speed: 2.2, scale: 1.1, noiseIntensity: 1.1 }}
-      sections={SECTIONS}
-      closing={{
-        title: 'Ready to Build Your Private Label Line?',
-        text: 'Tell us about your brand and target categories, and our team will scope a manufacturing program built around your specifications.',
-        ctaLabel: 'Discuss Your Program',
-      }}
-    />
+    <>
+      <Seo
+        title="Private Label & Custom Manufacturing"
+        description="From OEM production to fully custom private-label programs, AD Textile builds home textile collections that carry your brand, backed by 30+ years of vertically integrated manufacturing."
+      />
+      <CapabilityPage
+        badge="Private Label & Custom Manufacturing"
+        title="Your Brand. Our Manufacturing Scale."
+        subtitle="From OEM production to fully custom private-label programs, we build home textile collections that carry your name, backed by 30+ years of vertically integrated manufacturing."
+        heroLoader={() => import('../components/motion/Silk.jsx')}
+        heroProps={{ color: '#8A6D3B', speed: 2.2, scale: 1.1, noiseIntensity: 1.1 }}
+        sections={SECTIONS}
+        closing={{
+          title: 'Ready to Build Your Private Label Line?',
+          text: 'Tell us about your brand and target categories, and our team will scope a manufacturing program built around your specifications.',
+          ctaLabel: 'Discuss Your Program',
+        }}
+      />
+    </>
   )
 }
 

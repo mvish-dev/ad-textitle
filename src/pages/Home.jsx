@@ -14,6 +14,7 @@ import pulseRing from '../assets/lottie/pulse-ring.json'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
+import Seo from '../components/common/Seo.jsx'
 
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
@@ -204,6 +205,7 @@ function Home() {
 
   return (
     <>
+      <Seo description="AD Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 14001 compliant, exporting since 1992." />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-primary text-white overflow-hidden pt-20">
         
@@ -303,7 +305,7 @@ function Home() {
               </div>
               <div>
                 <p className="font-label-md text-sm text-white font-semibold">{item.title}</p>
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mt-0.5">{item.caption}</p>
+                <p className="text-[10px] uppercase tracking-widest text-white/60 mt-0.5">{item.caption}</p>
               </div>
             </motion.div>
           ))}

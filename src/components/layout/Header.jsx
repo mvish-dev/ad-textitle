@@ -267,7 +267,7 @@ function Header() {
                               <div className="grid grid-cols-3 gap-6">
                                 {group.columns.map((col) => (
                                   <div key={col.heading}>
-                                    <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/50 font-semibold mb-2.5">
+                                    <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold mb-2.5">
                                       {col.heading}
                                     </p>
                                     <div className="flex flex-col">
@@ -387,7 +387,7 @@ function Header() {
             onClick={() => setMenuOpen(false)}
             aria-label="Close menu"
           >
-            <i className="fa-solid fa-xmark" />
+            <Icon name="close" />
           </button>
         </div>
 
@@ -466,7 +466,7 @@ function Header() {
                             <div className="flex flex-col gap-3">
                               {group.columns.map((col) => (
                                 <div key={col.heading}>
-                                  <p className="text-[10px] uppercase tracking-widest text-white/40 font-semibold mb-1">
+                                  <p className="text-[10px] uppercase tracking-widest text-white/60 font-semibold mb-1">
                                     {col.heading}
                                   </p>
                                   <div className="flex flex-col">

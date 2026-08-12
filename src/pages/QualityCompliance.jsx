@@ -6,6 +6,7 @@ import Icon from '../components/ui/Icon.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 const INSPECTION_STEPS = [
   {
@@ -97,6 +98,10 @@ function QualityCompliance() {
 
   return (
     <>
+      <Seo
+        title="Quality & Compliance"
+        description="Elevating industrial manufacturing through rigorous certification and state-of-the-art laboratory testing across AD Textile's global supply chain."
+      />
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden pt-20 bg-primary">
         <div className="absolute inset-0 z-0">

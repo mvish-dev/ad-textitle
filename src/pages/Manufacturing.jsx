@@ -8,6 +8,7 @@ import CountUp from '../components/motion/CountUp.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import { gsap, prefersReducedMotion } from '../lib/motion.js'
 import { scrollTo } from '../lib/lenis.js'
+import Seo from '../components/common/Seo.jsx'
 
 // Only Embroidery keeps video (framed, with a grain treatment). The rest use
 // static photography with a Ken Burns zoom instead of low-quality footage.
@@ -95,6 +96,14 @@ function Manufacturing() {
 
   return (
     <div className="relative">
+      <Seo
+        title="Manufacturing Capabilities"
+        description="From dyeing and weaving to stitching, checking and packing, explore AD Textile's fully integrated manufacturing process across every production chapter."
+      />
+      {/* This page's visible headings are per-chapter (h2); this hidden h1
+          gives it the single page-level heading assistive tech and search
+          engines expect, without altering the scrollytelling hero layout. */}
+      <h1 className="sr-only">Manufacturing Capabilities | AD Textile</h1>
       {/* SideNavBar — now a live progress rail, not just a static list */}
       <aside className="fixed left-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-5 items-center bg-transparent hidden md:flex">
         <ThreadPath

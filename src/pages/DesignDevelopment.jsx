@@ -1,4 +1,5 @@
 import CapabilityPage from '../components/layout/CapabilityPage.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
 const cuttingPhoto =
@@ -111,25 +112,31 @@ const SECTIONS = [
 
 function DesignDevelopment() {
   return (
-    <CapabilityPage
-      badge="Design & Development"
-      title="From First Sketch to Finished Fabric."
-      subtitle="Our in-house design, sampling and development teams turn ideas into production-ready home textiles, backed by the same manufacturing floor that builds the final order."
-      heroLoader={() => import('../components/motion/LiquidEther.jsx')}
-      heroProps={{
-        colors: ['#C59D5F', '#334155', '#F4E4C8'],
-        autoDemo: true,
-        autoSpeed: 0.4,
-        autoIntensity: 1.6,
-        resolution: 0.4,
-      }}
-      sections={SECTIONS}
-      closing={{
-        title: 'Have a Concept in Mind?',
-        text: 'Bring us a sketch, a swatch, or just a brief — our design and development team will help shape it into a manufacturable product.',
-        ctaLabel: 'Start a Development Brief',
-      }}
-    />
+    <>
+      <Seo
+        title="Design & Development"
+        description="Our in-house design, sampling and development teams turn ideas into production-ready home textiles, backed by the same manufacturing floor that builds the final order."
+      />
+      <CapabilityPage
+        badge="Design & Development"
+        title="From First Sketch to Finished Fabric."
+        subtitle="Our in-house design, sampling and development teams turn ideas into production-ready home textiles, backed by the same manufacturing floor that builds the final order."
+        heroLoader={() => import('../components/motion/LiquidEther.jsx')}
+        heroProps={{
+          colors: ['#C59D5F', '#334155', '#F4E4C8'],
+          autoDemo: true,
+          autoSpeed: 0.4,
+          autoIntensity: 1.6,
+          resolution: 0.4,
+        }}
+        sections={SECTIONS}
+        closing={{
+          title: 'Have a Concept in Mind?',
+          text: 'Bring us a sketch, a swatch, or just a brief — our design and development team will help shape it into a manufacturable product.',
+          ctaLabel: 'Start a Development Brief',
+        }}
+      />
+    </>
   )
 }
 

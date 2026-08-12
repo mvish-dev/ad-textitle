@@ -3,6 +3,7 @@ import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 // Import sustainability videos
 import envCareVideo from '../assets/videos/Environmental Care.mp4'
@@ -11,6 +12,10 @@ import resourceVideo from '../assets/videos/Resource.mp4'
 function Sustainability() {
   return (
     <>
+      <Seo
+        title="Sustainability"
+        description="AD Textile's commitment to the planet and its people is woven into every thread — Azo-free dyeing, responsible sourcing and environmental practices across production."
+      />
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[700px] flex items-end pb-32 pt-20 bg-primary">
         <div className="absolute inset-0 z-0 bg-primary">

@@ -44,10 +44,9 @@ function createShader(gl, type, source) {
 function FloatingAssistant() {
   const [open, setOpen] = useState(false)
   const canvasRef = useRef(null)
-  const initializedRef = useRef(false)
 
   useEffect(() => {
-    if (!open || initializedRef.current) return
+    if (!open) return
     const canvas = canvasRef.current
     const gl = canvas?.getContext('webgl')
     if (!gl) return
@@ -80,7 +79,6 @@ function FloatingAssistant() {
       frameId = requestAnimationFrame(render)
     }
     frameId = requestAnimationFrame(render)
-    initializedRef.current = true
 
     return () => cancelAnimationFrame(frameId)
   }, [open])
@@ -137,7 +135,7 @@ function FloatingAssistant() {
           <div className="p-6 border-t border-white/10">
             <div className="relative">
               <input
-                className="w-full bg-white/30 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary/50 placeholder:text-on-surface-variant/60"
+                className="w-full bg-white/30 border border-white/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary/50 placeholder:text-on-surface-variant"
                 placeholder="Type your message..."
                 type="text"
               />

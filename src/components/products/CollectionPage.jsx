@@ -7,6 +7,7 @@ import Button from '../ui/Button.jsx'
 import Icon from '../ui/Icon.jsx'
 import ProductGallery from '../ui/ProductGallery.jsx'
 import RevealText from '../motion/RevealText.jsx'
+import Seo from '../common/Seo.jsx'
 import { gsap } from '../../lib/motion.js'
 import { COLLECTIONS, COLLECTIONS_META, COLLECTION_ORDER } from '../../data/productCollections.js'
 
@@ -42,6 +43,7 @@ function CollectionPage({ collectionKey }) {
 
   return (
     <>
+      <Seo title={`${config.hero.title} ${config.hero.titleAccent}`} description={config.hero.description} />
       {/* Hero Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden min-h-[80vh] pt-20 bg-background text-left">
         <div ref={heroImageRef} className="relative overflow-hidden group">

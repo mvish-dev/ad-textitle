@@ -1,0 +1,105 @@
+import { motion } from 'framer-motion'
+import Icon from '../ui/Icon.jsx'
+
+function FacilityDetails({ isOpen, copied, onCopyAddress }) {
+  return (
+    <div className="lg:col-span-5 space-y-12">
+
+      {/* Facility details */}
+      <motion.div
+        id="factory-location"
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-white border border-outline-variant/30 rounded-2xl p-8 shadow-sm space-y-6"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+            <Icon name="factory" className="text-lg" />
+          </div>
+          <div>
+            <h3 className="text-xs text-secondary uppercase font-semibold tracking-wider">Production Facility</h3>
+            <h2 className="text-primary font-bold text-lg font-serif">AD Textile Headquarters</h2>
+          </div>
+        </div>
+
+        <div className="space-y-3 font-body-md text-sm border-l-2 border-secondary/35 pl-4">
+          <p className="text-primary font-semibold text-base leading-snug">
+            1/104, Sanjay Nagar, Erode Road
+          </p>
+          <p className="text-on-surface-variant leading-relaxed">
+            Athur Post, Karur – 639002,<br />
+            Tamil Nadu, India
+          </p>
+        </div>
+
+        <div className="pt-2 flex gap-4">
+          <button
+            onClick={onCopyAddress}
+            className="flex-1 py-3 border border-outline-variant/50 rounded-full font-label-md text-xs uppercase tracking-wider text-primary hover:bg-slate-50 cursor-pointer transition-all flex items-center justify-center gap-2"
+          >
+            <Icon name="content_copy" className="text-sm" />
+            {copied ? 'Copied!' : 'Copy Address'}
+          </button>
+          <a
+            href="#google-map-section"
+            className="flex-1 py-3 bg-slate-100 hover:bg-slate-200 rounded-full font-label-md text-xs uppercase tracking-wider text-primary text-center transition-all flex items-center justify-center gap-2"
+          >
+            View Map
+            <Icon name="open_in_new" className="text-sm" />
+          </a>
+        </div>
+      </motion.div>
+
+      {/* Working Hours Info Box */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="bg-white border border-outline-variant/30 rounded-2xl p-8 shadow-sm space-y-6"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+            <Icon name="schedule" className="text-lg" />
+          </div>
+          <div>
+            <h3 className="text-xs text-secondary uppercase font-semibold tracking-wider">Business Timings</h3>
+            <h2 className="text-primary font-bold text-lg font-serif">Hours of Operations</h2>
+          </div>
+        </div>
+
+        <div className="space-y-3 font-body-md text-xs text-on-surface-variant">
+          <div className="flex justify-between border-b border-outline-variant/20 pb-2">
+            <span className="font-semibold text-primary">Monday — Friday</span>
+            <span>09:00 AM – 06:00 PM IST</span>
+          </div>
+          <div className="flex justify-between border-b border-outline-variant/20 pb-2">
+            <span className="font-semibold text-primary">Saturday</span>
+            <span>09:00 AM – 01:00 PM IST (Half Day)</span>
+          </div>
+          <div className="flex justify-between pb-2">
+            <span className="font-semibold text-primary">Sunday</span>
+            <span className="text-rose-400 font-semibold">Closed</span>
+          </div>
+        </div>
+
+        <div className="bg-slate-50 border border-outline-variant/20 p-4 rounded-xl flex items-center gap-3.5">
+          <span className={`w-3 h-3 rounded-full flex-shrink-0 ${isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-rose-400'}`} />
+          <div>
+            <p className="text-xs font-semibold text-primary leading-tight">
+              {isOpen ? 'Commercial desk is currently open' : 'Commercial desk is currently closed'}
+            </p>
+            <p className="text-[0.7rem] text-on-surface-variant mt-0.5">
+              Responding live in Karur, India (UTC +5:30)
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+    </div>
+  )
+}
+
+export default FacilityDetails

@@ -40,7 +40,10 @@
   --color-surface: #FFFFFF;
   --color-on-surface: #4A4845;
   --color-surface-variant: #F3F2EF;
-  --color-on-surface-variant: #8A8680;
+  /* Darkened from the original #8A8680 (~3.6:1 on white, fails WCAG AA for
+     normal-size text) to ~5.4:1 while keeping the same warm gray hue — this
+     token is used site-wide for secondary/muted body copy. */
+  --color-on-surface-variant: #6E6A64;
   --color-surface-dim: #D1CEC8;
   --color-surface-bright: #FFFFFF;
   --color-surface-tint: #C59D5F;

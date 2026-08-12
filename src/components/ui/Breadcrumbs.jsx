@@ -3,7 +3,7 @@ import Icon from './Icon.jsx'
 
 function Breadcrumbs({ items }) {
   return (
-    <nav className="flex flex-wrap items-center gap-2 text-[10px] md:text-xs text-on-surface-variant/60 uppercase tracking-wider py-5 border-b border-outline-variant/10 font-sans text-left">
+    <nav className="flex flex-wrap items-center gap-2 text-[10px] md:text-xs text-on-surface-variant uppercase tracking-wider py-5 border-b border-outline-variant/10 font-sans text-left">
       <Link to="/" className="hover:text-primary transition-colors flex items-center gap-1.5 font-semibold">
         <Icon name="home" className="text-sm shrink-0" />
         Home

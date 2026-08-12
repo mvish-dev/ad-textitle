@@ -6,6 +6,7 @@ import RevealText from '../components/motion/RevealText.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
 const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1200&q=85&auto=format&fit=crop'
@@ -99,7 +100,11 @@ const SECTIONS = [
 function Exports() {
   return (
     <div className="bg-background text-on-background min-h-screen">
-      
+      <Seo
+        title="Exports"
+        description="Exporting home textiles worldwide since 1992. Explore AD Textile's global markets, production capacity, container loading and international buyer support."
+      />
+
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[650px] flex items-center overflow-hidden pt-24 bg-primary text-white">
         <div className="absolute inset-0 z-0">
@@ -347,7 +352,7 @@ function Exports() {
 
         {/* Accreditations Banner */}
         <div className="mt-16 pt-8 border-t border-white/5 relative z-10">
-          <Container className="flex flex-wrap justify-center md:justify-between items-center gap-8 text-[0.62rem] text-white/40 uppercase tracking-widest">
+          <Container className="flex flex-wrap justify-center md:justify-between items-center gap-8 text-[0.62rem] text-white/60 uppercase tracking-widest">
             <div className="flex gap-8">
               <span>● OEKO-TEX® CERTIFIED</span>
               <span>● GOTS CERTIFIED</span>

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import Container from '../components/ui/Container.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 function Privacy() {
   return (
     <Container className="pt-32 pb-section-gap-lg max-w-3xl mx-auto">
+      <Seo title="Privacy Policy" description="How AD Textile collects, uses and protects the information you share with us through this website." />
       <h1 className="font-headline-xl text-headline-xl text-primary mb-4">Privacy Policy</h1>
       <p className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-12">
         Last updated: 2026

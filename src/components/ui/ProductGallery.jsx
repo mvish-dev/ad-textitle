@@ -224,11 +224,11 @@ function ProductGallery({ category = 'ALL' }) {
 
       {/* Product Stats and Sort Toolbar */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 bg-surface-container-low/40 border border-outline-variant/30 rounded-xl px-6 py-3 font-sans text-xs md:text-sm text-on-surface-variant text-left w-full">
-        <div className="font-medium text-on-surface-variant/80">
+        <div className="font-medium text-on-surface-variant">
           Showing <span className="font-bold text-primary">{Math.min(visibleCount, sortedProducts.length)}</span> of <span className="font-bold text-primary">{sortedProducts.length}</span> products
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
-          <label htmlFor="sortBy" className="font-semibold text-on-surface-variant/70 uppercase tracking-wider text-[10px]">Sort By:</label>
+          <label htmlFor="sortBy" className="font-semibold text-on-surface-variant uppercase tracking-wider text-[10px]">Sort By:</label>
           <select
             id="sortBy"
             value={sortBy}
@@ -377,17 +377,17 @@ function ProductGallery({ category = 'ALL' }) {
                   {/* Specifications */}
                   <div className="space-y-4">
                     <div className="grid grid-cols-3 gap-2">
-                      <span className="text-[10px] uppercase font-bold text-on-surface-variant/70 tracking-wider">Composition</span>
+                      <span className="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Composition</span>
                       <span className="col-span-2 text-xs text-primary font-medium">{getProductDetails(selectedProduct).composition}</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
-                      <span className="text-[10px] uppercase font-bold text-on-surface-variant/70 tracking-wider">
+                      <span className="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">
                         {getProductDetails(selectedProduct).specLabel}
                       </span>
                       <span className="col-span-2 text-xs text-primary font-medium">{getProductDetails(selectedProduct).specValue}</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
-                      <span className="text-[10px] uppercase font-bold text-on-surface-variant/70 tracking-wider">Fabric Finish</span>
+                      <span className="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Fabric Finish</span>
                       <span className="col-span-2 text-xs text-primary font-medium">{getProductDetails(selectedProduct).finish}</span>
                     </div>
                   </div>

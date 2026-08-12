@@ -5,6 +5,7 @@ import Icon from '../components/ui/Icon.jsx'
 import Breadcrumbs from '../components/ui/Breadcrumbs.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import Seo from '../components/common/Seo.jsx'
 
 const PREVIEW_CATEGORIES = [
   { icon: 'countertops', label: 'Kitchen Linen' },
@@ -16,6 +17,10 @@ const PREVIEW_CATEGORIES = [
 function Products() {
   return (
     <>
+      <Seo
+        title="Products"
+        description="Explore AD Textile's kitchen, table, bed and living linen manufacturing categories. Contact our team directly for specifications, MOQs and lead times."
+      />
       {/* Hero Section */}
       <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center pt-20 bg-primary">
         <div className="absolute inset-0 z-0">
@@ -103,7 +108,7 @@ function Products() {
                 <p className="font-label-md text-xs uppercase tracking-widest text-primary font-semibold">
                   {category.label}
                 </p>
-                <span className="text-[10px] uppercase tracking-wider text-on-surface-variant/60 font-semibold">
+                <span className="text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">
                   Coming Soon
                 </span>
               </motion.div>
