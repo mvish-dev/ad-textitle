@@ -251,7 +251,7 @@ function Header() {
                                 </Link>
                               )}
                             </div>
-                          ) : group.items ? (
+                          ) : (
                             <div key={group.heading} className="col-span-1">
                               <Link
                                 to={group.to}
@@ -270,20 +270,6 @@ function Header() {
                                   </Link>
                                 ))}
                               </div>
-                            </div>
-                          ) : (
-                            <div key={group.heading} className="col-span-1">
-                              <Link
-                                to={group.to}
-                                className="block font-label-md text-xs uppercase tracking-widest text-primary font-bold mb-5 hover:text-secondary transition-colors"
-                              >
-                                {group.heading}
-                              </Link>
-                              {group.description && (
-                                <p className="text-[0.78rem] text-on-surface/70 leading-relaxed">
-                                  {group.description}
-                                </p>
-                              )}
                             </div>
                           )
                         )}
@@ -455,7 +441,7 @@ function Header() {
                                 </div>
                               ))}
                             </div>
-                          ) : group.items ? (
+                          ) : (
                             <div className="flex flex-col">
                               {group.items.map((item) => (
                                 <Link
@@ -468,12 +454,6 @@ function Header() {
                                 </Link>
                               ))}
                             </div>
-                          ) : (
-                            group.description && (
-                              <p className="text-[0.82rem] text-white/55 leading-relaxed">
-                                {group.description}
-                              </p>
-                            )
                           )}
                         </div>
                       ))}
