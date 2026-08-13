@@ -3,33 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import MagneticButton from '../motion/MagneticButton.jsx'
 import Icon from '../ui/Icon.jsx'
 
-const MANUFACTURING_COLUMNS = [
-  {
-    heading: 'Production',
-    items: [
-      { label: 'Dyeing', hash: 'dyeing' },
-      { label: 'Weaving', hash: 'weaving' },
-      { label: 'Knitting', hash: 'knitting' },
-    ],
-  },
-  {
-    heading: 'Finishing',
-    items: [
-      { label: 'Cutting', hash: 'cutting' },
-      { label: 'Embroidery', hash: 'embroidery' },
-      { label: 'Stitching', hash: 'stitching' },
-    ],
-  },
-  {
-    heading: 'Support',
-    items: [
-      { label: 'Quality', hash: 'checking-quality' },
-      { label: 'Packing', hash: 'packing' },
-      { label: 'Warehouse', hash: 'warehouse' },
-    ],
-  },
-]
-
 const NAV_LINKS = [
   { label: 'About Us', to: '/about' },
   { label: 'Products', to: '/products' },
@@ -41,8 +14,7 @@ const NAV_LINKS = [
       {
         heading: 'Manufacturing',
         to: '/manufacturing',
-        columns: MANUFACTURING_COLUMNS,
-        cta: { label: 'Explore Manufacturing Capabilities', to: '/manufacturing' },
+        description: 'One integrated page covering dyeing, weaving, knitting, cutting, embroidery, stitching, quality, packing and warehouse capabilities.',
       },
       {
         heading: 'Design & Development',
@@ -294,7 +266,7 @@ function Header() {
                                 </Link>
                               )}
                             </div>
-                          ) : (
+                          ) : group.items ? (
                             <div key={group.heading} className="col-span-1">
                               <Link
                                 to={group.to}
@@ -313,6 +285,20 @@ function Header() {
                                   </Link>
                                 ))}
                               </div>
+                            </div>
+                          ) : (
+                            <div key={group.heading} className="col-span-1">
+                              <Link
+                                to={group.to}
+                                className="block font-label-md text-xs uppercase tracking-widest text-primary font-bold mb-5 hover:text-secondary transition-colors"
+                              >
+                                {group.heading}
+                              </Link>
+                              {group.description && (
+                                <p className="text-[0.78rem] text-on-surface/70 leading-relaxed">
+                                  {group.description}
+                                </p>
+                              )}
                             </div>
                           )
                         )}
@@ -484,7 +470,7 @@ function Header() {
                                 </div>
                               ))}
                             </div>
-                          ) : (
+                          ) : group.items ? (
                             <div className="flex flex-col">
                               {group.items.map((item) => (
                                 <Link
@@ -497,6 +483,12 @@ function Header() {
                                 </Link>
                               ))}
                             </div>
+                          ) : (
+                            group.description && (
+                              <p className="text-[0.82rem] text-white/55 leading-relaxed">
+                                {group.description}
+                              </p>
+                            )
                           )}
                         </div>
                       ))}
