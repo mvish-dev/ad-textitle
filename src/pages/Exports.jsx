@@ -1,9 +1,11 @@
-import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
-import RevealText from '../components/motion/RevealText.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import DecryptedText from '../components/motion/DecryptedText.jsx'
+import RotatingText from '../components/motion/RotatingText.jsx'
+import ScrollVelocity from '../components/motion/ScrollVelocity.jsx'
+import Masonry from '../components/motion/Masonry.jsx'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import Seo from '../components/common/Seo.jsx'
@@ -13,6 +15,8 @@ const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae2
 const packingPhoto =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuCSDmnh1m5zgpHybsgAebq6RtTbqDnmfUUA1FQdaPTT-YCZJKXHrUZoLVfU3J-ELC3JEtvugYzKmq2wI86gbtTk6g-HU3vskwoZvvvKlibCU3Gz3KN8gyagklC62wyl5uDXnmln8cZTls46a7gvD7FbmoRVfWyJTBm_J8A1qrFuiYYesnOLEvVKuFixPhZD2E36KWrPzq59paOpQu3To_mVuuReCyqJK__q0NUw4RtJqkBoUNKQgVMdcNIfG77YntV14bDYlCs4H2k'
 const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1200&q=85&auto=format&fit=crop'
+const cuttingPhoto =
+  'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1200&q=85&auto=format&fit=crop'
 
 const SECTIONS = [
   {
@@ -97,6 +101,19 @@ const SECTIONS = [
   },
 ]
 
+const DESTINATIONS = [
+  { img: weavingPhoto, height: 760, title: 'Europe' },
+  { img: dyeingPhoto, height: 560, title: 'North America' },
+  { img: checkingPhoto, height: 680, title: 'Middle East' },
+  { img: packingPhoto, height: 540, title: 'East Asia' },
+  { img: cuttingPhoto, height: 640, title: 'Container Dispatch' },
+  { img: weavingPhoto, height: 520, title: 'Retail Programs' },
+  { img: dyeingPhoto, height: 600, title: 'Compliance & Documentation' },
+  { img: checkingPhoto, height: 500, title: 'Buyer Support' },
+  { img: packingPhoto, height: 620, title: 'Dispatch & Loading' },
+  { img: cuttingPhoto, height: 560, title: 'Production Capacity' },
+].map((item, i) => ({ id: i, ...item }))
+
 function Exports() {
   return (
     <div className="bg-background text-on-background min-h-screen">
@@ -105,38 +122,26 @@ function Exports() {
         description="Exporting home textiles worldwide since 1992. Explore AD Textile's global markets, production capacity, container loading and international buyer support."
       />
 
-      {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[650px] flex items-center overflow-hidden pt-24 bg-primary text-white">
-        <div className="absolute inset-0 z-0">
-          <WebGLScene
-            loader={() => import('../components/motion/LightRays.jsx')}
-            className="absolute inset-0"
-            fallback={<div className="absolute inset-0 bg-primary" />}
-            raysOrigin="top-center"
-            raysColor="#F4E4C8"
-            raysSpeed={1.1}
-            lightSpread={0.9}
-            rayLength={1.8}
-            fadeDistance={1.1}
-            saturation={0.85}
-            followMouse={true}
-            mouseInfluence={0.12}
-            noiseAmount={0.05}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
-        </div>
+      {/* Hero */}
+      <section className="relative h-screen min-h-[640px] w-full flex items-center overflow-hidden pt-24 bg-primary text-white">
+        <WebGLScene
+          loader={() => import('../components/motion/Galaxy.jsx')}
+          className="absolute inset-0"
+          fallback={<div className="absolute inset-0 bg-primary" />}
+          hueShift={30}
+          density={1.1}
+          glowIntensity={0.4}
+          saturation={0.35}
+          twinkleIntensity={0.5}
+          rotationSpeed={0.04}
+          mouseInteraction
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/20 pointer-events-none" />
 
         <Container className="relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Hero Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7 bg-primary/70 backdrop-blur-md p-10 md:p-12 text-white border border-white/10 rounded-2xl shadow-2xl space-y-6"
-            >
-              <div className="flex items-center gap-3">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="eyebrow bg-secondary/15 px-3 py-1 rounded-full text-[0.68rem] text-secondary tracking-widest uppercase">
                   Exports
                 </span>
@@ -145,19 +150,48 @@ function Exports() {
                 </span>
               </div>
 
-              <RevealText
-                as="h1"
-                scrollTriggered={false}
-                delay={0.2}
-                className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight text-white font-light"
-              >
-                Manufacturing India.<br />
-                <span className="italic text-secondary font-serif font-normal">Delivering Worldwide.</span>
-              </RevealText>
+              <h1 className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight text-white font-light">
+                <DecryptedText
+                  text="Manufacturing India."
+                  animateOn="view"
+                  sequential
+                  speed={28}
+                  maxIterations={14}
+                  revealDirection="start"
+                  className="text-white"
+                  encryptedClassName="text-white/25"
+                />
+                <br />
+                <span className="italic text-secondary font-serif font-normal">
+                  <DecryptedText
+                    text="Delivering Worldwide."
+                    animateOn="view"
+                    sequential
+                    speed={28}
+                    maxIterations={14}
+                    revealDirection="start"
+                    className="text-secondary"
+                    encryptedClassName="text-secondary/25"
+                  />
+                </span>
+              </h1>
 
               <p className="font-body-md text-white/80 max-w-xl leading-relaxed text-sm md:text-base">
-                Exporting home textiles since 1992, with the production capacity, compliance documentation and export logistics to support retail programs across international markets.
+                Exporting home textiles since 1992, with the production capacity, compliance documentation and export
+                logistics to support retail programs across international markets.
               </p>
+
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <span className="text-[0.68rem] font-bold text-white/50 tracking-widest uppercase font-mono">
+                  Shipping To
+                </span>
+                <RotatingText
+                  texts={['ROTTERDAM', 'NEW YORK', 'DUBAI', 'SINGAPORE', 'HAMBURG', 'TOKYO']}
+                  mainClassName="text-secondary font-label-md text-xs font-bold uppercase tracking-widest"
+                  staggerDuration={0.015}
+                  rotationInterval={2200}
+                />
+              </div>
 
               <div className="pt-4 flex gap-4">
                 <a
@@ -168,15 +202,9 @@ function Exports() {
                   <Icon name="arrow_downward" className="text-sm" />
                 </a>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right Hero Capacity Ticker */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 grid grid-cols-2 gap-4 text-white"
-            >
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4 text-white">
               <div className="bg-white/5 backdrop-blur-sm border border-white/5 p-6 rounded-xl space-y-2">
                 <span className="text-[0.68rem] font-bold text-secondary uppercase tracking-widest font-mono">WEAVING</span>
                 <h3 className="text-3xl font-serif italic text-white leading-none">1.0 M</h3>
@@ -196,10 +224,19 @@ function Exports() {
                   Direct oversight from dyeing and weaving to stitching, loading and dispatch logistics.
                 </p>
               </div>
-            </motion.div>
-
+            </div>
           </div>
         </Container>
+      </section>
+
+      {/* Shipping lanes velocity banner */}
+      <section className="bg-background py-8 md:py-12 overflow-hidden border-b border-outline-variant/20">
+        <ScrollVelocity
+          texts={['ROTTERDAM · NEW YORK · DUBAI · SINGAPORE ·', 'HAMBURG · SAVANNAH · TOKYO · JEBEL ALI ·']}
+          velocity={45}
+          numCopies={4}
+          className="font-headline-lg text-primary/10"
+        />
       </section>
 
       {/* Capabilities Sections */}
@@ -213,15 +250,12 @@ function Exports() {
               isEven ? 'bg-background' : 'bg-white'
             }`}
           >
-            {/* Visual background index label */}
             <div className="absolute right-12 top-12 select-none pointer-events-none opacity-[0.03] font-serif text-[12rem] text-primary leading-none font-bold">
               {String(index + 1).padStart(2, '0')}
             </div>
 
             <Container>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                
-                {/* Image Tilted Card Column */}
                 <div className={`lg:col-span-5 relative ${isEven ? '' : 'lg:order-2'}`}>
                   <TiltedCard tiltMax={8} className="w-full">
                     <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] overflow-hidden rounded-2xl shadow-xl border border-outline-variant/30 relative bg-surface-container-low">
@@ -235,10 +269,8 @@ function Exports() {
                   </TiltedCard>
                 </div>
 
-                {/* Text Spotlight Card Column */}
                 <div className={`lg:col-span-7 ${isEven ? '' : 'lg:order-1'}`}>
                   <SpotlightCard className="bg-white/40 backdrop-blur-xs border border-outline-variant/20 p-8 md:p-10 rounded-2xl shadow-sm">
-                    
                     <div className="space-y-6">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-secondary/10 flex items-center justify-center rounded-xl text-secondary">
@@ -274,15 +306,28 @@ function Exports() {
                         </div>
                       )}
                     </div>
-
                   </SpotlightCard>
                 </div>
-
               </div>
             </Container>
           </section>
         )
       })}
+
+      {/* Destinations masonry gallery */}
+      <section className="py-24 bg-[#0b1220] relative overflow-hidden">
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="eyebrow text-secondary mb-4 block">Where We Ship</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-white leading-tight">
+              A Global <span className="italic text-secondary font-normal">Footprint</span>
+            </h2>
+          </div>
+          <div className="h-[600px] md:h-[700px]">
+            <Masonry items={DESTINATIONS} animateFrom="bottom" scaleOnHover hoverScale={0.96} blurToFocus />
+          </div>
+        </Container>
+      </section>
 
       {/* Shipping Quick Reference Log */}
       <section className="py-16 bg-[#F3F2EF] border-b border-outline-variant/25">
@@ -350,7 +395,6 @@ function Exports() {
           </div>
         </Container>
 
-        {/* Accreditations Banner */}
         <div className="mt-16 pt-8 border-t border-white/5 relative z-10">
           <Container className="flex flex-wrap justify-center md:justify-between items-center gap-8 text-[0.62rem] text-white/60 uppercase tracking-widest">
             <div className="flex gap-8">
@@ -365,7 +409,6 @@ function Exports() {
           </Container>
         </div>
       </section>
-
     </div>
   )
 }

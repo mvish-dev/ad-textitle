@@ -13,6 +13,12 @@ export const getLenis = () => lenisInstance
 // available, falling back to native scrolling (e.g. reduced-motion mode).
 export const scrollTo = (target, options = {}) => {
   if (lenisInstance) {
+    // Lenis caches document height via ResizeObserver, which hasn't fired
+    // yet immediately after new route content mounts — scrolling against
+    // that stale (shorter) limit clamps the target back down. Forcing a
+    // synchronous recalculation first keeps scrollTo correct right after a
+    // route change or lazy-loaded content appearing.
+    lenisInstance.resize()
     lenisInstance.scrollTo(target, options)
     return
   }

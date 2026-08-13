@@ -1,12 +1,16 @@
-import { useRef, useState } from 'react'
-import { useGSAP } from '@gsap/react'
+import { useEffect, useRef, useState } from 'react'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import Footer from '../components/layout/Footer.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
 import CountUp from '../components/motion/CountUp.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
-import { gsap, prefersReducedMotion } from '../lib/motion.js'
+import SplitTextReveal from '../components/motion/SplitTextReveal.jsx'
+import AnimatedContent from '../components/motion/AnimatedContent.jsx'
+import LogoLoop from '../components/motion/LogoLoop.jsx'
+import DriftWall from '../components/motion/DriftWall.jsx'
+import ScrollStack, { ScrollStackItem } from '../components/motion/ScrollStack.jsx'
+import Carousel from '../components/motion/Carousel.jsx'
 import { scrollTo } from '../lib/lenis.js'
 import Seo from '../components/common/Seo.jsx'
 
@@ -38,56 +42,134 @@ const SIDE_NAV_ITEMS = [
   { id: 'warehouse', icon: 'warehouse', label: 'Warehouse' },
 ]
 
-// Straight vertical thread that draws top-to-bottom as the visitor moves
-// through the chapters below — the same ThreadPath component used on
-// Home/About/Certifications, configured as a progress rail here.
 const RAIL_PATH = 'M4,0 L4,400'
+
+const MARQUEE_ITEMS = [
+  { icon: 'format_color_fill', label: 'Italian Cheese Dyeing' },
+  { icon: 'grid_4x4', label: 'Somet Rapier Looms' },
+  { icon: 'texture', label: 'Korean Knitting Machines' },
+  { icon: 'auto_awesome', label: 'Garuda & Toshiba Embroidery' },
+  { icon: 'design_services', label: '200 Jack Sewing Machines' },
+  { icon: 'workspace_premium', label: 'SA8000 Certified' },
+  { icon: 'eco', label: 'ISO 14001' },
+  { icon: 'fact_check', label: '2-Layer AQL Inspection' },
+  { icon: 'public', label: 'Exporting Since 1992' },
+].map((item, i) => ({
+  id: i,
+  node: (
+    <span className="inline-flex items-center gap-2.5 text-white/70">
+      <Icon name={item.icon} className="text-secondary text-lg" />
+      <span className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] whitespace-nowrap">{item.label}</span>
+    </span>
+  ),
+}))
+
+const GALLERY_PHOTOS = [
+  { image: dyeingPhoto, title: 'Dyeing Floor' },
+  { image: weavingPhoto, title: 'Weaving Hall' },
+  { image: cuttingPhoto, title: 'Cutting Room' },
+  { image: checkingPhoto, title: 'Quality Inspection' },
+  { image: packingPhoto, title: 'Packing Line' },
+]
+const GALLERY_ITEMS = Array.from({ length: 18 }, (_, i) => GALLERY_PHOTOS[i % GALLERY_PHOTOS.length])
+
+const ASSURANCE_STEPS = [
+  {
+    step: '01',
+    title: 'In-Line Inspection',
+    description: 'Quality checks at every stage of production, not just at the end — measurement accuracy, appearance and construction verified as work moves through the floor.',
+    bg: 'bg-primary',
+  },
+  {
+    step: '02',
+    title: 'Final AQL Inspection',
+    description: 'A final AQL-standard inspection clears every order before dispatch, for zero-compromise quality on the pieces that leave the facility.',
+    bg: 'bg-[#1e293b]',
+  },
+  {
+    step: '03',
+    title: 'Custom & À La Carte Packing',
+    description: 'Exporting since 1992, we pack to each customer’s specification — from custom embellished packing to à la carte options built for long-haul shipping.',
+    bg: 'bg-[#A8834A]',
+  },
+  {
+    step: '04',
+    title: 'Warehouse Consolidation',
+    description: 'Organized racking and inventory tracking keep finished goods accounted for from production floor to container, ready for dispatch.',
+    bg: 'bg-[#0b1220]',
+  },
+]
+
+const CERTIFICATION_ITEMS = [
+  { id: 1, icon: 'workspace_premium', title: 'SA8000', description: 'Social accountability certification covering fair labour practices across our facility.' },
+  { id: 2, icon: 'eco', title: 'ISO 14001', description: 'Environmental management system certification for responsible manufacturing.' },
+  { id: 3, icon: 'science', title: 'Azo-Free Dyes', description: 'Every dye lot screened azo-free — safe for skin contact and export compliance.' },
+  { id: 4, icon: 'fact_check', title: '2-Layer AQL Inspection', description: 'In-line plus final AQL-standard inspection on every order before dispatch.' },
+  { id: 5, icon: 'water_drop', title: 'Effluent Treatment', description: 'ETP, Reverse Osmosis and VSEP plants treat process water before discharge.' },
+]
+
+// Consistent "chapter" chrome (eyebrow, title, copy, alternating media panel)
+// shared by all nine process stages — each stage supplies its own stat
+// tiles / checklist / badge as children. Every reveal is a plain
+// scroll-into-view animation (no pin, no scrub), so a stage is never stuck
+// hidden at initial paint the way the previous pinned timeline could be.
+function Chapter({ id, num, eyebrow, title, description, media, grain, reverse, children }) {
+  return (
+    <section id={id} className="mfg-chapter relative w-full py-20 md:py-28 scroll-mt-24">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <AnimatedContent direction="horizontal" reverse={reverse} distance={60} className={reverse ? 'md:order-2' : ''}>
+          <span className="eyebrow mb-4 block">
+            {num} / {eyebrow}
+          </span>
+          <h2 className="section-title mb-6">{title}</h2>
+          <p className="font-body-md text-[0.9rem] text-on-surface-variant mb-10 max-w-lg leading-relaxed">
+            {description}
+          </p>
+          {children}
+        </AnimatedContent>
+        <AnimatedContent direction="vertical" distance={50} className={reverse ? 'md:order-1' : ''}>
+          <div
+            className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-outline-variant/20 bg-surface-container-low ${grain ? 'film-grain' : ''}`}
+          >
+            {media}
+          </div>
+        </AnimatedContent>
+      </div>
+    </section>
+  )
+}
+
+function StatTile({ icon, label, sub }) {
+  return (
+    <div className="p-5 bg-white border border-outline-variant/20 rounded-xl shadow-sm">
+      <Icon name={icon} className="text-secondary mb-3 text-2xl block" />
+      <p className="font-label-md text-xs font-semibold uppercase tracking-wider text-primary">{label}</p>
+      <p className="text-[11px] text-on-surface-variant mt-1">{sub}</p>
+    </div>
+  )
+}
 
 function Manufacturing() {
   const journeyRef = useRef(null)
   const [activeChapter, setActiveChapter] = useState(SIDE_NAV_ITEMS[0].id)
 
-  useGSAP(() => {
-    if (prefersReducedMotion()) return undefined
+  useEffect(() => {
+    const sections = SIDE_NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(Boolean)
+    if (!sections.length) return undefined
 
-    const mm = gsap.matchMedia()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+        if (visible.length === 0) return
+        const topMost = visible.reduce((a, b) => (a.boundingClientRect.top < b.boundingClientRect.top ? a : b))
+        setActiveChapter(topMost.target.id)
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    )
 
-    // Below the `md` breakpoint the side-nav rail is hidden anyway (matches
-    // the original layout), so chapters just stack and reveal normally —
-    // no pinning, no scrub, nothing to fight a small viewport for.
-    mm.add('(min-width: 768px)', () => {
-      const chapters = gsap.utils.toArray('.mfg-chapter')
-
-      chapters.forEach((section, i) => {
-        const inner = section.querySelector('.chapter-inner')
-        if (!inner) return
-
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: '+=100%',
-              scrub: 1,
-              pin: true,
-              pinSpacing: true,
-              onToggle: (self) => {
-                if (self.isActive) setActiveChapter(SIDE_NAV_ITEMS[i].id)
-              },
-            },
-          })
-          .fromTo(inner, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' })
-          .to(inner, { autoAlpha: 1, y: 0, duration: 0.4 })
-          .to(inner, { autoAlpha: 0, y: -60, duration: 0.3, ease: 'power2.in' })
-      })
-
-      return () => {
-        // matchMedia handles reverting the tweens/triggers created above
-      }
-    })
-
-    return () => mm.revert()
-  }, { scope: journeyRef })
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   const handleNavClick = (e, id) => {
     e.preventDefault()
@@ -100,12 +182,60 @@ function Manufacturing() {
         title="Manufacturing Capabilities"
         description="From dyeing and weaving to stitching, checking and packing, explore AD Textile's fully integrated manufacturing process across every production chapter."
       />
-      {/* This page's visible headings are per-chapter (h2); this hidden h1
-          gives it the single page-level heading assistive tech and search
-          engines expect, without altering the scrollytelling hero layout. */}
-      <h1 className="sr-only">Manufacturing Capabilities | AD Textile</h1>
-      {/* SideNavBar — now a live progress rail, not just a static list */}
-      <aside className="fixed left-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-5 items-center bg-transparent hidden md:flex">
+
+      {/* Hero */}
+      <section className="relative h-screen min-h-[640px] w-full flex items-end overflow-hidden bg-primary text-white">
+        <WebGLScene
+          loader={() => import('../components/motion/Threads.jsx')}
+          className="absolute inset-0"
+          color={[0.773, 0.616, 0.373]}
+          amplitude={1.3}
+          distance={0.25}
+          enableMouseInteraction
+          fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary via-[#1e293b] to-primary" />}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-primary/10 pointer-events-none" />
+        <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-20 md:pb-28">
+          <span className="eyebrow !text-secondary mb-5 block">Manufacturing Capabilities</span>
+          <SplitTextReveal
+            tag="h1"
+            text="From Fibre to Finished Product"
+            splitType="words"
+            delay={40}
+            duration={1}
+            textAlign="left"
+            className="font-headline-xl text-white text-[clamp(2.2rem,1.7rem+3vw,4.75rem)] leading-[1.08] font-bold mb-8 max-w-4xl"
+          />
+          <p className="font-body-md text-white/75 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
+            Nine fully integrated production stages — dyeing, weaving, knitting, cutting, embroidery, stitching,
+            checking, packing and warehousing — under one roof in Karur, India.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Button to="#dyeing" variant="primary" size="lg">
+              Explore The Process
+            </Button>
+            <Button to="/contact" variant="outline" size="lg">
+              Request A Quote
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Looping capability marquee */}
+      <section className="bg-primary py-6 border-y border-white/10 overflow-hidden">
+        <LogoLoop
+          logos={MARQUEE_ITEMS}
+          speed={55}
+          gap={56}
+          logoHeight={20}
+          fadeOut
+          fadeOutColor="#0F172A"
+          ariaLabel="Manufacturing capabilities and certifications"
+        />
+      </section>
+
+      {/* SideNavBar — progress rail highlighted via IntersectionObserver */}
+      <aside className="fixed left-6 xl:left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 items-center bg-transparent hidden md:flex">
         <ThreadPath
           d={RAIL_PATH}
           viewBox="0 0 8 400"
@@ -121,7 +251,7 @@ function Manufacturing() {
           return (
             <div
               key={item.id}
-              className="group relative flex flex-col items-center z-10 bg-[#F8F7F4]/80 backdrop-blur-sm rounded-full p-2 border border-outline-variant/30"
+              className="group relative flex flex-col items-center z-10 bg-[#F8F7F4]/85 backdrop-blur-sm rounded-full p-1.5 border border-outline-variant/30"
             >
               <a
                 className={`transition-all duration-300 scale-100 hover:scale-125 cursor-pointer flex items-center justify-center ${
@@ -131,9 +261,9 @@ function Manufacturing() {
                 title={item.label}
                 onClick={(e) => handleNavClick(e, item.id)}
               >
-                <Icon name={item.icon} className="text-xl" />
+                <Icon name={item.icon} className="text-lg" />
               </a>
-              <span className="absolute left-12 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-white text-[10px] uppercase tracking-wider px-3 py-1.5 whitespace-nowrap rounded font-semibold">
+              <span className="absolute left-11 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-white text-[10px] uppercase tracking-wider px-3 py-1.5 whitespace-nowrap rounded font-semibold pointer-events-none">
                 {item.label}
               </span>
             </div>
@@ -143,388 +273,228 @@ function Manufacturing() {
 
       <main className="w-full bg-background">
         <div ref={journeyRef} className="relative">
-          {/* Chapter 1: Dyeing */}
-          <section className="mfg-chapter h-screen w-full relative overflow-hidden" id="dyeing">
-            <div className="chapter-inner grid grid-cols-1 md:grid-cols-2 h-full w-full">
-              <div className="relative flex flex-col justify-center px-margin-mobile md:px-margin-desktop bg-primary text-white overflow-hidden">
-                <WebGLScene
-                  loader={() => import('../components/motion/LiquidEther.jsx')}
-                  className="absolute inset-0 opacity-50 mix-blend-screen pointer-events-none"
-                  colors={['#C59D5F', '#334155', '#F4E4C8']}
-                  autoDemo
-                  autoSpeed={0.4}
-                  autoIntensity={1.6}
-                  resolution={0.4}
-                />
-                <div className="relative z-10">
-                  <span className="eyebrow !text-secondary mb-4">01 / Coloration</span>
-                  <h2 className="section-title !text-white mb-6">
-                    Precision <em>Color</em> Science
-                  </h2>
-                  <p className="font-body-md text-[0.88rem] text-white/80 mb-12 max-w-lg leading-relaxed">
-                    Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior
-                    dye penetration, exceptional colour fastness, and consistent quality across a wide variety of
-                    yarn types and blends.
-                  </p>
-                  <div className="grid grid-cols-2 gap-6 max-w-lg">
-                    <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
-                      <Icon name="format_color_fill" className="text-secondary mb-3 text-3xl block" />
-                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">Italian Cheese Dyeing</p>
-                      <p className="text-xs text-white/50 mt-1">Imported Machines</p>
-                    </div>
-                    <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
-                      <Icon name="monitoring" className="text-secondary mb-3 text-3xl block" />
-                      <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">3 Tons/Day</p>
-                      <p className="text-xs text-white/50 mt-1">Daily Production Capacity</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="relative group overflow-hidden h-full hidden md:block bg-surface-container-low">
-                <img
-                  src={dyeingPhoto}
-                  alt="Azo-free dye vats at AD Textile"
-                  className="absolute inset-0 w-full h-full object-cover kenburns"
-                />
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
+          <Chapter
+            id="dyeing"
+            num="01"
+            eyebrow="Coloration"
+            title={<>Precision <em>Color</em> Science</>}
+            description="Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior dye penetration, exceptional colour fastness, and consistent quality across a wide variety of yarn types and blends."
+            media={<img src={dyeingPhoto} alt="Azo-free dye vats at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+          >
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="format_color_fill" label="Italian Cheese Dyeing" sub="Imported Machines" />
+              <StatTile icon="monitoring" label="3 Tons/Day" sub="Daily Production Capacity" />
             </div>
-          </section>
+          </Chapter>
 
-          {/* Chapter 2: Weaving */}
-          <section className="mfg-chapter h-screen w-full relative" id="weaving">
-            <div className="absolute inset-0 z-0 bg-primary overflow-hidden">
-              <img
-                src={weavingPhoto}
-                alt="Automatic weaving looms at AD Textile"
-                className="w-full h-full object-cover opacity-45 brightness-75 kenburns"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
+          <Chapter
+            id="weaving"
+            num="02"
+            eyebrow="Structural Integrity"
+            title="The Architecture of Fabric"
+            description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts."
+            media={<img src={weavingPhoto} alt="Automatic weaving looms at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            reverse
+          >
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="precision_manufacturing" label="Somet Rapier Looms" sub="Super Excel Series" />
+              <StatTile icon="speed" label="1M Metres/Month" sub="Production Capacity" />
             </div>
-            <div className="chapter-inner relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-end pb-24">
-              <div className="bg-primary/85 backdrop-blur-md p-10 md:p-12 border border-white/10 rounded-2xl max-w-4xl text-white shadow-xl">
-                <span className="eyebrow !text-secondary mb-4 block">02 / Structural Integrity</span>
-                <div className="grid md:grid-cols-2 gap-12">
+          </Chapter>
+
+          <Chapter
+            id="knitting"
+            num="03"
+            eyebrow="Loop Formation"
+            title={<>Precision in Every <em>Loop</em></>}
+            description="Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — supported by a fully integrated composite unit for linking, washing, setting and ironing."
+            media={<img src={weavingPhoto} alt="Knitted fabric structures at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+          >
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="texture" label="50 Knitting Machines" sub="Imported Korean, Single Cylinder" />
+              <StatTile icon="tune" label="5 Lakh Pairs/Month" sub="Production Capacity" />
+            </div>
+          </Chapter>
+
+          <Chapter
+            id="cutting"
+            num="04"
+            eyebrow="Precision"
+            title={<em>Cutting</em>}
+            description="Our in-house cutting facility is designed to deliver precision, consistency and efficiency across every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for high-quality finished products."
+            media={<img src={cuttingPhoto} alt="Precision fabric cutting at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            reverse
+          >
+            <div className="flex flex-wrap gap-4">
+              <Button to="/contact" variant="primary">Get In Touch</Button>
+              <Button to="/contact" variant="outline" className="text-primary border-primary">Request Details</Button>
+            </div>
+          </Chapter>
+
+          <Chapter
+            id="embroidery"
+            num="05"
+            eyebrow="Embellishment"
+            title={<em>Embroidery</em>}
+            description="Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines, featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities, and precision digitising — delivering intricate, premium designs across our home textile ranges."
+            media={
+              <video
+                src={embroideryVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover grayscale-[30%] contrast-105 brightness-95 saturate-75"
+              />
+            }
+            grain
+          >
+            <ul className="space-y-3">
+              {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
+                <li key={label} className="flex items-center gap-4">
+                  <Icon name="check_circle" className="text-secondary text-xl" />
+                  <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">{label}</span>
+                </li>
+              ))}
+            </ul>
+          </Chapter>
+
+          <Chapter
+            id="stitching"
+            num="06"
+            eyebrow="Construction"
+            title={<em>Stitching</em>}
+            description="Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and sock linking operations — converting cut and embroidered panels into finished, quality-checked pieces at high volume."
+            media={<img src={cuttingPhoto} alt="Stitching production line at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            reverse
+          >
+            <div className="flex flex-wrap gap-4">
+              <Button to="/contact" variant="primary">Get In Touch</Button>
+              <Button to="/contact" variant="outline" className="text-primary border-primary">Request Details</Button>
+            </div>
+          </Chapter>
+
+          <Chapter
+            id="checking-quality"
+            num="07"
+            eyebrow="Assurance"
+            title={<>Checking &amp; Quality <em>Control</em></>}
+            description="Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every product meets the highest standards of quality and accuracy — evaluated for measurement accuracy, appearance, and packing at every stage."
+            media={<img src={checkingPhoto} alt="Quality inspection and finishing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+          >
+            <div className="space-y-5">
+              {[
+                { n: '01', title: 'In-Line Inspection', sub: 'Layer 1: quality checks at every stage of production, not just at the end.' },
+                { n: '02', title: 'Final AQL Inspection', sub: 'Layer 2: final AQL-standard inspection before dispatch, for zero-compromise quality.' },
+              ].map((row) => (
+                <div key={row.n} className="flex items-start gap-5">
+                  <div className="w-11 h-11 flex items-center justify-center rounded-full bg-primary text-white shrink-0 font-bold text-sm shadow-md">
+                    {row.n}
+                  </div>
                   <div>
-                    <h2 className="font-headline-xl text-3xl mb-4 leading-tight">The Architecture of Fabric</h2>
-                    <p className="font-body-md text-[0.88rem] text-white/80 leading-relaxed">
-                      Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the
-                      production of premium woven fabrics with exceptional precision, consistency, and durability
-                      across a wide range of yarn counts.
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-end gap-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-px bg-secondary" />
-                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        Somet Super Excel Rapier Looms
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-px bg-secondary" />
-                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        1 Million Metres / Month
-                      </span>
-                    </div>
+                    <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">{row.title}</p>
+                    <p className="text-xs text-on-surface-variant">{row.sub}</p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </section>
+          </Chapter>
 
-          {/* Chapter 3: Knitting */}
-          <section className="mfg-chapter h-screen w-full relative overflow-hidden" id="knitting">
-            <div className="chapter-inner grid grid-cols-1 md:grid-cols-2 h-full w-full">
-              <div className="relative order-2 md:order-1 group overflow-hidden h-full hidden md:block bg-surface-container-low">
-                <img
-                  src={weavingPhoto}
-                  alt="Knitted fabric structures at AD Textile"
-                  className="absolute inset-0 w-full h-full object-cover kenburns"
-                />
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-              <div className="relative order-1 md:order-2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop bg-primary text-white">
-                <span className="eyebrow !text-secondary mb-4">03 / Loop Formation</span>
-                <h2 className="section-title !text-white mb-6">
-                  Precision in Every <em>Loop</em>
-                </h2>
-                <p className="font-body-md text-[0.88rem] text-white/80 mb-12 max-w-lg leading-relaxed">
-                  Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting
-                  Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from
-                  infant baby socks to football socks — supported by a fully integrated composite unit for linking,
-                  washing, setting and ironing.
-                </p>
-                <div className="grid grid-cols-2 gap-6 max-w-lg">
-                  <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
-                    <Icon name="texture" className="text-secondary mb-3 text-3xl block" />
-                    <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">50 Knitting Machines</p>
-                    <p className="text-xs text-white/50 mt-1">Imported Korean, Single Cylinder</p>
-                  </div>
-                  <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-secondary transition-all">
-                    <Icon name="tune" className="text-secondary mb-3 text-3xl block" />
-                    <p className="font-label-md text-sm font-semibold uppercase tracking-wider text-white">5 Lakh Pairs/Month</p>
-                    <p className="text-xs text-white/50 mt-1">Production Capacity</p>
-                  </div>
-                </div>
-              </div>
+          <Chapter
+            id="packing"
+            num="08"
+            eyebrow="Fulfilment"
+            title={<em>Packing</em>}
+            description="AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements — from custom-specific packing with embellishments to à la carte packing tailored to each client's needs — every shipment is prepared to withstand the rigors of long-haul shipping."
+            media={<img src={packingPhoto} alt="Export packing operations at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            reverse
+          >
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="calendar_month" label="1992" sub="Exporting Since" />
+              <StatTile icon="inventory_2" label="Custom & À La Carte" sub="Packing Options" />
             </div>
-          </section>
+          </Chapter>
 
-          {/* Chapter 4: Cutting */}
-          <section className="mfg-chapter h-screen w-full relative" id="cutting">
-            <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-              <div className="md:col-span-5 text-primary">
-                <span className="eyebrow mb-4">04 / Precision</span>
-                <h2 className="section-title mb-6">
-                  <em>Cutting</em>
-                </h2>
-                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-12 leading-relaxed">
-                  Our in-house cutting facility is designed to deliver precision, consistency and efficiency across
-                  every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate
-                  pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for
-                  high-quality finished products.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button to="/contact" variant="primary">
-                    Get In Touch
-                  </Button>
-                  <Button to="/contact" variant="outline" className="text-primary border-primary">
-                    Request Details
-                  </Button>
+          <Chapter
+            id="warehouse"
+            num="09"
+            eyebrow="Storage & Fulfilment"
+            title="Warehouse"
+            description="Our warehouse manages raw material storage, work-in-progress staging and finished-goods consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every order accounted for from production floor to container."
+            media={<img src={packingPhoto} alt="Warehouse and finished-goods storage at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+          >
+            <div className="space-y-3">
+              {['Organized Racking & Inventory Tracking', 'Finished-Goods Consolidation for Dispatch'].map((label) => (
+                <div key={label} className="flex items-center gap-4">
+                  <div className="w-10 h-px bg-secondary" />
+                  <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-primary">{label}</span>
                 </div>
-              </div>
-              <div className="md:col-span-7 aspect-[4/3] rounded-2xl border border-outline-variant/20 shadow-lg hidden md:block overflow-hidden bg-surface-container-low relative">
-                <img
-                  src={cuttingPhoto}
-                  alt="Precision fabric cutting at AD Textile"
-                  className="absolute inset-0 w-full h-full object-cover kenburns"
-                />
-              </div>
+              ))}
             </div>
-          </section>
-
-          {/* Chapter 5: Embroidery */}
-          <section className="mfg-chapter h-screen w-full relative" id="embroidery">
-            <div className="chapter-inner flex flex-col md:flex-row h-full">
-              <div className="w-full md:w-3/5 h-1/2 md:h-full relative overflow-hidden bg-surface-container-low film-grain">
-                <video
-                  src={embroideryVideo}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[8s] scale-102 hover:scale-105 grayscale-[30%] contrast-105 brightness-95 saturate-75"
-                  poster="https://lh3.googleusercontent.com/aida-public/AB6AXuACyn2DW5X1P7CxfLYcOcwjvlBdHP0An0-NRtuj3qMA-DNRjbTfhqQglskD6I0BdFlwqpEcPASh-LXz9Xjz5UCVLrJkbQnNMeB8knb5QZJM5-YB3cwWB4Tjt3RV3fRknGSbuQns4smdWsBq1NTXGMl77Wvn0gOFzZn-O0TzBNkilGgZeHhrpUtOIXUcmZNDZQHyzW8AcgyQOxRPrXjsheUJVF6I4NPE7BPJ2PflbUc37OrXX3kTvju73qDQlzNZYd8RFwx6SG-yZoI"
-                />
-                <div className="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none" />
-                <div className="absolute inset-0 shadow-[inset_0_0_80px_30px_rgba(15,23,42,0.35)] pointer-events-none" />
-              </div>
-              <div className="w-full md:w-2/5 flex flex-col justify-center p-10 md:p-16 bg-white border-l border-outline-variant/20">
-                <span className="eyebrow mb-4 block">05 / Embellishment</span>
-                <h2 className="section-title mb-6">
-                  <em>Embroidery</em>
-                </h2>
-                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-8 leading-relaxed">
-                  Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines,
-                  featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities,
-                  and precision digitising — delivering intricate, premium designs across our home textile ranges.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      Garuda &amp; Toshiba, 54 Heads (10–12 Colours)
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      Precision Digitising
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <Icon name="check_circle" className="text-secondary text-xl" />
-                    <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
-                      Dedicated Sampling Capabilities
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          {/* Chapter 6: Stitching */}
-          <section className="mfg-chapter h-screen w-full relative" id="stitching">
-            <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-              <div className="md:col-span-7 aspect-[4/3] rounded-2xl border border-outline-variant/20 shadow-lg hidden md:block overflow-hidden bg-surface-container-low relative order-2 md:order-1">
-                <img
-                  src={cuttingPhoto}
-                  alt="Stitching production line at AD Textile"
-                  className="absolute inset-0 w-full h-full object-cover kenburns"
-                />
-              </div>
-              <div className="md:col-span-5 text-primary order-1 md:order-2">
-                <span className="eyebrow mb-4">06 / Construction</span>
-                <h2 className="section-title mb-6">
-                  <em>Stitching</em>
-                </h2>
-                <p className="font-body-md text-[0.88rem] text-on-surface-variant mb-12 leading-relaxed">
-                  Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by
-                  a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and
-                  sock linking operations — converting cut and embroidered panels into finished, quality-checked
-                  pieces at high volume.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button to="/contact" variant="primary">
-                    Get In Touch
-                  </Button>
-                  <Button to="/contact" variant="outline" className="text-primary border-primary">
-                    Request Details
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Chapter 7: Checking & Quality Control */}
-          <section className="mfg-chapter h-screen w-full relative" id="checking-quality">
-            <div className="chapter-inner max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="relative hidden lg:block">
-                <div className="w-full aspect-square border-[16px] border-white shadow-xl rounded-2xl overflow-hidden bg-surface-container-low relative">
-                  <img
-                    src={checkingPhoto}
-                    alt="Quality inspection and finishing at AD Textile"
-                    className="absolute inset-0 w-full h-full object-cover kenburns"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -right-6 bg-secondary px-8 py-6 text-white rounded-xl shadow-lg max-w-[240px] z-10">
-                  <p className="font-headline-xl text-3xl font-bold text-white">Zero</p>
-                  <p className="font-label-md text-xs uppercase tracking-widest font-semibold text-white/90 mt-1">Defect Target</p>
-                </div>
-              </div>
-              <div>
-                <span className="eyebrow mb-4 block">07 / Assurance</span>
-                <h2 className="section-title mb-6">
-                  Checking &amp; Quality <em>Control</em>
-                </h2>
-                <p className="font-body-lg text-[0.95rem] text-on-surface-variant mb-12 leading-relaxed">
-                  Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every
-                  product meets the highest standards of quality and accuracy — evaluated for measurement accuracy,
-                  appearance, and packing at every stage.
-                </p>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#0F172A] text-white shrink-0 font-bold shadow-md">
-                      01
-                    </div>
-                    <div>
-                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">In-Line Inspection</p>
-                      <p className="text-xs text-on-surface-variant">
-                        Layer 1: quality checks at every stage of production, not just at the end.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#0F172A] text-white shrink-0 font-bold shadow-md">
-                      02
-                    </div>
-                    <div>
-                      <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">Final AQL Inspection</p>
-                      <p className="text-xs text-on-surface-variant">
-                        Layer 2: final AQL-standard inspection before dispatch, for zero-compromise quality.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Chapter 8: Packing */}
-          <section className="mfg-chapter h-screen w-full relative" id="packing">
-            <div className="absolute inset-0 z-0 opacity-15 bg-primary overflow-hidden">
-              <img
-                src={packingPhoto}
-                alt="Export packing operations at AD Textile"
-                className="w-full h-full object-cover brightness-50 kenburns"
-              />
-            </div>
-            <div className="chapter-inner relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-center items-center text-center text-primary">
-              <span className="eyebrow mb-4 block">08 / Fulfilment</span>
-              <h2 className="section-title mb-8 max-w-4xl">
-                <em>Packing</em>
-              </h2>
-              <p className="font-body-lg text-[0.95rem] text-on-surface-variant max-w-3xl mb-12 leading-relaxed">
-                AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements —
-                from custom-specific packing with embellishments to à la carte packing tailored to each client's needs —
-                every shipment is prepared to withstand the rigors of long-haul shipping.
-              </p>
-              <div className="flex flex-wrap justify-center gap-12">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-secondary/15 rounded-full flex items-center justify-center mb-4">
-                    <Icon name="calendar_month" className="text-secondary text-3xl" />
-                  </div>
-                  <p className="font-headline-lg text-2xl font-bold text-primary">1992</p>
-                  <p className="text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold mt-1">
-                    Exporting Since
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-secondary/15 rounded-full flex items-center justify-center mb-4">
-                    <Icon name="inventory_2" className="text-secondary text-3xl" />
-                  </div>
-                  <p className="font-headline-lg text-2xl font-bold text-primary">Custom &amp; À La Carte</p>
-                  <p className="text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold mt-1">
-                    Packing Options
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Chapter 9: Warehouse */}
-          <section className="mfg-chapter h-screen w-full relative" id="warehouse">
-            <div className="absolute inset-0 z-0 bg-primary overflow-hidden">
-              <img
-                src={packingPhoto}
-                alt="Warehouse and finished-goods storage at AD Textile"
-                className="w-full h-full object-cover opacity-40 brightness-75 kenburns"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
-            </div>
-            <div className="chapter-inner relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full flex flex-col justify-end pb-24">
-              <div className="bg-primary/85 backdrop-blur-md p-10 md:p-12 border border-white/10 rounded-2xl max-w-4xl text-white shadow-xl">
-                <span className="eyebrow !text-secondary mb-4 block">09 / Storage &amp; Fulfilment</span>
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div>
-                    <h2 className="font-headline-xl text-3xl mb-4 leading-tight">Warehouse</h2>
-                    <p className="font-body-md text-[0.88rem] text-white/80 leading-relaxed">
-                      Our warehouse manages raw material storage, work-in-progress staging and finished-goods
-                      consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every
-                      order accounted for from production floor to container.
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-end gap-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-px bg-secondary" />
-                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        Organized Racking &amp; Inventory Tracking
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-px bg-secondary" />
-                      <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-white/90">
-                        Finished-Goods Consolidation for Dispatch
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          </Chapter>
         </div>
 
-        {/* Stats & Footer CTA — arrives naturally after the pinned journey, not pinned itself */}
+        {/* Facility gallery — drifting photo wall */}
+        <section className="relative h-[560px] md:h-[720px] w-full overflow-hidden bg-[#0b1220]">
+          <DriftWall
+            items={GALLERY_ITEMS}
+            columns={6}
+            tileWidth={190}
+            tileHeight={128}
+            gap={16}
+            speed={28}
+            overlayColor="#0F172A"
+            parallax={0.5}
+            pauseOnHover
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
+            <span className="eyebrow !text-secondary mb-4">Inside The Facility</span>
+            <h2 className="section-title !text-white max-w-2xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+              A Living Look at the <em>Production Floor</em>
+            </h2>
+          </div>
+        </section>
+
+        {/* Quality assurance journey — scroll-stacked cards */}
+        <section className="w-full bg-background py-24 md:py-32">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="eyebrow mb-4 block">Assurance</span>
+              <h2 className="section-title mb-4">
+                Every Order, <em>Verified</em> Twice
+              </h2>
+              <p className="text-on-surface-variant text-sm">Scroll inside the panel to step through the journey from floor to container.</p>
+            </div>
+            <div className="h-[520px] rounded-[32px] border border-outline-variant/20 shadow-[0_20px_60px_rgba(15,23,42,0.1)] overflow-hidden">
+              <ScrollStack itemDistance={60} itemStackDistance={24} baseScale={0.9} rotationAmount={0.5} blurAmount={1}>
+                {ASSURANCE_STEPS.map((item) => (
+                  <ScrollStackItem key={item.step} itemClassName={`${item.bg} text-white flex items-center`}>
+                    <div className="flex items-center gap-8 w-full">
+                      <div className="w-16 h-16 shrink-0 flex items-center justify-center rounded-full bg-white/10 border border-white/20 font-headline-lg text-2xl font-bold">
+                        {item.step}
+                      </div>
+                      <div>
+                        <p className="font-headline-lg text-2xl mb-2">{item.title}</p>
+                        <p className="text-sm text-white/70 leading-relaxed max-w-xl">{item.description}</p>
+                      </div>
+                    </div>
+                  </ScrollStackItem>
+                ))}
+              </ScrollStack>
+            </div>
+          </div>
+        </section>
+
+        {/* Certifications & standards carousel */}
+        <section className="w-full bg-primary py-24 md:py-28">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center">
+            <span className="eyebrow !text-secondary mb-4">Certified & Compliant</span>
+            <h2 className="section-title !text-white mb-12 text-center">Standards We Hold Ourselves To</h2>
+            <Carousel items={CERTIFICATION_ITEMS} baseWidth={300} autoplay autoplayDelay={3500} pauseOnHover loop />
+          </div>
+        </section>
+
+        {/* Stats & Footer CTA */}
         <section className="w-full relative flex flex-col justify-center py-section-gap-lg" id="cta">
           <div className="max-w-container-max px-margin-mobile md:px-margin-desktop w-full mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter text-center border-y border-outline-variant/30 py-20 bg-white rounded-2xl shadow-sm">

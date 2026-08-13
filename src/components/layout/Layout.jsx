@@ -13,13 +13,34 @@ function Layout({ children }) {
 
   useEffect(() => {
     if (hash) {
-      // Allow transition to finish before scrolling to hashes
-      const timer = setTimeout(() => {
-        scrollTo(`#${hash.slice(1)}`)
-      }, 300)
-      return () => clearTimeout(timer)
+      const id = hash.slice(1)
+      let cancelled = false
+      let rafId
+
+      // The target route is code-split (React.lazy), so its DOM — including
+      // the hash target — may not exist yet when this effect runs. Poll for
+      // it (capped) instead of guessing a fixed delay that a heavier page
+      // can easily outrun, leaving the scroll silently a no-op.
+      const deadline = Date.now() + 4000
+      const tryScroll = () => {
+        if (cancelled) return
+        if (document.getElementById(id) || Date.now() > deadline) {
+          scrollTo(`#${id}`)
+          return
+        }
+        rafId = requestAnimationFrame(tryScroll)
+      }
+
+      // Give the route-change transition a moment to start before polling.
+      const timer = setTimeout(tryScroll, 300)
+      return () => {
+        cancelled = true
+        clearTimeout(timer)
+        if (rafId) cancelAnimationFrame(rafId)
+      }
     } else {
       scrollTo(0, { immediate: true })
+      return undefined
     }
   }, [pathname, hash])
 
