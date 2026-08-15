@@ -13,6 +13,7 @@ import LottieIcon from '../components/motion/LottieIcon.jsx'
 import pulseRing from '../assets/lottie/pulse-ring.json'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
+import CollectionsCarousel3D from '../components/motion/CollectionsCarousel3D.jsx'
 import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
 import Seo from '../components/common/Seo.jsx'
 
@@ -28,6 +29,7 @@ const CATEGORIES = [
     title: 'Kitchen Linen',
     description: 'Aprons, mittens and kitchen sets for sophisticated culinary spaces.',
     href: '/products',
+    icon: 'kitchen',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDNwMAmERcdNtmtoAUEd_p2N3Oa3ieJi4SHc__8Pd3ylDKv60RTfy5EQy10YJKXg2oMzWQd8YL_GLEATGQtvS_-nQMTFRR7QoWTr3MYErLFIFzg2hvsES-4iGgjcqZPSiIlmLjph6PPfdhZ9K6MwRKFQY70-96pCBlSC86TGAOu0GeplWoHKYyXBPU8rYYHmNGXp4wWDZzHmVXm2GaZvAFja1nCHxQ6vM6xbGzt3eM48Ckuwdy6rwscTjAhvN7x3_8mpYjzi_dW9i4',
     alt: 'Top-down editorial shot of high-quality kitchen linens featuring waffle weave and herringbone textures.',
@@ -36,22 +38,25 @@ const CATEGORIES = [
     title: 'Table Linen',
     description: 'Table cloths, mats, runners and chair pads for distinguished dining.',
     href: '/products',
+    icon: 'dining',
     image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuC3IJi5DTrXdm8jRPxK9wfaeZ8zb8-kfsxAqnSGjkC6HP-9kNvaTFgyyqe6TXAo_VGvnTfyI4cUYbWYe4bXbce3uUte5RxwlLlx6HSJjRPtuXI_mf2ObHY76nvLbI9w8QDB7MxkvHnbLVQfoq1wZX_LZ0boyq2l8WJ-M7SplPDLgLQNKhCMJOyDDPTGiTkBtyCtpsQkYBS7N7j4od0_Lf8svSQqiufiyZ9hfgcgIAFain-YBoQD9YFn8slG82igYHNlLQvQrwGllVU',
-    alt: 'Table Linen Collection',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80&auto=format&fit=crop',
+    alt: 'Elegant table setting with fine linen, white plates and polished cutlery.',
   },
   {
     title: 'Bed Linen',
     description: 'Bed spreads, bedding, cushions, quilts and rest bedding.',
     href: '/heritage-bed-linen',
+    icon: 'bed',
     image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBQFfsn3ESPLeAYm6B5s-_JuPyQnDtcIj8DQYBFBGUVQkhmsR7lcVoF1AS74wKg8jv0Ejor-SFQ0dpxsAlF__TyQrWBzqEfSRXKYutWt8kw_66cJGIeVU7iOM-m3RD4Ee8m-Ahy2r8HmogQswlDIC0p7fW2IPnMr0uqCzLAd4s0AyvzX37SUHJm9Xjcr9yk90Lu0_gewpoArfeGB8Oiuf7hzC4hne8iS4cvjIXWVfxG3C6-hXZunr3-R_adB7cuelPMkvSkGbdI2mc',
-    alt: 'Bed Linen Collection',
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=900&q=80&auto=format&fit=crop',
+    alt: 'Bright bedroom with a neatly made bed dressed in crisp white linen.',
   },
   {
     title: 'Living Linen',
     description: 'Curtains crafted for texture, drape and everyday living spaces.',
     href: '/living-linen',
+    icon: 'curtains',
     image:
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&q=80&auto=format&fit=crop',
     alt: 'Elegant flowing curtains in a softly lit modern living room.',
@@ -59,13 +64,46 @@ const CATEGORIES = [
 ]
 
 const JOURNEY_STEPS = [
-  'Raw Material',
-  'Dyeing',
-  'Weaving',
-  'Knitting',
-  'Stitching',
-  'Quality Control',
-  'Packing',
+  {
+    title: 'Raw Material',
+    description: 'Premium fibres sourced and graded before they ever touch the line.',
+    icon: 'grass',
+  },
+  {
+    title: 'Dyeing',
+    description: 'Azo-free dyeing for consistent, colorfast tone across every batch.',
+    icon: 'water_drop',
+  },
+  {
+    title: 'Weaving',
+    description: 'Somet Rapier looms weaving up to 1 million metres of fabric a month.',
+    icon: 'texture',
+  },
+  {
+    title: 'Knitting',
+    description: 'Precision knit structures built for drape, stretch and durability.',
+    icon: 'grid_view',
+  },
+  {
+    title: 'Stitching',
+    description: 'Skilled hands and calibrated machines finish every seam.',
+    icon: 'content_cut',
+  },
+  {
+    title: 'Quality Control',
+    description: '2-layer AQL inspection — in-line checks plus final clearance.',
+    icon: 'fact_check',
+  },
+  {
+    title: 'Packing',
+    description: 'Export-ready packing built to protect fabric across the journey.',
+    icon: 'inventory_2',
+  },
+  {
+    title: 'Export',
+    description: 'Shipped worldwide to retail and hospitality brands since 1992.',
+    icon: 'shopping_bag',
+  },
 ]
 
 const EDGE_POINTS = [
@@ -123,82 +161,92 @@ const COMPLIANCE_MARKS = [
 
 function Home() {
   const journeySectionRef = useRef(null)
-  const journeyTrackRef = useRef(null)
-  const journeyPathRef = useRef(null)
+  const journeyListRef = useRef(null)
+  const journeyRailTrackRef = useRef(null)
+  const journeyRailFillRef = useRef(null)
 
   useGSAP(
     () => {
-      const section = journeySectionRef.current
-      const track = journeyTrackRef.current
-      const path = journeyPathRef.current
-      if (!section || !track || !path || prefersReducedMotion()) return undefined
+      const list = journeyListRef.current
+      const track = journeyRailTrackRef.current
+      const fill = journeyRailFillRef.current
+      if (!list || !track || !fill) return undefined
 
-      const mm = gsap.matchMedia()
+      const nodes = gsap.utils.toArray(list.querySelectorAll('.journey-step-node'))
+      if (!nodes.length) return undefined
 
-      mm.add('(min-width: 1024px)', () => {
-        const length = path.getTotalLength()
-        gsap.set(path, { strokeDasharray: length, strokeDashoffset: length })
+      // The rail must stop at the last bubble's center, not the bottom of
+      // the list — the last step's own title/description text extends
+      // below its bubble, so sizing the rail to the container's full
+      // height leaves it dangling past "Export" with nothing there.
+      // Measured via offsetTop (true layout position) rather than
+      // getBoundingClientRect, since not-yet-revealed nodes still carry
+      // Framer Motion's `initial` y-offset transform, which would throw
+      // off a rect-based measurement taken before they scroll into view.
+      const lastBubble = nodes[nodes.length - 1].querySelector('.step-indicator-bubble')
+      const offsetTopWithin = (el, ancestor) => {
+        let top = 0
+        let node = el
+        while (node && node !== ancestor) {
+          top += node.offsetTop
+          node = node.offsetParent
+        }
+        return top
+      }
+      const syncRailLength = () => {
+        const length = offsetTopWithin(lastBubble, list) + lastBubble.offsetHeight / 2
+        track.style.height = `${length}px`
+        fill.style.height = `${length}px`
+      }
+      syncRailLength()
+      window.addEventListener('resize', syncRailLength)
 
-        const getScrollDistance = () => Math.max(0, track.scrollWidth - section.offsetWidth)
+      if (prefersReducedMotion()) {
+        gsap.set(fill, { scaleY: 1 })
+        return () => window.removeEventListener('resize', syncRailLength)
+      }
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: () => `+=${getScrollDistance() + section.offsetWidth * 0.4}`,
-            scrub: 1,
-            pin: true,
-            pinSpacing: true,
-            invalidateOnRefresh: true,
-          },
-        })
+      gsap.set(fill, { scaleY: 0, transformOrigin: 'top center' })
+      gsap.set(
+        nodes.map((node) => node.querySelector('.step-indicator-bubble')),
+        { backgroundColor: 'rgba(255, 255, 255, 0.05)', borderColor: 'rgba(197, 157, 95, 0.2)', boxShadow: 'none', scale: 1 }
+      )
 
-        // Core translation and path draw
-        tl.to(track, { x: () => -getScrollDistance(), ease: 'none' }, 0)
-        tl.to(path, { strokeDashoffset: 0, ease: 'none' }, 0)
-
-        // Active node highlight scrubbing on horizontal timeline
-        const stepElements = track.querySelectorAll('.journey-step-node')
-        stepElements.forEach((el, index) => {
-          const relativeProgress = index / (stepElements.length - 1)
-          
-          tl.to(el.querySelector('.step-indicator-bubble'), {
-            backgroundColor: '#C59D5F',
-            borderColor: '#C59D5F',
-            color: '#FFFFFF',
-            boxShadow: '0 0 24px rgba(197, 157, 95, 0.65)',
-            scale: 1.25,
-            duration: 0.15,
-          }, relativeProgress * 0.8)
-
-          tl.to(el.querySelector('.step-label-title'), {
-            color: '#C59D5F',
-            scale: 1.05,
-            duration: 0.15,
-          }, relativeProgress * 0.8)
-
-          if (index > 0) {
-            tl.to(stepElements[index - 1].querySelector('.step-indicator-bubble'), {
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              borderColor: 'rgba(197, 157, 95, 0.2)',
-              color: '#C59D5F',
-              boxShadow: 'none',
-              scale: 1.0,
-              duration: 0.15,
-            }, relativeProgress * 0.8)
-
-            tl.to(stepElements[index - 1].querySelector('.step-label-title'), {
-              color: 'rgba(255, 255, 255, 0.8)',
-              scale: 1.0,
-              duration: 0.15,
-            }, relativeProgress * 0.8)
-          }
-        })
-
-        return () => {}
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: list,
+          start: 'top 75%',
+          end: 'bottom 65%',
+          scrub: 0.6,
+        },
       })
 
-      return () => mm.revert()
+      // Rail fill grows downward in step with scroll
+      tl.to(fill, { scaleY: 1, ease: 'none' }, 0)
+
+      // Each node lights up as the fill reaches it, and stays lit — a
+      // completed-steps-accumulate progress metaphor rather than a single
+      // travelling highlight.
+      nodes.forEach((node, index) => {
+        const progress = nodes.length > 1 ? index / (nodes.length - 1) : 0
+        const bubble = node.querySelector('.step-indicator-bubble')
+        const icon = node.querySelector('.step-indicator-icon')
+
+        tl.to(
+          bubble,
+          {
+            backgroundColor: '#C59D5F',
+            borderColor: '#C59D5F',
+            boxShadow: '0 0 28px rgba(197, 157, 95, 0.55)',
+            scale: 1.1,
+            duration: 0.15,
+          },
+          progress * 0.94
+        )
+        tl.to(icon, { color: '#0F172A', duration: 0.15 }, progress * 0.94)
+      })
+
+      return () => window.removeEventListener('resize', syncRailLength)
     },
     { scope: journeySectionRef }
   )
@@ -315,89 +363,87 @@ function Home() {
       {/* Featured Collections Section */}
       <section className="py-24 bg-background">
         <Container>
-          <div className="mb-16 space-y-4">
-            <span className="eyebrow">Our Curation</span>
-            <h2 className="section-title text-3xl font-light text-primary">Core Textile <em className="italic text-secondary font-normal font-serif">Collections</em></h2>
-            <div className="divider" />
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div className="lg:col-span-4 space-y-5">
+              <span className="eyebrow">Our Curation</span>
+              <h2 className="section-title text-3xl font-light text-primary">Core Textile <em className="italic text-secondary font-normal font-serif">Collections</em></h2>
+              <div className="divider" />
+              <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base max-w-sm">
+                Four cornerstone categories, one standard of craft — kitchen, table, bed and living linens engineered for texture, drape and everyday durability.
+              </p>
+              <Link
+                className="inline-flex items-center gap-2 text-secondary font-semibold hover:underline uppercase tracking-wider text-xs pt-1"
+                to="/products"
+              >
+                View All Products <Icon name="arrow_right_alt" />
+              </Link>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CATEGORIES.map((category) => (
-              <TiltedCard key={category.title} tiltMax={8}>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-md border border-outline-variant/30 transition-all duration-300">
-                  <img
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                    src={category.image}
-                    alt={category.alt}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A101E]/95 via-[#0A101E]/40 to-transparent flex flex-col justify-end p-8">
-                    <h3 className="font-serif text-xl text-white mb-2 font-bold">{category.title}</h3>
-                    <p className="text-xs text-white/70 mb-5 leading-relaxed">{category.description}</p>
-                    <Link
-                      className="font-label-md text-[0.72rem] tracking-wider text-secondary flex items-center gap-2 group-hover:gap-3 transition-all uppercase font-semibold"
-                      to={category.href}
-                    >
-                      View Collection <Icon name="arrow_right_alt" />
-                    </Link>
-                  </div>
-                </div>
-              </TiltedCard>
-            ))}
+            <div className="lg:col-span-8">
+              <CollectionsCarousel3D items={CATEGORIES} />
+            </div>
           </div>
         </Container>
       </section>
 
       {/* Manufacturing Journey Timeline Section */}
-      <section ref={journeySectionRef} className="py-24 bg-primary text-white relative overflow-hidden">
+      <section ref={journeySectionRef} className="py-24 lg:py-32 bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-radial-gradient from-secondary/5 to-transparent pointer-events-none" />
         <Container>
           <div className="text-center mb-20 space-y-4">
             <span className="eyebrow !text-secondary">Operations Tour</span>
-            <h2 className="section-title !text-white text-3xl font-light">Vertical Integrated <em className="italic text-secondary font-normal font-serif">Journey</em></h2>
+            <h2 className="section-title !text-white text-3xl font-light">Vertically Integrated <em className="italic text-secondary font-normal font-serif">Journey</em></h2>
             <div className="divider mx-auto" />
           </div>
-        </Container>
 
-        <div className={`relative overflow-x-auto no-scrollbar ${prefersReducedMotion() ? '' : 'lg:overflow-hidden'}`}>
-          <div
-            ref={journeyTrackRef}
-            className="flex items-start gap-16 lg:gap-20 px-8 md:px-margin-desktop w-max relative pb-6"
-          >
-            {/* Timeline thread line drawing */}
-            <svg
-              className="absolute top-[28px] left-8 h-[2px] z-0 hidden lg:block overflow-visible"
-              style={{ width: 'calc(100% - 4rem)' }}
-              viewBox="0 0 1000 2"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <path ref={journeyPathRef} d="M0,1 L1000,1" stroke="#C59D5F" strokeWidth="3" strokeLinecap="round" fill="none" />
-            </svg>
+          <div ref={journeyListRef} className="relative max-w-4xl mx-auto">
+            {/* Rail track — height is set in JS to stop exactly at the last bubble's center */}
+            <div
+              ref={journeyRailTrackRef}
+              className="absolute left-6 lg:left-1/2 top-0 w-px bg-white/10 lg:-translate-x-1/2"
+            />
+            {/* Rail fill — scrubbed with scroll via GSAP */}
+            <div
+              ref={journeyRailFillRef}
+              className="absolute left-6 lg:left-1/2 top-0 w-px bg-gradient-to-b from-secondary via-secondary to-secondary/20 lg:-translate-x-1/2"
+            />
 
-            {JOURNEY_STEPS.map((step, index) => (
-              <div
-                key={step}
-                className="journey-step-node w-[168px] shrink-0 flex flex-col items-center text-center group relative z-10 transition-all duration-300"
-              >
-                <div className="step-indicator-bubble w-14 h-14 rounded-full bg-white/5 border border-secondary/20 flex items-center justify-center mb-6 transition-all duration-300 font-label-md text-secondary">
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                </div>
-                <h4 className="step-label-title font-label-md text-xs mb-2 text-white/80 transition-all font-semibold uppercase tracking-wider">
-                  {step}
-                </h4>
-              </div>
-            ))}
+            <div className="space-y-14 lg:space-y-20">
+              {JOURNEY_STEPS.map((step, index) => {
+                const isRight = index % 2 === 1
+                return (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className="journey-step-node relative"
+                  >
+                    <div className="step-indicator-bubble absolute left-6 lg:left-1/2 top-0 -translate-x-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/5 border border-secondary/20 flex items-center justify-center z-10">
+                      <LottieIcon animationData={pulseRing} className="absolute inset-0 w-full h-full opacity-50" />
+                      <Icon name={step.icon} className="step-indicator-icon relative text-secondary text-xl md:text-2xl" />
+                    </div>
 
-            <div className="journey-step-node w-[168px] shrink-0 flex flex-col items-center text-center group relative z-10 transition-all duration-300">
-              <div className="step-indicator-bubble w-14 h-14 rounded-full bg-secondary border border-secondary flex items-center justify-center mb-6 text-white font-label-md">
-                <Icon name="shopping_bag" className="text-xl" />
-              </div>
-              <h4 className="step-label-title font-label-md text-xs mb-2 text-secondary font-semibold uppercase tracking-wider">
-                Export
-              </h4>
+                    <div
+                      className={`pl-20 lg:pl-0 lg:w-[calc(50%-2.5rem)] ${
+                        isRight ? 'lg:ml-auto lg:text-left' : 'lg:mr-auto lg:text-right'
+                      }`}
+                    >
+                      <span className="block text-[10px] font-mono tracking-[0.3em] text-secondary/70 uppercase mb-2">
+                        Step {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h4 className="step-label-title font-serif text-xl md:text-2xl text-white font-bold mb-2">
+                        {step.title}
+                      </h4>
+                      <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Why Choose Us & Competitive Edge Section */}
