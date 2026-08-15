@@ -39,7 +39,16 @@ function RevealText({
         split.revert()
       }
     },
-    { scope: ref, dependencies: [children, delay, stagger, start, scrollTriggered] }
+    // `children` is deliberately excluded: it's a JSX tree that gets a new
+    // object identity on every parent re-render even when the rendered text
+    // hasn't changed. Keeping it here meant any unrelated parent re-render
+    // (e.g. a page with a per-second clock tick) would kill and restart this
+    // tween before it could finish, leaving the heading stuck mid-reveal.
+    // SplitText reads straight from the live DOM on mount, so it already
+    // reflects whatever `children` was rendered — no dependency needed. If a
+    // caller genuinely needs to replay the reveal for new text without
+    // unmounting, give that instance a `key` instead.
+    { scope: ref, dependencies: [delay, stagger, start, scrollTriggered] }
   )
 
   return (
