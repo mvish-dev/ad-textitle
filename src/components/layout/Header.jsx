@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import MagneticButton from '../motion/MagneticButton.jsx'
+import GooeyNav from '../motion/GooeyNav.jsx'
 import Icon from '../ui/Icon.jsx'
 
+// Mobile drawer keeps every item, including the two dropdown groups, in one
+// flat/accordion list — GooeyNav is a desktop-only decoration (see below).
 const NAV_LINKS = [
   { label: 'About Us', to: '/about' },
   { label: 'Products', to: '/products' },
@@ -25,6 +28,17 @@ const NAV_LINKS = [
     ],
   },
 ]
+
+// The two dropdown groups (Capabilities, Quality & Sustainability) stay as
+// hover-dropdowns on desktop — GooeyNav has no concept of a dropdown, so it
+// only wraps the plain-link items, split into two clusters that sit either
+// side of the dropdowns to preserve the original left-to-right order.
+const GOOEY_GROUP_1 = [
+  { label: 'About Us', to: '/about' },
+  { label: 'Products', to: '/products' },
+]
+const GOOEY_GROUP_2 = [{ label: 'Private Label', to: '/private-label' }]
+const DROPDOWNS = NAV_LINKS.filter((link) => link.type === 'dropdown')
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -76,26 +90,9 @@ function Header() {
     ? 'font-headline-lg text-[1.55rem] font-bold tracking-tight text-primary transition-colors duration-300'
     : 'font-headline-lg text-[1.55rem] font-bold tracking-tight text-white transition-colors duration-300'
 
-  const linkClass = ({ isActive }) => {
-    const baseClass =
-      'relative inline-flex items-center gap-1 text-[0.8rem] font-medium tracking-wider transition-colors duration-300 pb-1 ' +
-      "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-full " +
-      'after:bg-secondary after:origin-center after:transition-transform after:duration-500 ' +
-      'after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100'
-    const underlineState = isActive ? 'after:scale-x-100' : 'after:scale-x-0'
-    if (isScrolledState) {
-      return isActive
-        ? `${baseClass} ${underlineState} text-primary`
-        : `${baseClass} ${underlineState} text-on-background/80 hover:text-primary`
-    } else {
-      return isActive
-        ? `${baseClass} ${underlineState} text-white`
-        : `${baseClass} ${underlineState} text-white/80 hover:text-white`
-    }
-  }
-
-  // Same visual treatment as linkClass, for dropdown triggers that have no
-  // single destination route of their own (so can't be a NavLink).
+  // Same visual treatment previously used for plain NavLinks, kept for the
+  // dropdown triggers (Capabilities, Quality & Sustainability), which have
+  // no single destination route of their own.
   const isDropdownActive = (link) => link.items.some((item) => item.to === location.pathname)
   const triggerClass = (link) => {
     const baseClass =
@@ -114,6 +111,54 @@ function Header() {
       : `${baseClass} ${underlineState} text-white/80 hover:text-white`
   }
 
+  const gooeyTextColors = {
+    activeTextColor: '#ffffff',
+    inactiveTextColor: isScrolledState ? 'rgba(15,23,42,0.75)' : 'rgba(255,255,255,0.8)',
+  }
+
+  const renderDropdown = (link) => (
+    <div key={link.label} className="relative group">
+      <button type="button" className={triggerClass(link)}>
+        {link.label}
+        <Icon name="expand_more" className="text-[16px] opacity-60" />
+      </button>
+
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 -translate-y-1 pointer-events-none
+          transition-all duration-250 ease-out group-hover:opacity-100 group-hover:translate-y-0
+          group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0
+          group-focus-within:pointer-events-auto z-50"
+      >
+        <div className="w-[280px] bg-white rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.18)] border border-outline-variant/15 overflow-hidden">
+          <div className="h-[3px] bg-gradient-to-r from-secondary to-[#A8834A]" />
+          <div className="px-5 pt-4 pb-1">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-secondary font-bold">{link.label}</p>
+          </div>
+          <div className="flex flex-col px-2 pb-2">
+            {link.items.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="group/item flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-background transition-colors duration-200"
+              >
+                <span className="flex items-center justify-center w-9 h-9 shrink-0 rounded-full bg-secondary/10 text-secondary group-hover/item:bg-secondary group-hover/item:text-white transition-colors duration-200">
+                  <Icon name={item.icon} className="text-[18px]" />
+                </span>
+                <span className="text-[0.85rem] font-medium text-on-surface flex-1 group-hover/item:text-primary transition-colors duration-200">
+                  {item.label}
+                </span>
+                <Icon
+                  name="arrow_forward"
+                  className="text-[14px] text-on-surface-variant opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <>
       <nav id="navbar" className={navClass} role="navigation" aria-label="Main navigation">
@@ -122,63 +167,25 @@ function Header() {
             AD <span className="text-secondary">Textile</span>
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
-            {NAV_LINKS.map((link) => {
-              const hasDropdown = link.type === 'dropdown'
-              return (
-                <li key={link.label} className={hasDropdown ? 'relative group' : 'relative'}>
-                  {link.to ? (
-                    <NavLink to={link.to} end={link.to === '/'} className={linkClass}>
-                      {link.label}
-                    </NavLink>
-                  ) : (
-                    <button type="button" className={triggerClass(link)}>
-                      {link.label}
-                      <Icon name="expand_more" className="text-[16px] opacity-60" />
-                    </button>
-                  )}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+            <GooeyNav
+              items={GOOEY_GROUP_1}
+              activeIndex={GOOEY_GROUP_1.findIndex((item) => item.to === location.pathname)}
+              pillColor="#C59D5F"
+              {...gooeyTextColors}
+            />
 
-                  {hasDropdown && (
-                    <div
-                      className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 -translate-y-1 pointer-events-none
-                        transition-all duration-250 ease-out group-hover:opacity-100 group-hover:translate-y-0
-                        group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0
-                        group-focus-within:pointer-events-auto z-50"
-                    >
-                      <div className="w-[280px] bg-white rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.18)] border border-outline-variant/15 overflow-hidden">
-                        <div className="h-[3px] bg-gradient-to-r from-secondary to-[#A8834A]" />
-                        <div className="px-5 pt-4 pb-1">
-                          <p className="text-[10px] uppercase tracking-[0.2em] text-secondary font-bold">
-                            {link.label}
-                          </p>
-                        </div>
-                        <div className="flex flex-col px-2 pb-2">
-                          {link.items.map((item) => (
-                            <Link
-                              key={item.to}
-                              to={item.to}
-                              className="group/item flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-background transition-colors duration-200"
-                            >
-                              <span className="flex items-center justify-center w-9 h-9 shrink-0 rounded-full bg-secondary/10 text-secondary group-hover/item:bg-secondary group-hover/item:text-white transition-colors duration-200">
-                                <Icon name={item.icon} className="text-[18px]" />
-                              </span>
-                              <span className="text-[0.85rem] font-medium text-on-surface flex-1 group-hover/item:text-primary transition-colors duration-200">
-                                {item.label}
-                              </span>
-                              <Icon
-                                name="arrow_forward"
-                                className="text-[14px] text-on-surface-variant opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0"
-                              />
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
+            {renderDropdown(DROPDOWNS[0])}
+
+            <GooeyNav
+              items={GOOEY_GROUP_2}
+              activeIndex={GOOEY_GROUP_2.findIndex((item) => item.to === location.pathname)}
+              pillColor="#C59D5F"
+              {...gooeyTextColors}
+            />
+
+            {renderDropdown(DROPDOWNS[1])}
+          </div>
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
