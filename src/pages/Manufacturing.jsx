@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import Footer from '../components/layout/Footer.jsx'
@@ -14,13 +15,12 @@ import Carousel from '../components/motion/Carousel.jsx'
 import { scrollTo } from '../lib/lenis.js'
 import Seo from '../components/common/Seo.jsx'
 
-// Only Embroidery keeps video (framed, with a grain treatment). The rest use
-// static photography with a Ken Burns zoom instead of low-quality footage.
+// Every process chapter uses static photography with a Ken Burns zoom.
 // Photography below is placeholder stock, standing in for client-supplied
 // facility photos on the newer chapters (Knitting, Warehouse) added for the
 // updated sitemap — reused from the closest existing chapter where a
 // dedicated photo isn't available yet.
-import embroideryVideo from '../assets/videos/Prinitng & Embroidery.mp4'
+import processVideo from '../assets/videos/manufacture.mp4'
 
 const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1800&q=85&auto=format&fit=crop'
 const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1800&q=85&auto=format&fit=crop'
@@ -113,7 +113,7 @@ const CERTIFICATION_ITEMS = [
 // tiles / checklist / badge as children. Every reveal is a plain
 // scroll-into-view animation (no pin, no scrub), so a stage is never stuck
 // hidden at initial paint the way the previous pinned timeline could be.
-function Chapter({ id, num, eyebrow, title, description, media, grain, reverse, children }) {
+function Chapter({ id, num, eyebrow, title, description, media, reverse, children }) {
   return (
     <section id={id} className="mfg-chapter relative w-full py-20 md:py-28 scroll-mt-24">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -128,9 +128,7 @@ function Chapter({ id, num, eyebrow, title, description, media, grain, reverse, 
           {children}
         </AnimatedContent>
         <AnimatedContent direction="vertical" distance={50} className={reverse ? 'md:order-1' : ''}>
-          <div
-            className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-outline-variant/20 bg-surface-container-low ${grain ? 'film-grain' : ''}`}
-          >
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-outline-variant/20 bg-surface-container-low">
             {media}
           </div>
         </AnimatedContent>
@@ -152,6 +150,7 @@ function StatTile({ icon, label, sub }) {
 function Manufacturing() {
   const journeyRef = useRef(null)
   const [activeChapter, setActiveChapter] = useState(SIDE_NAV_ITEMS[0].id)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   useEffect(() => {
     const sections = SIDE_NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(Boolean)
@@ -272,6 +271,40 @@ function Manufacturing() {
       </aside>
 
       <main className="w-full bg-background">
+        {/* Watch Our Process — video trailer */}
+        <section className="w-full bg-background py-20 md:py-28">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="eyebrow mb-4 block">See It In Motion</span>
+              <h2 className="section-title mb-4">
+                Watch Our <em>Process</em>
+              </h2>
+              <p className="text-on-surface-variant text-sm">
+                A tour through the AD Textile facility, from dyeing and weaving to finishing and dispatch.
+              </p>
+            </div>
+            <div
+              onClick={() => setIsVideoModalOpen(true)}
+              className="relative aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/20 bg-primary cursor-pointer group"
+            >
+              <img
+                src={weavingPhoto}
+                alt="AD Textile manufacturing facility"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
+              />
+              <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-all duration-300" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white gap-4">
+                <div className="w-20 h-20 rounded-full bg-white/10 group-hover:bg-secondary/90 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/20 group-hover:border-transparent transition-all duration-300">
+                  <Icon name="play_arrow" className="text-4xl translate-x-0.5" />
+                </div>
+                <span className="font-label-md text-xs font-semibold uppercase tracking-widest drop-shadow-md">
+                  Watch The Full Tour
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div ref={journeyRef} className="relative">
           <Chapter
             id="dyeing"
@@ -337,17 +370,7 @@ function Manufacturing() {
             eyebrow="Embellishment"
             title={<em>Embroidery</em>}
             description="Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines, featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities, and precision digitising — delivering intricate, premium designs across our home textile ranges."
-            media={
-              <video
-                src={embroideryVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover grayscale-[30%] contrast-105 brightness-95 saturate-75"
-              />
-            }
-            grain
+            media={<img src={checkingPhoto} alt="Embroidery detailing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <ul className="space-y-3">
               {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
@@ -540,6 +563,36 @@ function Manufacturing() {
 
         <Footer />
       </main>
+
+      {/* Video Lightbox Modal */}
+      <AnimatePresence>
+        {isVideoModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/85 backdrop-blur-sm"
+              onClick={() => setIsVideoModalOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden z-10 shadow-2xl aspect-video border border-white/10"
+            >
+              <button
+                onClick={() => setIsVideoModalOpen(false)}
+                className="absolute top-4 right-4 p-2 bg-black/60 hover:bg-black/80 rounded-full text-white/80 hover:text-white transition-all cursor-pointer z-20 border border-white/10"
+                aria-label="Close video"
+              >
+                <Icon name="close" className="text-xl" />
+              </button>
+              <video src={processVideo} controls autoPlay className="w-full h-full object-contain" />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

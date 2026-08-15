@@ -16,7 +16,7 @@ import slide2 from '../assets/img/slides/img-2.jpg'
 import slide3 from '../assets/img/slides/img-3.jpg'
 
 // Import corporate video
-import companyVideo from '../assets/videos/Our Company.mp4'
+import companyVideo from '../assets/videos/aboutus.mp4'
 
 const TIMELINE = [
   {

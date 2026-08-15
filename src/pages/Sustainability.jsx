@@ -5,9 +5,8 @@ import Icon from '../components/ui/Icon.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-// Import sustainability videos
-import envCareVideo from '../assets/videos/Environmental Care.mp4'
-import resourceVideo from '../assets/videos/Resource.mp4'
+const envCarePhoto = 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop'
+const resourcePhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1800&q=85&auto=format&fit=crop'
 
 function Sustainability() {
   return (
@@ -169,38 +168,28 @@ function Sustainability() {
             <div className="divider mx-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Environmental Care Video */}
+            {/* Environmental Care */}
             <div className="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col justify-between">
-              <div className="aspect-video relative bg-black">
-                <video
-                  src={envCareVideo}
-                  controls
-                  className="w-full h-full object-cover"
-                  poster="https://images.unsplash.com/photo-1448375240586-882707db888b?w=900&q=80&auto=format&fit=crop"
-                />
+              <div className="aspect-video relative overflow-hidden">
+                <img src={envCarePhoto} alt="Environmental care at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />
               </div>
               <div className="p-6">
                 <h4 className="font-headline-lg text-lg font-semibold text-primary mb-2">Environmental Care</h4>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
-                  A live tour of our state-of-the-art Water Treatment, Reverse Osmosis, and VSEP systems ensuring zero hazardous waste discharge.
+                  State-of-the-art Water Treatment, Reverse Osmosis, and VSEP systems ensuring zero hazardous waste discharge.
                 </p>
               </div>
             </div>
 
-            {/* Resource Management Video */}
+            {/* Resource Management */}
             <div className="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col justify-between">
-              <div className="aspect-video relative bg-black">
-                <video
-                  src={resourceVideo}
-                  controls
-                  className="w-full h-full object-cover"
-                  poster="https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&q=80&auto=format&fit=crop"
-                />
+              <div className="aspect-video relative overflow-hidden">
+                <img src={resourcePhoto} alt="Resource management at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />
               </div>
               <div className="p-6">
                 <h4 className="font-headline-lg text-lg font-semibold text-primary mb-2">Resource Management</h4>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
-                  Showcasing our energy efficiency, raw material sourcing, and eco-certified production operations.
+                  Energy efficiency, raw material sourcing, and eco-certified production operations.
                 </p>
               </div>
             </div>
