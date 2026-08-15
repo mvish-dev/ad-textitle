@@ -10,13 +10,22 @@ import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
-const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1200&q=85&auto=format&fit=crop'
-const packingPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCSDmnh1m5zgpHybsgAebq6RtTbqDnmfUUA1FQdaPTT-YCZJKXHrUZoLVfU3J-ELC3JEtvugYzKmq2wI86gbtTk6g-HU3vskwoZvvvKlibCU3Gz3KN8gyagklC62wyl5uDXnmln8cZTls46a7gvD7FbmoRVfWyJTBm_J8A1qrFuiYYesnOLEvVKuFixPhZD2E36KWrPzq59paOpQu3To_mVuuReCyqJK__q0NUw4RtJqkBoUNKQgVMdcNIfG77YntV14bDYlCs4H2k'
-const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1200&q=85&auto=format&fit=crop'
-const cuttingPhoto =
-  'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1200&q=85&auto=format&fit=crop'
+import weavingHero from '../assets/images/manufacturing/weaving/weaving-hero.webp'
+import weavingSignage from '../assets/images/manufacturing/weaving/weaving-signage.webp'
+import weavingWorkerPlaid from '../assets/images/manufacturing/weaving/weaving-worker-plaid.webp'
+import dyeingHero from '../assets/images/manufacturing/dyeing/dyeing-hero.webp'
+import dyeingHallWide from '../assets/images/manufacturing/dyeing/dyeing-hall-wide.webp'
+import knittingHero from '../assets/images/manufacturing/knitting/knitting-hero.webp'
+import cuttingHero from '../assets/images/manufacturing/cutting/cutting-hero.webp'
+import embroideryHero from '../assets/images/manufacturing/embroidery/embroidery-hero.webp'
+import stitchingHero from '../assets/images/manufacturing/stitching/stitching-hero.webp'
+import checkingHero from '../assets/images/manufacturing/checking/checking-hero.webp'
+import checkingGroupTowels from '../assets/images/manufacturing/checking/checking-group-towels.webp'
+import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
+import packingHero from '../assets/images/manufacturing/packing/packing-hero.webp'
+import warehouseHero from '../assets/images/manufacturing/warehouse/warehouse-hero.webp'
+import warehouseAlt from '../assets/images/manufacturing/warehouse/warehouse-alt.webp'
+import aerialCampusWide from '../assets/images/facility/aerial-campus-wide.webp'
 
 const SECTIONS = [
   {
@@ -32,7 +41,7 @@ const SECTIONS = [
     description:
       'AD Textile has exported home textiles internationally since 1992, serving major retailers across global markets with consistent quality and reliable delivery, order after order.',
     bullets: ['Exporting Since 1992', 'International Retail Clients', 'Consistent Repeat Orders'],
-    image: weavingPhoto,
+    image: weavingHero,
     imageAlt: 'Production destined for international markets at AD Textile',
   },
   {
@@ -48,7 +57,7 @@ const SECTIONS = [
     description:
       'Documentation, compliance certification and logistics coordination are handled in-house, so buyers deal with a single point of contact from purchase order through to goods landed at destination.',
     bullets: ['In-House Documentation', 'Compliance Certification', 'Single Point of Contact'],
-    image: dyeingPhoto,
+    image: dyeingHero,
     imageAlt: 'Export-ready production at AD Textile',
   },
   {
@@ -64,7 +73,7 @@ const SECTIONS = [
     description:
       'Vertically integrated manufacturing — Somet Rapier looms weaving 1 million metres a month, 3 tons/day of dyeing capacity, and dedicated knitting, embroidery and stitching lines — gives us the throughput to support both large repeat programs and smaller specialist orders.',
     bullets: ['1M Metres/Month Weaving', '3 Tons/Day Dyeing Capacity', 'Flexible Order Volumes'],
-    image: checkingPhoto,
+    image: weavingWorkerPlaid,
     imageAlt: 'Manufacturing capacity at AD Textile',
   },
   {
@@ -80,7 +89,7 @@ const SECTIONS = [
     description:
       'Finished goods are packed and loaded to withstand long-haul shipping, with packing plans built around container utilisation so every shipment travels efficiently and arrives intact.',
     bullets: ['Shipment-Ready Packing', 'Optimised Container Utilisation', 'Damage-Resistant Loading'],
-    image: packingPhoto,
+    image: warehouseHero,
     imageAlt: 'Container loading and export packing at AD Textile',
   },
   {
@@ -96,22 +105,22 @@ const SECTIONS = [
     description:
       'From first inquiry through to post-shipment documentation, our export team supports international buyers directly, coordinating sampling, compliance paperwork and delivery timelines across time zones.',
     bullets: ['Direct Export Team Contact', 'Sampling & Documentation Support', 'Cross-Time-Zone Coordination'],
-    image: checkingPhoto,
+    image: checkingHero,
     imageAlt: 'Export team supporting an international buyer inquiry',
   },
 ]
 
 const DESTINATIONS = [
-  { img: weavingPhoto, height: 760, title: 'Europe' },
-  { img: dyeingPhoto, height: 560, title: 'North America' },
-  { img: checkingPhoto, height: 680, title: 'Middle East' },
-  { img: packingPhoto, height: 540, title: 'East Asia' },
-  { img: cuttingPhoto, height: 640, title: 'Container Dispatch' },
-  { img: weavingPhoto, height: 520, title: 'Retail Programs' },
-  { img: dyeingPhoto, height: 600, title: 'Compliance & Documentation' },
-  { img: checkingPhoto, height: 500, title: 'Buyer Support' },
-  { img: packingPhoto, height: 620, title: 'Dispatch & Loading' },
-  { img: cuttingPhoto, height: 560, title: 'Production Capacity' },
+  { img: embroideryHero, height: 760, title: 'Europe' },
+  { img: stitchingHero, height: 560, title: 'North America' },
+  { img: knittingHero, height: 680, title: 'Middle East' },
+  { img: cuttingHero, height: 540, title: 'East Asia' },
+  { img: warehouseAlt, height: 640, title: 'Container Dispatch' },
+  { img: checkingGroupTowels, height: 520, title: 'Retail Programs' },
+  { img: checkingInline, height: 600, title: 'Compliance & Documentation' },
+  { img: aerialCampusWide, height: 500, title: 'Buyer Support' },
+  { img: packingHero, height: 620, title: 'Dispatch & Loading' },
+  { img: dyeingHallWide, height: 560, title: 'Production Capacity' },
 ].map((item, i) => ({ id: i, ...item }))
 
 function Exports() {
@@ -367,7 +376,7 @@ function Exports() {
           <img
             className="w-full h-full object-cover scale-105 brightness-50"
             alt="Denim weaving logistics texture"
-            src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80&auto=format&fit=crop"
+            src={weavingSignage}
           />
         </div>
 

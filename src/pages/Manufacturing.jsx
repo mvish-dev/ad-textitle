@@ -16,19 +16,39 @@ import { scrollTo } from '../lib/lenis.js'
 import Seo from '../components/common/Seo.jsx'
 
 // Every process chapter uses static photography with a Ken Burns zoom.
-// Photography below is placeholder stock, standing in for client-supplied
-// facility photos on the newer chapters (Knitting, Warehouse) added for the
-// updated sitemap — reused from the closest existing chapter where a
-// dedicated photo isn't available yet.
 import processVideo from '../assets/videos/manufacture.mp4'
 
-const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1800&q=85&auto=format&fit=crop'
-const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1800&q=85&auto=format&fit=crop'
-const cuttingPhoto =
-  'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1800&q=85&auto=format&fit=crop'
-const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1800&q=85&auto=format&fit=crop'
-const packingPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCSDmnh1m5zgpHybsgAebq6RtTbqDnmfUUA1FQdaPTT-YCZJKXHrUZoLVfU3J-ELC3JEtvugYzKmq2wI86gbtTk6g-HU3vskwoZvvvKlibCU3Gz3KN8gyagklC62wyl5uDXnmln8cZTls46a7gvD7FbmoRVfWyJTBm_J8A1qrFuiYYesnOLEvVKuFixPhZD2E36KWrPzq59paOpQu3To_mVuuReCyqJK__q0NUw4RtJqkBoUNKQgVMdcNIfG77YntV14bDYlCs4H2k'
+import dyeingHero from '../assets/images/manufacturing/dyeing/dyeing-hero.webp'
+import dyeingHallWide from '../assets/images/manufacturing/dyeing/dyeing-hall-wide.webp'
+import dyeingAutoclaves from '../assets/images/manufacturing/dyeing/dyeing-autoclaves.webp'
+import dyeingWorkerCones from '../assets/images/manufacturing/dyeing/dyeing-worker-cones.webp'
+import dyeingYarnMacro from '../assets/images/manufacturing/dyeing/dyeing-yarn-macro.webp'
+import weavingHero from '../assets/images/manufacturing/weaving/weaving-hero.webp'
+import weavingWarpingCreel from '../assets/images/manufacturing/weaving/weaving-warping-creel.webp'
+import weavingSignage from '../assets/images/manufacturing/weaving/weaving-signage.webp'
+import knittingHero from '../assets/images/manufacturing/knitting/knitting-hero.webp'
+import knittingHallElevated from '../assets/images/manufacturing/knitting/knitting-hall-elevated.webp'
+import linkingMacro from '../assets/images/manufacturing/knitting/linking-macro.webp'
+import linkingMachineSocks from '../assets/images/manufacturing/knitting/linking-machine-socks.webp'
+import washingMachineWide from '../assets/images/manufacturing/knitting/washing-machine-wide.webp'
+import ironingMacro from '../assets/images/manufacturing/knitting/ironing-macro.webp'
+import cuttingHero from '../assets/images/manufacturing/cutting/cutting-hero.webp'
+import cuttingDetail from '../assets/images/manufacturing/cutting/cutting-detail.webp'
+import cuttingMacroSafety from '../assets/images/manufacturing/cutting/cutting-macro-safety.webp'
+import cuttingTwoWorkers from '../assets/images/manufacturing/cutting/cutting-two-workers.webp'
+import embroideryHero from '../assets/images/manufacturing/embroidery/embroidery-hero.webp'
+import embroideryMacroNeedle from '../assets/images/manufacturing/embroidery/embroidery-macro-needle.webp'
+import embroideryTexture from '../assets/images/manufacturing/embroidery/embroidery-texture.webp'
+import stitchingHero from '../assets/images/manufacturing/stitching/stitching-hero.webp'
+import stitchingAltWide from '../assets/images/manufacturing/stitching/stitching-alt-wide.webp'
+import checkingHero from '../assets/images/manufacturing/checking/checking-hero.webp'
+import checkingGroupTowels from '../assets/images/manufacturing/checking/checking-group-towels.webp'
+import checkingDetail from '../assets/images/manufacturing/checking/checking-detail.webp'
+import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
+import packingHero from '../assets/images/manufacturing/packing/packing-hero.webp'
+import packingSignage from '../assets/images/manufacturing/packing/packing-signage.webp'
+import warehouseHero from '../assets/images/manufacturing/warehouse/warehouse-hero.webp'
+import warehouseAlt from '../assets/images/manufacturing/warehouse/warehouse-alt.webp'
 
 const SIDE_NAV_ITEMS = [
   { id: 'dyeing', icon: 'format_color_fill', label: 'Dyeing' },
@@ -64,14 +84,29 @@ const MARQUEE_ITEMS = [
   ),
 }))
 
-const GALLERY_PHOTOS = [
-  { image: dyeingPhoto, title: 'Dyeing Floor' },
-  { image: weavingPhoto, title: 'Weaving Hall' },
-  { image: cuttingPhoto, title: 'Cutting Room' },
-  { image: checkingPhoto, title: 'Quality Inspection' },
-  { image: packingPhoto, title: 'Packing Line' },
+const GALLERY_ITEMS = [
+  { image: dyeingAutoclaves, title: 'Dyeing — Autoclaves' },
+  { image: dyeingWorkerCones, title: 'Dyeing — Colour Load' },
+  { image: dyeingYarnMacro, title: 'Dyeing — Yarn Texture' },
+  { image: weavingWarpingCreel, title: 'Weaving — Warping' },
+  { image: weavingSignage, title: 'Weaving Unit' },
+  { image: knittingHallElevated, title: 'Knitting Hall' },
+  { image: linkingMacro, title: 'Linking' },
+  { image: linkingMachineSocks, title: 'Linking Machine' },
+  { image: washingMachineWide, title: 'Washing' },
+  { image: ironingMacro, title: 'Setting & Ironing' },
+  { image: cuttingDetail, title: 'Cutting — Detail' },
+  { image: cuttingMacroSafety, title: 'Cutting — Precision' },
+  { image: cuttingTwoWorkers, title: 'Cutting Team' },
+  { image: embroideryMacroNeedle, title: 'Embroidery — Detail' },
+  { image: embroideryTexture, title: 'Embroidery — Pattern' },
+  { image: stitchingAltWide, title: 'Stitching Floor' },
+  { image: checkingGroupTowels, title: 'Checking & QC' },
+  { image: checkingDetail, title: 'Checking — Detail' },
+  { image: checkingInline, title: 'Quality Check' },
+  { image: packingSignage, title: 'Packing Section' },
+  { image: warehouseAlt, title: 'Warehouse' },
 ]
-const GALLERY_ITEMS = Array.from({ length: 18 }, (_, i) => GALLERY_PHOTOS[i % GALLERY_PHOTOS.length])
 
 const ASSURANCE_STEPS = [
   {
@@ -288,7 +323,7 @@ function Manufacturing() {
               className="relative aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/20 bg-primary cursor-pointer group"
             >
               <img
-                src={weavingPhoto}
+                src={dyeingHallWide}
                 alt="AD Textile manufacturing facility"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
               />
@@ -312,7 +347,7 @@ function Manufacturing() {
             eyebrow="Coloration"
             title={<>Precision <em>Color</em> Science</>}
             description="Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior dye penetration, exceptional colour fastness, and consistent quality across a wide variety of yarn types and blends."
-            media={<img src={dyeingPhoto} alt="Azo-free dye vats at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={dyeingHero} alt="Azo-free dye vats at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="format_color_fill" label="Italian Cheese Dyeing" sub="Imported Machines" />
@@ -326,7 +361,7 @@ function Manufacturing() {
             eyebrow="Structural Integrity"
             title="The Architecture of Fabric"
             description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts."
-            media={<img src={weavingPhoto} alt="Automatic weaving looms at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -341,7 +376,7 @@ function Manufacturing() {
             eyebrow="Loop Formation"
             title={<>Precision in Every <em>Loop</em></>}
             description="Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — supported by a fully integrated composite unit for linking, washing, setting and ironing."
-            media={<img src={weavingPhoto} alt="Knitted fabric structures at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={knittingHero} alt="Circular knitting machines producing socks at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="texture" label="50 Knitting Machines" sub="Imported Korean, Single Cylinder" />
@@ -355,7 +390,7 @@ function Manufacturing() {
             eyebrow="Precision"
             title={<em>Cutting</em>}
             description="Our in-house cutting facility is designed to deliver precision, consistency and efficiency across every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for high-quality finished products."
-            media={<img src={cuttingPhoto} alt="Precision fabric cutting at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={cuttingHero} alt="Precision fabric cutting at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="flex flex-wrap gap-4">
@@ -370,7 +405,7 @@ function Manufacturing() {
             eyebrow="Embellishment"
             title={<em>Embroidery</em>}
             description="Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines, featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities, and precision digitising — delivering intricate, premium designs across our home textile ranges."
-            media={<img src={checkingPhoto} alt="Embroidery detailing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={embroideryHero} alt="Embroidery detailing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <ul className="space-y-3">
               {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
@@ -388,7 +423,7 @@ function Manufacturing() {
             eyebrow="Construction"
             title={<em>Stitching</em>}
             description="Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and sock linking operations — converting cut and embroidered panels into finished, quality-checked pieces at high volume."
-            media={<img src={cuttingPhoto} alt="Stitching production line at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={stitchingHero} alt="Stitching production line at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="flex flex-wrap gap-4">
@@ -403,7 +438,7 @@ function Manufacturing() {
             eyebrow="Assurance"
             title={<>Checking &amp; Quality <em>Control</em></>}
             description="Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every product meets the highest standards of quality and accuracy — evaluated for measurement accuracy, appearance, and packing at every stage."
-            media={<img src={checkingPhoto} alt="Quality inspection and finishing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-5">
               {[
@@ -429,7 +464,7 @@ function Manufacturing() {
             eyebrow="Fulfilment"
             title={<em>Packing</em>}
             description="AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements — from custom-specific packing with embellishments to à la carte packing tailored to each client's needs — every shipment is prepared to withstand the rigors of long-haul shipping."
-            media={<img src={packingPhoto} alt="Export packing operations at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={packingHero} alt="Export packing operations at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -444,7 +479,7 @@ function Manufacturing() {
             eyebrow="Storage & Fulfilment"
             title="Warehouse"
             description="Our warehouse manages raw material storage, work-in-progress staging and finished-goods consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every order accounted for from production floor to container."
-            media={<img src={packingPhoto} alt="Warehouse and finished-goods storage at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-3">
               {['Organized Racking & Inventory Tracking', 'Finished-Goods Consolidation for Dispatch'].map((label) => (

@@ -17,6 +17,12 @@ import CollectionsCarousel3D from '../components/motion/CollectionsCarousel3D.js
 import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
 import Seo from '../components/common/Seo.jsx'
 
+import weavingSignage from '../assets/images/manufacturing/weaving/weaving-signage.webp'
+import embroideryMacroNeedle from '../assets/images/manufacturing/embroidery/embroidery-macro-needle.webp'
+import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
+import warehouseHero from '../assets/images/manufacturing/warehouse/warehouse-hero.webp'
+import weavingWorkerPlaid from '../assets/images/manufacturing/weaving/weaving-worker-plaid.webp'
+
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
   { icon: 'public', title: 'Export Since 1992', caption: 'Global Reach' },
@@ -136,9 +142,8 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
       'Somet Super Excel Rapier Looms weaving 1 million metres of premium fabric every month.',
     href: '/manufacturing#weaving',
     linkLabel: 'Technical Specifications',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuC6UIg_my9ndoQxb-vJN2giWKEECHywzzxEjsL8xRgDH9MqV1aW2r9J4AduCdEnCa-EXV5H-VetS2s4mshhPtJcYFAD3qR1Tr9E1GkwlA5VH-REXwZ9kpxeCh_JJJcUPaA7HVkya_ZQ3Iz2L4utVIITWvLdF8j_2FzNI1n-_xQE-4If9vMWPEtIqpVu7bIBRDPHacRaJRIAX4n7bNEWM99CaQo1qBZ_kver0BMePTS_DUp3ovmDbjE3fSDFvn87e1QBvOu_NzPprfs',
-    alt: 'High-angle architectural shot of a state-of-the-art textile weaving facility.',
+    image: weavingSignage,
+    alt: 'Wide weaving-hall aisle with rapier looms running at the AD Textile facility.',
   },
   {
     title: 'Advanced Finishing Hub',
@@ -146,9 +151,8 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
       'Garuda and Toshiba embroidery machines with 54 heads (10–12 thread colours) and precision digitising.',
     href: '/manufacturing#embroidery',
     linkLabel: 'Process Overview',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDGR0CkgYRw78qoYAjf-dzT5EPSS7fUmKhzhwT_lHjB23zBsEyJ6m06AjjJ3PZDRKRBoJ93LUbRKSs_0FLKxyBRLdyDvbhU0s_tMgmzonvcFdseZxhjxIve-huknqBM91Z_FmLzmPEZOTvLMZwXMy8y8GHg-YPVAIm4gODzlDpGdwUhdQkg_ztiYw5njXnUXVWIPMlThCU7D_OSaaiTuOVWtUhgbzQeX9Hl3ooXkKpAuJuZmcuU1Srnk6nlpwi0BuxXnKkwYs8LNSI',
-    alt: 'Close-up of a high-speed industrial textile printer applying vibrant patterns.',
+    image: embroideryMacroNeedle,
+    alt: 'Close-up of an embroidery needle head stitching a colourful pattern at AD Textile.',
   },
 ]
 
@@ -505,8 +509,8 @@ function Home() {
                 <div className="aspect-square bg-surface-container rounded-2xl overflow-hidden shadow-lg border border-outline-variant/30">
                   <img
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuARFtteGVwzYDGHiEgurv8EAU_EzBuunFFXNWLp8BkYbHDjxBmqSt523srXCWOGHRSSDj3QTeEEc2lkiqe3CM3esjFPhg1qmkFNp3zd8i0UOvitKop9KPbSNwhOwwwhdN0GhFjzNtoazLp2s5SekX4WxW05VW8vSAkmGetEaovNeb-ejgZYPQCCacMm7zMBA3whWTjRpDiyhUZ2U1OD6dCbgwpJK4iuTm7jFMHv2eh4gdxLG7SO6KQI3MmhGGdPKSeHVBf_bPISpAs"
-                    alt="Laboratory textile quality tests"
+                    src={colorMatchingTechnician}
+                    alt="Laboratory technician performing colour-matching tests at AD Textile"
                   />
                 </div>
               </TiltedCard>
@@ -515,8 +519,8 @@ function Home() {
                 <div className="aspect-square bg-surface-container rounded-2xl overflow-hidden shadow-lg border border-outline-variant/30">
                   <img
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaPzkMYakqybdMpIenotQSzoUBPrEdqnHvuGDxNJHMuxvflBtNEovCiQeWsGu02GBUU41DOyfx_RnQgU8pN3BSu5cuRGAlozLilf-4U0aQtIluzYK_IvBF4UwIGlxtw5GX0BhIpEsoF6ngv60rGEfKxqEm67niqwNuspjxEgKYD3-190qpis4QX3Zi3EigKxEKh-3Lx8MlaWbMKNAvQNzxkflrOgPLR9Jd5IsMHSNva4Mt-FYXvWLctWRKEPzzO1jrsuEH0MlC8n8"
-                    alt="Warehouse of packaged fabrics"
+                    src={warehouseHero}
+                    alt="Warehouse of packaged, export-ready fabrics at AD Textile"
                   />
                 </div>
               </TiltedCard>
@@ -630,7 +634,7 @@ function Home() {
               <img
                 className="w-full h-full object-cover scale-105"
                 alt="Weaving background"
-                src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80&auto=format&fit=crop"
+                src={weavingWorkerPlaid}
               />
             </div>
             

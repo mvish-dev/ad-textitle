@@ -8,14 +8,17 @@ import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import Seo from '../components/common/Seo.jsx'
 
+import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
+import checkingFinalAql from '../assets/images/manufacturing/checking/checking-final-aql.webp'
+import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
+
 const INSPECTION_STEPS = [
   {
     levels: 'LAYER 1 · IN-LINE',
     title: 'In-Line Inspection',
     description:
       'Quality checks happen at every stage of production — not just at the end — across weaving, dyeing, knitting, cutting, embroidery and stitching, so issues are caught and corrected as they happen.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCCFkk_vBrMce8f7lUDpZ2Sk5VpVynHijyuKbtHHXmaPkLGl3LFHCCRhFjehokNhl05QmI73BlA3F8qyMm1a7KxulxYZugaDApG46ZNPoG5r2qdc3uBUF9Rzwq6-RfDCtWvjMSs8uUsB-c1VUfyU4nvTxOCeJgIH82Q6e5NHkO-njrCNYoG_rkA8CwxFwkk_6NMlvipaCJfsIfamR3dG8aufklXsE2rLZaoWG5Squtk51AKbt7eyzZtSg8siwfGbguNcxO5rQYWdt0',
+    image: checkingInline,
     alt: 'In-Line Production Inspection',
     align: 'right',
   },
@@ -24,8 +27,7 @@ const INSPECTION_STEPS = [
     title: 'Final AQL Inspection',
     description:
       'Every order undergoes a final AQL-standard inspection before dispatch, with each product evaluated for measurement accuracy, appearance, and packing — ensuring zero-compromise quality in every batch.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuA0ZBFhfpiZpem_nFLokK1YXX6-BYL2OPF91ZNlETlMuVz1eJyxd1p9wK-6BZTAKaOUjbWs44bJ7ZKr-z1TfkOv2k-Z8hOlIwChTNvlxdB0G3zxaqpx1k8-3xMGRtmevMGXIDrVHugpbdTt76Myj7_YCnzJd1yTnlfZlRcmbwxgw7cMu1vwdx4OBw3MQIvP0nB6wRpbPi7A1PrGi06gntvVyl3O2nobGbchxAydtSfl2AnyIRJVAjLiYCkBRAc3vW38vy3QWNeDurs',
+    image: checkingFinalAql,
     alt: 'Final AQL-Standard Inspection Before Dispatch',
     align: 'left',
   },
@@ -297,8 +299,8 @@ function QualityCompliance() {
             <div className="relative group cursor-crosshair hidden md:block">
               <img
                 className="w-full aspect-[4/5] object-cover rounded-2xl border border-outline-variant/30 shadow-lg group-hover:scale-[1.01] transition-transform duration-700"
-                alt="Textile scientists in laboratory coats"
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80&auto=format&fit=crop"
+                alt="Laboratory technician performing colour-matching tests at AD Textile"
+                src={colorMatchingTechnician}
               />
               <div className="absolute -bottom-6 -left-6 bg-secondary p-8 text-white rounded-xl shadow-lg max-w-xs">
                 <p className="text-[10px] uppercase tracking-widest font-semibold text-white/80 mb-2">Quality Assurance</p>

@@ -1,14 +1,11 @@
 import CapabilityPage from '../components/layout/CapabilityPage.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
-const labPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuC11FYWM-cPNNt6hAn3dSIiFRt9rG_xK8xZys7IO6dqXib4fCvZsI0Uz34f9AGprZIlHXP7v-3H8u0ej4_pSo4SOLBSk5guaJ9VMoRx4_tvooHT6bqehOIf4thxNBonTKkAH97r5DCUMQ9Kxtj3dbPkf7aSjKl62Kzbo8hWY1wbvYpuO5X_HLmoXKLynuIzN2Kfx0Vtdd57cRVolnPI5EGJiILubw6nKG0V47AlPXvd2ug3cBrdE2u-zW9Jzm2LiMkuRYHFWEmwvTQ'
-const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1200&q=85&auto=format&fit=crop'
-const cuttingPhoto =
-  'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1200&q=85&auto=format&fit=crop'
-const packingPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCSDmnh1m5zgpHybsgAebq6RtTbqDnmfUUA1FQdaPTT-YCZJKXHrUZoLVfU3J-ELC3JEtvugYzKmq2wI86gbtTk6g-HU3vskwoZvvvKlibCU3Gz3KN8gyagklC62wyl5uDXnmln8cZTls46a7gvD7FbmoRVfWyJTBm_J8A1qrFuiYYesnOLEvVKuFixPhZD2E36KWrPzq59paOpQu3To_mVuuReCyqJK__q0NUw4RtJqkBoUNKQgVMdcNIfG77YntV14bDYlCs4H2k'
+import weavingHero from '../assets/images/manufacturing/weaving/weaving-hero.webp'
+import colorMatchingMachine from '../assets/images/lab/color-matching-machine.webp'
+import checkingHero from '../assets/images/manufacturing/checking/checking-hero.webp'
+import embroideryHero from '../assets/images/manufacturing/embroidery/embroidery-hero.webp'
+import packingHero from '../assets/images/manufacturing/packing/packing-hero.webp'
 
 const SECTIONS = [
   {
@@ -24,7 +21,7 @@ const SECTIONS = [
     description:
       'We manufacture to your specification, exact fabric, construction and finish requirements executed at scale on our own looms, dyeing, embroidery and stitching lines, with your brand attached at the very end.',
     bullets: ['Manufactured to Your Spec', 'Full Vertical Integration', 'Scalable Production'],
-    image: weavingPhoto,
+    image: weavingHero,
     imageAlt: 'OEM production run on the weaving floor at AD Textile',
   },
   {
@@ -40,7 +37,7 @@ const SECTIONS = [
     description:
       'When you need more than manufacturing, our in-house design and development team can originate product concepts for your brand, ready for your review and refinement before production begins.',
     bullets: ['In-House Concept Development', 'Buyer Review Cycles', 'Design-to-Production Continuity'],
-    image: labPhoto,
+    image: colorMatchingMachine,
     imageAlt: 'Design-assisted product development at AD Textile',
   },
   {
@@ -56,7 +53,7 @@ const SECTIONS = [
     description:
       'Finished products are labelled, tagged and documented under your brand, with the same 2-layer AQL inspection system and compliance documentation applied regardless of whose name is on the packaging.',
     bullets: ['Brand-Ready Labelling', 'Full Compliance Documentation', '2-Layer AQL Inspection'],
-    image: checkingPhoto,
+    image: checkingHero,
     imageAlt: 'Private label finishing and inspection at AD Textile',
   },
   {
@@ -72,7 +69,7 @@ const SECTIONS = [
     description:
       'From custom weaves and dobby patterns to bespoke embroidery placements, our design studio and production floor work together to produce designs unique to your collection.',
     bullets: ['Custom Weaves & Patterns', 'Bespoke Embroidery Placement', 'Exclusive to Your Collection'],
-    image: cuttingPhoto,
+    image: embroideryHero,
     imageAlt: 'Custom design production at AD Textile',
   },
   {
@@ -88,7 +85,7 @@ const SECTIONS = [
     description:
       "Packaging is developed to match your brand presentation, from custom-specific packing with embellishments to à la carte options, prepared to withstand the rigors of long-haul export shipping.",
     bullets: ['Brand-Matched Presentation', 'Custom & À La Carte Options', 'Export-Grade Durability'],
-    image: packingPhoto,
+    image: packingHero,
     imageAlt: 'Custom packaging development at AD Textile',
   },
 ]

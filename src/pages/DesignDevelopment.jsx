@@ -8,15 +8,12 @@ import CurvedLoop from '../components/motion/CurvedLoop.jsx'
 import CardSwap, { Card } from '../components/motion/CardSwap.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-const weavingPhoto = 'https://images.unsplash.com/photo-1619043518800-7f14be467dca?w=1200&q=85&auto=format&fit=crop'
-const cuttingPhoto =
-  'https://plus.unsplash.com/premium_photo-1682142721713-2b076bc2b29b?w=1200&q=85&auto=format&fit=crop'
-const labPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuC11FYWM-cPNNt6hAn3dSIiFRt9rG_xK8xZys7IO6dqXib4fCvZsI0Uz34f9AGprZIlHXP7v-3H8u0ej4_pSo4SOLBSk5guaJ9VMoRx4_tvooHT6bqehOIf4thxNBonTKkAH97r5DCUMQ9Kxtj3dbPkf7aSjKl62Kzbo8hWY1wbvYpuO5X_HLmoXKLynuIzN2Kfx0Vtdd57cRVolnPI5EGJiILubw6nKG0V47AlPXvd2ug3cBrdE2u-zW9Jzm2LiMkuRYHFWEmwvTQ'
-const checkingPhoto = 'https://images.unsplash.com/photo-1722963296013-8277246798ff?w=1200&q=85&auto=format&fit=crop'
-const dyeingPhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1200&q=85&auto=format&fit=crop'
-const packingPhoto =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCSDmnh1m5zgpHybsgAebq6RtTbqDnmfUUA1FQdaPTT-YCZJKXHrUZoLVfU3J-ELC3JEtvugYzKmq2wI86gbtTk6g-HU3vskwoZvvvKlibCU3Gz3KN8gyagklC62wyl5uDXnmln8cZTls46a7gvD7FbmoRVfWyJTBm_J8A1qrFuiYYesnOLEvVKuFixPhZD2E36KWrPzq59paOpQu3To_mVuuReCyqJK__q0NUw4RtJqkBoUNKQgVMdcNIfG77YntV14bDYlCs4H2k'
+import weavingHero from '../assets/images/manufacturing/weaving/weaving-hero.webp'
+import cuttingTwoWorkers from '../assets/images/manufacturing/cutting/cutting-two-workers.webp'
+import colorMatchingMachine from '../assets/images/lab/color-matching-machine.webp'
+import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
+import embroideryHero from '../assets/images/manufacturing/embroidery/embroidery-hero.webp'
+import packingHero from '../assets/images/manufacturing/packing/packing-hero.webp'
 
 const SECTIONS = [
   {
@@ -32,7 +29,7 @@ const SECTIONS = [
     description:
       'New home textile products move from concept to production-ready specification through a structured development process, drawing on our vertically integrated manufacturing to test ideas quickly against real fabric and finish.',
     bullets: ['Concept-to-Spec Workflow', 'Cross-Functional Review', 'Manufacturing-Ready Handoff'],
-    image: weavingPhoto,
+    image: weavingHero,
     imageAlt: 'Fabric development in progress at AD Textile',
   },
   {
@@ -44,7 +41,7 @@ const SECTIONS = [
     description:
       'Physical samples are produced in-house so buyers can evaluate hand-feel, construction and finish before committing to a production run, with fast turnaround supported by our own cutting, embroidery and stitching lines.',
     bullets: ['In-House Sample Production', 'Fast Turnaround', 'Buyer Approval Cycles'],
-    image: cuttingPhoto,
+    image: cuttingTwoWorkers,
     imageAlt: 'Sample piece being cut and checked at AD Textile',
   },
   {
@@ -60,7 +57,7 @@ const SECTIONS = [
     description:
       'Our in-house design studio works in CAD to develop patterns, layouts and repeats ahead of production, giving buyers an accurate preview of scale, colourway and placement before a single meter of fabric is committed.',
     bullets: ['In-House Design Studio', 'Pattern & Repeat Development', 'Pre-Production Visualization'],
-    image: labPhoto,
+    image: colorMatchingMachine,
     imageAlt: 'Design and technical development studio at AD Textile',
   },
   {
@@ -76,7 +73,7 @@ const SECTIONS = [
     description:
       'Embroidery artwork is digitised in-house into stitch files tuned for our Garuda and Toshiba machines (54 heads, 10–12 thread colours), ensuring intricate designs translate accurately from concept to finished embellishment across every production run.',
     bullets: ['In-House Digitising', 'Garuda & Toshiba Ready', 'Accurate Stitch Translation'],
-    image: checkingPhoto,
+    image: embroideryHero,
     imageAlt: 'Embroidery detail work at AD Textile',
   },
   {
@@ -92,7 +89,7 @@ const SECTIONS = [
     description:
       'Lab-dip and bulk-dye colour matching is carried out against buyer standards using spectrophotometric measurement, keeping every dye lot consistent with the approved shade across the full order quantity.',
     bullets: ['Spectrophotometric Matching', 'Lab-Dip Approval', 'Azo-Free Dyes Only'],
-    image: dyeingPhoto,
+    image: colorMatchingTechnician,
     imageAlt: 'Colour matching and dye lab at AD Textile',
   },
   {
@@ -108,7 +105,7 @@ const SECTIONS = [
     description:
       'Retail-ready packaging is developed alongside the product itself, from custom-specific packing with embellishments to à la carte options tailored to each client and export destination.',
     bullets: ['Custom & À La Carte Options', 'Retail-Ready Presentation', 'Export-Grade Durability'],
-    image: packingPhoto,
+    image: packingHero,
     imageAlt: 'Packaging development at AD Textile',
   },
 ]

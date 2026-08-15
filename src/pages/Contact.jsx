@@ -8,6 +8,7 @@ import ContactFormCard from '../components/contact/ContactFormCard.jsx'
 import FacilityDetails from '../components/contact/FacilityDetails.jsx'
 import TeamCards from '../components/contact/TeamCards.jsx'
 import LocationMap from '../components/contact/LocationMap.jsx'
+import weavingWorkerPlaid from '../assets/images/manufacturing/weaving/weaving-worker-plaid.webp'
 
 const DEFAULT_FORM_STATE = {
   name: '',
@@ -157,7 +158,7 @@ function Contact() {
           <img
             className="w-full h-full object-cover scale-105 brightness-50"
             alt="Premium fabric weaving textures"
-            src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80&auto=format&fit=crop"
+            src={weavingWorkerPlaid}
           />
         </div>
 

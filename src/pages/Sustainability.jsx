@@ -5,8 +5,12 @@ import Icon from '../components/ui/Icon.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-const envCarePhoto = 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop'
-const resourcePhoto = 'https://images.unsplash.com/photo-1623929710342-02a8cd2dae25?w=1800&q=85&auto=format&fit=crop'
+import aerialEtp from '../assets/images/facility/aerial-etp.webp'
+import aerialCampusWide from '../assets/images/facility/aerial-campus-wide.webp'
+import dyeingYarnMacro from '../assets/images/manufacturing/dyeing/dyeing-yarn-macro.webp'
+
+const envCarePhoto = aerialEtp
+const resourcePhoto = dyeingYarnMacro
 
 function Sustainability() {
   return (
@@ -302,8 +306,8 @@ function Sustainability() {
         <div className="absolute inset-0">
           <img
             className="w-full h-full object-cover scale-[1.02]"
-            alt="Modern textile factory interior"
-            src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1800&q=85&auto=format&fit=crop"
+            alt="Aerial view of the AD Textile manufacturing campus"
+            src={aerialCampusWide}
           />
           <div className="absolute inset-0 bg-primary/50" />
         </div>

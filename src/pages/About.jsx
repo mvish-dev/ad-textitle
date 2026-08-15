@@ -8,10 +8,22 @@ import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
+import Masonry from '../components/motion/Masonry.jsx'
 import Seo from '../components/common/Seo.jsx'
 
 // Import corporate video
 import companyVideo from '../assets/videos/aboutus.mp4'
+
+import videoPoster from '../assets/images/manufacturing/weaving/weaving-video-poster.webp'
+import aerialCampusWide from '../assets/images/facility/aerial-campus-wide.webp'
+import aerialEtp from '../assets/images/facility/aerial-etp.webp'
+import checkingGroupTowels from '../assets/images/manufacturing/checking/checking-group-towels.webp'
+import weavingMentorTeam from '../assets/images/manufacturing/weaving/weaving-mentor-team.webp'
+import weavingPortrait from '../assets/images/manufacturing/weaving/weaving-portrait.webp'
+import embroideryWorkerPortrait from '../assets/images/manufacturing/embroidery/embroidery-worker-portrait.webp'
+import stitchingPortrait from '../assets/images/manufacturing/stitching/stitching-portrait.webp'
+import peopleYarnPrepPair from '../assets/images/people/people-yarn-prep-pair.webp'
+import peopleSockTrimPortrait from '../assets/images/people/people-sock-trim-portrait.webp'
 
 const TIMELINE = [
   {
@@ -79,16 +91,18 @@ const COMMUNITY_PROGRAMS = [
   { icon: 'school', label: 'Education scholarships for the needy' },
 ]
 
-// Placeholder Unsplash imagery until the client supplies real facility photos.
-const SLIDES = [
-  'https://images.unsplash.com/photo-1758270804188-8ca0b6d254bc?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1741176508062-a79aa6b48bdc?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1741183397795-324643563b7f?q=80&w=1000&auto=format&fit=crop',
+const PEOPLE_GALLERY = [
+  { id: 1, img: checkingGroupTowels, height: 760, title: 'Checking & Folding' },
+  { id: 2, img: weavingMentorTeam, height: 560, title: 'Weaving Team' },
+  { id: 3, img: weavingPortrait, height: 680, title: 'Weaving Floor' },
+  { id: 4, img: embroideryWorkerPortrait, height: 540, title: 'Embroidery' },
+  { id: 5, img: stitchingPortrait, height: 620, title: 'Stitching' },
+  { id: 6, img: peopleYarnPrepPair, height: 600, title: 'Yarn Preparation' },
+  { id: 7, img: peopleSockTrimPortrait, height: 700, title: 'Finishing' },
 ]
 
 function About() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
-  const [activeSlide, setActiveSlide] = useState(0)
   const timelineRef = useRef(null)
   
   // Real-time active scroll tracker for timeline elements
@@ -122,13 +136,6 @@ function About() {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Trigger initially to capture starting position
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % SLIDES.length)
-    }, 4000)
-    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -212,7 +219,7 @@ function About() {
               >
                 {/* Fallback image as backdrop */}
                 <img
-                  src={SLIDES[0]}
+                  src={videoPoster}
                   alt="Corporate facility"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
                 />
@@ -405,6 +412,25 @@ function About() {
         </Container>
       </section>
 
+      {/* Facility From Above */}
+      <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
+        <img
+          src={aerialCampusWide}
+          alt="Aerial view of the AD Textile manufacturing campus in Karur, India"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/15 to-primary/40" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center pb-16 px-6">
+          <span className="eyebrow !text-secondary mb-4 block">From Above</span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight max-w-2xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+            One Facility, <em className="italic text-secondary font-serif font-normal">Fully Integrated</em>
+          </h2>
+          <p className="font-body-md text-white/80 text-sm md:text-base max-w-xl mt-4">
+            Karur, Tamil Nadu — since 1990. Every stage of production, under one roof.
+          </p>
+        </div>
+      </section>
+
       {/* Global Reach Section */}
       <section className="py-24 bg-primary text-white overflow-hidden" id="global-reach">
         <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -498,45 +524,10 @@ function About() {
         </Container>
       </section>
 
-      {/* Our People (Slideshow Carousel Redesign) */}
+      {/* Our People */}
       <section className="py-24 bg-white">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Slideshow image wrap */}
-          <div className="lg:col-span-5 flex justify-center">
-            <TiltedCard tiltMax={6} className="w-full max-w-md">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl border border-outline-variant/30 relative bg-surface-container-low">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeSlide}
-                    src={SLIDES[activeSlide]}
-                    alt="AD Textile Facility and Production"
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-                
-                {/* Visual indicators overlay */}
-                <div className="absolute bottom-6 left-6 z-20 flex gap-2">
-                  {SLIDES.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveSlide(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                        activeSlide === i ? 'bg-secondary w-6' : 'bg-white/40'
-                      }`}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </TiltedCard>
-          </div>
-
-          <div className="lg:col-span-7 space-y-6">
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
             <span className="eyebrow bg-secondary/10 px-3 py-1 rounded-full text-[0.7rem] inline-block">
               The Human Element
             </span>
@@ -548,6 +539,9 @@ function About() {
             </p>
           </div>
 
+          <div className="h-[560px] md:h-[680px]">
+            <Masonry items={PEOPLE_GALLERY} animateFrom="bottom" scaleOnHover hoverScale={0.97} blurToFocus />
+          </div>
         </Container>
       </section>
 
@@ -581,9 +575,9 @@ function About() {
       <section className="relative min-h-[85vh] flex items-center py-24 overflow-hidden bg-primary text-white">
         <div className="absolute inset-0 opacity-15 z-0 pointer-events-none">
           <img
-            alt="Modern sustainable manufacturing facility"
+            alt="Aerial view of AD Textile's Effluent Treatment Plant"
             className="w-full h-full object-cover scale-[1.03]"
-            src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1800&q=85&auto=format&fit=crop"
+            src={aerialEtp}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary/90 z-10" />
