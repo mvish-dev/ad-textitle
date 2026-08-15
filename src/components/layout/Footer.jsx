@@ -38,7 +38,7 @@ function Footer() {
           <div className="flex gap-[0.7rem] mt-6">
             <a
               className="w-[35px] h-[35px] rounded bg-white/6 flex items-center justify-center text-white/48 text-[0.82rem] transition-all duration-300 hover:bg-secondary hover:text-white"
-              href="tel:+919994399077"
+              href="tel:+919790557077"
               aria-label="Call Us"
             >
               <Icon name="call" className="!text-base" />
@@ -135,14 +135,14 @@ function Footer() {
             </li>
             <li className="flex gap-[0.75rem] items-start text-[0.80rem] text-white/65">
               <Icon name="mail" className="!text-base text-secondary mt-[1px] shrink-0" />
-              <a className="hover:text-secondary transition-colors" href="mailto:senthil@adtextile.com">
-                senthil@adtextile.com
+              <a className="hover:text-secondary transition-colors" href="mailto:deepak@adtextile.com">
+                deepak@adtextile.com
               </a>
             </li>
             <li className="flex gap-[0.75rem] items-start text-[0.80rem] text-white/65">
               <Icon name="call" className="!text-base text-secondary mt-[1px] shrink-0" />
-              <a className="hover:text-secondary transition-colors" href="tel:+919994399077">
-                +91 999 43 99 077
+              <a className="hover:text-secondary transition-colors" href="tel:+919790557077">
+                +91 97 90 55 7077
               </a>
             </li>
           </ul>

@@ -93,7 +93,7 @@ function ContactFormCard({
                   New Inquiry
                 </button>
                 <a
-                  href="mailto:senthil@adtextile.com"
+                  href="mailto:deepak@adtextile.com"
                   className="px-6 py-3 bg-primary text-white rounded-full font-label-md text-xs uppercase tracking-wider hover:bg-[#1E293B] cursor-pointer transition-all flex items-center gap-2"
                 >
                   Email Directly

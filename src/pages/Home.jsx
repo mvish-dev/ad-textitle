@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
@@ -160,10 +160,26 @@ const COMPLIANCE_MARKS = [
 ]
 
 function Home() {
+  const heroSectionRef = useRef(null)
+  const [heroInView, setHeroInView] = useState(true)
   const journeySectionRef = useRef(null)
   const journeyListRef = useRef(null)
   const journeyRailTrackRef = useRef(null)
   const journeyRailFillRef = useRef(null)
+
+  // The hero's WebGL shader scene renders every animation frame at full
+  // cost — pause it once it's scrolled out of view instead of paying for
+  // it (and competing with Lenis/ScrollTrigger for the same frame budget)
+  // for the entire time the user is on the page.
+  useEffect(() => {
+    const el = heroSectionRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return undefined
+    const observer = new IntersectionObserver(([entry]) => setHeroInView(entry.isIntersecting), {
+      threshold: 0,
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useGSAP(
     () => {
@@ -255,11 +271,12 @@ function Home() {
     <>
       <Seo description="AD Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 14001 compliant, exporting since 1992." />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-primary text-white overflow-hidden pt-20">
-        
+      <section ref={heroSectionRef} className="relative min-h-screen flex items-center bg-primary text-white overflow-hidden pt-20">
+
         {/* WebGL Scene Backdrop */}
         <WebGLScene
           loader={() => import('../components/motion/Ferrofluid.jsx')}
+          paused={!heroInView}
           className="absolute inset-0 z-0"
           fallback={
             <div
@@ -570,7 +587,7 @@ function Home() {
             <div className="absolute right-0 top-px bottom-px w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
             
             <div className="flex w-max animate-marquee gap-16 select-none">
-              {[...COMPLIANCE_MARKS, ...COMPLIANCE_MARKS, ...COMPLIANCE_MARKS].map((mark, i) => (
+              {[...COMPLIANCE_MARKS, ...COMPLIANCE_MARKS].map((mark, i) => (
                 <div key={i} className="flex flex-col items-center justify-center shrink-0 min-w-[220px]">
                   <Icon name={mark.icon} className="text-4xl mb-2.5 text-secondary" />
                   <span className="text-[0.68rem] font-bold uppercase tracking-widest text-primary font-mono">

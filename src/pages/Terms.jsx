@@ -38,8 +38,8 @@ function Terms() {
               Contact page
             </Link>{' '}
             or to{' '}
-            <a className="text-primary underline font-semibold" href="mailto:senthil@adtextile.com">
-              senthil@adtextile.com
+            <a className="text-primary underline font-semibold" href="mailto:deepak@adtextile.com">
+              deepak@adtextile.com
             </a>
             .
           </p>

@@ -251,18 +251,22 @@ body {
   will-change: transform;
 }
 
-/* Infinite Marquee Scroll Animation */
+/* Infinite Marquee Scroll Animation. Exactly two copies of the content are
+   rendered side by side and the track slides by exactly one copy's width
+   (-50%, an exact fraction — unlike thirds, which only approximate to a
+   fixed number of decimals and can leave a tiny hitch at the loop seam). */
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-33.3333%);
+    transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
-  animation: marquee 28s linear infinite;
+  animation: marquee 18s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
