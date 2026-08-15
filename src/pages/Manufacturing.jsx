@@ -135,6 +135,16 @@ const ASSURANCE_STEPS = [
   },
 ]
 
+const CAPABILITY_ITEMS = [
+  { id: 1, icon: 'format_color_fill', label: 'Dyeing', end: 3, suffix: ' Tons/Day', caption: 'Italian Cheese Dyeing Machine' },
+  { id: 2, icon: 'grid_4x4', label: 'Weaving', end: 1, suffix: 'M Metres/Month', caption: 'Somet Super Excel Rapier Looms' },
+  { id: 3, icon: 'texture', label: 'Knitting', end: 5, suffix: ' Lakh Pairs/Month', caption: '50 Korean Single Cylinder Machines' },
+  { id: 4, icon: 'content_cut', label: 'Cutting', stat: 'In-House', caption: 'Precision Uniformity' },
+  { id: 5, icon: 'auto_awesome', label: 'Embroidery', end: 54, suffix: ' Heads (10–12 Colours)', caption: 'Garuda & Toshiba Machines' },
+  { id: 6, icon: 'design_services', label: 'Stitching', end: 200, suffix: ' Machines', caption: '200 Workers · Jack Sewing Machines' },
+  { id: 7, icon: 'verified', label: 'Quality Control', end: 2, suffix: '-Layer System', caption: 'End-to-End Inspection' },
+]
+
 const CERTIFICATION_ITEMS = [
   { id: 1, icon: 'workspace_premium', title: 'SA8000', description: 'Social accountability certification covering fair labour practices across our facility.' },
   { id: 2, icon: 'eco', title: 'ISO 14001', description: 'Environmental management system certification for responsible manufacturing.' },
@@ -178,6 +188,21 @@ function StatTile({ icon, label, sub }) {
       <Icon name={icon} className="text-secondary mb-3 text-2xl block" />
       <p className="font-label-md text-xs font-semibold uppercase tracking-wider text-primary">{label}</p>
       <p className="text-[11px] text-on-surface-variant mt-1">{sub}</p>
+    </div>
+  )
+}
+
+function CapabilityStat({ icon, label, end, suffix, stat, caption }) {
+  return (
+    <div className="flex flex-col items-center text-center px-4 py-6">
+      <Icon name={icon} className="text-secondary text-2xl mb-3" />
+      <p className="font-headline-lg text-2xl md:text-3xl font-bold text-primary mb-2 leading-tight">
+        {end != null ? <CountUp end={end} suffix={suffix} /> : stat}
+      </p>
+      <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold mb-1">
+        {label}
+      </p>
+      <p className="text-[11px] italic text-on-surface-variant/80">{caption}</p>
     </div>
   )
 }
@@ -555,38 +580,26 @@ function Manufacturing() {
         {/* Stats & Footer CTA */}
         <section className="w-full relative flex flex-col justify-center py-section-gap-lg" id="cta">
           <div className="max-w-container-max px-margin-mobile md:px-margin-desktop w-full mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter text-center border-y border-outline-variant/30 py-20 bg-white rounded-2xl shadow-sm">
-              <div className="py-4">
-                <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={1} suffix="M" />
-                </p>
-                <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  Metres/Month Weaving
-                </p>
-              </div>
-              <div className="py-4 border-t md:border-t-0 md:border-x border-outline-variant/30">
-                <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={3} suffix=" Tons/Day" />
-                </p>
-                <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  Dyeing Capacity
-                </p>
-              </div>
-              <div className="py-4 border-t md:border-t-0 md:border-r border-outline-variant/30">
-                <p className="font-headline-xl text-4xl font-bold text-primary mb-2">
-                  <CountUp end={2} suffix="-Layer" />
-                </p>
-                <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  AQL Quality Inspection
-                </p>
-              </div>
-              <div className="py-4 border-t md:border-t-0">
-                <p className="font-headline-xl text-2xl font-bold text-primary mb-2">SA8000 &amp; ISO 14001</p>
-                <p className="font-label-md text-xs uppercase tracking-widest text-on-surface-variant font-semibold">
-                  Compliant
-                </p>
-              </div>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="eyebrow mb-4 block">Capabilities</span>
+              <h2 className="section-title mb-4">
+                Complete In-House <em>Manufacturing</em>
+              </h2>
+              <p className="text-on-surface-variant text-sm">
+                Nine integrated production stages, powered by imported machinery and a skilled workforce, all under one roof.
+              </p>
             </div>
+            <AnimatedContent direction="vertical" distance={40}>
+              <div className="border-y border-outline-variant/30 bg-white rounded-2xl shadow-sm py-10 md:py-12">
+                <div className="flex flex-wrap justify-center divide-x divide-outline-variant/30">
+                  {CAPABILITY_ITEMS.map((item) => (
+                    <div key={item.id} className="w-1/2 sm:w-1/3 lg:w-1/4">
+                      <CapabilityStat {...item} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedContent>
             <div className="mt-16 text-center">
               <h2 className="section-title mb-10">Ready to scale your production?</h2>
               <Button to="/contact" size="lg" className="uppercase tracking-widest hover:scale-105">

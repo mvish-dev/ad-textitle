@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/layout/Layout.jsx'
 import AnimatedPage from './components/layout/AnimatedPage.jsx'
+import ErrorBoundary from './components/common/ErrorBoundary.jsx'
 
 const Home = lazy(() => import('./pages/Home.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
@@ -22,34 +23,46 @@ const Privacy = lazy(() => import('./pages/Privacy.jsx'))
 const Terms = lazy(() => import('./pages/Terms.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
+// Dev-only crash trigger for manually verifying the ErrorBoundary fallback.
+// import.meta.env.DEV is statically replaced at build time, so this route
+// (and this component) are dead-code-eliminated from production builds.
+function ThrowTestError() {
+  throw new Error('Test error triggered from /__error-test')
+}
+
 function App() {
   const location = useLocation()
 
   return (
     <Layout>
-      <AnimatePresence mode="wait">
-        <Suspense fallback={<div className="min-h-screen bg-background" />}>
-          <Routes location={location} key={location.pathname}>
-            <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
-            <Route path="about" element={<AnimatedPage><About /></AnimatedPage>} />
-            <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
-            <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
-            <Route path="design-development" element={<AnimatedPage><DesignDevelopment /></AnimatedPage>} />
-            <Route path="private-label" element={<AnimatedPage><PrivateLabel /></AnimatedPage>} />
-            <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
-            <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
-            <Route path="exports" element={<AnimatedPage><Exports /></AnimatedPage>} />
-            <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
-            <Route path="living-linen" element={<AnimatedPage><LivingLinen /></AnimatedPage>} />
-            <Route path="heritage-bed-linen" element={<AnimatedPage><HeritageBedLinen /></AnimatedPage>} />
-            <Route path="kitchen-linen" element={<AnimatedPage><KitchenLinen /></AnimatedPage>} />
-            <Route path="table-linen" element={<AnimatedPage><TableLinen /></AnimatedPage>} />
-            <Route path="privacy" element={<AnimatedPage><Privacy /></AnimatedPage>} />
-            <Route path="terms" element={<AnimatedPage><Terms /></AnimatedPage>} />
-            <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
-          </Routes>
-        </Suspense>
-      </AnimatePresence>
+      <ErrorBoundary resetKey={location.pathname}>
+        <AnimatePresence mode="wait">
+          <Suspense fallback={<div className="min-h-screen bg-background" />}>
+            <Routes location={location} key={location.pathname}>
+              <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
+              <Route path="about" element={<AnimatedPage><About /></AnimatedPage>} />
+              <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
+              <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
+              <Route path="design-development" element={<AnimatedPage><DesignDevelopment /></AnimatedPage>} />
+              <Route path="private-label" element={<AnimatedPage><PrivateLabel /></AnimatedPage>} />
+              <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
+              <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
+              <Route path="exports" element={<AnimatedPage><Exports /></AnimatedPage>} />
+              <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+              <Route path="living-linen" element={<AnimatedPage><LivingLinen /></AnimatedPage>} />
+              <Route path="heritage-bed-linen" element={<AnimatedPage><HeritageBedLinen /></AnimatedPage>} />
+              <Route path="kitchen-linen" element={<AnimatedPage><KitchenLinen /></AnimatedPage>} />
+              <Route path="table-linen" element={<AnimatedPage><TableLinen /></AnimatedPage>} />
+              <Route path="privacy" element={<AnimatedPage><Privacy /></AnimatedPage>} />
+              <Route path="terms" element={<AnimatedPage><Terms /></AnimatedPage>} />
+              {import.meta.env.DEV && (
+                <Route path="__error-test" element={<AnimatedPage><ThrowTestError /></AnimatedPage>} />
+              )}
+              <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
+            </Routes>
+          </Suspense>
+        </AnimatePresence>
+      </ErrorBoundary>
     </Layout>
   )
 }

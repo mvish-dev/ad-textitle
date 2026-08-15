@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import MagneticButton from '../motion/MagneticButton.jsx'
 import Icon from '../ui/Icon.jsx'
+import OfflineBanner from '../common/OfflineBanner.jsx'
 
 // Mobile drawer keeps every item, including the two dropdown groups, in one
 // flat/accordion list; desktop splits them into inline links + dropdowns below.
@@ -81,9 +82,13 @@ function Header() {
 
   const isScrolledState = scrolled || isLightPage
 
+  // Positioning (fixed/top/z) lives on the wrapper around <nav> below, not
+  // here, so OfflineBanner can sit above the nav row as a stacked flex
+  // sibling inside that single fixed box — two independent fixed elements
+  // would otherwise overlap instead of one pushing the other down.
   const navClass = isScrolledState
-    ? 'fixed w-full top-0 z-50 bg-white/96 backdrop-blur-md shadow-[0_2px_12px_rgba(15,23,42,0.07)] py-3 transition-all duration-350 ease-in-out border-b border-outline-variant/30'
-    : 'fixed w-full top-0 z-50 py-5 transition-all duration-350 ease-in-out bg-transparent'
+    ? 'w-full bg-white/96 backdrop-blur-md shadow-[0_2px_12px_rgba(15,23,42,0.07)] py-3 transition-all duration-350 ease-in-out border-b border-outline-variant/30'
+    : 'w-full py-5 transition-all duration-350 ease-in-out bg-transparent'
 
   const logoClass = isScrolledState
     ? 'font-headline-lg text-[1.55rem] font-bold tracking-tight text-primary transition-colors duration-300'
@@ -176,7 +181,9 @@ function Header() {
 
   return (
     <>
-      <nav id="navbar" className={navClass} role="navigation" aria-label="Main navigation">
+      <div className="fixed w-full top-0 z-50">
+        <OfflineBanner />
+        <nav id="navbar" className={navClass} role="navigation" aria-label="Main navigation">
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
           <Link className={logoClass} to="/" onClick={() => setMenuOpen(false)}>
             AD <span className="text-secondary">Textile</span>
@@ -240,7 +247,8 @@ function Header() {
             </button>
           </div>
         </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Mobile nav Drawer */}
       <div

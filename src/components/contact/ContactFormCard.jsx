@@ -12,6 +12,8 @@ function ContactFormCard({
   onSubmit,
   isSubmitting,
   isSubmitted,
+  hasSubmitError,
+  onRetry,
   onResetForm,
 }) {
   return (
@@ -112,6 +114,32 @@ function ContactFormCard({
               <p className="font-label-md text-xs font-semibold uppercase tracking-widest text-primary">
                 Processing Commercial Data...
               </p>
+            </motion.div>
+          ) : hasSubmitError ? (
+            <motion.div
+              key="error-state"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              className="flex flex-col items-center justify-center text-center py-12 space-y-6"
+            >
+              <div className="w-16 h-16 rounded-full bg-red-50 border-4 border-red-100 flex items-center justify-center text-error">
+                <Icon name="error_outline" className="text-3xl" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-headline-lg text-2xl text-primary font-bold">Submission Failed</h3>
+                <p className="text-on-surface-variant text-sm max-w-sm mx-auto leading-relaxed">
+                  We couldn't reach our servers. Check your internet connection and try again — your details are
+                  still filled in below.
+                </p>
+              </div>
+              <button
+                onClick={onRetry}
+                className="px-6 py-3 bg-primary text-white rounded-full font-label-md text-xs uppercase tracking-wider hover:bg-[#1E293B] cursor-pointer transition-all flex items-center gap-2"
+              >
+                Try Again
+                <Icon name="refresh" className="text-xs" />
+              </button>
             </motion.div>
           ) : activeTab === 'enquiry' ? (
             <EnquiryForm formState={formState} onChange={onChange} onSubmit={onSubmit} />

@@ -49,6 +49,7 @@ function Contact() {
   const [formState, setFormState] = useState(() => getInitialFormState(location.search))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [hasSubmitError, setHasSubmitError] = useState(false)
 
   // Live India Time & Availability tracker
   useEffect(() => {
@@ -101,18 +102,33 @@ function Contact() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    setHasSubmitError(false)
 
-    // Simulate luxury API response / notification hook
+    // No backend is wired up yet, so the one connectivity failure we can
+    // genuinely surface is the browser itself being offline — everything
+    // else below is a simulated success. Swapping in a real endpoint later
+    // is a matter of replacing the setTimeout with a fetch(...).catch(() =>
+    // setHasSubmitError(true)) using this same shape.
+    if (!navigator.onLine) {
+      setHasSubmitError(true)
+      return
+    }
+
+    setIsSubmitting(true)
     setTimeout(() => {
       setIsSubmitting(false)
       setIsSubmitted(true)
     }, 1800)
   }
 
+  const retrySubmit = () => {
+    setHasSubmitError(false)
+  }
+
   const resetForm = () => {
     setFormState(DEFAULT_FORM_STATE)
     setIsSubmitted(false)
+    setHasSubmitError(false)
   }
 
   const handleTabChange = (tab) => {
@@ -142,6 +158,8 @@ function Contact() {
               onSubmit={handleFormSubmit}
               isSubmitting={isSubmitting}
               isSubmitted={isSubmitted}
+              hasSubmitError={hasSubmitError}
+              onRetry={retrySubmit}
               onResetForm={resetForm}
             />
             <FacilityDetails isOpen={isOpen} copied={copied} onCopyAddress={handleCopyAddress} />
