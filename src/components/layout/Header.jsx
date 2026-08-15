@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import MagneticButton from '../motion/MagneticButton.jsx'
-import GooeyNav from '../motion/GooeyNav.jsx'
 import Icon from '../ui/Icon.jsx'
 
 // Mobile drawer keeps every item, including the two dropdown groups, in one
-// flat/accordion list — GooeyNav is a desktop-only decoration (see below).
+// flat/accordion list; desktop splits them into inline links + dropdowns below.
 const NAV_LINKS = [
   { label: 'About Us', to: '/about' },
   { label: 'Products', to: '/products' },
@@ -30,14 +29,14 @@ const NAV_LINKS = [
 ]
 
 // The two dropdown groups (Capabilities, Quality & Sustainability) stay as
-// hover-dropdowns on desktop — GooeyNav has no concept of a dropdown, so it
-// only wraps the plain-link items, split into two clusters that sit either
-// side of the dropdowns to preserve the original left-to-right order.
-const GOOEY_GROUP_1 = [
+// hover-dropdowns on desktop; the remaining plain-link items are split into
+// two clusters that sit either side of the dropdowns to preserve the
+// original left-to-right nav order.
+const NAV_GROUP_1 = [
   { label: 'About Us', to: '/about' },
   { label: 'Products', to: '/products' },
 ]
-const GOOEY_GROUP_2 = [{ label: 'Private Label', to: '/private-label' }]
+const NAV_GROUP_2 = [{ label: 'Private Label', to: '/private-label' }]
 const DROPDOWNS = NAV_LINKS.filter((link) => link.type === 'dropdown')
 
 function Header() {
@@ -111,9 +110,25 @@ function Header() {
       : `${baseClass} ${underlineState} text-white/80 hover:text-white`
   }
 
-  const gooeyTextColors = {
-    activeTextColor: '#ffffff',
-    inactiveTextColor: isScrolledState ? 'rgba(15,23,42,0.75)' : 'rgba(255,255,255,0.8)',
+  // Same visual treatment as the dropdown triggers above, applied to the
+  // plain nav links (About Us, Products, Private Label) for a consistent
+  // hover/active underline across every top-level item.
+  const isLinkActive = (item) => item.to === location.pathname
+  const linkClass = (item) => {
+    const baseClass =
+      'relative inline-flex items-center text-[0.8rem] font-medium tracking-wider transition-colors duration-300 pb-1 ' +
+      "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-full " +
+      'after:bg-secondary after:origin-center after:transition-transform after:duration-500 ' +
+      'after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:scale-x-100'
+    const underlineState = isLinkActive(item) ? 'after:scale-x-100' : 'after:scale-x-0'
+    if (isScrolledState) {
+      return isLinkActive(item)
+        ? `${baseClass} ${underlineState} text-primary`
+        : `${baseClass} ${underlineState} text-on-background/80 hover:text-primary`
+    }
+    return isLinkActive(item)
+      ? `${baseClass} ${underlineState} text-white`
+      : `${baseClass} ${underlineState} text-white/80 hover:text-white`
   }
 
   const renderDropdown = (link) => (
@@ -168,21 +183,19 @@ function Header() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-5 xl:gap-7">
-            <GooeyNav
-              items={GOOEY_GROUP_1}
-              activeIndex={GOOEY_GROUP_1.findIndex((item) => item.to === location.pathname)}
-              pillColor="#C59D5F"
-              {...gooeyTextColors}
-            />
+            {NAV_GROUP_1.map((item) => (
+              <Link key={item.to} to={item.to} className={linkClass(item)}>
+                {item.label}
+              </Link>
+            ))}
 
             {renderDropdown(DROPDOWNS[0])}
 
-            <GooeyNav
-              items={GOOEY_GROUP_2}
-              activeIndex={GOOEY_GROUP_2.findIndex((item) => item.to === location.pathname)}
-              pillColor="#C59D5F"
-              {...gooeyTextColors}
-            />
+            {NAV_GROUP_2.map((item) => (
+              <Link key={item.to} to={item.to} className={linkClass(item)}>
+                {item.label}
+              </Link>
+            ))}
 
             {renderDropdown(DROPDOWNS[1])}
           </div>

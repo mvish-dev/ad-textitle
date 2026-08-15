@@ -5,33 +5,31 @@ import { useGSAP } from '@gsap/react'
 import Icon from './Icon.jsx'
 import { gsap, Flip } from '../../lib/motion.js'
 
-// Dynamic imports of images in Vite
-const bedLinenGlob = import.meta.glob('../../assets/BL/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true })
-const kitchenLinenGlob = import.meta.glob('../../assets/KL/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true })
-const livingLinenGlob = import.meta.glob('../../assets/LL/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true })
-const tableLinenGlob = import.meta.glob('../../assets/TL/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true })
+// Placeholder catalog imagery sourced from Unsplash — swap PLACEHOLDER_IMAGES
+// per category for the client's real product photography when it arrives.
+const unsplash = (photoId) => `https://images.unsplash.com/photo-${photoId}?q=80&w=800&auto=format&fit=crop`
 
-const getFileName = (path) => {
-  const parts = path.split('/')
-  const nameWithExt = parts[parts.length - 1]
-  return nameWithExt.split('.')[0]
+const PLACEHOLDER_IMAGES = {
+  BL: ['1595526114035-0d45ed16cfbf', '1631049307264-da0ec9d70304', '1762199904138-d163fe89540a', '1615529162924-f8605388461d', '1711981153126-9f8fe68a52f8'].map(unsplash),
+  KL: ['1635352558665-0b01650e9b84', '1724847885015-be191f1a47ef', '1737054718383-68055423d164', '1728034261564-18930dcb2c8e', '1649490978095-ede5f8d8f64c'].map(unsplash),
+  LL: ['1615471618985-97108e2ba478', '1629302477738-32f97d5c86e4', '1632210510762-743f33b1c854'].map(unsplash),
+  TL: ['1686109710410-42e0e9b38a4b', '1672386608328-415973e6134e', '1732719812776-c043e861faf8', '1597588401211-8bd9ba3aeb57', '1587212485022-8ba92b1eff63'].map(unsplash),
 }
 
-const mapImages = (globObj, categoryName) => {
-  return Object.keys(globObj)
-    .filter(key => !key.endsWith('.html')) // Skip any non-image files like HTML stray pages
-    .map(key => ({
-      id: getFileName(key),
-      url: globObj[key].default || globObj[key],
-      category: categoryName
-    }))
+const buildProducts = (prefix, count, categoryName) => {
+  const images = PLACEHOLDER_IMAGES[prefix]
+  return Array.from({ length: count }, (_, i) => ({
+    id: `${prefix}${String(i + 1).padStart(3, '0')}`,
+    url: images[i % images.length],
+    category: categoryName,
+  }))
 }
 
 const ALL_PRODUCTS = [
-  ...mapImages(bedLinenGlob, 'Bed Linen'),
-  ...mapImages(kitchenLinenGlob, 'Kitchen Linen'),
-  ...mapImages(livingLinenGlob, 'Living Linen'),
-  ...mapImages(tableLinenGlob, 'Table Linen')
+  ...buildProducts('BL', 74, 'Bed Linen'),
+  ...buildProducts('KL', 15, 'Kitchen Linen'),
+  ...buildProducts('LL', 24, 'Living Linen'),
+  ...buildProducts('TL', 43, 'Table Linen'),
 ]
 
 // Helper function to generate premium metadata dynamically

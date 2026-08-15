@@ -10,11 +10,6 @@ import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-// Import slide images
-import slide1 from '../assets/img/slides/img-1.jpg'
-import slide2 from '../assets/img/slides/img-2.jpg'
-import slide3 from '../assets/img/slides/img-3.jpg'
-
 // Import corporate video
 import companyVideo from '../assets/videos/aboutus.mp4'
 
@@ -84,7 +79,12 @@ const COMMUNITY_PROGRAMS = [
   { icon: 'school', label: 'Education scholarships for the needy' },
 ]
 
-const SLIDES = [slide1, slide2, slide3]
+// Placeholder Unsplash imagery until the client supplies real facility photos.
+const SLIDES = [
+  'https://images.unsplash.com/photo-1758270804188-8ca0b6d254bc?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1741176508062-a79aa6b48bdc?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1741183397795-324643563b7f?q=80&w=1000&auto=format&fit=crop',
+]
 
 function About() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
@@ -212,7 +212,7 @@ function About() {
               >
                 {/* Fallback image as backdrop */}
                 <img
-                  src={slide1}
+                  src={SLIDES[0]}
                   alt="Corporate facility"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
                 />
