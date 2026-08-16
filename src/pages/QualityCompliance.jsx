@@ -321,11 +321,11 @@ function QualityCompliance() {
               <h2 className="section-title mb-6">Global <em>Standards</em></h2>
               <p className="text-on-surface-variant font-body-lg leading-relaxed">
                 Our facility operates under internationally recognized compliance frameworks, covering ethical labor
-                practices and environmental management.
+                practices, environmental management, product safety and quality systems.
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {/* SA8000 */}
             <motion.div
               initial={{ opacity: 0, x: -25 }}
@@ -371,6 +371,106 @@ function QualityCompliance() {
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
                 Our commitment to structured environmental management, supported by our Effluent Treatment Plant,
                 Reverse Osmosis Plant, VSEP plant, and Azo-free dyeing practices.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* OEKO-TEX */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="science" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">OEKO-TEX&reg;</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Product Safety
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Independent testing confirming our fabrics are free from harmful substances at every processing
+                stage, from yarn to finished product, so what reaches the end consumer is safe for skin contact.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* GOTS */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="grass" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">GOTS</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Organic Textile Processing
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Coverage of organic fibre status from raw material through environmentally and socially responsible
+                manufacturing, supporting buyers who need a verified organic supply chain.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* ISO 9001:2015 */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="workspace_premium" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">ISO 9001:2015</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Quality Management
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Certification of our quality management system — consistent process control, documentation and
+                continuous improvement applied across every stage of production.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* Social Audit Compliant */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="fact_check" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">Social Audit Compliant</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Third-Party Verification
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Regular third-party social compliance audits covering working conditions, wages and workplace
+                practices, carried out in addition to our SA8000 certification.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation

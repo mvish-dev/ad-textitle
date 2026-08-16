@@ -47,15 +47,7 @@ function Header() {
   const location = useLocation()
 
   // Enforce a white navbar background on pages that have a light header background
-  const isLightPage = [
-    '/contact',
-    '/living-linen',
-    '/heritage-bed-linen',
-    '/kitchen-linen',
-    '/table-linen',
-    '/privacy',
-    '/terms'
-  ].includes(location.pathname)
+  const isLightPage = ['/contact'].includes(location.pathname)
 
   useEffect(() => {
     const timeout = setTimeout(() => {

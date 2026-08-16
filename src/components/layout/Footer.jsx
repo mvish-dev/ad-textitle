@@ -107,16 +107,6 @@ function Footer() {
                 Company Profile
               </Link>
             </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/privacy">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/terms">
-                Terms of Service
-              </Link>
-            </li>
           </ul>
         </div>
 

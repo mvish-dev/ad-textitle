@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/layout/Layout.jsx'
 import AnimatedPage from './components/layout/AnimatedPage.jsx'
@@ -15,12 +15,6 @@ const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
 const Sustainability = lazy(() => import('./pages/Sustainability.jsx'))
 const Exports = lazy(() => import('./pages/Exports.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
-const LivingLinen = lazy(() => import('./pages/LivingLinen.jsx'))
-const HeritageBedLinen = lazy(() => import('./pages/HeritageBedLinen.jsx'))
-const KitchenLinen = lazy(() => import('./pages/KitchenLinen.jsx'))
-const TableLinen = lazy(() => import('./pages/TableLinen.jsx'))
-const Privacy = lazy(() => import('./pages/Privacy.jsx'))
-const Terms = lazy(() => import('./pages/Terms.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 // Dev-only crash trigger for manually verifying the ErrorBoundary fallback.
@@ -49,12 +43,10 @@ function App() {
               <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
               <Route path="exports" element={<AnimatedPage><Exports /></AnimatedPage>} />
               <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
-              <Route path="living-linen" element={<AnimatedPage><LivingLinen /></AnimatedPage>} />
-              <Route path="heritage-bed-linen" element={<AnimatedPage><HeritageBedLinen /></AnimatedPage>} />
-              <Route path="kitchen-linen" element={<AnimatedPage><KitchenLinen /></AnimatedPage>} />
-              <Route path="table-linen" element={<AnimatedPage><TableLinen /></AnimatedPage>} />
-              <Route path="privacy" element={<AnimatedPage><Privacy /></AnimatedPage>} />
-              <Route path="terms" element={<AnimatedPage><Terms /></AnimatedPage>} />
+              <Route path="living-linen" element={<Navigate to="/products" replace />} />
+              <Route path="heritage-bed-linen" element={<Navigate to="/products" replace />} />
+              <Route path="kitchen-linen" element={<Navigate to="/products" replace />} />
+              <Route path="table-linen" element={<Navigate to="/products" replace />} />
               {import.meta.env.DEV && (
                 <Route path="__error-test" element={<AnimatedPage><ThrowTestError /></AnimatedPage>} />
               )}

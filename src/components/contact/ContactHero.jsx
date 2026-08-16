@@ -43,7 +43,8 @@ function ContactHero({ isOpen, liveTime }) {
           </RevealText>
 
           <p className="font-body-md text-on-surface-variant max-w-xl leading-relaxed text-sm md:text-base">
-            Bridging international retail demands with certified, vertically integrated manufacturing. Reach our commercial coordinators or request a custom fabrication contract proposal directly below.
+            Talk directly to our commercial team in Karur about a manufacturing quote, sourcing enquiry, or a visit
+            to our production facility — no distributors, no middlemen.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2">

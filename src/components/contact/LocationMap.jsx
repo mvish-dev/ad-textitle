@@ -29,7 +29,7 @@ function LocationMap() {
               <span className="text-[0.62rem] text-secondary font-bold uppercase tracking-widest block">Main Headquarters</span>
               <h4 className="font-serif font-semibold text-lg text-white">A.D. Textile (P) Ltd</h4>
               <p className="text-xs text-white/70 leading-relaxed font-body-md">
-                Karur Erode main highway, Athur Post, Karur region, Tamil Nadu, India. Major hub for global cotton spinning & textile export weaving.
+                1/104, Sanjay Nagar, Erode Road, Athur Post, Karur &ndash; 639002, Tamil Nadu, India.
               </p>
               <div className="pt-2 border-t border-white/10 flex justify-between items-center text-xs">
                 <a

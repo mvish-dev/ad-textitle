@@ -52,7 +52,7 @@ const CATEGORIES = [
   {
     title: 'Bed Linen',
     description: 'Bed spreads, bedding, cushions, quilts and rest bedding.',
-    href: '/heritage-bed-linen',
+    href: '/products',
     icon: 'bed',
     image:
       'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=900&q=80&auto=format&fit=crop',
@@ -61,7 +61,7 @@ const CATEGORIES = [
   {
     title: 'Living Linen',
     description: 'Curtains crafted for texture, drape and everyday living spaces.',
-    href: '/living-linen',
+    href: '/products',
     icon: 'curtains',
     image:
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&q=80&auto=format&fit=crop',
