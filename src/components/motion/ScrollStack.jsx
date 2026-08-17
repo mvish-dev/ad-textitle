@@ -326,9 +326,20 @@ const ScrollStack = ({
     ? `relative w-full ${className}`.trim()
     : `relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim();
 
+  // In window-scroll mode the container height is the (dynamic) viewport, so
+  // the original vh/rem-based spacing scales with it. In boxed mode the
+  // container is a fixed-height embedded panel — vh/rem spacing there was
+  // wildly oversized relative to the panel (e.g. pb-[50rem] alone is larger
+  // than the whole panel), clipping the first card and leaving a long dead
+  // scroll stretch after the last card releases its pin. Boxed mode instead
+  // gets small, panel-relative padding.
+  const innerClassName = useWindowScroll
+    ? 'scroll-stack-inner pt-[20vh] px-20 pb-[50rem] min-h-screen'
+    : 'scroll-stack-inner pt-12 px-20 pb-12'
+
   return (
     <div className={containerClassName} ref={scrollerRef} style={containerStyles}>
-      <div className="scroll-stack-inner pt-[20vh] px-20 pb-[50rem] min-h-screen">
+      <div className={innerClassName}>
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />
