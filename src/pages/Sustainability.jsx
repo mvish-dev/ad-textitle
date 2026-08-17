@@ -17,7 +17,7 @@ function Sustainability() {
     <>
       <Seo
         title="Sustainability"
-        description="AD Textile's commitment to the planet and its people is woven into every thread — Azo-free dyeing, responsible sourcing and environmental practices across production."
+        description="AD Textile's approach to practical sustainability — across materials, manufacturing processes, chemical management and resource use."
       />
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[700px] flex items-end pb-32 pt-20 bg-primary">
@@ -50,11 +50,11 @@ function Sustainability() {
               Our Responsibility
             </span>
             <h1 className="font-display-lg text-display-lg-mobile md:text-5xl mb-6 leading-tight">
-              Engineering a Sustainable Future.
+              Responsible Manufacturing. Better Choices.
             </h1>
             <p className="font-body-lg text-body-lg text-white/80 max-w-xl">
-              Our commitment to the planet and our people is woven into every thread, driving innovation through
-              industrial precision.
+              We focus on practical sustainability across materials, manufacturing processes, chemical management
+              and resource use.
             </p>
           </motion.div>
         </Container>
@@ -68,8 +68,8 @@ function Sustainability() {
               <span className="eyebrow">Eco Stewardship</span>
               <h2 className="section-title mb-6">Sustainable <em>Materials</em></h2>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-                What goes into a fabric matters as much as how it's made. Our material choices start with
-                responsible sourcing and Azo-free dyeing, right from the first stage of production.
+                We work with materials including cotton, bamboo and other customer-specified or suitable
+                sustainable options, depending on product requirements.
               </p>
             </div>
           </div>
@@ -120,8 +120,8 @@ function Sustainability() {
             <h2 className="section-title">Responsible <em>Manufacturing</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 leading-relaxed">
-              We operate at the intersection of heavy industry and environmental stewardship, ensuring that our
-              footprint is as refined as our textiles.
+              Our integrated knitting, weaving, dyeing, stitching and packing capabilities provide greater control
+              over quality, processes and resource use.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
@@ -170,6 +170,10 @@ function Sustainability() {
             <span className="eyebrow">Operations in Detail</span>
             <h2 className="section-title">Environmental <em>Practices</em></h2>
             <div className="divider mx-auto" />
+            <p className="font-body-lg text-body-lg text-on-surface-variant mt-6 leading-relaxed max-w-2xl mx-auto">
+              We focus on responsible chemical management, resource efficiency, waste reduction and improved
+              production practices.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Environmental Care */}
@@ -244,62 +248,53 @@ function Sustainability() {
         </Container>
       </section>
 
-      {/* Sustainability Certifications */}
-      <section className="py-section-gap-lg bg-white" id="sustainability-certifications">
+      {/* Sustainability Standards */}
+      <section className="py-section-gap-lg bg-white" id="sustainability-standards">
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <span className="eyebrow">Global Standards</span>
-            <h2 className="section-title">Sustainability <em>Certifications</em></h2>
+            <h2 className="section-title">Sustainability <em>Standards</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
-              Our operations are validated by recognized certification bodies, ensuring ethical labor practices and
-              environmental management across our facility.
+              Our sustainability framework is supported by standards and initiatives including OEKO-TEX® and ZDHC.
+              ZDHC promotes safer chemical management and responsible production practices across the textile
+              supply chain.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-2xl mx-auto">
-            {/* Cert 1: SA8000 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-3xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="flex flex-col items-center text-center p-8 bg-surface-container rounded-2xl shadow-sm border border-secondary/20 hover:shadow-md transition-shadow"
+              className="bg-background p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
             >
-              <div className="w-32 h-32 mb-8 bg-white flex items-center justify-center rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
-                <img
-                  className="w-20 object-contain"
-                  alt="SA8000 Social Accountability certification"
-                  loading="lazy"
-                  decoding="async"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ohxOzv9_dmwT57KLlzo8s3bcU7TH4A6IoJwICM4DXP5OS0azQZSwsNNeRrYfUrzz04SpupYvuQsczgwRjf2aAcK1kIIWPw_hBDRLrbH_Nt2cbcaWrooXGmvDBkeX3eVPD00IUbHsSEhr3iavjXP3XOfHvmMO320yNQq5eqjz44s7qnZJ-seyFyEYkq69mHvH_5glK0FnPEI58CWykMrxqG6bEAN4Hywe4RSOmcb2yMea4Nek16ApU-WFrntUJupoSXDBnAlGhVo"
-                />
+              <div className="mb-10">
+                <Icon name="science" className="text-5xl text-secondary mb-6 block" />
+                <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">OEKO-TEX&reg;</h3>
+                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
+                  Independent testing confirming our fabrics are free from harmful substances at every processing
+                  stage, from yarn to finished product, so what reaches the end consumer is safe for skin contact.
+                </p>
               </div>
-              <h4 className="font-headline-lg text-2xl font-bold text-primary mb-2">SA8000</h4>
-              <p className="font-label-md text-xs text-on-surface-variant tracking-wider uppercase font-semibold">
-                Ethical Labor Practices
-              </p>
+              <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />
             </motion.div>
-            {/* Cert 2: ISO 14001 */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center text-center p-8 bg-surface-container rounded-2xl shadow-sm border border-secondary/20 hover:shadow-md transition-shadow"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-background p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
             >
-              <div className="w-32 h-32 mb-8 bg-white flex items-center justify-center rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
-                <img
-                  className="w-20 object-contain"
-                  alt="ISO 14001 Environmental Management certification"
-                  loading="lazy"
-                  decoding="async"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYls7wdTZ_O1rXxF32MEfSZSkbmjZqPqPVAgrCIl1k6UtG4bZyy1mjxYwH9uSesZDhjxtxkSAsvhdGtstsYwxpeqKC-D35ZK9pDauz3Oq3qwF4EyccXuYtqapZtzN_oLmCyWGNBHgyBjhXMn37BSPR7aZetZHWQUvAdXtKoT_t303CGwrnMfmudJatsdFHtPauzFkjhga0ncIsJUajl2v-lopuYENGFTrlLMwGC7QHPqjmNGfv6SgA5C0-tiIrnJbv5egW58ejGpU"
-                />
+              <div className="mb-10">
+                <Icon name="water_drop" className="text-5xl text-secondary mb-6 block" />
+                <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">ZDHC</h3>
+                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
+                  ZDHC promotes safer chemical management and responsible production practices across the textile
+                  supply chain.
+                </p>
               </div>
-              <h4 className="font-headline-lg text-2xl font-bold text-primary mb-2">ISO 14001</h4>
-              <p className="font-label-md text-xs text-on-surface-variant tracking-wider uppercase font-semibold">
-                Environmental Management
-              </p>
+              <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />
             </motion.div>
           </div>
         </Container>

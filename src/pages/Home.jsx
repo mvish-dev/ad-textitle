@@ -27,7 +27,7 @@ const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
   { icon: 'public', title: 'Export Since 1992', caption: 'Global Reach' },
   { icon: 'verified', title: 'SA8000 & ISO 14001', caption: 'Compliant' },
-  { icon: 'fact_check', title: '2-Layer AQL Inspection', caption: 'Quality System' },
+  { icon: 'fact_check', title: '3-Layer AQL Inspection', caption: 'Quality System' },
 ]
 
 const CATEGORIES = [
@@ -97,7 +97,7 @@ const JOURNEY_STEPS = [
   },
   {
     title: 'Quality Control',
-    description: '2-layer AQL inspection — in-line checks plus final clearance.',
+    description: '3-layer AQL inspection — in-line, first-stage and final clearance.',
     icon: 'fact_check',
   },
   {
@@ -121,7 +121,7 @@ const EDGE_POINTS = [
   {
     icon: 'high_quality',
     title: 'Strict Quality',
-    description: '2-layer inspection system — in-line checks plus a final AQL-standard clearance.',
+    description: '3-layer inspection system — in-line checks, first-stage QC and a final AQL-standard clearance.',
   },
   {
     icon: 'school',

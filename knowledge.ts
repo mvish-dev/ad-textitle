@@ -38,24 +38,30 @@ Manufacturing Processes:
 Production runs through nine fully integrated stages, all at the Karur facility:
 
 1. Dyeing — In-house dyeing using imported Italian Cheese Dyeing Machines, capacity of 3 tons/day. Only Azo-free dyes are used, for strong dye penetration, colour fastness and skin safety.
-2. Weaving — Somet Super Excel Rapier Looms weave premium woven fabric at roughly 1 million metres per month.
+2. Weaving — Somet Super Excel Rapier Looms weave premium woven fabric at roughly 1 million metres per month. Manufacturing capability supports finished fabric widths of up to 120 inches.
 3. Knitting — 50 imported Korean Single Cylinder Knitting Machines produce Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — at about 5 lakh (500,000) pairs per month, backed by an integrated composite unit for linking, washing, setting and ironing.
 4. Cutting — In-house precision cutting for accurate pattern cutting, uniform dimensions and minimal material wastage.
 5. Embroidery — Garuda and Toshiba embroidery machines with 54 embroidery heads supporting 10–12 thread colours, plus dedicated sampling and precision digitising.
 6. Stitching — 200 Jack sewing machines on the floor, run by a workforce of 100 skilled and 100 semi-skilled workers specialising in garment and sock linking operations.
-7. Checking & Quality Control — A 2-layer inspection system: in-line inspection at every stage of production, followed by a final AQL-standard inspection before dispatch.
-8. Packing — Custom-specific packing with embellishments and à la carte packing options tailored to each customer, built to withstand long-haul export shipping. AD Textile has packed and exported orders since 1992.
-9. Warehouse — Organized racking and inventory tracking manage raw material storage, work-in-progress staging and finished-goods consolidation ahead of dispatch.
+7. Checking & Quality Control — A 3-layer inspection system: Layer 1 is in-line inspection at every stage of production, Layer 2 is a first-stage quality check, and Layer 3 is a final AQL-standard inspection before dispatch. Every product is evaluated for measurement accuracy, appearance and packing, ensuring full compliance with customer specifications.
+8. Packing (Customer-Specific Packaging) — Packing follows each buyer's specific requirements. The workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across bulk orders. AD Textile has packed and exported orders since 1992.
+9. Warehouse — Warehouse and storage capacity accommodates up to seven 40-foot containers, with space to hold two fully loaded containers, enabling efficient management of finished goods, bulk orders and export shipments.
 
 Certifications:
 - SA8000 — Social Accountability certification covering fair labour practices: fair wages, workplace safety, and the prohibition of forced or child labour.
 - ISO 14001 — Environmental Management System certification, supported by the company's Effluent Treatment Plant (ETP), Reverse Osmosis (RO) Plant, and Vibratory Shear Enhanced Process (VSEP) plant.
-- OEKO-TEX® — Product safety certification confirming fabrics are free from harmful substances at every processing stage, from yarn to finished product.
+- OEKO-TEX® STANDARD 100 — Product safety certification specifically addressing harmful-substance testing in textiles, confirming fabrics are free from harmful substances at every processing stage, from yarn to finished product.
 - GOTS (Global Organic Textile Standard) — Covers organic fibre status from raw material through environmentally and socially responsible manufacturing.
 - ISO 9001:2015 — Quality Management System certification for consistent process control, documentation and continuous improvement.
 - Social Audit Compliant — Regular third-party social compliance audits covering working conditions, wages and workplace practices, in addition to SA8000.
+- SEDEX — Supplier Ethical Data Exchange membership, supporting transparent sharing of labour standards, health & safety, environmental and business ethics data across the supply chain.
+- C-TPAT (Customs-Trade Partnership Against Terrorism) — Supply chain security alignment supporting secure and compliant import/export processes, particularly for US-bound shipments.
+- ZDHC (Zero Discharge of Hazardous Chemicals) — An initiative the company's sustainability framework aligns with, promoting safer chemical management and responsible production practices across the textile supply chain.
 - All dyeing is Azo-free, in conformance with governing-body norms.
-- Every order passes through the 2-layer AQL inspection system (in-line checks plus a final AQL-standard inspection) before dispatch.
+- Every order passes through the 3-layer AQL inspection system (in-line inspection, first-stage quality check, and a final AQL-standard inspection) before dispatch.
+
+Sustainability:
+AD Textile focuses on practical sustainability across materials, manufacturing processes, chemical management and resource use. Materials used include cotton, bamboo and other customer-specified or suitable sustainable options, depending on product requirements. Integrated knitting, weaving, dyeing, stitching and packing capabilities give greater control over quality, processes and resource use. The company focuses on responsible chemical management, resource efficiency, waste reduction and improved production practices, supported by standards and initiatives including OEKO-TEX® and ZDHC.
 
 Contact Information:
 Company: AD Textile (Angayeeammal Devarajan Textile Pvt. Ltd.)
@@ -97,10 +103,10 @@ Q: What is AD Textile's production capacity?
 A: Roughly 1 million metres of woven fabric per month, 3 tons/day of dyeing capacity, about 5 lakh (500,000) knitted pairs per month, 54-head embroidery capacity (10–12 thread colours), and 200 stitching machines run by a 200-person skilled and semi-skilled workforce.
 
 Q: What certifications does AD Textile hold?
-A: SA8000, ISO 14001, OEKO-TEX®, GOTS, ISO 9001:2015, and Social Audit Compliant, alongside exclusively Azo-free dyeing and a 2-layer AQL quality inspection system.
+A: SA8000, ISO 14001, OEKO-TEX®, GOTS, ISO 9001:2015, and Social Audit Compliant, alongside exclusively Azo-free dyeing and a 3-layer AQL quality inspection system.
 
 Q: Does AD Textile export internationally?
-A: Yes, since 1992. AD Textile has served international retail brands and ships to markets across Europe, North America, the Middle East and East Asia.
+A: Yes. AD Textile has been exporting to the USA since 1992 — one of the world's largest textile markets — building over three decades of export experience and a strong understanding of international quality standards, buyer requirements and global supply expectations. The company continues to expand its reach across the USA, UK, Europe and other international markets.
 
 Q: What is the minimum order quantity (MOQ)?
 A: Order volumes are generally grouped into tiers — 500–1,000 pcs (MOQ tier), 1,000–5,000 pcs, 5,000–10,000 pcs, and 10,000+ pcs (enterprise scale) — but the exact minimum depends on the product and specification. Recommend contacting the commercial team directly for a precise quote rather than quoting a fixed number.

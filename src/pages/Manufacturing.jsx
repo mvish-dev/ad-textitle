@@ -72,7 +72,7 @@ const MARQUEE_ITEMS = [
   { icon: 'design_services', label: '200 Jack Sewing Machines' },
   { icon: 'workspace_premium', label: 'SA8000 Certified' },
   { icon: 'eco', label: 'ISO 14001' },
-  { icon: 'fact_check', label: '2-Layer AQL Inspection' },
+  { icon: 'fact_check', label: '3-Layer AQL Inspection' },
   { icon: 'public', label: 'Exporting Since 1992' },
 ].map((item, i) => ({
   id: i,
@@ -112,25 +112,31 @@ const ASSURANCE_STEPS = [
   {
     step: '01',
     title: 'In-Line Inspection',
-    description: 'Quality checks at every stage of production, not just at the end — measurement accuracy, appearance and construction verified as work moves through the floor.',
+    description: 'Layer 1: quality checks at every stage of production, not just at the end — measurement accuracy, appearance and construction verified as work moves through the floor.',
     bg: 'bg-primary',
   },
   {
     step: '02',
-    title: 'Final AQL Inspection',
-    description: 'A final AQL-standard inspection clears every order before dispatch, for zero-compromise quality on the pieces that leave the facility.',
-    bg: 'bg-[#1e293b]',
+    title: 'First-Stage Quality Check',
+    description: 'Layer 2: a first-stage quality check reviews every order before it moves to final inspection.',
+    bg: 'bg-[#334155]',
   },
   {
     step: '03',
-    title: 'Custom & À La Carte Packing',
-    description: 'Exporting since 1992, we pack to each customer’s specification — from custom embellished packing to à la carte options built for long-haul shipping.',
-    bg: 'bg-[#A8834A]',
+    title: 'Final AQL Inspection',
+    description: 'Layer 3: a final AQL-standard inspection clears every order before dispatch, for zero-compromise quality on the pieces that leave the facility.',
+    bg: 'bg-[#1e293b]',
   },
   {
     step: '04',
+    title: 'Customer-Specific Packaging',
+    description: 'Exporting since 1992, we pack to each buyer’s specification — customized folding, packing, labelling and packaging formats, consistent across bulk orders.',
+    bg: 'bg-[#A8834A]',
+  },
+  {
+    step: '05',
     title: 'Warehouse Consolidation',
-    description: 'Organized racking and inventory tracking keep finished goods accounted for from production floor to container, ready for dispatch.',
+    description: 'A warehouse with capacity for up to seven 40-foot containers keeps finished goods accounted for from production floor to container, ready for dispatch.',
     bg: 'bg-[#0b1220]',
   },
 ]
@@ -142,14 +148,14 @@ const CAPABILITY_ITEMS = [
   { id: 4, icon: 'content_cut', label: 'Cutting', stat: 'In-House', caption: 'Precision Uniformity' },
   { id: 5, icon: 'auto_awesome', label: 'Embroidery', end: 54, suffix: ' Heads (10–12 Colours)', caption: 'Garuda & Toshiba Machines' },
   { id: 6, icon: 'design_services', label: 'Stitching', end: 200, suffix: ' Machines', caption: '200 Workers · Jack Sewing Machines' },
-  { id: 7, icon: 'verified', label: 'Quality Control', end: 2, suffix: '-Layer System', caption: 'End-to-End Inspection' },
+  { id: 7, icon: 'verified', label: 'Quality Control', end: 3, suffix: '-Layer System', caption: 'End-to-End Inspection' },
 ]
 
 const CERTIFICATION_ITEMS = [
   { id: 1, icon: 'workspace_premium', title: 'SA8000', description: 'Social accountability certification covering fair labour practices across our facility.' },
   { id: 2, icon: 'eco', title: 'ISO 14001', description: 'Environmental management system certification for responsible manufacturing.' },
   { id: 3, icon: 'science', title: 'Azo-Free Dyes', description: 'Every dye lot screened azo-free — safe for skin contact and export compliance.' },
-  { id: 4, icon: 'fact_check', title: '2-Layer AQL Inspection', description: 'In-line plus final AQL-standard inspection on every order before dispatch.' },
+  { id: 4, icon: 'fact_check', title: '3-Layer AQL Inspection', description: 'In-line, first-stage and final AQL-standard inspection on every order before dispatch.' },
   { id: 5, icon: 'water_drop', title: 'Effluent Treatment', description: 'ETP, Reverse Osmosis and VSEP plants treat process water before discharge.' },
 ]
 
@@ -387,7 +393,7 @@ function Manufacturing() {
             num="02"
             eyebrow="Structural Integrity"
             title="The Architecture of Fabric"
-            description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts."
+            description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts. Our manufacturing capability supports finished fabric widths of up to 120 inches."
             media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
@@ -464,13 +470,14 @@ function Manufacturing() {
             num="07"
             eyebrow="Assurance"
             title={<>Checking &amp; Quality <em>Control</em></>}
-            description="Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every product meets the highest standards of quality and accuracy — evaluated for measurement accuracy, appearance, and packing at every stage."
+            description="Our dedicated Quality Control team follows a comprehensive 3-layer inspection system to ensure every product meets the highest standards of quality and accuracy. Every product is thoroughly evaluated for measurement accuracy, appearance, and packing to ensure zero-compromise quality in every batch and full compliance with customer specifications."
             media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-5">
               {[
-                { n: '01', title: 'In-Line Inspection', sub: 'Layer 1: quality checks at every stage of production, not just at the end.' },
-                { n: '02', title: 'Final AQL Inspection', sub: 'Layer 2: final AQL-standard inspection before dispatch, for zero-compromise quality.' },
+                { n: '01', title: 'In-Line Inspection', sub: 'Layer 1: in-line inspections at every stage of production.' },
+                { n: '02', title: 'First-Stage Quality Check', sub: 'Layer 2: first-stage quality check.' },
+                { n: '03', title: 'Final AQL Inspection', sub: 'Layer 3: final AQL-standard inspection before dispatch.' },
               ].map((row) => (
                 <div key={row.n} className="flex items-start gap-5">
                   <div className="w-11 h-11 flex items-center justify-center rounded-full bg-primary text-white shrink-0 font-bold text-sm shadow-md">
@@ -489,14 +496,14 @@ function Manufacturing() {
             id="packing"
             num="08"
             eyebrow="Fulfilment"
-            title={<em>Packing</em>}
-            description="AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements — from custom-specific packing with embellishments to à la carte packing tailored to each client's needs — every shipment is prepared to withstand the rigors of long-haul shipping."
+            title={<>Customer-Specific <em>Packaging</em></>}
+            description="We follow customer-specific packaging requirements to ensure every product is packed according to the buyer's specifications. Our skilled and experienced workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across bulk orders."
             media={<img src={packingHero} alt="Export packing operations at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
-              <StatTile icon="calendar_month" label="1992" sub="Exporting Since" />
-              <StatTile icon="inventory_2" label="Custom & À La Carte" sub="Packing Options" />
+              <StatTile icon="rule" label="Buyer-Specific Formats" sub="Folding, Packing & Labelling" />
+              <StatTile icon="groups" label="Trained Workforce" sub="Consistency Across Bulk Orders" />
             </div>
           </Chapter>
 
@@ -504,17 +511,13 @@ function Manufacturing() {
             id="warehouse"
             num="09"
             eyebrow="Storage & Fulfilment"
-            title="Warehouse"
-            description="Our warehouse manages raw material storage, work-in-progress staging and finished-goods consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every order accounted for from production floor to container."
+            title={<>Warehouse &amp; Storage <em>Capacity</em></>}
+            description="Our warehouse has the capacity to accommodate up to seven 40-foot containers, with space to hold two fully loaded containers. This enables us to efficiently manage finished goods, bulk orders and export shipments."
             media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
-            <div className="space-y-3">
-              {['Organized Racking & Inventory Tracking', 'Finished-Goods Consolidation for Dispatch'].map((label) => (
-                <div key={label} className="flex items-center gap-4">
-                  <div className="w-10 h-px bg-secondary" />
-                  <span className="font-label-md text-xs uppercase tracking-wider font-semibold text-primary">{label}</span>
-                </div>
-              ))}
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="inventory_2" label="7 x 40FT Containers" sub="Total Storage Capacity" />
+              <StatTile icon="local_shipping" label="2 Loaded Containers" sub="Ready-to-Dispatch Space" />
             </div>
           </Chapter>
         </div>
@@ -546,7 +549,7 @@ function Manufacturing() {
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="eyebrow mb-4 block">Assurance</span>
               <h2 className="section-title mb-4">
-                Every Order, <em>Verified</em> Twice
+                Every Order, <em>Verified</em> Three Times
               </h2>
               <p className="text-on-surface-variant text-sm">Scroll inside the panel to step through the journey from floor to container.</p>
             </div>

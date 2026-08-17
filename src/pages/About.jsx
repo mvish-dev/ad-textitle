@@ -28,31 +28,31 @@ import peopleSockTrimPortrait from '../assets/images/people/people-sock-trim-por
 const TIMELINE = [
   {
     year: '1990',
-    title: 'The Foundation',
+    title: 'The Beginning',
     description:
-      'AD Textile was established as a manufacturer of quality home textile products, laying the foundation for what the company is today.',
+      'AD Textile was established in Karur, building its foundation in textile manufacturing.',
     align: 'right',
   },
   {
     year: '1992',
-    title: 'First Export',
+    title: 'Entering Global Markets',
     description:
-      'Began exporting our home textile products to the international market, marking the start of our journey as a global exporter.',
+      'We began exporting, taking our textile expertise to international customers.',
     align: 'left',
   },
   {
-    year: 'Ongoing',
-    title: 'Modern Infrastructure',
+    year: '30+ Years',
+    title: 'Growing with Experience',
     description:
-      'Continuous investment in contemporary infrastructure and modern manufacturing technology, strengthening our ability to serve international buyers.',
+      'Over three decades, we have expanded our manufacturing capabilities, product range and global presence while staying committed to quality and customer requirements.',
     align: 'right',
     small: true,
   },
   {
     year: 'Today',
-    title: 'Global Standards',
+    title: 'Built for the World',
     description:
-      'Quality products, on-time delivery, and continuous process improvement remain at the heart of how we work, backed by well-groomed, skilled personnel.',
+      'We combine 30+ years of textile expertise, integrated manufacturing capabilities and global market experience to deliver reliable textile solutions to customers worldwide.',
     align: 'left',
     small: true,
   },
@@ -142,7 +142,7 @@ function About() {
     <>
       <Seo
         title="About Us"
-        description="For over three decades, AD Textile has helped international brands turn ideas into premium home textile products through fully integrated manufacturing — from dyeing and weaving to stitching and quality inspection."
+        description="AD Textile is a textile manufacturing and export company from Karur, India, with decades of experience in the textile industry — combining product knowledge, skilled craftsmanship and modern manufacturing practices."
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
@@ -176,7 +176,7 @@ function About() {
               delay={0.2}
               className="font-display-lg text-display-lg-mobile md:text-5xl text-white leading-tight font-light"
             >
-              Legacy in <span className="italic font-normal text-secondary">Every</span> Thread.
+              Rooted in Textiles. Built for <span className="italic font-normal text-secondary">the World</span>.
             </RevealText>
             <div className="w-24 h-[1.5px] bg-secondary mx-auto mt-4" />
           </motion.div>
@@ -192,20 +192,18 @@ function About() {
             <span className="eyebrow bg-secondary/10 px-3 py-1 rounded-full text-[0.7rem] inline-block">
               Our Profile
             </span>
-            <h2 className="section-title text-3xl md:text-4xl leading-tight font-light text-primary font-serif">
-              Quality products. On-time delivery. Continuous <em className="italic text-secondary font-normal font-serif">improvement</em>.
-            </h2>
             <div className="divider" />
             <div className="text-on-surface/80 font-body-md text-sm md:text-base space-y-5 leading-relaxed pt-2">
               <p>
-                For over three decades, AD Textile has been helping international brands transform ideas into
-                premium-quality home textile products. With fully integrated manufacturing — from dyeing and weaving
-                to stitching and quality inspection — we deliver consistent quality, dependable lead times, and
-                flexible manufacturing solutions under one roof.
+                AD Textile is a textile manufacturing and export company from Karur, India, with decades of
+                experience in the textile industry.
               </p>
               <p>
-                We believe in delivering superior products and services that give our customers a competitive advantage
-                through high-end fabrics, strict quality checks, and structured environmental management.
+                Built on strong textile expertise, we manufacture and export home textiles and textile products,
+                combining product knowledge, skilled craftsmanship and modern manufacturing practices.
+              </p>
+              <p>
+                Our focus is simple — quality products, reliable execution and long-term global partnerships.
               </p>
             </div>
           </div>
@@ -251,7 +249,7 @@ function About() {
           <div className="text-center mb-20 space-y-4 max-w-lg mx-auto">
             <span className="eyebrow">Our Journey</span>
             <RevealText as="h2" className="section-title text-3xl font-light text-primary leading-tight">
-              Milestones of <em className="italic text-secondary font-normal font-serif">Progress</em>
+              From Textile Roots to <em className="italic text-secondary font-normal font-serif">Global Reach</em>
             </RevealText>
             <div className="divider mx-auto" />
           </div>
@@ -389,8 +387,8 @@ function About() {
               },
               {
                 icon: 'verified',
-                title: '2-Layer AQL Inspection',
-                description: 'In-line checks at every stage, plus a final AQL-standard inspection before dispatch.',
+                title: '3-Layer AQL Inspection',
+                description: 'In-line checks, first-stage quality check and a final AQL-standard inspection before dispatch.',
               },
             ].map((item) => (
               <SpotlightCard
@@ -446,9 +444,20 @@ function About() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
               Our Global <em className="italic text-secondary font-serif font-normal">Reach</em>
             </h2>
-            <p className="font-body-md text-white/70 leading-relaxed text-sm md:text-base">
-              We began exporting to the international market in 1992, and today AD Textile products reach global markets, having served major retailers across international channels.
-            </p>
+            <div className="font-body-md text-white/70 leading-relaxed text-sm md:text-base space-y-4">
+              <p>
+                Since 1992, we have been exporting textile products to the USA, building over three decades of
+                experience in serving one of the world&apos;s largest textile markets.
+              </p>
+              <p>
+                Our long-standing export experience has given us a strong understanding of international quality
+                standards, buyer requirements and global supply expectations.
+              </p>
+              <p>
+                Today, we continue to build on this experience as we expand our reach across the USA, UK, Europe
+                and other international markets.
+              </p>
+            </div>
             <div className="pt-2">
               <Button to="/contact" variant="secondary">
                 Talk to Our Team

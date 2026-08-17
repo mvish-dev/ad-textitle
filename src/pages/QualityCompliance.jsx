@@ -9,6 +9,7 @@ import WebGLScene from '../components/motion/WebGLScene.jsx'
 import Seo from '../components/common/Seo.jsx'
 
 import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
+import checkingDetail from '../assets/images/manufacturing/checking/checking-detail.webp'
 import checkingFinalAql from '../assets/images/manufacturing/checking/checking-final-aql.webp'
 import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
 
@@ -23,13 +24,22 @@ const INSPECTION_STEPS = [
     align: 'right',
   },
   {
-    levels: 'LAYER 2 · FINAL AQL',
+    levels: 'LAYER 2 · FIRST-STAGE QC',
+    title: 'First-Stage Quality Check',
+    description:
+      'A first-stage quality check reviews every order after in-line production, catching issues early and before the product moves to final inspection.',
+    image: checkingDetail,
+    alt: 'First-Stage Quality Check',
+    align: 'left',
+  },
+  {
+    levels: 'LAYER 3 · FINAL AQL',
     title: 'Final AQL Inspection',
     description:
       'Every order undergoes a final AQL-standard inspection before dispatch, with each product evaluated for measurement accuracy, appearance, and packing — ensuring zero-compromise quality in every batch.',
     image: checkingFinalAql,
     alt: 'Final AQL-Standard Inspection Before Dispatch',
-    align: 'left',
+    align: 'right',
   },
 ]
 
@@ -60,7 +70,7 @@ const TESTING_PRACTICES = [
     icon: 'science',
     title: 'Azo-Free Dye Verification',
     description:
-      'Every dyeing batch uses Azo-free dyes only, verified through the same 2-layer inspection system — in-line checks and final AQL-standard clearance — applied across production.',
+      'Every dyeing batch uses Azo-free dyes only, verified through the same 3-layer inspection system — in-line checks, first-stage quality check and final AQL-standard clearance — applied across production.',
   },
 ]
 
@@ -102,7 +112,7 @@ function QualityCompliance() {
     <>
       <Seo
         title="Quality & Compliance"
-        description="Elevating industrial manufacturing through rigorous certification and state-of-the-art laboratory testing across AD Textile's global supply chain."
+        description="AD Textile maintains quality and compliance across every stage of production — from raw materials to finished products, meeting buyer specifications and international requirements."
       />
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden pt-20 bg-primary">
@@ -138,11 +148,12 @@ function QualityCompliance() {
               delay={0.2}
               className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight mb-8"
             >
-              Global Standards. Uncompromising Quality.
+              Quality. Consistency. Compliance.
             </RevealText>
             <p className="font-body-lg text-body-lg text-white/80 mb-8 max-w-xl">
-              Elevating industrial manufacturing through rigorous certification and state-of-the-art laboratory testing
-              across our entire global supply chain.
+              We maintain quality and compliance across every stage of production — from raw materials to finished
+              products. Our integrated manufacturing capabilities help us deliver consistent quality while meeting
+              buyer specifications and international requirements.
             </p>
             <div className="flex gap-4">
               <Button href="#certifications" variant="secondary">
@@ -161,9 +172,8 @@ function QualityCompliance() {
             <h2 className="section-title">The Journey of <em>Quality</em></h2>
             <div className="divider mx-auto" />
             <p className="text-on-surface-variant font-body-lg mt-6 leading-relaxed">
-              Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every
-              product meets the highest standards of quality and accuracy — in-line checks at every stage of
-              production, followed by a final AQL-standard inspection before dispatch.
+              Quality checks are integrated throughout production to ensure consistency in fabric, colour,
+              dimensions, stitching, workmanship and finishing.
             </p>
           </div>
 
@@ -235,8 +245,8 @@ function QualityCompliance() {
               <span className="eyebrow !text-secondary mb-4">Laboratory</span>
               <h2 className="font-headline-xl text-3xl mb-6">Rigorous Testing Practices</h2>
               <p className="text-white/70 text-xs leading-relaxed">
-                Our dyeing process is checked against wet, dry rubbing and light-fastness standards, with every stage of
-                production backed by our two-layer AQL inspection system.
+                Products are tested according to product specifications, buyer requirements and applicable market
+                standards.
               </p>
             </div>
             <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -304,8 +314,8 @@ function QualityCompliance() {
               />
               <div className="absolute -bottom-6 -left-6 bg-secondary p-8 text-white rounded-xl shadow-lg max-w-xs">
                 <p className="text-[10px] uppercase tracking-widest font-semibold text-white/80 mb-2">Quality Assurance</p>
-                <p className="font-headline-lg text-2xl font-bold text-white">2-Layer AQL Inspection</p>
-                <p className="text-[10px] mt-2 text-white/70 italic leading-relaxed">In-Line Checks + Final Dispatch Clearance</p>
+                <p className="font-headline-lg text-2xl font-bold text-white">3-Layer AQL Inspection</p>
+                <p className="text-[10px] mt-2 text-white/70 italic leading-relaxed">In-Line + First-Stage + Final Dispatch Clearance</p>
               </div>
             </div>
           </div>
@@ -320,40 +330,17 @@ function QualityCompliance() {
               <span className="eyebrow">Certificates</span>
               <h2 className="section-title mb-6">Global <em>Standards</em></h2>
               <p className="text-on-surface-variant font-body-lg leading-relaxed">
-                Our facility operates under internationally recognized compliance frameworks, covering ethical labor
-                practices, environmental management, product safety and quality systems.
+                Our certifications and industry standards include ISO, OEKO-TEX®, SEDEX, C-TPAT and ZDHC,
+                supporting our commitment to quality, responsible sourcing and compliance. OEKO-TEX® STANDARD 100
+                specifically addresses harmful-substance testing in textiles.
               </p>
             </div>
           </div>
+          {/* Icon placeholders below — swap for the client-provided certificate images once received. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {/* SA8000 */}
-            <motion.div
-              initial={{ opacity: 0, x: -25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="groups" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SA8000</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Social Accountability
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Our commitment to ethical labor practices, ensuring fair wages, workplace safety, and the absolute
-                prohibition of forced or child labor throughout our operations.
-              </p>
-              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
-                Request Documentation
-              </Button>
-            </motion.div>
             {/* ISO 14001 */}
             <motion.div
-              initial={{ opacity: 0, x: 25 }}
+              initial={{ opacity: 0, x: -25 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -376,62 +363,12 @@ function QualityCompliance() {
                 Request Documentation
               </Button>
             </motion.div>
-            {/* OEKO-TEX */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="science" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">OEKO-TEX&reg;</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Product Safety
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Independent testing confirming our fabrics are free from harmful substances at every processing
-                stage, from yarn to finished product, so what reaches the end consumer is safe for skin contact.
-              </p>
-              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
-                Request Documentation
-              </Button>
-            </motion.div>
-            {/* GOTS */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="grass" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">GOTS</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Organic Textile Processing
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Coverage of organic fibre status from raw material through environmentally and socially responsible
-                manufacturing, supporting buyers who need a verified organic supply chain.
-              </p>
-              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
-                Request Documentation
-              </Button>
-            </motion.div>
             {/* ISO 9001:2015 */}
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6 }}
               className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
             >
               <div className="mb-8">
@@ -451,7 +388,82 @@ function QualityCompliance() {
                 Request Documentation
               </Button>
             </motion.div>
-            {/* Social Audit Compliant */}
+            {/* OEKO-TEX */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="science" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">OEKO-TEX&reg; STANDARD 100</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Product Safety
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                OEKO-TEX® STANDARD 100 specifically addresses harmful-substance testing in textiles — confirming our
+                fabrics are safe for skin contact, from yarn to finished product.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* SEDEX */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="handshake" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SEDEX</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Responsible Sourcing
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Supplier Ethical Data Exchange membership, supporting transparent sharing of labour standards,
+                health &amp; safety, environmental and business ethics data across our supply chain.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* C-TPAT */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
+            >
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
+                  <Icon name="security" className="text-3xl text-secondary" />
+                </div>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">C-TPAT</h4>
+                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                  Supply Chain Security
+                </span>
+              </div>
+              <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                Customs-Trade Partnership Against Terrorism alignment, supporting secure and compliant import and
+                export processes for our US-bound shipments.
+              </p>
+              <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
+                Request Documentation
+              </Button>
+            </motion.div>
+            {/* ZDHC */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -461,16 +473,16 @@ function QualityCompliance() {
             >
               <div className="mb-8">
                 <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="fact_check" className="text-3xl text-secondary" />
+                  <Icon name="water_drop" className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">Social Audit Compliant</h4>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">ZDHC</h4>
                 <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Third-Party Verification
+                  Chemical Management
                 </span>
               </div>
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Regular third-party social compliance audits covering working conditions, wages and workplace
-                practices, carried out in addition to our SA8000 certification.
+                ZDHC promotes safer chemical management and responsible production practices across the textile
+                supply chain.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation
@@ -488,8 +500,8 @@ function QualityCompliance() {
             <h2 className="section-title">Social <em>Compliance</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
-              As a corporate entity in compliance with SA8000, we extend our responsibility beyond the factory floor —
-              to fair labor practices and to the communities we operate in.
+              We are committed to safe working conditions, employee welfare, ethical practices and responsible
+              workplace standards.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter">
@@ -520,8 +532,8 @@ function QualityCompliance() {
             <h2 className="section-title">Product <em>Compliance</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
-              Compliance doesn't stop at the factory — it's built into every product that leaves it, from the dyes we
-              use to the finish on the fabric.
+              We work with buyers to meet product specifications, labelling, testing, packaging and market-specific
+              compliance requirements.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
