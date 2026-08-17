@@ -12,6 +12,7 @@ const Manufacturing = lazy(() => import('./pages/Manufacturing.jsx'))
 const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
 const Sustainability = lazy(() => import('./pages/Sustainability.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 // Dev-only crash trigger for manually verifying the ErrorBoundary fallback.
@@ -37,6 +38,9 @@ function App() {
               <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
               <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
               <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+              <Route path="privacy-policy" element={<AnimatedPage><PrivacyPolicy /></AnimatedPage>} />
+              <Route path="terms" element={<Navigate to="/privacy-policy#terms-of-service" replace />} />
+              <Route path="terms-of-service" element={<Navigate to="/privacy-policy#terms-of-service" replace />} />
               <Route path="living-linen" element={<Navigate to="/products" replace />} />
               <Route path="heritage-bed-linen" element={<Navigate to="/products" replace />} />
               <Route path="kitchen-linen" element={<Navigate to="/products" replace />} />

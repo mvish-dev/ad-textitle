@@ -221,6 +221,8 @@ function About() {
                 <img
                   src={videoPoster}
                   alt="Corporate facility"
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
                 />
                 
@@ -417,6 +419,8 @@ function About() {
         <img
           src={aerialCampusWide}
           alt="Aerial view of the AD Textile manufacturing campus in Karur, India"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/15 to-primary/40" />
@@ -578,6 +582,8 @@ function About() {
             alt="Aerial view of AD Textile's Effluent Treatment Plant"
             className="w-full h-full object-cover scale-[1.03]"
             src={aerialEtp}
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary/90 z-10" />

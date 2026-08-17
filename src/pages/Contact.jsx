@@ -148,6 +148,8 @@ function Contact() {
             className="w-full h-full object-cover scale-105 brightness-50"
             alt="Premium fabric weaving textures"
             src={weavingWorkerPlaid}
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

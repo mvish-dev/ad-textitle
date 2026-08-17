@@ -112,9 +112,15 @@ function Footer() {
       </div>
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-8 pt-8 flex justify-between items-center flex-wrap gap-4">
-        <p className="text-[0.73rem] text-white/65">
-          © {new Date().getFullYear()} Angayeeammal Devarajan Textile Pvt. Ltd. (AD Textile). All rights reserved.
-        </p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.73rem] text-white/65">
+          <p>© {new Date().getFullYear()} Angayeeammal Devarajan Textile Pvt. Ltd. (AD Textile). All rights reserved.</p>
+          <Link className="hover:text-secondary transition-colors duration-200" to="/privacy-policy">
+            Privacy Policy
+          </Link>
+          <Link className="hover:text-secondary transition-colors duration-200" to="/privacy-policy#terms-of-service">
+            Terms of Service
+          </Link>
+        </div>
         <div className="flex gap-[0.55rem]">
           <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">SA8000</span>
           <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">ISO 14001</span>

@@ -175,7 +175,7 @@ function Sustainability() {
             {/* Environmental Care */}
             <div className="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col justify-between">
               <div className="aspect-video relative overflow-hidden">
-                <img src={envCarePhoto} alt="Environmental care at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />
+                <img src={envCarePhoto} alt="Environmental care at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />
               </div>
               <div className="p-6">
                 <h4 className="font-headline-lg text-lg font-semibold text-primary mb-2">Environmental Care</h4>
@@ -188,7 +188,7 @@ function Sustainability() {
             {/* Resource Management */}
             <div className="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col justify-between">
               <div className="aspect-video relative overflow-hidden">
-                <img src={resourcePhoto} alt="Resource management at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />
+                <img src={resourcePhoto} alt="Resource management at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />
               </div>
               <div className="p-6">
                 <h4 className="font-headline-lg text-lg font-semibold text-primary mb-2">Resource Management</h4>
@@ -269,6 +269,8 @@ function Sustainability() {
                 <img
                   className="w-20 object-contain"
                   alt="SA8000 Social Accountability certification"
+                  loading="lazy"
+                  decoding="async"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ohxOzv9_dmwT57KLlzo8s3bcU7TH4A6IoJwICM4DXP5OS0azQZSwsNNeRrYfUrzz04SpupYvuQsczgwRjf2aAcK1kIIWPw_hBDRLrbH_Nt2cbcaWrooXGmvDBkeX3eVPD00IUbHsSEhr3iavjXP3XOfHvmMO320yNQq5eqjz44s7qnZJ-seyFyEYkq69mHvH_5glK0FnPEI58CWykMrxqG6bEAN4Hywe4RSOmcb2yMea4Nek16ApU-WFrntUJupoSXDBnAlGhVo"
                 />
               </div>
@@ -289,6 +291,8 @@ function Sustainability() {
                 <img
                   className="w-20 object-contain"
                   alt="ISO 14001 Environmental Management certification"
+                  loading="lazy"
+                  decoding="async"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYls7wdTZ_O1rXxF32MEfSZSkbmjZqPqPVAgrCIl1k6UtG4bZyy1mjxYwH9uSesZDhjxtxkSAsvhdGtstsYwxpeqKC-D35ZK9pDauz3Oq3qwF4EyccXuYtqapZtzN_oLmCyWGNBHgyBjhXMn37BSPR7aZetZHWQUvAdXtKoT_t303CGwrnMfmudJatsdFHtPauzFkjhga0ncIsJUajl2v-lopuYENGFTrlLMwGC7QHPqjmNGfv6SgA5C0-tiIrnJbv5egW58ejGpU"
                 />
               </div>
@@ -308,6 +312,8 @@ function Sustainability() {
             className="w-full h-full object-cover scale-[1.02]"
             alt="Aerial view of the AD Textile manufacturing campus"
             src={aerialCampusWide}
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-primary/50" />
         </div>

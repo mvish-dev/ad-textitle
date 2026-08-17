@@ -511,6 +511,8 @@ function Home() {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     src={colorMatchingTechnician}
                     alt="Laboratory technician performing colour-matching tests at AD Textile"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </TiltedCard>
@@ -521,6 +523,8 @@ function Home() {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     src={warehouseHero}
                     alt="Warehouse of packaged, export-ready fabrics at AD Textile"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </TiltedCard>
@@ -552,6 +556,8 @@ function Home() {
                         className="w-full h-full object-cover"
                         src={item.image}
                         alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </TiltedCard>
@@ -635,6 +641,8 @@ function Home() {
                 className="w-full h-full object-cover scale-105"
                 alt="Weaving background"
                 src={weavingWorkerPlaid}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             

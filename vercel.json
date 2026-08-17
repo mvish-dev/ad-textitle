@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/living-linen", "destination": "/products", "permanent": true },
+    { "source": "/heritage-bed-linen", "destination": "/products", "permanent": true },
+    { "source": "/kitchen-linen", "destination": "/products", "permanent": true },
+    { "source": "/table-linen", "destination": "/products", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],

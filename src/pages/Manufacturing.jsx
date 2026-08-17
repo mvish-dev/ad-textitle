@@ -350,6 +350,8 @@ function Manufacturing() {
               <img
                 src={dyeingHallWide}
                 alt="AD Textile manufacturing facility"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
               />
               <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-all duration-300" />
@@ -372,7 +374,7 @@ function Manufacturing() {
             eyebrow="Coloration"
             title={<>Precision <em>Color</em> Science</>}
             description="Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior dye penetration, exceptional colour fastness, and consistent quality across a wide variety of yarn types and blends."
-            media={<img src={dyeingHero} alt="Azo-free dye vats at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={dyeingHero} alt="Azo-free dye vats at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="format_color_fill" label="Italian Cheese Dyeing" sub="Imported Machines" />
@@ -386,7 +388,7 @@ function Manufacturing() {
             eyebrow="Structural Integrity"
             title="The Architecture of Fabric"
             description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts."
-            media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -401,7 +403,7 @@ function Manufacturing() {
             eyebrow="Loop Formation"
             title={<>Precision in Every <em>Loop</em></>}
             description="Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — supported by a fully integrated composite unit for linking, washing, setting and ironing."
-            media={<img src={knittingHero} alt="Circular knitting machines producing socks at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={knittingHero} alt="Circular knitting machines producing socks at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="texture" label="50 Knitting Machines" sub="Imported Korean, Single Cylinder" />
@@ -415,7 +417,7 @@ function Manufacturing() {
             eyebrow="Precision"
             title={<em>Cutting</em>}
             description="Our in-house cutting facility is designed to deliver precision, consistency and efficiency across every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for high-quality finished products."
-            media={<img src={cuttingHero} alt="Precision fabric cutting at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={cuttingHero} alt="Precision fabric cutting at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="flex flex-wrap gap-4">
@@ -430,7 +432,7 @@ function Manufacturing() {
             eyebrow="Embellishment"
             title={<em>Embroidery</em>}
             description="Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines, featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities, and precision digitising — delivering intricate, premium designs across our home textile ranges."
-            media={<img src={embroideryHero} alt="Embroidery detailing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={embroideryHero} alt="Embroidery detailing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <ul className="space-y-3">
               {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
@@ -448,7 +450,7 @@ function Manufacturing() {
             eyebrow="Construction"
             title={<em>Stitching</em>}
             description="Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and sock linking operations — converting cut and embroidered panels into finished, quality-checked pieces at high volume."
-            media={<img src={stitchingHero} alt="Stitching production line at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={stitchingHero} alt="Stitching production line at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="flex flex-wrap gap-4">
@@ -463,7 +465,7 @@ function Manufacturing() {
             eyebrow="Assurance"
             title={<>Checking &amp; Quality <em>Control</em></>}
             description="Our dedicated Quality Control team follows a comprehensive 2-layer inspection system to ensure every product meets the highest standards of quality and accuracy — evaluated for measurement accuracy, appearance, and packing at every stage."
-            media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-5">
               {[
@@ -489,7 +491,7 @@ function Manufacturing() {
             eyebrow="Fulfilment"
             title={<em>Packing</em>}
             description="AD Textile has been exporting since 1992. We offer packing in various types as per customer requirements — from custom-specific packing with embellishments to à la carte packing tailored to each client's needs — every shipment is prepared to withstand the rigors of long-haul shipping."
-            media={<img src={packingHero} alt="Export packing operations at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={packingHero} alt="Export packing operations at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -504,7 +506,7 @@ function Manufacturing() {
             eyebrow="Storage & Fulfilment"
             title="Warehouse"
             description="Our warehouse manages raw material storage, work-in-progress staging and finished-goods consolidation ahead of dispatch, with organized racking and inventory tracking that keeps every order accounted for from production floor to container."
-            media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-3">
               {['Organized Racking & Inventory Tracking', 'Finished-Goods Consolidation for Dispatch'].map((label) => (

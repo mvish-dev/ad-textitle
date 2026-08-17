@@ -96,6 +96,8 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
                     src={item.image}
                     alt={item.alt}
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A101E]/95 via-[#0A101E]/35 to-transparent" />
 
