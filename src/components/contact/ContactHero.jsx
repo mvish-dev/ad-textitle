@@ -5,7 +5,7 @@ import Icon from '../ui/Icon.jsx'
 import RevealText from '../motion/RevealText.jsx'
 import ExportRouteMap from './ExportRouteMap.jsx'
 
-function ContactHero({ isOpen, liveTime }) {
+function ContactHero() {
   const [isMapExpanded, setIsMapExpanded] = useState(false)
   // Hover-driven layout only makes sense for a mouse/trackpad — gating on
   // `(hover: hover)` avoids a tap on the map card leaving the panel stuck
@@ -29,12 +29,6 @@ function ContactHero({ isOpen, liveTime }) {
             <span className="eyebrow bg-secondary/10 px-3 py-1 rounded-full text-[0.7rem]">
               Global Connectivity
             </span>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-outline-variant/30 shadow-xs">
-              <span className={`w-2 h-2 rounded-full ${isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-rose-400'}`} />
-              <span className="text-[0.68rem] text-on-surface-variant font-semibold uppercase tracking-wider">
-                HQ: {isOpen ? 'Open Now' : 'Closed'} ({liveTime || 'IST'})
-              </span>
-            </div>
           </div>
 
           <RevealText as="h1" scrollTriggered={false} delay={0.1} className="section-title text-4xl md:text-5xl lg:text-6xl leading-tight font-light text-primary">

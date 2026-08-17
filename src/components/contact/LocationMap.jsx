@@ -31,7 +31,7 @@ function LocationMap() {
               <p className="text-xs text-white/70 leading-relaxed font-body-md">
                 1/104, Sanjay Nagar, Erode Road, Athur Post, Karur &ndash; 639002, Tamil Nadu, India.
               </p>
-              <div className="pt-2 border-t border-white/10 flex justify-between items-center text-xs">
+              <div className="pt-2 border-t border-white/10 flex items-center text-xs">
                 <a
                   href="https://maps.google.com/?q=A.D.TEXTILE(P)LTD"
                   target="_blank"
@@ -41,7 +41,6 @@ function LocationMap() {
                   Navigate in Maps
                   <Icon name="open_in_new" className="text-xs" />
                 </a>
-                <span className="text-white/60">Open 09:00 - 18:00</span>
               </div>
             </div>
           </motion.div>

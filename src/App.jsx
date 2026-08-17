@@ -9,11 +9,8 @@ const Home = lazy(() => import('./pages/Home.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
 const Manufacturing = lazy(() => import('./pages/Manufacturing.jsx'))
-const DesignDevelopment = lazy(() => import('./pages/DesignDevelopment.jsx'))
-const PrivateLabel = lazy(() => import('./pages/PrivateLabel.jsx'))
 const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
 const Sustainability = lazy(() => import('./pages/Sustainability.jsx'))
-const Exports = lazy(() => import('./pages/Exports.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
@@ -37,11 +34,8 @@ function App() {
               <Route path="about" element={<AnimatedPage><About /></AnimatedPage>} />
               <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
               <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
-              <Route path="design-development" element={<AnimatedPage><DesignDevelopment /></AnimatedPage>} />
-              <Route path="private-label" element={<AnimatedPage><PrivateLabel /></AnimatedPage>} />
               <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
               <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
-              <Route path="exports" element={<AnimatedPage><Exports /></AnimatedPage>} />
               <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
               <Route path="living-linen" element={<Navigate to="/products" replace />} />
               <Route path="heritage-bed-linen" element={<Navigate to="/products" replace />} />

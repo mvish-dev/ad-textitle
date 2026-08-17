@@ -28,9 +28,6 @@ function Maintenance() {
         <a href="mailto:deepak@adtextile.com" className="hover:text-secondary transition-colors">
           deepak@adtextile.com
         </a>
-        <a href="tel:+919790557077" className="hover:text-secondary transition-colors">
-          +91 97 90 55 7077
-        </a>
       </div>
     </div>
   )

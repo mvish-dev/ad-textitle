@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Container from '../components/ui/Container.jsx'
 import MagneticButton from '../components/motion/MagneticButton.jsx'
@@ -42,41 +42,12 @@ function Contact() {
   const [activeTab, setActiveTab] = useState(() =>
     new URLSearchParams(location.search).get('product') ? 'quote' : 'enquiry'
   )
-  const [liveTime, setLiveTime] = useState('')
-  const [isOpen, setIsOpen] = useState(true)
   const [copied, setCopied] = useState(false)
 
   const [formState, setFormState] = useState(() => getInitialFormState(location.search))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [hasSubmitError, setHasSubmitError] = useState(false)
-
-  // Live India Time & Availability tracker
-  useEffect(() => {
-    const updateTime = () => {
-      const options = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      }
-      const formatter = new Intl.DateTimeFormat('en-US', options)
-      setLiveTime(formatter.format(new Date()))
-
-      // Open Mon-Fri 9:00 AM - 6:00 PM IST
-      const indiaDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
-      const day = indiaDate.getDay() // 0 = Sunday, 6 = Saturday
-      const hours = indiaDate.getHours()
-      const isWeekday = day >= 1 && day <= 5
-      const isWorkingHours = hours >= 9 && hours < 18
-      setIsOpen(isWeekday && isWorkingHours)
-    }
-
-    updateTime()
-    const timer = setInterval(updateTime, 1000)
-    return () => clearInterval(timer)
-  }, [])
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText('1/104, Sanjay Nagar, Erode Road, Athur Post, Karur - 639002, Tamil Nadu, India')
@@ -143,7 +114,7 @@ function Contact() {
         description="Get in touch with AD Textile's commercial team in Karur, India. Request a manufacturing quote, sourcing enquiry, or visit our vertically integrated production facility."
       />
 
-      <ContactHero isOpen={isOpen} liveTime={liveTime} />
+      <ContactHero />
 
       {/* Main Dual-Form & Details Grid Section */}
       <section className="py-20 md:py-28" id="contact-form-section">
@@ -162,7 +133,7 @@ function Contact() {
               onRetry={retrySubmit}
               onResetForm={resetForm}
             />
-            <FacilityDetails isOpen={isOpen} copied={copied} onCopyAddress={handleCopyAddress} />
+            <FacilityDetails copied={copied} onCopyAddress={handleCopyAddress} />
           </div>
         </Container>
       </section>

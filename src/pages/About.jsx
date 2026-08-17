@@ -446,8 +446,8 @@ function About() {
               We began exporting to the international market in 1992, and today AD Textile products reach global markets, having served major retailers across international channels.
             </p>
             <div className="pt-2">
-              <Button to="/exports" variant="secondary">
-                Explore Our Export Capabilities
+              <Button to="/contact" variant="secondary">
+                Talk to Our Team
               </Button>
             </div>
           </div>

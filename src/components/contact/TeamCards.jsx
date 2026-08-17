@@ -12,8 +12,6 @@ const TEAM_MEMBERS = [
     tag: 'Sales & Contracts',
     bio: 'Responsible for global retail accounts, customized production tenders, client onboarding, and bulk supply negotiations.',
     email: 'senthil@adtextile.com',
-    phone: '+91 999 43 99 077',
-    tel: '+919994399077',
     whatsapp: '919994399077',
   },
   {
@@ -23,8 +21,6 @@ const TEAM_MEMBERS = [
     tag: 'Exports & Quality',
     bio: 'Focuses on global shipment logistics, custom clearance documents, production tracking, and GOTS/Oeko-Tex certification compliance.',
     email: 'deepak@adtextile.com',
-    phone: '+91 97 90 55 7077',
-    tel: '+919790557077',
     whatsapp: '919790557077',
   },
 ]
@@ -79,16 +75,6 @@ function TeamCards() {
                     <span className="flex items-center gap-2">
                       <Icon name="mail" className="text-base text-on-surface-variant group-hover:text-secondary" />
                       {member.email}
-                    </span>
-                    <Icon name="arrow_forward" className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                  <a
-                    href={`tel:${member.tel}`}
-                    className="flex items-center justify-between text-xs font-semibold text-primary hover:text-secondary group transition-colors"
-                  >
-                    <span className="flex items-center gap-2">
-                      <Icon name="call" className="text-base text-on-surface-variant group-hover:text-secondary" />
-                      {member.phone}
                     </span>
                     <Icon name="arrow_forward" className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>

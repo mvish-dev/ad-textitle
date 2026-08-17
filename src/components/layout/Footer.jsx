@@ -36,13 +36,6 @@ function Footer() {
             Manufacturing premium home textiles for global excellence since 1990. Exporting worldwide since 1992.
           </p>
           <div className="flex gap-[0.7rem] mt-6">
-            <a
-              className="w-[35px] h-[35px] rounded bg-white/6 flex items-center justify-center text-white/48 text-[0.82rem] transition-all duration-300 hover:bg-secondary hover:text-white"
-              href="tel:+919790557077"
-              aria-label="Call Us"
-            >
-              <Icon name="call" className="!text-base" />
-            </a>
             <Link
               className="w-[35px] h-[35px] rounded bg-white/6 flex items-center justify-center text-white/48 text-[0.82rem] transition-all duration-300 hover:bg-secondary hover:text-white"
               to="/contact"
@@ -59,11 +52,6 @@ function Footer() {
             <li>
               <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/manufacturing">
                 Manufacturing
-              </Link>
-            </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/design-development">
-                Design &amp; Development
               </Link>
             </li>
             <li>
@@ -87,16 +75,6 @@ function Footer() {
         <div className="flex flex-col gap-4">
           <div className="text-[0.72rem] font-semibold tracking-[0.16em] uppercase text-white/88 mb-2">Quick Links</div>
           <ul className="space-y-2.5">
-            <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/private-label">
-                Private Label &amp; Custom Mfg.
-              </Link>
-            </li>
-            <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/exports">
-                Exports
-              </Link>
-            </li>
             <li>
               <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/manufacturing#packing">
                 Export &amp; Packing
@@ -127,12 +105,6 @@ function Footer() {
               <Icon name="mail" className="!text-base text-secondary mt-[1px] shrink-0" />
               <a className="hover:text-secondary transition-colors" href="mailto:deepak@adtextile.com">
                 deepak@adtextile.com
-              </a>
-            </li>
-            <li className="flex gap-[0.75rem] items-start text-[0.80rem] text-white/65">
-              <Icon name="call" className="!text-base text-secondary mt-[1px] shrink-0" />
-              <a className="hover:text-secondary transition-colors" href="tel:+919790557077">
-                +91 97 90 55 7077
               </a>
             </li>
           </ul>
