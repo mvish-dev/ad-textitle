@@ -6,12 +6,29 @@ import Icon from '../components/ui/Icon.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
+import LogoLoop from '../components/motion/LogoLoop.jsx'
 import Seo from '../components/common/Seo.jsx'
 
 import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
 import checkingDetail from '../assets/images/manufacturing/checking/checking-detail.webp'
 import checkingFinalAql from '../assets/images/manufacturing/checking/checking-final-aql.webp'
 import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
+
+import sa8000 from '../assets/images/certificates/sa8000.png'
+import bci from '../assets/images/certificates/bci.png'
+import amforiBsci from '../assets/images/certificates/amfori-bsci.png'
+import gots from '../assets/images/certificates/gots.png'
+import ocsBlended from '../assets/images/certificates/ocs-blended.png'
+import oekoTexStandard100 from '../assets/images/certificates/oeko-tex-standard-100.png'
+import grs from '../assets/images/certificates/grs.png'
+import ics from '../assets/images/certificates/ics.png'
+import ceMark from '../assets/images/certificates/ce-mark.png'
+import ocs100 from '../assets/images/certificates/ocs-100.png'
+import fairtrade from '../assets/images/certificates/fairtrade.png'
+import iso90012015 from '../assets/images/certificates/iso-9001-2015.png'
+import oekoTexMadeInGreen from '../assets/images/certificates/oeko-tex-made-in-green.png'
+import nsfIsr from '../assets/images/certificates/nsf-isr.png'
+import sedexSmeta from '../assets/images/certificates/sedex-smeta.png'
 
 const INSPECTION_STEPS = [
   {
@@ -80,6 +97,24 @@ const SOCIAL_PROGRAMS = [
   { icon: 'accessibility_new', label: 'Employment opportunities for the physically challenged' },
   { icon: 'volunteer_activism', label: 'A feeding programme for around 400 blind and deaf children' },
   { icon: 'school', label: 'Education scholarships for the needy' },
+]
+
+const CERTIFICATE_LOGOS = [
+  { src: sa8000, alt: 'SA8000 — Social Accountability International' },
+  { src: bci, alt: 'Better Cotton Initiative' },
+  { src: amforiBsci, alt: 'amfori BSCI' },
+  { src: gots, alt: 'GOTS — Global Organic Textile Standard' },
+  { src: ocsBlended, alt: 'Organic Content Standard — Blended' },
+  { src: oekoTexStandard100, alt: 'OEKO-TEX® Standard 100' },
+  { src: grs, alt: 'Global Recycled Standard' },
+  { src: ics, alt: 'ICS' },
+  { src: ceMark, alt: 'CE Mark' },
+  { src: ocs100, alt: 'Organic Content Standard — 100' },
+  { src: fairtrade, alt: 'Fairtrade' },
+  { src: iso90012015, alt: 'ISO 9001:2015' },
+  { src: oekoTexMadeInGreen, alt: 'OEKO-TEX® Made in Green' },
+  { src: nsfIsr, alt: 'NSF-ISR — AS9100 with ISO 9001' },
+  { src: sedexSmeta, alt: 'Sedex / SMETA 4-Pillar' },
 ]
 
 const PRODUCT_COMPLIANCE_POINTS = [
@@ -335,6 +370,18 @@ function QualityCompliance() {
                 specifically addresses harmful-substance testing in textiles.
               </p>
             </div>
+          </div>
+          <div className="mb-16 bg-background border border-outline-variant/30 rounded-2xl py-14 overflow-hidden">
+            <LogoLoop
+              logos={CERTIFICATE_LOGOS}
+              speed={45}
+              gap={80}
+              logoHeight={96}
+              fadeOut
+              fadeOutColor="#F8F7F4"
+              pauseOnHover
+              ariaLabel="Certification and compliance logos"
+            />
           </div>
           {/* Icon placeholders below — swap for the client-provided certificate images once received. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
