@@ -37,6 +37,13 @@ function getInitialFormState(search) {
   }
 }
 
+// Local dev: backend runs on its own port (server/.env -> PORT), so this
+// needs to be absolute (see .env.example -> VITE_API_URL). On Vercel this is
+// left unset in the dashboard, so it falls back to '' and the fetch below
+// hits a same-origin relative "/api/contact" — routed to the Express app via
+// the /api/(.*) rewrite in vercel.json.
+const API_BASE_URL = import.meta.env.VITE_API_URL || ''
+
 function Contact() {
   const location = useLocation()
   const [activeTab, setActiveTab] = useState(() =>
@@ -71,25 +78,36 @@ function Contact() {
     })
   }
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
+    if (isSubmitting) return
     setHasSubmitError(false)
 
-    // No backend is wired up yet, so the one connectivity failure we can
-    // genuinely surface is the browser itself being offline — everything
-    // else below is a simulated success. Swapping in a real endpoint later
-    // is a matter of replacing the setTimeout with a fetch(...).catch(() =>
-    // setHasSubmitError(true)) using this same shape.
     if (!navigator.onLine) {
       setHasSubmitError(true)
       return
     }
 
     setIsSubmitting(true)
-    setTimeout(() => {
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: activeTab, ...formState }),
+      })
+
+      const result = await response.json().catch(() => null)
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || 'Submission failed')
+      }
+
       setIsSubmitting(false)
       setIsSubmitted(true)
-    }, 1800)
+    } catch {
+      setIsSubmitting(false)
+      setHasSubmitError(true)
+    }
   }
 
   const retrySubmit = () => {
