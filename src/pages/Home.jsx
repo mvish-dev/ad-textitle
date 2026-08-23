@@ -159,7 +159,7 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
 const COMPLIANCE_MARKS = [
   { icon: 'workspace_premium', label: 'SA8000' },
   { icon: 'eco', label: 'ISO 14001' },
-  { icon: 'fact_check', label: '2-LAYER AQL INSPECTION' },
+  { icon: 'fact_check', label: '3-LAYER AQL INSPECTION' },
   { icon: 'verified', label: 'CERTIFIED MANUFACTURING FACILITY' },
 ]
 
