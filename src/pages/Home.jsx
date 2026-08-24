@@ -26,7 +26,7 @@ import weavingWorkerPlaid from '../assets/images/manufacturing/weaving/weaving-w
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
   { icon: 'public', title: 'Export Since 1992', caption: 'Global Reach' },
-  { icon: 'verified', title: 'SA8000 & ISO 14001', caption: 'Compliant' },
+  { icon: 'verified', title: 'SA8000 & ISO 9001:2015', caption: 'Compliant' },
   { icon: 'fact_check', title: '3-Layer AQL Inspection', caption: 'Quality System' },
 ]
 
@@ -158,7 +158,7 @@ const INFRASTRUCTURE_HIGHLIGHTS = [
 
 const COMPLIANCE_MARKS = [
   { icon: 'workspace_premium', label: 'SA8000' },
-  { icon: 'eco', label: 'ISO 14001' },
+  { icon: 'eco', label: 'ISO 9001:2015' },
   { icon: 'fact_check', label: '3-LAYER AQL INSPECTION' },
   { icon: 'verified', label: 'CERTIFIED MANUFACTURING FACILITY' },
 ]
@@ -273,7 +273,7 @@ function Home() {
 
   return (
     <>
-      <Seo description="AD Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 14001 compliant, exporting since 1992." />
+      <Seo description="AD Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 9001:2015 compliant, exporting since 1992." />
       {/* Hero Section */}
       <section ref={heroSectionRef} className="relative min-h-screen flex items-center bg-primary text-white overflow-hidden pt-20">
 
@@ -621,7 +621,7 @@ function Home() {
               Committed to the <em className="italic text-secondary font-normal font-serif">community</em> we grow with
             </h2>
             <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base max-w-3xl">
-              As a corporate entity in compliance with SA8000 and ISO 14001 standards, we extend our commitment beyond the factory floor — offering employment opportunities for the physically challenged, running a feeding programme for around 400 blind and deaf children, and providing education scholarships for the needy.
+              As a corporate entity in compliance with SA8000 and ISO 9001:2015 standards, we extend our commitment beyond the factory floor — offering employment opportunities for the physically challenged, running a feeding programme for around 400 blind and deaf children, and providing education scholarships for the needy.
             </p>
             <div className="pt-2">
               <Link className="inline-flex items-center gap-2 text-secondary font-semibold hover:underline uppercase tracking-wider text-xs" to="/sustainability">

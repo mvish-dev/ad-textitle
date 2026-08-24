@@ -50,9 +50,9 @@ function TeamCards() {
               className="bg-white border border-outline-variant/30 rounded-2xl p-8 hover:border-secondary hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-6">
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col items-start gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-secondary to-[#A8834A] text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">
+                    <div className="w-14 h-14 shrink-0 rounded-full bg-gradient-to-br from-secondary to-[#A8834A] text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">
                       {member.initials}
                     </div>
                     <div>
@@ -60,7 +60,7 @@ function TeamCards() {
                       <p className="text-xs text-secondary font-semibold uppercase tracking-wider mt-0.5">{member.role}</p>
                     </div>
                   </div>
-                  <span className="bg-primary/5 text-primary text-[0.62rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md">
+                  <span className="shrink-0 bg-primary/5 text-primary text-[0.62rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md">
                     {member.tag}
                   </span>
                 </div>

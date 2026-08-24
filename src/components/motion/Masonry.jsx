@@ -120,6 +120,17 @@ const Masonry = ({
     });
   }, [columns, items, width]);
 
+  // The tiles are absolutely positioned, so they don't contribute to this
+  // container's intrinsic height — without an explicit height here, fewer
+  // columns (e.g. the single-column mobile layout) stack tiles far past
+  // whatever fixed height a caller might otherwise give the wrapper,
+  // spilling into whatever section follows. Sizing the container to the
+  // tallest column keeps it correct at every column count.
+  const containerHeight = useMemo(
+    () => grid.reduce((max, item) => Math.max(max, item.y + item.h), 0),
+    [grid]
+  );
+
   const hasMounted = useRef(false);
 
   useLayoutEffect(() => {
@@ -193,7 +204,7 @@ const Masonry = ({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-full">
+    <div ref={containerRef} className="relative w-full" style={{ height: containerHeight || undefined }}>
       {grid.map(item => (
         <div
           key={item.id}

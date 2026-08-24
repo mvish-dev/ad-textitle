@@ -48,20 +48,25 @@ Production runs through nine fully integrated stages, all at the Karur facility:
 9. Warehouse — Warehouse and storage capacity accommodates up to seven 40-foot containers, with space to hold two fully loaded containers, enabling efficient management of finished goods, bulk orders and export shipments.
 
 Certifications:
-- SA8000 — Social Accountability certification covering fair labour practices: fair wages, workplace safety, and the prohibition of forced or child labour.
-- ISO 14001 — Environmental Management System certification, supported by the company's Effluent Treatment Plant (ETP), Reverse Osmosis (RO) Plant, and Vibratory Shear Enhanced Process (VSEP) plant.
-- OEKO-TEX® STANDARD 100 — Product safety certification specifically addressing harmful-substance testing in textiles, confirming fabrics are free from harmful substances at every processing stage, from yarn to finished product.
+- SA8000 (SAI) — Social Accountability International certification covering fair labour practices: fair wages, workplace safety, and the prohibition of forced or child labour.
+- BCI (Better Cotton Initiative) — Membership supporting more sustainable cotton farming practices across the supply chain.
+- amfori BSCI (Business Social Compliance Initiative) — Membership supporting continuous improvement in labour and social conditions across the supply chain.
 - GOTS (Global Organic Textile Standard) — Covers organic fibre status from raw material through environmentally and socially responsible manufacturing.
+- Organic Content Standard (Blended and 100) — Verifies the presence and percentage of organic material in a product, from raw material through to the finished product.
+- OEKO-TEX® STANDARD 100 — Product safety certification specifically addressing harmful-substance testing in textiles, confirming fabrics are free from harmful substances at every processing stage, from yarn to finished product.
+- OEKO-TEX® MADE IN GREEN — Product label confirming an article was tested for harmful substances and made in environmentally friendly, socially responsible facilities.
+- GRS (Global Recycled Standard) — Verifies recycled content and tracks it through the supply chain, alongside responsible social, environmental and chemical practices.
+- ICS — Certification supporting quality and compliance verification across the supply chain.
+- CE Marking — Confirms conformity with applicable EU health, safety and environmental protection requirements.
+- Fairtrade — Certification supporting fair prices, decent working conditions and sustainable livelihoods for producers.
 - ISO 9001:2015 — Quality Management System certification for consistent process control, documentation and continuous improvement.
-- Social Audit Compliant — Regular third-party social compliance audits covering working conditions, wages and workplace practices, in addition to SA8000.
-- SEDEX — Supplier Ethical Data Exchange membership, supporting transparent sharing of labour standards, health & safety, environmental and business ethics data across the supply chain.
-- C-TPAT (Customs-Trade Partnership Against Terrorism) — Supply chain security alignment supporting secure and compliant import/export processes, particularly for US-bound shipments.
-- ZDHC (Zero Discharge of Hazardous Chemicals) — An initiative the company's sustainability framework aligns with, promoting safer chemical management and responsible production practices across the textile supply chain.
+- NSF-ISR (registered to AS9100, including ISO 9001) — Third-party registration confirming conformity to recognised management-system standards.
+- Sedex / SMETA (4-Pillar Certified Factory) — Sedex membership and SMETA 4-Pillar certification, supporting transparent sharing of labour standards, health & safety, environmental and business ethics data across the supply chain.
 - All dyeing is Azo-free, in conformance with governing-body norms.
 - Every order passes through the 3-layer AQL inspection system (in-line inspection, first-stage quality check, and a final AQL-standard inspection) before dispatch.
 
 Sustainability:
-AD Textile focuses on practical sustainability across materials, manufacturing processes, chemical management and resource use. Materials used include cotton, bamboo and other customer-specified or suitable sustainable options, depending on product requirements. Integrated knitting, weaving, dyeing, stitching and packing capabilities give greater control over quality, processes and resource use. The company focuses on responsible chemical management, resource efficiency, waste reduction and improved production practices, supported by standards and initiatives including OEKO-TEX® and ZDHC.
+AD Textile focuses on practical sustainability across materials, manufacturing processes, chemical management and resource use. Materials used include cotton, bamboo and other customer-specified or suitable sustainable options, depending on product requirements. Integrated knitting, weaving, dyeing, stitching and packing capabilities give greater control over quality, processes and resource use. The company focuses on responsible chemical management, resource efficiency, waste reduction and improved production practices, supported by standards and initiatives including OEKO-TEX® and the Global Recycled Standard (GRS).
 
 Contact Information:
 Company: AD Textile (Angayeeammal Devarajan Textile Pvt. Ltd.)
@@ -103,7 +108,7 @@ Q: What is AD Textile's production capacity?
 A: Roughly 1 million metres of woven fabric per month, 3 tons/day of dyeing capacity, about 5 lakh (500,000) knitted pairs per month, 54-head embroidery capacity (10–12 thread colours), and 200 stitching machines run by a 200-person skilled and semi-skilled workforce.
 
 Q: What certifications does AD Textile hold?
-A: SA8000, ISO 14001, OEKO-TEX®, GOTS, ISO 9001:2015, and Social Audit Compliant, alongside exclusively Azo-free dyeing and a 3-layer AQL quality inspection system.
+A: SA8000, BCI, amfori BSCI, GOTS, Organic Content Standard (Blended & 100), OEKO-TEX® STANDARD 100, OEKO-TEX® MADE IN GREEN, GRS, ICS, CE, Fairtrade, ISO 9001:2015, NSF-ISR, and Sedex/SMETA (4-Pillar Certified Factory), alongside exclusively Azo-free dyeing and a 3-layer AQL quality inspection system.
 
 Q: Does AD Textile export internationally?
 A: Yes. AD Textile has been exporting to the USA since 1992 — one of the world's largest textile markets — building over three decades of export experience and a strong understanding of international quality standards, buyer requirements and global supply expectations. The company continues to expand its reach across the USA, UK, Europe and other international markets.
@@ -115,7 +120,7 @@ Q: Does AD Textile offer private label or custom manufacturing?
 A: Yes — OEM manufacturing, ODM (design-assisted) solutions, private label programs, custom designs, and custom or retail-ready packaging are all available.
 
 Q: Is AD Textile sustainable / eco-friendly?
-A: AD Textile uses Azo-free dyes exclusively, operates an Effluent Treatment Plant, Reverse Osmosis Plant and VSEP plant for water treatment and recycling, and holds ISO 14001 environmental management certification. It also runs community programs including employment for the physically challenged, a feeding programme for around 400 blind and deaf children, and education scholarships for the needy.
+A: AD Textile uses Azo-free dyes exclusively, operates an Effluent Treatment Plant, Reverse Osmosis Plant and VSEP plant for water treatment and recycling, and holds certifications including the Global Recycled Standard (GRS) and OEKO-TEX®. It also runs community programs including employment for the physically challenged, a feeding programme for around 400 blind and deaf children, and education scholarships for the needy.
 
 Q: How can I request a quote or make an enquiry?
 A: Use the enquiry or quote-request form on the Contact page, email deepak@adtextile.com or senthil@adtextile.com, call or WhatsApp +91 97 90 55 7077 or +91 999 43 99 077, or reach the commercial desk Monday–Friday, 9:00 AM–6:00 PM IST (Saturday half-day until 1:00 PM IST).

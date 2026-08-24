@@ -215,7 +215,7 @@ function Sustainability() {
               Our Corporate Social Responsibility
             </h3>
             <p className="font-body-md text-xs text-on-surface-variant text-center max-w-2xl mx-auto mb-10 leading-relaxed">
-              As a corporate entity in compliance with SA8000 and ISO 14001 standards, we extend our responsibility
+              As a corporate entity in compliance with SA8000 and ISO 9001:2015 standards, we extend our responsibility
               beyond the factory floor into the communities we operate in.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
@@ -256,9 +256,9 @@ function Sustainability() {
             <h2 className="section-title">Sustainability <em>Standards</em></h2>
             <div className="divider mx-auto" />
             <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
-              Our sustainability framework is supported by standards and initiatives including OEKO-TEX® and ZDHC.
-              ZDHC promotes safer chemical management and responsible production practices across the textile
-              supply chain.
+              Our sustainability framework is supported by standards and initiatives including OEKO-TEX® and the
+              Global Recycled Standard (GRS), which verifies recycled content and tracks it through the supply
+              chain.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-3xl mx-auto">
@@ -287,11 +287,11 @@ function Sustainability() {
               className="bg-background p-10 rounded-xl border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md group"
             >
               <div className="mb-10">
-                <Icon name="water_drop" className="text-5xl text-secondary mb-6 block" />
-                <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">ZDHC</h3>
+                <Icon name="recycling" className="text-5xl text-secondary mb-6 block" />
+                <h3 className="font-headline-lg text-2xl text-primary mb-4 font-semibold">GRS</h3>
                 <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
-                  ZDHC promotes safer chemical management and responsible production practices across the textile
-                  supply chain.
+                  Global Recycled Standard certification verifies recycled content and tracks it through the supply
+                  chain, alongside responsible social, environmental and chemical practices.
                 </p>
               </div>
               <div className="h-1 w-0 bg-secondary transition-all duration-500 group-hover:w-full" />

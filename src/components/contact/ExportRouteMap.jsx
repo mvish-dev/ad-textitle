@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ComposableMap, Geographies, Geography, Graticule, Marker, Line } from 'react-simple-maps'
 import { geoInterpolate } from 'd3-geo'
 import worldTopology from 'world-atlas/countries-110m.json'
@@ -20,18 +20,41 @@ function greatCircleArc(from, to, steps = 48) {
 }
 
 const MAP_LABEL_STYLE = {
-  fontSize: '7px',
+  fontSize: '10px',
   fontWeight: 600,
   letterSpacing: '0.06em',
   paintOrder: 'stroke',
   stroke: '#0F172A',
-  strokeWidth: 3,
+  strokeWidth: 2.5,
   strokeLinejoin: 'round',
   pointerEvents: 'none',
 }
 
 function ExportRouteMap({ isExpanded = false }) {
   const [hoveredId, setHoveredId] = useState(null)
+  const containerRef = useRef(null)
+  // The map's viewBox is always 800 units wide, but the card it sits in
+  // ranges from a ~300px mobile square up to the ~1250px hover-expanded
+  // desktop card — over a 4x span, the browser's viewBox-to-viewport
+  // scaling shrinks label text and offsets right along with the geography,
+  // so on a small mobile card the region labels render at an illegible
+  // ~4px. Tracking the live render scale lets the labels counter-scale
+  // back to a constant, always-legible CSS pixel size (see labelScale
+  // below) independent of how wide the card currently is.
+  const [renderScale, setRenderScale] = useState(1)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return undefined
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width > 0) setRenderScale(entry.contentRect.width / 800)
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const labelScale = renderScale > 0 ? 1 / renderScale : 1
+
   // The SVG element always fills its container (width/height: 100%), but
   // preserveAspectRatio="meet" (the default) only scales the viewBox content
   // up to whichever axis is the tighter fit — so a viewBox tuned for the
@@ -46,6 +69,7 @@ function ExportRouteMap({ isExpanded = false }) {
 
   return (
     <ComposableMap
+      ref={containerRef}
       projection="geoEqualEarth"
       projectionConfig={{ scale, rotate: [-15, 0, 0] }}
       width={800}
@@ -100,9 +124,11 @@ function ExportRouteMap({ isExpanded = false }) {
       <Marker coordinates={HQ_COORDINATES}>
         <circle r={3.5} fill="#C59D5F" stroke="#0F172A" strokeWidth={1} />
         <circle r={7} fill="none" stroke="#C59D5F" strokeOpacity={0.5} strokeWidth={1} className="animate-ping" style={{ transformOrigin: 'center' }} />
-        <text y={-9} textAnchor="middle" fill="#F4E4C8" style={MAP_LABEL_STYLE}>
-          KARUR HQ
-        </text>
+        <g transform={`scale(${labelScale})`}>
+          <text y={-9} textAnchor="middle" fill="#F4E4C8" style={MAP_LABEL_STYLE}>
+            KARUR HQ
+          </text>
+        </g>
       </Marker>
 
       {DESTINATIONS.map((dest) => (
@@ -122,9 +148,11 @@ function ExportRouteMap({ isExpanded = false }) {
           >
             <title>{`${dest.region}: ${dest.label}`}</title>
           </circle>
-          <text y={-8} textAnchor="middle" fill="#ffffff" style={MAP_LABEL_STYLE}>
-            {dest.region.toUpperCase()}
-          </text>
+          <g transform={`scale(${labelScale})`}>
+            <text y={-8} textAnchor="middle" fill="#ffffff" style={MAP_LABEL_STYLE}>
+              {dest.region.toUpperCase()}
+            </text>
+          </g>
         </Marker>
       ))}
     </ComposableMap>

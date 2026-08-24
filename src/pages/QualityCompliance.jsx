@@ -150,7 +150,7 @@ function QualityCompliance() {
         description="AD Textile maintains quality and compliance across every stage of production — from raw materials to finished products, meeting buyer specifications and international requirements."
       />
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden pt-20 bg-primary">
+      <section className="relative min-h-[max(80vh,600px)] flex items-center overflow-hidden pt-20 pb-12 bg-primary">
         <div className="absolute inset-0 z-0">
           <WebGLScene
             loader={() => import('../components/motion/Lightfall.jsx')}
@@ -181,7 +181,7 @@ function QualityCompliance() {
               as="h1"
               scrollTriggered={false}
               delay={0.2}
-              className="font-display-lg text-display-lg-mobile md:text-5xl leading-tight mb-8"
+              className="font-display-lg text-[clamp(1.7rem,8.5vw,2.5rem)] md:text-5xl leading-tight mb-8"
             >
               Quality. Consistency. Compliance.
             </RevealText>
@@ -365,7 +365,7 @@ function QualityCompliance() {
               <span className="eyebrow">Certificates</span>
               <h2 className="section-title mb-6">Global <em>Standards</em></h2>
               <p className="text-on-surface-variant font-body-lg leading-relaxed">
-                Our certifications and industry standards include ISO, OEKO-TEX®, SEDEX, C-TPAT and ZDHC,
+                Our certifications and industry standards include ISO, OEKO-TEX®, SEDEX/SMETA, GOTS and amfori BSCI,
                 supporting our commitment to quality, responsible sourcing and compliance. OEKO-TEX® STANDARD 100
                 specifically addresses harmful-substance testing in textiles.
               </p>
@@ -383,9 +383,8 @@ function QualityCompliance() {
               ariaLabel="Certification and compliance logos"
             />
           </div>
-          {/* Icon placeholders below — swap for the client-provided certificate images once received. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {/* ISO 14001 */}
+            {/* SA8000 */}
             <motion.div
               initial={{ opacity: 0, x: -25 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -395,16 +394,16 @@ function QualityCompliance() {
             >
               <div className="mb-8">
                 <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="eco" className="text-3xl text-secondary" />
+                  <Icon name="diversity_3" className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">ISO 14001</h4>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SA8000</h4>
                 <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Environmental Management
+                  Social Accountability
                 </span>
               </div>
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Our commitment to structured environmental management, supported by our Effluent Treatment Plant,
-                Reverse Osmosis Plant, VSEP plant, and Azo-free dyeing practices.
+                Social Accountability International certification covering fair wages, workplace safety, and the
+                prohibition of forced or child labour across our facility.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation
@@ -472,20 +471,20 @@ function QualityCompliance() {
                 <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
                   <Icon name="handshake" className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SEDEX</h4>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SEDEX / SMETA</h4>
                 <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
                   Responsible Sourcing
                 </span>
               </div>
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Supplier Ethical Data Exchange membership, supporting transparent sharing of labour standards,
-                health &amp; safety, environmental and business ethics data across our supply chain.
+                Sedex membership and SMETA 4-Pillar certification, supporting transparent sharing of labour
+                standards, health &amp; safety, environmental and business ethics data across our supply chain.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation
               </Button>
             </motion.div>
-            {/* C-TPAT */}
+            {/* GOTS */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -495,22 +494,22 @@ function QualityCompliance() {
             >
               <div className="mb-8">
                 <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="security" className="text-3xl text-secondary" />
+                  <Icon name="eco" className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">C-TPAT</h4>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">GOTS</h4>
                 <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Supply Chain Security
+                  Global Organic Textile Standard
                 </span>
               </div>
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                Customs-Trade Partnership Against Terrorism alignment, supporting secure and compliant import and
-                export processes for our US-bound shipments.
+                Covers organic fibre status from raw material through environmentally and socially responsible
+                manufacturing.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation
               </Button>
             </motion.div>
-            {/* ZDHC */}
+            {/* amfori BSCI */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -520,16 +519,16 @@ function QualityCompliance() {
             >
               <div className="mb-8">
                 <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="water_drop" className="text-3xl text-secondary" />
+                  <Icon name="groups" className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">ZDHC</h4>
+                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">amfori BSCI</h4>
                 <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Chemical Management
+                  Social Compliance
                 </span>
               </div>
               <p className="font-body-md text-xs text-on-surface-variant mb-10 flex-grow leading-relaxed">
-                ZDHC promotes safer chemical management and responsible production practices across the textile
-                supply chain.
+                Business Social Compliance Initiative membership, supporting continuous improvement in labour and
+                social conditions across our supply chain.
               </p>
               <Button to="/contact" variant="outline" className="text-primary border-primary self-start">
                 Request Documentation

@@ -552,7 +552,7 @@ function About() {
             </p>
           </div>
 
-          <div className="h-[560px] md:h-[680px]">
+          <div className="min-h-[400px]">
             <Masonry items={PEOPLE_GALLERY} animateFrom="bottom" scaleOnHover hoverScale={0.97} blurToFocus />
           </div>
         </Container>

@@ -123,7 +123,7 @@ function Footer() {
         </div>
         <div className="flex gap-[0.55rem]">
           <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">SA8000</span>
-          <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">ISO 14001</span>
+          <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">ISO 9001:2015</span>
           <span className="bg-white/6 border border-white/10 rounded px-2.5 py-1 text-[0.62rem] tracking-wider text-white/62 uppercase font-semibold">OEKO-TEX</span>
         </div>
       </div>

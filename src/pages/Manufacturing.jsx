@@ -71,7 +71,7 @@ const MARQUEE_ITEMS = [
   { icon: 'auto_awesome', label: 'Garuda & Toshiba Embroidery' },
   { icon: 'design_services', label: '200 Jack Sewing Machines' },
   { icon: 'workspace_premium', label: 'SA8000 Certified' },
-  { icon: 'eco', label: 'ISO 14001' },
+  { icon: 'eco', label: 'ISO 9001:2015' },
   { icon: 'fact_check', label: '3-Layer AQL Inspection' },
   { icon: 'public', label: 'Exporting Since 1992' },
 ].map((item, i) => ({
@@ -153,7 +153,7 @@ const CAPABILITY_ITEMS = [
 
 const CERTIFICATION_ITEMS = [
   { id: 1, icon: 'workspace_premium', title: 'SA8000', description: 'Social accountability certification covering fair labour practices across our facility.' },
-  { id: 2, icon: 'eco', title: 'ISO 14001', description: 'Environmental management system certification for responsible manufacturing.' },
+  { id: 2, icon: 'eco', title: 'ISO 9001:2015', description: 'Quality management system certification for consistent process control and continuous improvement.' },
   { id: 3, icon: 'science', title: 'Azo-Free Dyes', description: 'Every dye lot screened azo-free — safe for skin contact and export compliance.' },
   { id: 4, icon: 'fact_check', title: '3-Layer AQL Inspection', description: 'In-line, first-stage and final AQL-standard inspection on every order before dispatch.' },
   { id: 5, icon: 'water_drop', title: 'Effluent Treatment', description: 'ETP, Reverse Osmosis and VSEP plants treat process water before discharge.' },
@@ -557,12 +557,12 @@ function Manufacturing() {
               <ScrollStack itemDistance={60} itemStackDistance={24} baseScale={0.9} rotationAmount={0.5} blurAmount={1}>
                 {ASSURANCE_STEPS.map((item) => (
                   <ScrollStackItem key={item.step} itemClassName={`${item.bg} text-white flex items-center`}>
-                    <div className="flex items-center gap-8 w-full">
-                      <div className="w-16 h-16 shrink-0 flex items-center justify-center rounded-full bg-white/10 border border-white/20 font-headline-lg text-2xl font-bold">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center rounded-full bg-white/10 border border-white/20 font-headline-lg text-lg sm:text-2xl font-bold">
                         {item.step}
                       </div>
                       <div>
-                        <p className="font-headline-lg text-2xl mb-2">{item.title}</p>
+                        <p className="font-headline-lg text-xl sm:text-2xl mb-2">{item.title}</p>
                         <p className="text-sm text-white/70 leading-relaxed max-w-xl">{item.description}</p>
                       </div>
                     </div>

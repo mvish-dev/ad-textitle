@@ -195,7 +195,7 @@ function FloatingAssistant() {
 
       <div className="relative">
         {open && (
-          <div className="absolute bottom-full right-0 mb-3 w-[380px] max-w-[90vw] h-[560px] flex flex-col overflow-hidden rounded-2xl border border-outline-variant/30 shadow-2xl bg-white">
+          <div className="absolute bottom-full right-0 mb-3 w-[380px] max-w-[90vw] h-[min(560px,calc(100vh-7rem))] flex flex-col overflow-hidden rounded-2xl border border-outline-variant/30 shadow-2xl bg-white">
             {/* Header */}
             <div className="bg-primary px-6 py-5 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
