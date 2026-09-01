@@ -14,14 +14,29 @@ import pulseRing from '../components/motion/pulse-ring.json'
 import SpotlightCard from '../components/ui/SpotlightCard.jsx'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import CollectionsCarousel3D from '../components/motion/CollectionsCarousel3D.jsx'
+import LogoLoop from '../components/motion/LogoLoop.jsx'
 import { gsap, isTouchDevice, prefersReducedMotion } from '../lib/motion.js'
 import Seo from '../components/common/Seo.jsx'
 
-import weavingSignage from '../assets/images/manufacturing/weaving/weaving-signage.webp'
-import embroideryMacroNeedle from '../assets/images/manufacturing/embroidery/embroidery-macro-needle.webp'
 import colorMatchingTechnician from '../assets/images/lab/color-matching-technician.webp'
 import warehouseHero from '../assets/images/manufacturing/warehouse/warehouse-hero.webp'
 import weavingWorkerPlaid from '../assets/images/manufacturing/weaving/weaving-worker-plaid.webp'
+
+import sa8000 from '../assets/images/certificates/sa8000.png'
+import bci from '../assets/images/certificates/bci.png'
+import amforiBsci from '../assets/images/certificates/amfori-bsci.png'
+import gots from '../assets/images/certificates/gots.png'
+import ocsBlended from '../assets/images/certificates/ocs-blended.png'
+import oekoTexStandard100 from '../assets/images/certificates/oeko-tex-standard-100.png'
+import grs from '../assets/images/certificates/grs.png'
+import ics from '../assets/images/certificates/ics.png'
+import ceMark from '../assets/images/certificates/ce-mark.png'
+import ocs100 from '../assets/images/certificates/ocs-100.png'
+import fairtrade from '../assets/images/certificates/fairtrade.png'
+import iso90012015 from '../assets/images/certificates/iso-9001-2015.png'
+import oekoTexMadeInGreen from '../assets/images/certificates/oeko-tex-made-in-green.png'
+import nsfIsr from '../assets/images/certificates/nsf-isr.png'
+import sedexSmeta from '../assets/images/certificates/sedex-smeta.png'
 
 const TRUST_INDICATORS = [
   { icon: 'history', title: 'Established Since 1990', caption: 'Legacy & Trust' },
@@ -77,27 +92,27 @@ const JOURNEY_STEPS = [
   },
   {
     title: 'Dyeing',
-    description: 'Azo-free dyeing for consistent, colorfast tone across every batch.',
+    description: 'Imported Italian Cheese Dyeing Machines processing 3 tons of yarn a day for azo-free, colorfast results.',
     icon: 'water_drop',
   },
   {
     title: 'Weaving',
-    description: 'Somet Rapier looms weaving up to 1 million metres of fabric a month.',
+    description: 'Somet Super Excel Rapier Looms weaving terry, full terry and jacquard fabric up to 120 inches wide — one million metres a month.',
     icon: 'texture',
   },
   {
     title: 'Knitting',
-    description: 'Precision knit structures built for drape, stretch and durability.',
+    description: '50 imported Korean knitting machines producing 5 lakh pairs a month in full terry, half terry, jacquard and more.',
     icon: 'grid_view',
   },
   {
     title: 'Stitching',
-    description: 'Skilled hands and calibrated machines finish every seam.',
+    description: '200 Zuki sewing machines backed by 100 skilled and 100 semi-skilled hands finishing every seam.',
     icon: 'content_cut',
   },
   {
     title: 'Quality Control',
-    description: '3-layer AQL inspection — in-line, first-stage and final clearance.',
+    description: '3-layer AQL inspection — online, quality and final checks before dispatch.',
     icon: 'fact_check',
   },
   {
@@ -114,53 +129,63 @@ const JOURNEY_STEPS = [
 
 const EDGE_POINTS = [
   {
+    icon: 'history',
+    title: 'Established in 1990',
+    description: '35+ Years of Textile Manufacturing Excellence.',
+  },
+  {
+    icon: 'public',
+    title: 'Exporting Since 1992',
+    description: 'Trusted Global Export Partner for Over 30 Years.',
+  },
+  {
     icon: 'factory',
-    title: 'Modern Manufacturing',
-    description: 'Somet Rapier looms weaving 1 million metres of fabric every month.',
+    title: 'Fully Integrated Manufacturing',
+    description: 'Complete In-House Production Under One Roof.',
   },
   {
-    icon: 'high_quality',
-    title: 'Strict Quality',
-    description: '3-layer inspection system — in-line checks, first-stage QC and a final AQL-standard clearance.',
+    icon: 'verified',
+    title: 'Certified Manufacturing Facility',
+    description: 'Committed to Global Quality & Compliance Standards.',
   },
   {
-    icon: 'school',
-    title: 'Skilled Workforce',
-    description: 'Regular training programs keep our people current on new techniques.',
+    icon: 'fact_check',
+    title: 'End-to-End Quality Control',
+    description: 'Rigorous Quality Checks at Every Production Stage.',
   },
   {
-    icon: 'eco',
-    title: 'Environmentally Responsible',
-    description: 'Effluent Treatment, Reverse Osmosis and VSEP plants, with Azo-free dyes only.',
+    icon: 'design_services',
+    title: 'Custom Product Development',
+    description: 'OEM & Private Label Solutions Tailored to Your Brand.',
+  },
+  {
+    icon: 'trending_up',
+    title: 'Scalable Production Capacity',
+    description: 'Modern Infrastructure for Small to High-Volume Orders.',
+  },
+  {
+    icon: 'local_shipping',
+    title: 'Reliable On-Time Delivery',
+    description: 'Consistent Quality, Timely Shipments & Long-Term Partnerships.',
   },
 ]
 
-const INFRASTRUCTURE_HIGHLIGHTS = [
-  {
-    title: 'Precision Weaving Unit',
-    description:
-      'Somet Super Excel Rapier Looms weaving 1 million metres of premium fabric every month.',
-    href: '/manufacturing#weaving',
-    linkLabel: 'Technical Specifications',
-    image: weavingSignage,
-    alt: 'Wide weaving-hall aisle with rapier looms running at the AD Textile facility.',
-  },
-  {
-    title: 'Advanced Finishing Hub',
-    description:
-      'Garuda and Toshiba embroidery machines with 54 heads (10–12 thread colours) and precision digitising.',
-    href: '/manufacturing#embroidery',
-    linkLabel: 'Process Overview',
-    image: embroideryMacroNeedle,
-    alt: 'Close-up of an embroidery needle head stitching a colourful pattern at AD Textile.',
-  },
-]
-
-const COMPLIANCE_MARKS = [
-  { icon: 'workspace_premium', label: 'SA8000' },
-  { icon: 'eco', label: 'ISO 9001:2015' },
-  { icon: 'fact_check', label: '3-LAYER AQL INSPECTION' },
-  { icon: 'verified', label: 'CERTIFIED MANUFACTURING FACILITY' },
+const CERTIFICATE_LOGOS = [
+  { src: sa8000, alt: 'SA8000 — Social Accountability International' },
+  { src: bci, alt: 'Better Cotton Initiative' },
+  { src: amforiBsci, alt: 'amfori BSCI' },
+  { src: gots, alt: 'GOTS — Global Organic Textile Standard' },
+  { src: ocsBlended, alt: 'Organic Content Standard — Blended' },
+  { src: oekoTexStandard100, alt: 'OEKO-TEX® Standard 100' },
+  { src: grs, alt: 'Global Recycled Standard' },
+  { src: ics, alt: 'ICS' },
+  { src: ceMark, alt: 'CE Mark' },
+  { src: ocs100, alt: 'Organic Content Standard — 100' },
+  { src: fairtrade, alt: 'Fairtrade' },
+  { src: iso90012015, alt: 'ISO 9001:2015' },
+  { src: oekoTexMadeInGreen, alt: 'OEKO-TEX® Made in Green' },
+  { src: nsfIsr, alt: 'NSF-ISR — AS9100 with ISO 9001' },
+  { src: sedexSmeta, alt: 'Sedex / SMETA 4-Pillar' },
 ]
 
 function Home() {
@@ -333,11 +358,11 @@ function Home() {
               delay={0.3}
               className="font-display-lg text-white font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
             >
-              Premium Home Textiles
+              Crafted for the Global Market.
             </RevealText>
 
             <p className="font-body-md text-white/90 font-light max-w-[620px] text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
-              Crafted for the Global Market. From raw fibre to finished textile, we deliver premium kitchen, table, bed and living linens engineered for global retailers and hospitality brands.
+              From raw fibre to finished textile, we combine craftsmanship, manufacturing expertise and end-to-end control to create premium kitchen, table, bed and living linens trusted by global retailers and hospitality brands.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-8 pt-4">
@@ -534,100 +559,24 @@ function Home() {
         </Container>
       </section>
 
-      {/* World-Class Infrastructure Section */}
-      <section className="py-24 bg-slate-50 border-t border-b border-outline-variant/20">
-        <Container>
-          <div className="text-center mb-16 space-y-4">
-            <span className="eyebrow">Manufacturing Scale</span>
-            <h2 className="section-title text-3xl font-light text-primary">World-Class <em className="italic text-secondary font-normal font-serif">Infrastructure</em></h2>
-            <div className="divider mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {INFRASTRUCTURE_HIGHLIGHTS.map((item) => (
-              <SpotlightCard
-                key={item.title}
-                className="bg-white border border-outline-variant/30 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-6">
-                  <TiltedCard tiltMax={4}>
-                    <div className="aspect-[16/10] overflow-hidden rounded-xl border border-outline-variant/20 shadow-xs">
-                      <img
-                        className="w-full h-full object-cover"
-                        src={item.image}
-                        alt={item.alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  </TiltedCard>
-                  
-                  <div className="space-y-3">
-                    <h3 className="font-serif text-2xl text-primary font-bold">{item.title}</h3>
-                    <p className="font-body-md text-on-surface-variant text-xs md:text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-6 mt-6 border-t border-outline-variant/20">
-                  <Link
-                    className="inline-flex items-center gap-2 text-secondary font-label-md text-xs font-semibold tracking-wider uppercase hover:text-primary transition-colors"
-                    to={item.href}
-                  >
-                    {item.linkLabel} <Icon name="arrow_right_alt" />
-                  </Link>
-                </div>
-              </SpotlightCard>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Compliance & Testing Infinite Scroll Marquee */}
+      {/* Compliance & Testing Certificate Marquee */}
       <section className="py-20 bg-white">
         <Container className="text-center space-y-12">
           <p className="font-label-md text-xs text-on-surface-variant tracking-[0.25em] uppercase font-bold">
             Compliance &amp; Testing
           </p>
 
-          <div className="w-full overflow-hidden relative py-6 border-t border-b border-outline-variant/20">
-            {/* Fade overlays - keeping horizontal borders crisp by staying inside top-px/bottom-px */}
-            <div className="absolute left-0 top-px bottom-px w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-px bottom-px w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
-            
-            <div className="flex w-max animate-marquee gap-16 select-none">
-              {[...COMPLIANCE_MARKS, ...COMPLIANCE_MARKS].map((mark, i) => (
-                <div key={i} className="flex flex-col items-center justify-center shrink-0 min-w-[220px]">
-                  <Icon name={mark.icon} className="text-4xl mb-2.5 text-secondary" />
-                  <span className="text-[0.68rem] font-bold uppercase tracking-widest text-primary font-mono">
-                    {mark.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Community & CSR Highlight Section */}
-      <section className="py-24 bg-slate-50 text-primary border-t border-outline-variant/20">
-        <Container>
-          <div className="max-w-4xl space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
-              <Icon name="diversity_3" className="text-3xl" />
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-primary leading-tight">
-              Committed to the <em className="italic text-secondary font-normal font-serif">community</em> we grow with
-            </h2>
-            <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base max-w-3xl">
-              As a corporate entity in compliance with SA8000 and ISO 9001:2015 standards, we extend our commitment beyond the factory floor — offering employment opportunities for the physically challenged, running a feeding programme for around 400 blind and deaf children, and providing education scholarships for the needy.
-            </p>
-            <div className="pt-2">
-              <Link className="inline-flex items-center gap-2 text-secondary font-semibold hover:underline uppercase tracking-wider text-xs" to="/sustainability">
-                Learn more about our sustainability commitments <Icon name="arrow_right_alt" />
-              </Link>
-            </div>
+          <div className="border-t border-b border-outline-variant/20 py-10">
+            <LogoLoop
+              logos={CERTIFICATE_LOGOS}
+              speed={40}
+              gap={64}
+              logoHeight={64}
+              fadeOut
+              fadeOutColor="#ffffff"
+              pauseOnHover
+              ariaLabel="Certification and compliance logos"
+            />
           </div>
         </Container>
       </section>

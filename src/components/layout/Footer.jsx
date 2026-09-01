@@ -55,11 +55,6 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/sustainability">
-                Sustainability
-              </Link>
-            </li>
-            <li>
               <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/quality-compliance">
                 Quality &amp; Compliance
               </Link>
@@ -81,9 +76,14 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200" to="/about">
+              <a
+                className="text-[0.80rem] text-white/65 hover:text-secondary transition-colors duration-200"
+                href="/company-profile.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Company Profile
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

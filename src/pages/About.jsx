@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
 import Icon from '../components/ui/Icon.jsx'
-import Button from '../components/ui/Button.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
 import ThreadPath from '../components/motion/ThreadPath.jsx'
 import WebGLScene from '../components/motion/WebGLScene.jsx'
@@ -16,7 +15,6 @@ import companyVideo from '../assets/videos/aboutus.mp4'
 
 import videoPoster from '../assets/images/manufacturing/weaving/weaving-video-poster.webp'
 import aerialCampusWide from '../assets/images/facility/aerial-campus-wide.webp'
-import aerialEtp from '../assets/images/facility/aerial-etp.webp'
 import checkingGroupTowels from '../assets/images/manufacturing/checking/checking-group-towels.webp'
 import weavingMentorTeam from '../assets/images/manufacturing/weaving/weaving-mentor-team.webp'
 import weavingPortrait from '../assets/images/manufacturing/weaving/weaving-portrait.webp'
@@ -56,39 +54,6 @@ const TIMELINE = [
     align: 'left',
     small: true,
   },
-]
-
-const CORE_VALUES = [
-  { icon: 'shield', title: 'Integrity', description: 'Transparent operations and ethical sourcing in every region.' },
-  {
-    icon: 'biotech',
-    title: 'Innovation',
-    description: 'Pushing the boundaries of what fabric can achieve through R&D.',
-  },
-  {
-    icon: 'precision_manufacturing',
-    title: 'Excellence',
-    description: 'Uncompromising standards for durability and finish.',
-  },
-  {
-    icon: 'diversity_3',
-    title: 'Community',
-    description:
-      'Employment opportunities for the physically challenged, a feeding programme for around 400 blind and deaf children, and education scholarships for the needy.',
-  },
-]
-
-const ENVIRONMENTAL_PROGRAMS = [
-  { icon: 'water_drop', title: 'Effluent Treatment', caption: 'Plant' },
-  { icon: 'filter_alt', title: 'Reverse Osmosis', caption: 'Plant' },
-  { icon: 'science', title: 'VSEP', caption: 'Vibratory Shear Enhanced Process' },
-  { icon: 'eco', title: 'Azo-Free Dyes', caption: 'Only' },
-]
-
-const COMMUNITY_PROGRAMS = [
-  { icon: 'accessibility_new', label: 'Employment for the physically challenged' },
-  { icon: 'restaurant', label: 'Feeding programme for ~400 blind & deaf children' },
-  { icon: 'school', label: 'Education scholarships for the needy' },
 ]
 
 const PEOPLE_GALLERY = [
@@ -168,7 +133,7 @@ function About() {
             className="bg-primary/60 backdrop-blur-md border border-white/10 p-12 md:p-16 rounded-2xl shadow-2xl space-y-6 max-w-2xl mx-auto"
           >
             <span className="font-label-md text-xs uppercase tracking-[0.25em] text-secondary mb-2 block font-semibold">
-              Established 1990
+              Established in 1990
             </span>
             <RevealText
               as="h1"
@@ -195,11 +160,11 @@ function About() {
             <div className="divider" />
             <div className="text-on-surface/80 font-body-md text-sm md:text-base space-y-5 leading-relaxed pt-2">
               <p>
-                AD Textile is a textile manufacturing and export company from Karur, India, with decades of
+                AD Textile is a vertical textile manufacturing and export company from Karur, India with decades of
                 experience in the textile industry.
               </p>
               <p>
-                Built on strong textile expertise, we manufacture and export home textiles and textile products,
+                Built on strong textile expertise, we manufacture and export home textiles and textile products
                 combining product knowledge, skilled craftsmanship and modern manufacturing practices.
               </p>
               <p>
@@ -356,62 +321,6 @@ function About() {
         </Container>
       </section>
 
-      {/* Manufacturing Strength Section */}
-      <section className="py-24 bg-background" id="manufacturing-strength">
-        <Container>
-          <div className="text-center mb-16 space-y-4 max-w-xl mx-auto">
-            <span className="eyebrow">What We're Built On</span>
-            <h2 className="section-title text-3xl font-light text-primary">Our Manufacturing <em className="italic text-secondary font-normal font-serif">Strength</em></h2>
-            <div className="divider mx-auto" />
-            <p className="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed">
-              Every product we ship is backed by manufacturing we own end to end — no subcontracted stages, no hand-offs between unrelated factories.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
-              {
-                icon: 'factory',
-                title: 'Vertically Integrated',
-                description: 'Dyeing, weaving, embroidery, cutting, stitching and packing, all under one roof.',
-              },
-              {
-                icon: 'grid_4x4',
-                title: 'Somet Rapier Looms',
-                description: 'Weaving 1 million metres of premium fabric every month.',
-              },
-              {
-                icon: 'format_color_fill',
-                title: '3 Tons/Day Dyeing',
-                description: 'Italian Cheese Dyeing Machines, for superior dye penetration and colour fastness.',
-              },
-              {
-                icon: 'verified',
-                title: '3-Layer AQL Inspection',
-                description: 'In-line checks, first-stage quality check and a final AQL-standard inspection before dispatch.',
-              },
-            ].map((item) => (
-              <SpotlightCard
-                key={item.title}
-                className="bg-white border border-outline-variant/30 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="w-14 h-14 bg-secondary/10 flex items-center justify-center rounded-xl mb-6">
-                  <Icon name={item.icon} className="text-2xl text-secondary" />
-                </div>
-                <h4 className="font-serif text-lg text-primary mb-3 font-semibold leading-tight">{item.title}</h4>
-                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{item.description}</p>
-              </SpotlightCard>
-            ))}
-          </div>
-
-          <div className="text-center pt-4">
-            <Button to="/manufacturing" variant="outline" className="text-primary border-primary">
-              See Our Manufacturing Process
-            </Button>
-          </div>
-        </Container>
-      </section>
-
       {/* Facility From Above */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <img
@@ -433,107 +342,73 @@ function About() {
         </div>
       </section>
 
-      {/* Global Reach Section */}
-      <section className="py-24 bg-primary text-white overflow-hidden" id="global-reach">
-        <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-6 space-y-6">
-            <span className="eyebrow bg-secondary/15 px-3 py-1 rounded-full text-[0.68rem] text-secondary tracking-widest uppercase">
-              Beyond Our Borders
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
-              Our Global <em className="italic text-secondary font-serif font-normal">Reach</em>
-            </h2>
-            <div className="font-body-md text-white/70 leading-relaxed text-sm md:text-base space-y-4">
-              <p>
-                Since 1992, we have been exporting textile products to the USA, building over three decades of
-                experience in serving one of the world&apos;s largest textile markets.
-              </p>
-              <p>
-                Our long-standing export experience has given us a strong understanding of international quality
-                standards, buyer requirements and global supply expectations.
-              </p>
-              <p>
-                Today, we continue to build on this experience as we expand our reach across the USA, UK, Europe
-                and other international markets.
-              </p>
-            </div>
-            <div className="pt-2">
-              <Button to="/contact" variant="secondary">
-                Talk to Our Team
-              </Button>
-            </div>
-          </div>
-
-          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
-            {[
-              { year: '1992', label: 'Exporting Since' },
-              { year: 'Global', label: 'Retail Markets Served' },
-              { year: '1990', label: 'Manufacturing Since' },
-              { year: 'Direct', label: 'Buyer Relationships' },
-            ].map((stat) => (
-              <SpotlightCard
-                key={stat.label}
-                spotlightColor="rgba(255, 255, 255, 0.08)"
-                className="p-6 bg-white/5 border border-white/10 rounded-2xl"
-              >
-                <p className="font-serif text-2xl md:text-3xl font-bold text-white mb-1.5">{stat.year}</p>
-                <p className="text-[0.65rem] uppercase tracking-widest text-white/50 font-semibold leading-normal">
-                  {stat.label}
-                </p>
-              </SpotlightCard>
-            ))}
-          </div>
-
-        </Container>
-      </section>
-
       {/* Mission & Vision Section */}
-      <section className="py-24 bg-background">
-        <Container className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full"
-          >
-            <SpotlightCard className="bg-white border border-outline-variant/30 rounded-2xl p-10 md:p-12 h-full shadow-sm hover:shadow-md transition-all space-y-6">
-              <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
-                <Icon name="verified" className="text-2xl" />
+      <section className="py-24 md:py-32 bg-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-radial-gradient from-secondary/5 to-transparent pointer-events-none" />
+        <Container className="relative">
+          <div className="text-center mb-20 space-y-4 max-w-xl mx-auto">
+            <span className="eyebrow">What Drives Us</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-white leading-tight">
+              Vision <em className="italic text-secondary font-normal font-serif">&amp; Mission</em>
+            </h2>
+            <div className="divider mx-auto" />
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-2">
+            {/* Vertical divider — desktop only */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-secondary/40 to-transparent -translate-x-1/2" />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative pb-14 md:pb-0 md:pr-14 border-b md:border-b-0 border-white/10 space-y-5"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute -top-2 right-0 font-serif text-[6rem] md:text-[8rem] leading-none text-white/[0.05] pointer-events-none select-none"
+              >
+                01
+              </span>
+              <div className="relative space-y-2.5">
+                <span className="block font-label-md text-[0.7rem] uppercase tracking-[0.25em] text-secondary font-bold">
+                  Our Mission
+                </span>
+                <div className="w-8 h-[2px] bg-secondary/50 rounded-full" />
               </div>
-              <h3 className="font-serif text-2xl text-primary font-bold">Our Mission</h3>
-              <p className="font-body-md text-xs md:text-sm text-on-surface-variant leading-relaxed">
+              <p className="relative font-serif text-xl md:text-2xl text-white/90 leading-relaxed font-light">
                 To create high-quality home textile products through fully integrated manufacturing, continuous
                 innovation, ethical business practices, and exceptional customer service — helping our partners
                 succeed in global markets.
               </p>
-            </SpotlightCard>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full"
-          >
-            <SpotlightCard
-              spotlightColor="rgba(255, 255, 255, 0.08)"
-              className="bg-primary text-white border border-white/5 rounded-2xl p-10 md:p-12 h-full shadow-lg hover:shadow-xl transition-all space-y-6"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative pt-14 md:pt-0 md:pl-14 space-y-5"
             >
-              <div className="w-12 h-12 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary">
-                <Icon name="visibility" className="text-2xl" />
+              <span
+                aria-hidden="true"
+                className="absolute -top-2 right-0 font-serif text-[6rem] md:text-[8rem] leading-none text-white/[0.05] pointer-events-none select-none"
+              >
+                02
+              </span>
+              <div className="relative space-y-2.5">
+                <span className="block font-label-md text-[0.7rem] uppercase tracking-[0.25em] text-secondary font-bold">
+                  Our Vision
+                </span>
+                <div className="w-8 h-[2px] bg-secondary/50 rounded-full" />
               </div>
-              <h3 className="font-serif text-2xl text-white font-bold">Our Vision</h3>
-              <p className="font-body-md text-xs md:text-sm text-white/70 leading-relaxed">
+              <p className="relative font-serif text-xl md:text-2xl text-white/90 leading-relaxed font-light">
                 To become the preferred global manufacturing partner for premium home textile brands by delivering
                 excellence, innovation, and sustainable value.
               </p>
-            </SpotlightCard>
-          </motion.div>
-
+            </motion.div>
+          </div>
         </Container>
       </section>
 
@@ -554,111 +429,6 @@ function About() {
 
           <div className="min-h-[400px]">
             <Masonry items={PEOPLE_GALLERY} animateFrom="bottom" scaleOnHover hoverScale={0.97} blurToFocus />
-          </div>
-        </Container>
-      </section>
-
-      {/* Core Values Section */}
-      <section className="py-24 bg-background">
-        <Container>
-          <div className="text-center mb-16 space-y-4 max-w-xl mx-auto">
-            <span className="eyebrow">Beliefs & Values</span>
-            <h2 className="section-title text-3xl font-light text-primary">Core <em className="italic text-secondary font-normal font-serif">Values</em></h2>
-            <div className="divider mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CORE_VALUES.map((value) => (
-              <SpotlightCard
-                key={value.title}
-                className="bg-white border border-outline-variant/30 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="w-14 h-14 bg-secondary/10 flex items-center justify-center rounded-xl mb-6">
-                  <Icon name={value.icon} className="text-2xl text-secondary" />
-                </div>
-                <h4 className="font-serif text-lg text-primary mb-3 font-semibold leading-tight">{value.title}</h4>
-                <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{value.description}</p>
-              </SpotlightCard>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Environmental & CSR Section */}
-      <section className="relative min-h-[85vh] flex items-center py-24 overflow-hidden bg-primary text-white">
-        <div className="absolute inset-0 opacity-15 z-0 pointer-events-none">
-          <img
-            alt="Aerial view of AD Textile's Effluent Treatment Plant"
-            className="w-full h-full object-cover scale-[1.03]"
-            src={aerialEtp}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary/90 z-10" />
-
-        <Container className="relative z-20 max-w-4xl mx-auto text-center space-y-12">
-          <div className="space-y-6">
-            <span className="eyebrow bg-secondary/15 px-3 py-1 rounded-full text-[0.68rem] text-secondary tracking-widest uppercase inline-block">
-              Environmental Care &amp; CSR
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight max-w-2xl mx-auto">
-              Caring for our environment and our <em className="italic text-secondary font-serif font-normal">community</em>.
-            </h2>
-            <div className="w-20 h-[1.5px] bg-secondary mx-auto mt-4" />
-          </div>
-
-          <p className="font-body-md text-white/80 max-w-3xl mx-auto leading-relaxed text-sm md:text-base">
-            Our environmental care program includes an Effluent Treatment Plant, a Reverse Osmosis Plant, and a Vibratory Shear Enhanced Process (VSEP) plant, and we use only Azo-free dyes across our dyeing operations. We believe industrial success is meaningless without ecological and social responsibility.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 text-left">
-            {ENVIRONMENTAL_PROGRAMS.map((program) => (
-              <SpotlightCard
-                key={program.title}
-                spotlightColor="rgba(255, 255, 255, 0.06)"
-                className="p-6 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4"
-              >
-                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center shrink-0">
-                  <Icon name={program.icon} className="text-secondary text-xl" />
-                </div>
-                <div>
-                  <p className="font-bold text-xs text-white leading-normal">{program.title}</p>
-                  <p className="text-[0.65rem] opacity-60 mt-0.5 leading-normal">{program.caption}</p>
-                </div>
-              </SpotlightCard>
-            ))}
-          </div>
-
-          <div className="pt-8 border-t border-white/5 space-y-6">
-            <p className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
-              Community Programs
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-              {COMMUNITY_PROGRAMS.map((program) => (
-                <div key={program.label} className="flex items-center gap-3 bg-white/5 border border-white/5 p-4 rounded-xl">
-                  <Icon name={program.icon} className="text-secondary text-xl shrink-0" />
-                  <p className="text-[0.7rem] text-white/80 leading-normal">{program.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-background text-center">
-        <Container className="max-w-3xl mx-auto space-y-8">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-primary leading-tight">
-            Be Part of Our <em className="italic text-secondary font-serif font-normal">Journey</em>
-          </h2>
-          <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base max-w-xl mx-auto">
-            Whether you're a global brand looking for a manufacturing partner or simply want to learn more about what we do, the thread starts here.
-          </p>
-          <div className="pt-2">
-            <Button to="/contact" size="lg">
-              Contact Us
-            </Button>
           </div>
         </Container>
       </section>

@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { label: 'Products', to: '/products' },
   { label: 'Manufacturing', to: '/manufacturing' },
   { label: 'Quality & Compliance', to: '/quality-compliance' },
-  { label: 'Sustainability', to: '/sustainability' },
 ]
 
 function Header() {

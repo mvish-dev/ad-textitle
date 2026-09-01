@@ -10,7 +10,6 @@ const About = lazy(() => import('./pages/About.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
 const Manufacturing = lazy(() => import('./pages/Manufacturing.jsx'))
 const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
-const Sustainability = lazy(() => import('./pages/Sustainability.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
@@ -36,7 +35,7 @@ function App() {
               <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
               <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
               <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
-              <Route path="sustainability" element={<AnimatedPage><Sustainability /></AnimatedPage>} />
+              <Route path="sustainability" element={<Navigate to="/quality-compliance" replace />} />
               <Route path="contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
               <Route path="privacy-policy" element={<AnimatedPage><PrivacyPolicy /></AnimatedPage>} />
               <Route path="terms" element={<Navigate to="/privacy-policy#terms-of-service" replace />} />
