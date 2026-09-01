@@ -10,8 +10,6 @@ import SplitTextReveal from '../components/motion/SplitTextReveal.jsx'
 import AnimatedContent from '../components/motion/AnimatedContent.jsx'
 import LogoLoop from '../components/motion/LogoLoop.jsx'
 import DriftWall from '../components/motion/DriftWall.jsx'
-import ScrollStack, { ScrollStackItem } from '../components/motion/ScrollStack.jsx'
-import Carousel from '../components/motion/Carousel.jsx'
 import { scrollTo } from '../lib/lenis.js'
 import Seo from '../components/common/Seo.jsx'
 
@@ -54,7 +52,7 @@ const SIDE_NAV_ITEMS = [
   { id: 'dyeing', icon: 'format_color_fill', label: 'Dyeing' },
   { id: 'weaving', icon: 'grid_4x4', label: 'Weaving' },
   { id: 'knitting', icon: 'texture', label: 'Knitting' },
-  { id: 'cutting', icon: 'content_cut', label: 'Cutting' },
+  { id: 'cutting', icon: 'content_cut', label: 'Fabrication' },
   { id: 'embroidery', icon: 'auto_awesome', label: 'Embroidery' },
   { id: 'stitching', icon: 'design_services', label: 'Stitching' },
   { id: 'checking-quality', icon: 'verified', label: 'Checking & QC' },
@@ -69,7 +67,7 @@ const MARQUEE_ITEMS = [
   { icon: 'grid_4x4', label: 'Somet Rapier Looms' },
   { icon: 'texture', label: 'Korean Knitting Machines' },
   { icon: 'auto_awesome', label: 'Garuda & Toshiba Embroidery' },
-  { icon: 'design_services', label: '200 Jack Sewing Machines' },
+  { icon: 'design_services', label: '200 Zuki Sewing Machines' },
   { icon: 'workspace_premium', label: 'SA8000 Certified' },
   { icon: 'eco', label: 'ISO 9001:2015' },
   { icon: 'fact_check', label: '3-Layer AQL Inspection' },
@@ -95,9 +93,9 @@ const GALLERY_ITEMS = [
   { image: linkingMachineSocks, title: 'Linking Machine' },
   { image: washingMachineWide, title: 'Washing' },
   { image: ironingMacro, title: 'Setting & Ironing' },
-  { image: cuttingDetail, title: 'Cutting — Detail' },
-  { image: cuttingMacroSafety, title: 'Cutting — Precision' },
-  { image: cuttingTwoWorkers, title: 'Cutting Team' },
+  { image: cuttingDetail, title: 'Fabrication — Detail' },
+  { image: cuttingMacroSafety, title: 'Fabrication — Precision' },
+  { image: cuttingTwoWorkers, title: 'Fabrication Team' },
   { image: embroideryMacroNeedle, title: 'Embroidery — Detail' },
   { image: embroideryTexture, title: 'Embroidery — Pattern' },
   { image: stitchingAltWide, title: 'Stitching Floor' },
@@ -108,55 +106,14 @@ const GALLERY_ITEMS = [
   { image: warehouseAlt, title: 'Warehouse' },
 ]
 
-const ASSURANCE_STEPS = [
-  {
-    step: '01',
-    title: 'In-Line Inspection',
-    description: 'Layer 1: quality checks at every stage of production, not just at the end — measurement accuracy, appearance and construction verified as work moves through the floor.',
-    bg: 'bg-primary',
-  },
-  {
-    step: '02',
-    title: 'First-Stage Quality Check',
-    description: 'Layer 2: a first-stage quality check reviews every order before it moves to final inspection.',
-    bg: 'bg-[#334155]',
-  },
-  {
-    step: '03',
-    title: 'Final AQL Inspection',
-    description: 'Layer 3: a final AQL-standard inspection clears every order before dispatch, for zero-compromise quality on the pieces that leave the facility.',
-    bg: 'bg-[#1e293b]',
-  },
-  {
-    step: '04',
-    title: 'Customer-Specific Packaging',
-    description: 'Exporting since 1992, we pack to each buyer’s specification — customized folding, packing, labelling and packaging formats, consistent across bulk orders.',
-    bg: 'bg-[#A8834A]',
-  },
-  {
-    step: '05',
-    title: 'Warehouse Consolidation',
-    description: 'A warehouse with capacity for up to seven 40-foot containers keeps finished goods accounted for from production floor to container, ready for dispatch.',
-    bg: 'bg-[#0b1220]',
-  },
-]
-
 const CAPABILITY_ITEMS = [
   { id: 1, icon: 'format_color_fill', label: 'Dyeing', end: 3, suffix: ' Tons/Day', caption: 'Italian Cheese Dyeing Machine' },
-  { id: 2, icon: 'grid_4x4', label: 'Weaving', end: 1, suffix: 'M Metres/Month', caption: 'Somet Super Excel Rapier Looms' },
+  { id: 2, icon: 'grid_4x4', label: 'Weaving', end: 1, suffix: ' Million Metres/Month', caption: 'Somet Super Excel Rapier Looms' },
   { id: 3, icon: 'texture', label: 'Knitting', end: 5, suffix: ' Lakh Pairs/Month', caption: '50 Korean Single Cylinder Machines' },
-  { id: 4, icon: 'content_cut', label: 'Cutting', stat: 'In-House', caption: 'Precision Uniformity' },
+  { id: 4, icon: 'content_cut', label: 'Fabrication', stat: 'In-House', caption: 'Precision Uniformity' },
   { id: 5, icon: 'auto_awesome', label: 'Embroidery', end: 54, suffix: ' Heads (10–12 Colours)', caption: 'Garuda & Toshiba Machines' },
-  { id: 6, icon: 'design_services', label: 'Stitching', end: 200, suffix: ' Machines', caption: '200 Workers · Jack Sewing Machines' },
+  { id: 6, icon: 'design_services', label: 'Stitching', end: 200, suffix: ' Machines', caption: '200 Workers · Zuki Sewing Machines' },
   { id: 7, icon: 'verified', label: 'Quality Control', end: 3, suffix: '-Layer System', caption: 'End-to-End Inspection' },
-]
-
-const CERTIFICATION_ITEMS = [
-  { id: 1, icon: 'workspace_premium', title: 'SA8000', description: 'Social accountability certification covering fair labour practices across our facility.' },
-  { id: 2, icon: 'eco', title: 'ISO 9001:2015', description: 'Quality management system certification for consistent process control and continuous improvement.' },
-  { id: 3, icon: 'science', title: 'Azo-Free Dyes', description: 'Every dye lot screened azo-free — safe for skin contact and export compliance.' },
-  { id: 4, icon: 'fact_check', title: '3-Layer AQL Inspection', description: 'In-line, first-stage and final AQL-standard inspection on every order before dispatch.' },
-  { id: 5, icon: 'water_drop', title: 'Effluent Treatment', description: 'ETP, Reverse Osmosis and VSEP plants treat process water before discharge.' },
 ]
 
 // Consistent "chapter" chrome (eyebrow, title, copy, alternating media panel)
@@ -172,10 +129,12 @@ function Chapter({ id, num, eyebrow, title, description, media, reverse, childre
           <span className="eyebrow mb-4 block">
             {num} / {eyebrow}
           </span>
-          <h2 className="section-title mb-6">{title}</h2>
-          <p className="font-body-md text-[0.9rem] text-on-surface-variant mb-10 max-w-lg leading-relaxed">
-            {description}
-          </p>
+          <h2 className={`section-title ${description ? 'mb-6' : 'mb-8'}`}>{title}</h2>
+          {description && (
+            <p className="font-body-md text-[0.9rem] text-on-surface-variant mb-10 max-w-lg leading-relaxed">
+              {description}
+            </p>
+          )}
           {children}
         </AnimatedContent>
         <AnimatedContent direction="vertical" distance={50} className={reverse ? 'md:order-1' : ''}>
@@ -272,7 +231,7 @@ function Manufacturing() {
             className="font-headline-xl text-white text-[clamp(2.2rem,1.7rem+3vw,4.75rem)] leading-[1.08] font-bold mb-8 max-w-4xl"
           />
           <p className="font-body-md text-white/75 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
-            Nine fully integrated production stages — dyeing, weaving, knitting, cutting, embroidery, stitching,
+            Nine fully integrated production stages — dyeing, weaving, knitting, fabrication, embroidery, stitching,
             checking, packing and warehousing — under one roof in Karur, India.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -300,7 +259,7 @@ function Manufacturing() {
       </section>
 
       {/* SideNavBar — progress rail highlighted via IntersectionObserver */}
-      <aside className="fixed left-6 xl:left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 items-center bg-transparent hidden md:flex">
+      <aside className="fixed left-3 xl:left-4 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 items-center bg-transparent hidden md:flex">
         <ThreadPath
           d={RAIL_PATH}
           viewBox="0 0 8 400"
@@ -379,7 +338,6 @@ function Manufacturing() {
             num="01"
             eyebrow="Coloration"
             title={<>Precision <em>Color</em> Science</>}
-            description="Our in-house dyeing facility features imported Italian Cheese Dyeing Machines, ensuring superior dye penetration, exceptional colour fastness, and consistent quality across a wide variety of yarn types and blends."
             media={<img src={dyeingHero} alt="Azo-free dye vats at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -393,13 +351,14 @@ function Manufacturing() {
             num="02"
             eyebrow="Structural Integrity"
             title="The Architecture of Fabric"
-            description="Our in-house weaving facility is equipped with Somet Super Excel Rapier Looms, enabling the production of premium woven fabrics with exceptional precision, consistency, and durability across a wide range of yarn counts. Our manufacturing capability supports finished fabric widths of up to 120 inches."
             media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="precision_manufacturing" label="Somet Rapier Looms" sub="Super Excel Series" />
-              <StatTile icon="speed" label="1M Metres/Month" sub="Production Capacity" />
+              <StatTile icon="speed" label="1 Million Metres/Month" sub="Production Capacity" />
+              <StatTile icon="straighten" label="Up to 120 Inches" sub="Finished Fabric Width" />
+              <StatTile icon="texture" label="Terry, Full Terry & Jacquard" sub="Weaves We Produce" />
             </div>
           </Chapter>
 
@@ -408,12 +367,13 @@ function Manufacturing() {
             num="03"
             eyebrow="Loop Formation"
             title={<>Precision in Every <em>Loop</em></>}
-            description="Our advanced knitting facility is equipped with 50 imported Korean Single Cylinder Knitting Machines, producing Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — supported by a fully integrated composite unit for linking, washing, setting and ironing."
             media={<img src={knittingHero} alt="Circular knitting machines producing socks at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="texture" label="50 Knitting Machines" sub="Imported Korean, Single Cylinder" />
               <StatTile icon="tune" label="5 Lakh Pairs/Month" sub="Production Capacity" />
+              <StatTile icon="grid_view" label="Terry, Plain, Jacquard, Lurex" sub="Infant Socks to Football Socks" />
+              <StatTile icon="cyclone" label="Linking, Washing & Ironing" sub="Integrated Composite Unit" />
             </div>
           </Chapter>
 
@@ -421,11 +381,18 @@ function Manufacturing() {
             id="cutting"
             num="04"
             eyebrow="Precision"
-            title={<em>Cutting</em>}
-            description="Our in-house cutting facility is designed to deliver precision, consistency and efficiency across every production run. Using advanced cutting techniques and skilled workmanship, we ensure accurate pattern cutting, uniform dimensions, and minimal material wastage — a strong foundation for high-quality finished products."
-            media={<img src={cuttingHero} alt="Precision fabric cutting at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            title={<em>Fabrication</em>}
+            media={<img src={cuttingHero} alt="Precision fabric fabrication at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
+            <ul className="space-y-3 mb-8">
+              {['Accurate Pattern Cutting', 'Uniform Dimensions', 'Minimal Material Wastage'].map((label) => (
+                <li key={label} className="flex items-center gap-4">
+                  <Icon name="check_circle" className="text-secondary text-xl" />
+                  <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">{label}</span>
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap gap-4">
               <Button to="/contact" variant="primary">Get In Touch</Button>
               <Button to="/contact" variant="outline" className="text-primary border-primary">Request Details</Button>
@@ -437,7 +404,6 @@ function Manufacturing() {
             num="05"
             eyebrow="Embellishment"
             title={<em>Embroidery</em>}
-            description="Our advanced embroidery facility is equipped with Garuda and Toshiba embroidery machines, featuring 54 embroidery heads supporting 10 to 12 thread colours, dedicated sampling capabilities, and precision digitising — delivering intricate, premium designs across our home textile ranges."
             media={<img src={embroideryHero} alt="Embroidery detailing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <ul className="space-y-3">
@@ -455,13 +421,12 @@ function Manufacturing() {
             num="06"
             eyebrow="Construction"
             title={<em>Stitching</em>}
-            description="Our advanced stitching facility runs 200 Jack sewing machines on the production floor, supported by a skilled workforce of 100 skilled and 100 semi-skilled professionals specialising in garment and sock linking operations — converting cut and embroidered panels into finished, quality-checked pieces at high volume."
             media={<img src={stitchingHero} alt="Stitching production line at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
-            <div className="flex flex-wrap gap-4">
-              <Button to="/contact" variant="primary">Get In Touch</Button>
-              <Button to="/contact" variant="outline" className="text-primary border-primary">Request Details</Button>
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="design_services" label="200 Zuki Sewing Machines" sub="Production Floor" />
+              <StatTile icon="groups" label="100 Skilled + 100 Semi-Skilled" sub="Garment & Sock Linking" />
             </div>
           </Chapter>
 
@@ -470,14 +435,13 @@ function Manufacturing() {
             num="07"
             eyebrow="Assurance"
             title={<>Checking &amp; Quality <em>Control</em></>}
-            description="Our dedicated Quality Control team follows a comprehensive 3-layer inspection system to ensure every product meets the highest standards of quality and accuracy. Every product is thoroughly evaluated for measurement accuracy, appearance, and packing to ensure zero-compromise quality in every batch and full compliance with customer specifications."
             media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-5">
               {[
-                { n: '01', title: 'In-Line Inspection', sub: 'Layer 1: in-line inspections at every stage of production.' },
-                { n: '02', title: 'First-Stage Quality Check', sub: 'Layer 2: first-stage quality check.' },
-                { n: '03', title: 'Final AQL Inspection', sub: 'Layer 3: final AQL-standard inspection before dispatch.' },
+                { n: '01', title: 'Online Inspection', sub: 'Layer 1: online inspection at every stage of production.' },
+                { n: '02', title: 'Quality Inspection', sub: 'Layer 2: quality inspection of finished output.' },
+                { n: '03', title: 'Final AQL Inspection', sub: 'Layer 3: final AQL inspection before dispatch.' },
               ].map((row) => (
                 <div key={row.n} className="flex items-start gap-5">
                   <div className="w-11 h-11 flex items-center justify-center rounded-full bg-primary text-white shrink-0 font-bold text-sm shadow-md">
@@ -497,7 +461,6 @@ function Manufacturing() {
             num="08"
             eyebrow="Fulfilment"
             title={<>Customer-Specific <em>Packaging</em></>}
-            description="We follow customer-specific packaging requirements to ensure every product is packed according to the buyer's specifications. Our skilled and experienced workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across bulk orders."
             media={<img src={packingHero} alt="Export packing operations at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
@@ -512,12 +475,11 @@ function Manufacturing() {
             num="09"
             eyebrow="Storage & Fulfilment"
             title={<>Warehouse &amp; Storage <em>Capacity</em></>}
-            description="Our warehouse has the capacity to accommodate up to seven 40-foot containers, with space to hold two fully loaded containers. This enables us to efficiently manage finished goods, bulk orders and export shipments."
             media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="inventory_2" label="7 x 40FT Containers" sub="Total Storage Capacity" />
-              <StatTile icon="local_shipping" label="2 Loaded Containers" sub="Ready-to-Dispatch Space" />
+              <StatTile icon="local_shipping" label="Export-Ready Storage" sub="Finished Goods & Shipments" />
             </div>
           </Chapter>
         </div>
@@ -540,45 +502,6 @@ function Manufacturing() {
             <h2 className="section-title !text-white max-w-2xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
               A Living Look at the <em>Production Floor</em>
             </h2>
-          </div>
-        </section>
-
-        {/* Quality assurance journey — scroll-stacked cards */}
-        <section className="w-full bg-background py-24 md:py-32">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="eyebrow mb-4 block">Assurance</span>
-              <h2 className="section-title mb-4">
-                Every Order, <em>Verified</em> Three Times
-              </h2>
-              <p className="text-on-surface-variant text-sm">Scroll inside the panel to step through the journey from floor to container.</p>
-            </div>
-            <div className="h-[520px] rounded-[32px] border border-outline-variant/20 shadow-[0_20px_60px_rgba(15,23,42,0.1)] overflow-hidden">
-              <ScrollStack itemDistance={60} itemStackDistance={24} baseScale={0.9} rotationAmount={0.5} blurAmount={1}>
-                {ASSURANCE_STEPS.map((item) => (
-                  <ScrollStackItem key={item.step} itemClassName={`${item.bg} text-white flex items-center`}>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center rounded-full bg-white/10 border border-white/20 font-headline-lg text-lg sm:text-2xl font-bold">
-                        {item.step}
-                      </div>
-                      <div>
-                        <p className="font-headline-lg text-xl sm:text-2xl mb-2">{item.title}</p>
-                        <p className="text-sm text-white/70 leading-relaxed max-w-xl">{item.description}</p>
-                      </div>
-                    </div>
-                  </ScrollStackItem>
-                ))}
-              </ScrollStack>
-            </div>
-          </div>
-        </section>
-
-        {/* Certifications & standards carousel */}
-        <section className="w-full bg-primary py-24 md:py-28">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center">
-            <span className="eyebrow !text-secondary mb-4">Certified & Compliant</span>
-            <h2 className="section-title !text-white mb-12 text-center">Standards We Hold Ourselves To</h2>
-            <Carousel items={CERTIFICATION_ITEMS} baseWidth={300} autoplay autoplayDelay={3500} pauseOnHover loop />
           </div>
         </section>
 
@@ -605,12 +528,6 @@ function Manufacturing() {
                 </div>
               </div>
             </AnimatedContent>
-            <div className="mt-16 text-center">
-              <h2 className="section-title mb-10">Ready to scale your production?</h2>
-              <Button to="/contact" size="lg" className="uppercase tracking-widest hover:scale-105">
-                Inquire Now
-              </Button>
-            </div>
           </div>
         </section>
 

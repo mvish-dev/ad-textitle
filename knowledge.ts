@@ -7,7 +7,7 @@ AD Textile (registered as Angayeeammal Devarajan Textile Pvt. Ltd.)
 About the Company:
 AD Textile is a vertically integrated home textile manufacturer and exporter based in Karur, Tamil Nadu, India. Founded in 1990, the company began exporting to international markets in 1992 and has spent over three decades helping global retail brands turn ideas into premium home textile products.
 
-The company owns and operates its entire production chain in-house — dyeing, weaving, knitting, cutting, embroidery, stitching, quality checking, packing and warehousing all happen under one roof at a single facility in Karur, with no subcontracted production stages. This full vertical integration gives AD Textile control over quality, lead times and cost, supporting both large repeat retail programs and smaller specialist orders.
+The company owns and operates its entire production chain in-house — dyeing, weaving, knitting, fabrication, embroidery, stitching, quality checking, packing and warehousing all happen under one roof at a single facility in Karur, with no subcontracted production stages. This full vertical integration gives AD Textile control over quality, lead times and cost, supporting both large repeat retail programs and smaller specialist orders.
 
 Mission: To create high-quality home textile products through fully integrated manufacturing, continuous innovation, ethical business practices and exceptional customer service — helping partners succeed in global markets.
 
@@ -40,10 +40,10 @@ Production runs through nine fully integrated stages, all at the Karur facility:
 1. Dyeing — In-house dyeing using imported Italian Cheese Dyeing Machines, capacity of 3 tons/day. Only Azo-free dyes are used, for strong dye penetration, colour fastness and skin safety.
 2. Weaving — Somet Super Excel Rapier Looms weave premium woven fabric at roughly 1 million metres per month. Manufacturing capability supports finished fabric widths of up to 120 inches.
 3. Knitting — 50 imported Korean Single Cylinder Knitting Machines produce Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — at about 5 lakh (500,000) pairs per month, backed by an integrated composite unit for linking, washing, setting and ironing.
-4. Cutting — In-house precision cutting for accurate pattern cutting, uniform dimensions and minimal material wastage.
+4. Fabrication — In-house precision cutting for accurate pattern cutting, uniform dimensions and minimal material wastage.
 5. Embroidery — Garuda and Toshiba embroidery machines with 54 embroidery heads supporting 10–12 thread colours, plus dedicated sampling and precision digitising.
-6. Stitching — 200 Jack sewing machines on the floor, run by a workforce of 100 skilled and 100 semi-skilled workers specialising in garment and sock linking operations.
-7. Checking & Quality Control — A 3-layer inspection system: Layer 1 is in-line inspection at every stage of production, Layer 2 is a first-stage quality check, and Layer 3 is a final AQL-standard inspection before dispatch. Every product is evaluated for measurement accuracy, appearance and packing, ensuring full compliance with customer specifications.
+6. Stitching — 200 Zuki sewing machines on the floor, run by a workforce of 100 skilled and 100 semi-skilled workers specialising in garment and sock linking operations.
+7. Checking & Quality Control — A 3-layer inspection system: Layer 1 is online inspection at every stage of production, Layer 2 is a quality inspection of finished output, and Layer 3 is a final AQL inspection before dispatch. Every product is evaluated for measurement accuracy, appearance and packing, ensuring full compliance with customer specifications.
 8. Packing (Customer-Specific Packaging) — Packing follows each buyer's specific requirements. The workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across bulk orders. AD Textile has packed and exported orders since 1992.
 9. Warehouse — Warehouse and storage capacity accommodates up to seven 40-foot containers, with space to hold two fully loaded containers, enabling efficient management of finished goods, bulk orders and export shipments.
 
@@ -63,7 +63,7 @@ Certifications:
 - NSF-ISR (registered to AS9100, including ISO 9001) — Third-party registration confirming conformity to recognised management-system standards.
 - Sedex / SMETA (4-Pillar Certified Factory) — Sedex membership and SMETA 4-Pillar certification, supporting transparent sharing of labour standards, health & safety, environmental and business ethics data across the supply chain.
 - All dyeing is Azo-free, in conformance with governing-body norms.
-- Every order passes through the 3-layer AQL inspection system (in-line inspection, first-stage quality check, and a final AQL-standard inspection) before dispatch.
+- Every order passes through the 3-layer AQL inspection system (online inspection, quality inspection, and a final AQL inspection) before dispatch.
 
 Sustainability:
 AD Textile focuses on practical sustainability across materials, manufacturing processes, chemical management and resource use. Materials used include cotton, bamboo and other customer-specified or suitable sustainable options, depending on product requirements. Integrated knitting, weaving, dyeing, stitching and packing capabilities give greater control over quality, processes and resource use. The company focuses on responsible chemical management, resource efficiency, waste reduction and improved production practices, supported by standards and initiatives including OEKO-TEX® and the Global Recycled Standard (GRS).
@@ -102,7 +102,7 @@ Q: What products does AD Textile manufacture?
 A: Kitchen Linen, Table Linen, Bed Linen (Heritage Bed Linen), and Living Linen (curtains), plus custom fabric and private-label programs. Garments are made by AD Textile's sister company at adtsaral.in, not by AD Textile itself.
 
 Q: Is AD Textile's manufacturing vertically integrated?
-A: Yes. Dyeing, weaving, knitting, cutting, embroidery, stitching, quality checking, packing and warehousing are all done in-house at one facility in Karur, with no subcontracted production stages.
+A: Yes. Dyeing, weaving, knitting, fabrication, embroidery, stitching, quality checking, packing and warehousing are all done in-house at one facility in Karur, with no subcontracted production stages.
 
 Q: What is AD Textile's production capacity?
 A: Roughly 1 million metres of woven fabric per month, 3 tons/day of dyeing capacity, about 5 lakh (500,000) knitted pairs per month, 54-head embroidery capacity (10–12 thread colours), and 200 stitching machines run by a 200-person skilled and semi-skilled workforce.
