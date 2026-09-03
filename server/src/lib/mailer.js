@@ -25,7 +25,7 @@ function getTransporter() {
 
 function buildSubject(enquiry) {
   const kind = enquiry.type === 'quote' ? 'Quote Request' : 'Sales Enquiry'
-  return `[AD Textile Website] ${kind} from ${enquiry.name} (${enquiry.company})`
+  return `[A D Textile Website] ${kind} from ${enquiry.name} (${enquiry.company})`
 }
 
 // Sales enquiries and quote requests route to different mailboxes

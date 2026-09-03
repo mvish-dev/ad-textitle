@@ -18,7 +18,7 @@ function FacilityDetails({ copied, onCopyAddress }) {
         <div className="h-36 overflow-hidden">
           <img
             src={facilityGate}
-            alt="AD Textile facility entrance in Karur, India"
+            alt="A D Textile facility entrance in Karur, India"
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"
@@ -32,7 +32,7 @@ function FacilityDetails({ copied, onCopyAddress }) {
             </div>
             <div>
               <h3 className="text-xs text-secondary uppercase font-semibold tracking-wider">Production Facility</h3>
-              <h2 className="text-primary font-bold text-lg font-serif">AD Textile Headquarters</h2>
+              <h2 className="text-primary font-bold text-lg font-serif">A D Textile Headquarters</h2>
             </div>
           </div>
 

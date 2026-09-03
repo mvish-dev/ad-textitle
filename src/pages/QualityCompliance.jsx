@@ -102,7 +102,7 @@ function QualityCompliance() {
     <>
       <Seo
         title="Quality & Compliance"
-        description="AD Textile maintains quality and compliance across every stage of production — from raw materials to finished products, meeting buyer specifications and international requirements."
+        description="A D Textile maintains quality and compliance across every stage of production — from raw materials to finished products, meeting buyer specifications and international requirements."
       />
       {/* Hero Section */}
       <section className="relative min-h-[max(80vh,600px)] flex items-center overflow-hidden pt-20 pb-12 bg-primary">

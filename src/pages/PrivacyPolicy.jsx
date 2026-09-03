@@ -36,7 +36,7 @@ function PrivacyPolicy() {
     <>
       <Seo
         title="Privacy Policy & Terms of Service"
-        description="How AD Textile collects, uses and protects the information you share with us, and the terms that govern use of this website."
+        description="How A D Textile collects, uses and protects the information you share with us, and the terms that govern use of this website."
       />
 
       {/* Page Header — static, no motion/WebGL by design */}
@@ -47,7 +47,7 @@ function PrivacyPolicy() {
             Privacy Policy &amp; <em>Terms of Service</em>
           </h1>
           <p className="font-body-md text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed">
-            This page explains what information AD Textile collects when you use this website, how it's used, and
+            This page explains what information A D Textile collects when you use this website, how it's used, and
             the terms that apply to your use of the site.
           </p>
           <p className="font-label-md text-[0.68rem] text-on-surface-variant/70 uppercase tracking-widest mt-6">
@@ -92,7 +92,7 @@ function PrivacyPolicy() {
             <div className="space-y-12">
               <Section id="information-we-collect" title="1. Information We Collect">
                 <p>
-                  Angayeeammal Devarajan Textile Pvt. Ltd. ("AD Textile", "we", "us", "our") collects information in
+                  Angayeeammal Devarajan Textile Pvt. Ltd. ("A D Textile", "we", "us", "our") collects information in
                   the following ways when you use adtextile.com (the "Site"):
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
@@ -267,15 +267,15 @@ function PrivacyPolicy() {
                   <li>Attempt to gain unauthorised access to the Site, its chat service, or any related system.</li>
                   <li>Interfere with the Site's normal operation, including through excessive automated requests.</li>
                   <li>Submit false, misleading or fraudulent information through our forms or chat widget.</li>
-                  <li>Use content from the Site to misrepresent AD Textile or its products.</li>
+                  <li>Use content from the Site to misrepresent A D Textile or its products.</li>
                 </ul>
               </Section>
 
               <Section id="intellectual-property" title="3. Intellectual Property">
                 <p>
-                  The text, photography, videos, logos and design of this Site are owned by AD Textile or licensed
+                  The text, photography, videos, logos and design of this Site are owned by A D Textile or licensed
                   to us, and are protected by applicable intellectual property laws. You may view and share pages of
-                  the Site for legitimate business evaluation of AD Textile as a manufacturing partner, but may not
+                  the Site for legitimate business evaluation of A D Textile as a manufacturing partner, but may not
                   otherwise copy, reproduce or redistribute Site content without our prior written permission.
                 </p>
               </Section>
@@ -286,7 +286,7 @@ function PrivacyPolicy() {
                   general information. Specifications, minimum order quantities, lead times and pricing discussed
                   through an enquiry, quote form or chat conversation are indicative and subject to confirmation —
                   they do not constitute a binding offer until confirmed in writing (for example, in a signed
-                  proforma invoice or purchase order) by an authorised representative of AD Textile.
+                  proforma invoice or purchase order) by an authorised representative of A D Textile.
                 </p>
               </Section>
 
@@ -300,7 +300,7 @@ function PrivacyPolicy() {
 
               <Section id="limitation-of-liability" title="6. Limitation of Liability">
                 <p>
-                  To the fullest extent permitted by law, AD Textile is not liable for any indirect, incidental or
+                  To the fullest extent permitted by law, A D Textile is not liable for any indirect, incidental or
                   consequential loss arising from your use of, or inability to use, this Site. This does not limit
                   any liability that cannot be excluded under applicable law, or any liability arising under a
                   separately signed supply or export agreement.

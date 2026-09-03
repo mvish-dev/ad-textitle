@@ -8,7 +8,7 @@ import Seo from '../components/common/Seo.jsx'
 function Maintenance() {
   return (
     <div className="min-h-screen w-full bg-primary text-white flex flex-col items-center justify-center px-6 text-center">
-      <Seo title="Under Maintenance" description="AD Textile is undergoing scheduled maintenance." noindex />
+      <Seo title="Under Maintenance" description="A D Textile is undergoing scheduled maintenance." noindex />
       <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-8">
         <Icon name="construction" className="text-3xl text-secondary" />
       </div>

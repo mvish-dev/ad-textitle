@@ -7,5 +7,5 @@ import app from './app.js'
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
-  console.log(`AD Textile API listening on http://localhost:${PORT} (MAIL_MODE=${process.env.MAIL_MODE || 'log'})`)
+  console.log(`A D Textile API listening on http://localhost:${PORT} (MAIL_MODE=${process.env.MAIL_MODE || 'log'})`)
 })

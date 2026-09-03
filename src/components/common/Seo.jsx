@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom'
 
-const SITE_NAME = 'AD Textile'
+const SITE_NAME = 'A D Textile'
 const DEFAULT_TITLE = `${SITE_NAME} | Global Excellence in Manufacturing`
 const DEFAULT_DESCRIPTION =
-  'AD Textile is a vertically integrated home textile manufacturer and exporter based in Karur, India, producing kitchen, table, bed and living linen for global retail brands since 1990.'
+  'A D Textile is a vertically integrated home textile manufacturer and exporter based in Karur, India, producing kitchen, table, bed and living linen for global retail brands since 1990.'
 
 // Renders <title>/<meta>/<link> directly in the tree — React 19 hoists these
 // into <head> automatically, wherever the page happens to render this.

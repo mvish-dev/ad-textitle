@@ -28,7 +28,7 @@ const TIMELINE = [
     year: '1990',
     title: 'The Beginning',
     description:
-      'AD Textile was established in Karur, building its foundation in textile manufacturing.',
+      'A D Textile was established in Karur, building its foundation in textile manufacturing.',
     align: 'right',
   },
   {
@@ -107,7 +107,7 @@ function About() {
     <>
       <Seo
         title="About Us"
-        description="AD Textile is a textile manufacturing and export company from Karur, India, with decades of experience in the textile industry — combining product knowledge, skilled craftsmanship and modern manufacturing practices."
+        description="A D Textile is a textile manufacturing and export company from Karur, India, with decades of experience in the textile industry — combining product knowledge, skilled craftsmanship and modern manufacturing practices."
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
@@ -160,7 +160,7 @@ function About() {
             <div className="divider" />
             <div className="text-on-surface/80 font-body-md text-sm md:text-base space-y-5 leading-relaxed pt-2">
               <p>
-                AD Textile is a vertical textile manufacturing and export company from Karur, India with decades of
+                A D Textile is a vertical textile manufacturing and export company from Karur, India with decades of
                 experience in the textile industry.
               </p>
               <p>
@@ -325,7 +325,7 @@ function About() {
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <img
           src={aerialCampusWide}
-          alt="Aerial view of the AD Textile manufacturing campus in Karur, India"
+          alt="Aerial view of the A D Textile manufacturing campus in Karur, India"
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
@@ -423,7 +423,7 @@ function About() {
               Our <em className="italic text-secondary font-normal font-serif">People</em>
             </h2>
             <p className="font-body-md text-on-surface-variant leading-relaxed text-sm md:text-base">
-              At AD Textile, our strength comes not just from our infrastructure, but from our skilled human resources. We conduct regular training programs on new technologies to keep our workforce updated, and it is this skilled workforce that brings the unique finishing touch to every product we make.
+              At A D Textile, our strength comes not just from our infrastructure, but from our skilled human resources. We conduct regular training programs on new technologies to keep our workforce updated, and it is this skilled workforce that brings the unique finishing touch to every product we make.
             </p>
           </div>
 

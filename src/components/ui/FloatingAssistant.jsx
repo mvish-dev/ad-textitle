@@ -3,19 +3,19 @@ import Icon from './Icon.jsx'
 import WhatsAppIcon from './WhatsAppIcon.jsx'
 
 const WHATSAPP_NUMBER = '919790557077'
-const WHATSAPP_MESSAGE = "Hi, I'd like to enquire about AD Textile's manufacturing capabilities."
+const WHATSAPP_MESSAGE = "Hi, I'd like to enquire about A D Textile's manufacturing capabilities."
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
 const CHAT_API_URL = 'https://adtextile-chatbot.vishfunfacts.workers.dev/api/chat'
 const CHAT_ERROR_MESSAGE = "Sorry, I'm having trouble responding right now. Please try again."
 
 const QUICK_QUESTIONS = [
-  { label: 'Product Information', query: "Can you tell me about AD Textile's products?" },
-  { label: 'Manufacturing', query: "What are AD Textile's manufacturing capabilities?" },
-  { label: 'Infrastructure', query: "Tell me about AD Textile's manufacturing infrastructure." },
-  { label: 'Quality', query: "What quality standards and processes does AD Textile follow?" },
-  { label: 'Certifications', query: "What certifications does AD Textile have?" },
-  { label: 'Contact Sales', query: "How can I contact AD Textile's sales team?" },
+  { label: 'Product Information', query: "Can you tell me about A D Textile's products?" },
+  { label: 'Manufacturing', query: "What are A D Textile's manufacturing capabilities?" },
+  { label: 'Infrastructure', query: "Tell me about A D Textile's manufacturing infrastructure." },
+  { label: 'Quality', query: "What quality standards and processes does A D Textile follow?" },
+  { label: 'Certifications', query: "What certifications does A D Textile have?" },
+  { label: 'Contact Sales', query: "How can I contact A D Textile's sales team?" },
 ]
 
 // Splits a growing SSE buffer into complete "data: ..." events (separated by
@@ -186,7 +186,7 @@ function FloatingAssistant() {
             target="_blank"
             rel="noreferrer noopener"
             className="relative z-10 w-11 h-11 bg-[#25D366] text-white rounded-full flex items-center justify-center cursor-pointer"
-            aria-label="Chat with AD Textile on WhatsApp"
+            aria-label="Chat with A D Textile on WhatsApp"
           >
             <WhatsAppIcon className="text-lg" />
           </a>
@@ -203,7 +203,7 @@ function FloatingAssistant() {
                   <Icon name="chat_bubble" className="text-white text-lg" />
                 </div>
                 <div>
-                  <h4 className="font-label-md text-sm text-white font-semibold">AD Textile Assistant</h4>
+                  <h4 className="font-label-md text-sm text-white font-semibold">A D Textile Assistant</h4>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span className="text-[10px] uppercase tracking-widest text-white/60">Online</span>
@@ -232,7 +232,7 @@ function FloatingAssistant() {
                 </div>
                 <div className="bg-white border border-outline-variant/30 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
                   <p className="text-sm text-primary leading-relaxed">
-                    Hi, I&apos;m the AD Textile Assistant. How can I help you today?
+                    Hi, I&apos;m the A D Textile Assistant. How can I help you today?
                   </p>
                 </div>
               </div>
@@ -302,7 +302,7 @@ function FloatingAssistant() {
             type="button"
             className="relative z-10 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center cursor-pointer"
             onClick={() => setOpen((value) => !value)}
-            aria-label={open ? 'Close AD Textile Assistant' : 'Open AD Textile Assistant'}
+            aria-label={open ? 'Close A D Textile Assistant' : 'Open A D Textile Assistant'}
           >
             <Icon name={open ? 'close' : 'smart_toy'} className="text-lg" />
           </button>

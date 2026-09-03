@@ -129,7 +129,7 @@ function Contact() {
     <div className="bg-background text-on-background min-h-screen">
       <Seo
         title="Contact Us"
-        description="Get in touch with AD Textile's commercial team in Karur, India. Request a manufacturing quote, sourcing enquiry, or visit our vertically integrated production facility."
+        description="Get in touch with A D Textile's commercial team in Karur, India. Request a manufacturing quote, sourcing enquiry, or visit our vertically integrated production facility."
       />
 
       <ContactHero />
@@ -205,7 +205,7 @@ function Contact() {
               <span>● SOCIAL AUDIT COMPLIANT</span>
             </div>
             <div>
-              <span>© {new Date().getFullYear()} AD Textile Pvt Ltd.</span>
+              <span>© {new Date().getFullYear()} A D Textile Pvt Ltd.</span>
             </div>
           </Container>
         </div>

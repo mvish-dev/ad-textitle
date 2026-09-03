@@ -6,7 +6,7 @@ function LocationMap() {
   return (
     <section className="w-full relative h-[480px] bg-slate-100 border-t border-b border-outline-variant/30 scroll-mt-20 overflow-hidden" id="google-map-section">
       <iframe
-        title="AD Textile Location Map"
+        title="A D Textile Location Map"
         allowFullScreen=""
         height="100%"
         loading="lazy"

@@ -204,7 +204,7 @@ function Manufacturing() {
     <div className="relative">
       <Seo
         title="Manufacturing Capabilities"
-        description="From dyeing and weaving to stitching, checking and packing, explore AD Textile's fully integrated manufacturing process across every production chapter."
+        description="From dyeing and weaving to stitching, checking and packing, explore A D Textile's fully integrated manufacturing process across every production chapter."
       />
 
       {/* Hero */}
@@ -305,7 +305,7 @@ function Manufacturing() {
                 Watch Our <em>Process</em>
               </h2>
               <p className="text-on-surface-variant text-sm">
-                A tour through the AD Textile facility, from dyeing and weaving to finishing and dispatch.
+                A tour through the A D Textile facility, from dyeing and weaving to finishing and dispatch.
               </p>
             </div>
             <div
@@ -314,7 +314,7 @@ function Manufacturing() {
             >
               <img
                 src={dyeingHallWide}
-                alt="AD Textile manufacturing facility"
+                alt="A D Textile manufacturing facility"
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
@@ -338,7 +338,7 @@ function Manufacturing() {
             num="01"
             eyebrow="Coloration"
             title={<>Precision <em>Color</em> Science</>}
-            media={<img src={dyeingHero} alt="Azo-free dye vats at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={dyeingHero} alt="Azo-free dye vats at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="format_color_fill" label="Italian Cheese Dyeing" sub="Imported Machines" />
@@ -351,7 +351,7 @@ function Manufacturing() {
             num="02"
             eyebrow="Structural Integrity"
             title="The Architecture of Fabric"
-            media={<img src={weavingHero} alt="Automatic weaving looms at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={weavingHero} alt="Automatic weaving looms at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -367,7 +367,7 @@ function Manufacturing() {
             num="03"
             eyebrow="Loop Formation"
             title={<>Precision in Every <em>Loop</em></>}
-            media={<img src={knittingHero} alt="Circular knitting machines producing socks at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={knittingHero} alt="Circular knitting machines producing socks at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="texture" label="50 Knitting Machines" sub="Imported Korean, Single Cylinder" />
@@ -382,7 +382,7 @@ function Manufacturing() {
             num="04"
             eyebrow="Precision"
             title={<em>Fabrication</em>}
-            media={<img src={cuttingHero} alt="Precision fabric fabrication at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={cuttingHero} alt="Precision fabric fabrication at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <ul className="space-y-3 mb-8">
@@ -404,7 +404,7 @@ function Manufacturing() {
             num="05"
             eyebrow="Embellishment"
             title={<em>Embroidery</em>}
-            media={<img src={embroideryHero} alt="Embroidery detailing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={embroideryHero} alt="Embroidery detailing at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <ul className="space-y-3">
               {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
@@ -421,7 +421,7 @@ function Manufacturing() {
             num="06"
             eyebrow="Construction"
             title={<em>Stitching</em>}
-            media={<img src={stitchingHero} alt="Stitching production line at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={stitchingHero} alt="Stitching production line at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -435,7 +435,7 @@ function Manufacturing() {
             num="07"
             eyebrow="Assurance"
             title={<>Checking &amp; Quality <em>Control</em></>}
-            media={<img src={checkingHero} alt="Quality inspection and finishing at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={checkingHero} alt="Quality inspection and finishing at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="space-y-5">
               {[
@@ -461,7 +461,7 @@ function Manufacturing() {
             num="08"
             eyebrow="Fulfilment"
             title={<>Customer-Specific <em>Packaging</em></>}
-            media={<img src={packingHero} alt="Export packing operations at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={packingHero} alt="Export packing operations at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
@@ -475,7 +475,7 @@ function Manufacturing() {
             num="09"
             eyebrow="Storage & Fulfilment"
             title={<>Warehouse &amp; Storage <em>Capacity</em></>}
-            media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at AD Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
+            media={<img src={warehouseHero} alt="Warehouse and finished-goods storage at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="inventory_2" label="7 x 40FT Containers" sub="Total Storage Capacity" />

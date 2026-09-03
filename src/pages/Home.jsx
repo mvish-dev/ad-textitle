@@ -298,7 +298,7 @@ function Home() {
 
   return (
     <>
-      <Seo description="AD Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 9001:2015 compliant, exporting since 1992." />
+      <Seo description="A D Textile manufactures premium kitchen, table, bed and living linen for global retail brands. Vertically integrated, SA8000 & ISO 9001:2015 compliant, exporting since 1992." />
       {/* Hero Section */}
       <section ref={heroSectionRef} className="relative min-h-screen flex items-center bg-primary text-white overflow-hidden pt-20">
 
@@ -501,7 +501,7 @@ function Home() {
               <div>
                 <span className="eyebrow">Why Choose Us</span>
                 <h2 className="section-title text-3xl font-light text-primary leading-tight mt-3">
-                  The Competitive <em className="italic text-secondary font-normal font-serif">Edge</em> of AD Textile
+                  The Competitive <em className="italic text-secondary font-normal font-serif">Edge</em> of A D Textile
                 </h2>
                 <p className="font-body-md text-on-surface-variant max-w-xl leading-relaxed mt-4 text-sm md:text-base">
                   We leverage cutting-edge technology and human expertise to maintain our position as a global leader in textile manufacturing.
@@ -535,7 +535,7 @@ function Home() {
                   <img
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     src={colorMatchingTechnician}
-                    alt="Laboratory technician performing colour-matching tests at AD Textile"
+                    alt="Laboratory technician performing colour-matching tests at A D Textile"
                     loading="lazy"
                     decoding="async"
                   />
@@ -547,7 +547,7 @@ function Home() {
                   <img
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     src={warehouseHero}
-                    alt="Warehouse of packaged, export-ready fabrics at AD Textile"
+                    alt="Warehouse of packaged, export-ready fabrics at A D Textile"
                     loading="lazy"
                     decoding="async"
                   />

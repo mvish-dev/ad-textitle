@@ -113,7 +113,7 @@ function Footer() {
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-8 pt-8 flex justify-between items-center flex-wrap gap-4">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.73rem] text-white/65">
-          <p>© {new Date().getFullYear()} Angayeeammal Devarajan Textile Pvt. Ltd. (AD Textile). All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Angayeeammal Devarajan Textile Pvt. Ltd. (A D Textile). All rights reserved.</p>
           <Link className="hover:text-secondary transition-colors duration-200" to="/privacy-policy">
             Privacy Policy
           </Link>

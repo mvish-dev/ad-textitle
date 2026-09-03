@@ -19,7 +19,7 @@ function Products() {
     <>
       <Seo
         title="Products"
-        description="Explore AD Textile's kitchen, table, bed and living linen manufacturing categories. Contact our team directly for specifications, MOQs and lead times."
+        description="Explore A D Textile's kitchen, table, bed and living linen manufacturing categories. Contact our team directly for specifications, MOQs and lead times."
       />
       {/* Hero Section */}
       <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center pt-20 bg-primary">
@@ -80,7 +80,7 @@ function Products() {
           <h2 className="section-title mb-8">A Catalogue Worthy of <em>Our Craft</em></h2>
           <div className="divider mx-auto mb-8" />
           <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-            AD Textile manufactures across kitchen linen, table linen, bed linen and living linen categories,
+            A D Textile manufactures across kitchen linen, table linen, bed linen and living linen categories,
             alongside garments produced by our sister company. Our refreshed product catalogue will present
             these collections with the detail global buyers expect — specifications, minimum order quantities
             and lead times included. Until then, reach out directly and our team will walk you through what we
