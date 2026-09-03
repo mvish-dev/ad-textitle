@@ -466,7 +466,7 @@ function Manufacturing() {
           >
             <div className="grid grid-cols-2 gap-4 max-w-lg">
               <StatTile icon="rule" label="Buyer-Specific Formats" sub="Folding, Packing & Labelling" />
-              <StatTile icon="groups" label="Trained Workforce" sub="Consistency Across Bulk Orders" />
+              <StatTile icon="groups" label="Trained Workforce" sub="Consistency Across Volume Orders" />
             </div>
           </Chapter>
 

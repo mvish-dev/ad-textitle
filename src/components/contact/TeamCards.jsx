@@ -10,7 +10,7 @@ const TEAM_MEMBERS = [
     name: 'Mr. D. Senthil Kumar',
     role: 'Commercial Director',
     tag: 'Sales & Contracts',
-    bio: 'Responsible for global retail accounts, customized production tenders, client onboarding, and bulk supply negotiations.',
+    bio: 'Responsible for global retail accounts, customized production tenders, client onboarding, and volume supply negotiations.',
     email: 'senthil@adtextile.com',
     whatsapp: '919994399077',
   },

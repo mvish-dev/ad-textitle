@@ -44,8 +44,8 @@ Production runs through nine fully integrated stages, all at the Karur facility:
 5. Embroidery — Garuda and Toshiba embroidery machines with 54 embroidery heads supporting 10–12 thread colours, plus dedicated sampling and precision digitising.
 6. Stitching — 200 Zuki sewing machines on the floor, run by a workforce of 100 skilled and 100 semi-skilled workers specialising in garment and sock linking operations.
 7. Checking & Quality Control — A 3-layer inspection system: Layer 1 is online inspection at every stage of production, Layer 2 is a quality inspection of finished output, and Layer 3 is a final AQL inspection before dispatch. Every product is evaluated for measurement accuracy, appearance and packing, ensuring full compliance with customer specifications.
-8. Packing (Customer-Specific Packaging) — Packing follows each buyer's specific requirements. The workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across bulk orders. A D Textile has packed and exported orders since 1992.
-9. Warehouse — Warehouse and storage capacity accommodates up to seven 40-foot containers, with space to hold two fully loaded containers, enabling efficient management of finished goods, bulk orders and export shipments.
+8. Packing (Customer-Specific Packaging) — Packing follows each buyer's specific requirements. The workforce is trained to handle customized folding, packing, labelling and packaging formats, ensuring consistency and accuracy across volume orders. A D Textile has packed and exported orders since 1992.
+9. Warehouse — Warehouse and storage capacity accommodates up to seven 40-foot containers, with space to hold two fully loaded containers, enabling efficient management of finished goods, volume orders and export shipments.
 
 Certifications:
 - SA8000 (SAI) — Social Accountability International certification covering fair labour practices: fair wages, workplace safety, and the prohibition of forced or child labour.
@@ -75,7 +75,7 @@ Address: 1/104, Sanjay Nagar, Erode Road, Athur Post, Karur – 639002, Tamil Na
 Commercial Director — Sales & Contracts: Mr. D. Senthil Kumar
 - Email: senthil@adtextile.com
 - Phone / WhatsApp: +91 999 43 99 077
-- Handles global retail accounts, customized production tenders, client onboarding, and bulk supply negotiations.
+- Handles global retail accounts, customized production tenders, client onboarding, and volume supply negotiations.
 
 Operations Director — Exports & Quality: Mr. S. Deepak
 - Email: deepak@adtextile.com
