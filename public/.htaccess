@@ -1,0 +1,64 @@
+# Apache config for the built SPA (copied into dist/ verbatim by Vite on
+# every build, since Vite copies everything under public/ to the output
+# root). Replaces what vercel.json used to handle: legacy URL redirects,
+# SPA fallback routing, static asset caching, and basic security headers.
+
+RewriteEngine On
+RewriteBase /
+
+# Permanent redirects for old product page URLs (SEO — do this before the
+# SPA fallback below, and before the "existing file/dir" check, since none
+# of these paths exist as real files).
+RewriteRule ^living-linen/?$ /products [R=301,L]
+RewriteRule ^heritage-bed-linen/?$ /products [R=301,L]
+RewriteRule ^kitchen-linen/?$ /products [R=301,L]
+RewriteRule ^table-linen/?$ /products [R=301,L]
+
+# Never touch requests for real files/directories (JS/CSS/image assets,
+# robots.txt, sitemap.xml, etc.) or for the API (once/if the Node.js
+# backend is enabled on this same domain).
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^api/ - [L]
+
+# Everything else is a client-side route — let React Router handle it.
+RewriteRule ^ index.html [L]
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Vite fingerprints built JS/CSS/media filenames with a content hash, so
+  # these are safe to cache forever — a content change always ships under a
+  # new filename.
+  <FilesMatch "\.(js|css|png|jpe?g|webp|svg|mp4|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # index.html references the current hashed filenames, so it must always
+  # be revalidated — never cached the way the assets above are.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

@@ -167,7 +167,7 @@ function PrivacyPolicy() {
                     from Google's font servers.
                   </li>
                   <li>
-                    <strong className="text-primary">Hosting.</strong> The Site is hosted on Vercel's infrastructure,
+                    <strong className="text-primary">Hosting.</strong> The Site is hosted on Hostinger's infrastructure,
                     which may process standard connection metadata (such as IP address) to serve pages to you.
                   </li>
                 </ul>

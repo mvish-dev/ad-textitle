@@ -38,10 +38,10 @@ function getInitialFormState(search) {
 }
 
 // Local dev: backend runs on its own port (server/.env -> PORT), so this
-// needs to be absolute (see .env.example -> VITE_API_URL). On Vercel this is
-// left unset in the dashboard, so it falls back to '' and the fetch below
-// hits a same-origin relative "/api/contact" — routed to the Express app via
-// the /api/(.*) rewrite in vercel.json.
+// needs to be absolute (see .env.example -> VITE_API_URL). In production
+// this is left unset, so it falls back to '' and the fetch below hits a
+// same-origin relative "/api/contact" — served by the same Express app
+// that serves this frontend build (see server/src/app.js).
 const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 function Contact() {
