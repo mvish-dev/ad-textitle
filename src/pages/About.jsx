@@ -15,13 +15,19 @@ import companyVideo from '../assets/videos/aboutus.mp4'
 
 import videoPoster from '../assets/images/manufacturing/weaving/weaving-video-poster.webp'
 import aerialCampusWide from '../assets/images/facility/aerial-campus-wide.webp'
-import checkingGroupTowels from '../assets/images/manufacturing/checking/checking-group-towels.webp'
-import weavingMentorTeam from '../assets/images/manufacturing/weaving/weaving-mentor-team.webp'
-import weavingPortrait from '../assets/images/manufacturing/weaving/weaving-portrait.webp'
-import embroideryWorkerPortrait from '../assets/images/manufacturing/embroidery/embroidery-worker-portrait.webp'
-import stitchingPortrait from '../assets/images/manufacturing/stitching/stitching-portrait.webp'
-import peopleYarnPrepPair from '../assets/images/people/people-yarn-prep-pair.webp'
-import peopleSockTrimPortrait from '../assets/images/people/people-sock-trim-portrait.webp'
+import checkingFabricCutter from '../assets/images/our-people/checking-fabric-cutter.webp'
+import checkingFoldingTeam from '../assets/images/our-people/checking-folding-team.webp'
+import sortingFoldingGroup from '../assets/images/our-people/sorting-folding-group.webp'
+import yarnDyeingProcess from '../assets/images/our-people/yarn-dyeing-process.webp'
+import finishingProcessTanks from '../assets/images/our-people/finishing-process-tanks.webp'
+import yarnWindingMachine from '../assets/images/our-people/yarn-winding-machine.webp'
+import yarnTwistingCloseup from '../assets/images/our-people/yarn-twisting-closeup.webp'
+import stitchingTeam from '../assets/images/our-people/stitching-team.webp'
+import embroideryOperator from '../assets/images/our-people/embroidery-operator.webp'
+import knittingNightShift from '../assets/images/our-people/knitting-night-shift.webp'
+import washingMachineOperator from '../assets/images/our-people/washing-machine-operator.webp'
+import weavingLoomOperator from '../assets/images/our-people/weaving-loom-operator.webp'
+import windingCreelOperator from '../assets/images/our-people/winding-creel-operator.webp'
 
 const TIMELINE = [
   {
@@ -57,13 +63,19 @@ const TIMELINE = [
 ]
 
 const PEOPLE_GALLERY = [
-  { id: 1, img: checkingGroupTowels, height: 760, title: 'Checking & Folding' },
-  { id: 2, img: weavingMentorTeam, height: 560, title: 'Weaving Team' },
-  { id: 3, img: weavingPortrait, height: 680, title: 'Weaving Floor' },
-  { id: 4, img: embroideryWorkerPortrait, height: 540, title: 'Embroidery' },
-  { id: 5, img: stitchingPortrait, height: 620, title: 'Stitching' },
-  { id: 6, img: peopleYarnPrepPair, height: 600, title: 'Yarn Preparation' },
-  { id: 7, img: peopleSockTrimPortrait, height: 700, title: 'Finishing' },
+  { id: 1, img: checkingFabricCutter, height: 760, title: 'Checking & Cutting' },
+  { id: 2, img: checkingFoldingTeam, height: 560, title: 'Checking & Folding' },
+  { id: 3, img: sortingFoldingGroup, height: 680, title: 'Sorting & Folding' },
+  { id: 4, img: yarnDyeingProcess, height: 540, title: 'Yarn Dyeing' },
+  { id: 5, img: finishingProcessTanks, height: 700, title: 'Finishing Process' },
+  { id: 6, img: yarnWindingMachine, height: 600, title: 'Yarn Winding' },
+  { id: 7, img: yarnTwistingCloseup, height: 620, title: 'Yarn Twisting' },
+  { id: 8, img: stitchingTeam, height: 560, title: 'Stitching Team' },
+  { id: 9, img: embroideryOperator, height: 700, title: 'Embroidery' },
+  { id: 10, img: knittingNightShift, height: 620, title: 'Knitting' },
+  { id: 11, img: washingMachineOperator, height: 560, title: 'Washing' },
+  { id: 12, img: weavingLoomOperator, height: 680, title: 'Weaving' },
+  { id: 13, img: windingCreelOperator, height: 600, title: 'Winding' },
 ]
 
 function About() {
