@@ -14,15 +14,15 @@ import checkingFinalAql from '../assets/images/manufacturing/checking/checking-f
 import sa8000 from '../assets/images/certificates/sa8000.png'
 import bci from '../assets/images/certificates/bci.png'
 import amforiBsci from '../assets/images/certificates/amfori-bsci.png'
-import gots from '../assets/images/certificates/gots.png'
-import ocsBlended from '../assets/images/certificates/ocs-blended.png'
+import gots from '../assets/images/certificates/gots-logo.avif'
+import ocsBlended from '../assets/images/certificates/organic-blended-content-standard-logo.avif'
 import oekoTexStandard100 from '../assets/images/certificates/oeko-tex-standard-100.png'
-import grs from '../assets/images/certificates/grs.png'
+import grs from '../assets/images/certificates/grs_logo.avif'
 import ics from '../assets/images/certificates/ics.png'
 import ceMark from '../assets/images/certificates/ce-mark.png'
-import ocs100 from '../assets/images/certificates/ocs-100.png'
+import ocs100 from '../assets/images/certificates/ocs_100_logo.avif'
 import fairtrade from '../assets/images/certificates/fairtrade.png'
-import iso90012015 from '../assets/images/certificates/iso-9001-2015.png'
+import iso90012015 from '../assets/images/certificates/organization-iso-9000-iso-9001-2015-certification_logo.avif'
 import oekoTexMadeInGreen from '../assets/images/certificates/oeko-tex-made-in-green.png'
 import nsfIsr from '../assets/images/certificates/nsf-isr.png'
 import sedexSmeta from '../assets/images/certificates/sedex-smeta.png'
@@ -57,21 +57,87 @@ const SOCIAL_PROGRAMS = [
 ]
 
 const CERTIFICATE_LOGOS = [
-  { src: sa8000, alt: 'SA8000 — Social Accountability International' },
-  { src: bci, alt: 'Better Cotton Initiative' },
-  { src: amforiBsci, alt: 'amfori BSCI' },
-  { src: gots, alt: 'GOTS — Global Organic Textile Standard' },
-  { src: ocsBlended, alt: 'Organic Content Standard — Blended' },
-  { src: oekoTexStandard100, alt: 'OEKO-TEX® Standard 100' },
-  { src: grs, alt: 'Global Recycled Standard' },
-  { src: ics, alt: 'ICS' },
-  { src: ceMark, alt: 'CE Mark' },
-  { src: ocs100, alt: 'Organic Content Standard — 100' },
-  { src: fairtrade, alt: 'Fairtrade' },
-  { src: iso90012015, alt: 'ISO 9001:2015' },
-  { src: oekoTexMadeInGreen, alt: 'OEKO-TEX® Made in Green' },
-  { src: nsfIsr, alt: 'NSF-ISR — AS9100 with ISO 9001' },
-  { src: sedexSmeta, alt: 'Sedex / SMETA 4-Pillar' },
+  { src: sa8000, alt: 'SA8000 — Social Accountability International', name: 'SA8000' },
+  { src: bci, alt: 'Better Cotton Initiative', name: 'BCI' },
+  { src: amforiBsci, alt: 'amfori BSCI', name: 'amfori BSCI' },
+  { src: gots, alt: 'GOTS — Global Organic Textile Standard', name: 'GOTS' },
+  { src: ocsBlended, alt: 'Organic Content Standard — Blended', name: 'OCS Blended' },
+  { src: oekoTexStandard100, alt: 'OEKO-TEX® Standard 100', name: 'OEKO-TEX® 100' },
+  { src: grs, alt: 'Global Recycled Standard', name: 'GRS' },
+  { src: ics, alt: 'ICS', name: 'ICS' },
+  { src: ceMark, alt: 'CE Mark', name: 'CE Mark' },
+  { src: ocs100, alt: 'Organic Content Standard — 100', name: 'OCS 100' },
+  { src: fairtrade, alt: 'Fairtrade', name: 'Fairtrade' },
+  { src: iso90012015, alt: 'ISO 9001:2015', name: 'ISO 9001:2015' },
+  { src: oekoTexMadeInGreen, alt: 'OEKO-TEX® Made in Green', name: 'OEKO-TEX® Green' },
+  { src: nsfIsr, alt: 'NSF-ISR — AS9100 with ISO 9001', name: 'NSF-ISR' },
+  { src: sedexSmeta, alt: 'Sedex / SMETA 4-Pillar', name: 'SEDEX / SMETA' },
+]
+
+const CERTIFICATE_DETAILS = [
+  {
+    logo: gots,
+    name: 'GOTS',
+    category: 'Global Organic Textile Standard',
+    description:
+      'Internationally recognized, GOTS certifies organic textiles from raw material harvesting through environmentally and socially responsible manufacturing and labelling — offering trusted assurance to consumers.',
+  },
+  {
+    logo: ocs100,
+    name: 'OCS 100',
+    category: 'Organic Content Standard',
+    description:
+      'Organic Content Standard 100 applies to products containing 95–100% organic material. It verifies the presence and amount of organic content and tracks its flow from source to finished product.',
+  },
+  {
+    logo: ocsBlended,
+    name: 'OCS Blended',
+    category: 'Organic Content Standard',
+    description:
+      'Organic Content Standard Blended applies to products containing 5–100% organic material, verifying the presence and percentage of organic content and tracking the raw material to the finished product.',
+  },
+  {
+    logo: grs,
+    name: 'GRS',
+    category: 'Global Recycled Standard',
+    description:
+      'An international, voluntary standard that certifies recycled content, verifies chain of custody, and confirms responsible social, environmental and chemical practices in production.',
+  },
+  {
+    logo: oekoTexStandard100,
+    name: 'OEKO-TEX®',
+    category: 'Product Safety',
+    description:
+      'STANDARD 100 by OEKO-TEX® is the most trusted label for textiles tested for harmful substances — confirming our fabrics are safe for skin contact, from yarn to finished product.',
+  },
+  {
+    logo: sedexSmeta,
+    name: 'SEDEX',
+    category: 'Responsible Sourcing',
+    description:
+      'Sedex membership and SMETA 4-Pillar certification, supporting transparent sharing of labour standards, health & safety, environmental and business ethics data across our supply chain.',
+  },
+  {
+    logo: sa8000,
+    name: 'SA8000',
+    category: 'Social Accountability',
+    description:
+      'Social Accountability International certification covering fair wages, workplace safety, and the prohibition of forced or child labour across our facility.',
+  },
+  {
+    logo: iso90012015,
+    name: 'ISO 9001:2015',
+    category: 'Quality Management',
+    description:
+      'Certification of our quality management system — consistent process control, documentation and continuous improvement applied across every stage of production.',
+  },
+  {
+    logo: amforiBsci,
+    name: 'amfori BSCI',
+    category: 'Social Compliance',
+    description:
+      'Business Social Compliance Initiative membership, supporting continuous improvement in labour and social conditions across our supply chain.',
+  },
 ]
 
 const PRODUCT_COMPLIANCE_POINTS = [
@@ -211,151 +277,63 @@ function QualityCompliance() {
               </p>
             </div>
           </div>
-          <div className="mb-16 bg-background border border-outline-variant/30 rounded-2xl py-14 overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-16">
+            {CERTIFICATE_DETAILS.map((cert, idx) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (idx % 3) * 0.05 }}
+                className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-white shadow-sm hover:shadow-md"
+              >
+                <div className="mb-8">
+                  <div className="w-28 h-28 mb-6 flex items-center justify-center">
+                    <img
+                      src={cert.logo}
+                      alt={cert.name}
+                      className="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">{cert.name}</h4>
+                  <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
+                    {cert.category}
+                  </span>
+                </div>
+                <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
+                  {cert.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="bg-white border border-outline-variant/30 rounded-2xl py-14 overflow-hidden">
             <LogoLoop
               logos={CERTIFICATE_LOGOS}
               speed={45}
               gap={80}
               logoHeight={96}
               fadeOut
-              fadeOutColor="#F8F7F4"
+              fadeOutColor="#FFFFFF"
               pauseOnHover
               ariaLabel="Certification and compliance logos"
+              renderItem={(item) => (
+                <div className="flex flex-col items-center gap-3">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="h-[var(--logoloop-logoHeight)] w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                  <span className="px-3 py-1 rounded-full bg-secondary/15 text-secondary text-xs font-semibold uppercase tracking-wide whitespace-nowrap">
+                    {item.name}
+                  </span>
+                </div>
+              )}
             />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {/* SA8000 */}
-            <motion.div
-              initial={{ opacity: 0, x: -25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="diversity_3" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SA8000</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Social Accountability
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                Social Accountability International certification covering fair wages, workplace safety, and the
-                prohibition of forced or child labour across our facility.
-              </p>
-            </motion.div>
-            {/* ISO 9001:2015 */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="workspace_premium" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">ISO 9001:2015</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Quality Management
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                Certification of our quality management system — consistent process control, documentation and
-                continuous improvement applied across every stage of production.
-              </p>
-            </motion.div>
-            {/* OEKO-TEX */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="science" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">OEKO-TEX&reg; STANDARD 100</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Product Safety
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                OEKO-TEX® STANDARD 100 specifically addresses harmful-substance testing in textiles — confirming our
-                fabrics are safe for skin contact, from yarn to finished product.
-              </p>
-            </motion.div>
-            {/* SEDEX */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="handshake" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">SEDEX / SMETA</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Responsible Sourcing
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                Sedex membership and SMETA 4-Pillar certification, supporting transparent sharing of labour
-                standards, health &amp; safety, environmental and business ethics data across our supply chain.
-              </p>
-            </motion.div>
-            {/* GOTS */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="eco" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">GOTS</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Global Organic Textile Standard
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                Covers organic fibre status from raw material through environmentally and socially responsible
-                manufacturing.
-              </p>
-            </motion.div>
-            {/* amfori BSCI */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-background shadow-sm hover:shadow-md"
-            >
-              <div className="mb-8">
-                <div className="w-14 h-14 bg-secondary/15 rounded-lg flex items-center justify-center mb-6">
-                  <Icon name="groups" className="text-3xl text-secondary" />
-                </div>
-                <h4 className="font-headline-lg text-2xl mb-2 font-semibold text-primary">amfori BSCI</h4>
-                <span className="font-label-md text-xs text-on-surface-variant tracking-widest uppercase block font-semibold">
-                  Social Compliance
-                </span>
-              </div>
-              <p className="font-body-md text-xs text-on-surface-variant flex-grow leading-relaxed">
-                Business Social Compliance Initiative membership, supporting continuous improvement in labour and
-                social conditions across our supply chain.
-              </p>
-            </motion.div>
           </div>
         </Container>
       </section>
