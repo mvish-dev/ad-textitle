@@ -84,7 +84,7 @@ function Header() {
         <nav id="navbar" className={navClass} role="navigation" aria-label="Main navigation">
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
           <Link className={logoClass} to="/" onClick={() => setMenuOpen(false)}>
-            AD <span className="text-secondary">Textile</span>
+            A D <span className="text-secondary">Textile</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-5 xl:gap-7">
