@@ -28,3 +28,8 @@ dist-ssr
 *.sln
 *.sw?
 .scratch/
+
+# Raw/unused source photography kept locally as a reference pool — not
+# imported anywhere in src, and far too large (hundreds of MB) to track in
+# git or ship on every clone/deploy pull.
+src/assets/images/backup-pool/
