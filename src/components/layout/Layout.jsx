@@ -5,6 +5,7 @@ import Footer from './Footer.jsx'
 import SmoothScroll from './SmoothScroll.jsx'
 import FloatingAssistant from '../ui/FloatingAssistant.jsx'
 import CustomCursor from '../ui/CustomCursor.jsx'
+import CookieConsentBanner from '../common/CookieConsentBanner.jsx'
 import { ScrollTrigger } from '../../lib/motion.js'
 import { scrollTo } from '../../lib/lenis.js'
 
@@ -67,6 +68,7 @@ function Layout({ children }) {
       {showFooter && <Footer />}
       <FloatingAssistant />
       <CustomCursor />
+      <CookieConsentBanner />
     </div>
   )
 }

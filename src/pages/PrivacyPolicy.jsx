@@ -3,7 +3,7 @@ import Button from '../components/ui/Button.jsx'
 import Breadcrumbs from '../components/ui/Breadcrumbs.jsx'
 import Seo from '../components/common/Seo.jsx'
 
-const LAST_UPDATED = 'August 17, 2026'
+const LAST_UPDATED = 'September 18, 2026'
 
 const TOC_ITEMS = [
   { id: 'information-we-collect', label: 'Information We Collect' },
@@ -132,14 +132,20 @@ function PrivacyPolicy() {
 
               <Section id="cookies-and-analytics" title="3. Cookies & Analytics">
                 <p>
-                  The Site uses Google Analytics (Google tag / gtag.js) to measure traffic and usage. Google
-                  Analytics sets cookies in your browser to distinguish visitors and sessions. This information is
-                  processed by Google in aggregate/anonymised form to generate reports for us; we do not use it to
+                  The Site shows a cookie banner on your first visit. Analytics cookies are only set if you choose
+                  Accept — if you choose Decline, or simply close the banner, Google Analytics is never activated for
+                  your visit. You can change your choice at any time by clearing this Site's data in your browser
+                  settings, which will show the banner again on your next visit.
+                </p>
+                <p>
+                  Where enabled, the Site uses Google Analytics (Google tag / gtag.js) to measure traffic and usage.
+                  Google Analytics sets cookies in your browser to distinguish visitors and sessions. This information
+                  is processed by Google in aggregate/anonymised form to generate reports for us; we do not use it to
                   identify you individually.
                 </p>
                 <p>
-                  You can control or disable cookies through your browser settings, or use a browser extension such
-                  as Google's Analytics Opt-out Browser Add-on. Blocking cookies may affect some non-essential
+                  You can also control or disable cookies through your browser settings, or use a browser extension
+                  such as Google's Analytics Opt-out Browser Add-on. Blocking cookies may affect some non-essential
                   features of the Site but will not prevent you from browsing it or submitting an enquiry.
                 </p>
               </Section>

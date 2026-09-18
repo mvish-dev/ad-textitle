@@ -29,7 +29,7 @@
       property="og:description"
       content="Vertically integrated home textile manufacturing and exports from Karur, India — kitchen, table, bed and living linen for global retail brands since 1990."
     />
-    <meta property="og:image" content="/logo.jpeg" />
+    <meta property="og:image" content="https://adtextile.com/logo.jpeg" />
     <meta property="og:image:width" content="252" />
     <meta property="og:image:height" content="102" />
     <meta name="twitter:card" content="summary" />
@@ -38,16 +38,18 @@
       name="twitter:description"
       content="Vertically integrated home textile manufacturing and exports from Karur, India — kitchen, table, bed and living linen for global retail brands since 1990."
     />
-    <meta name="twitter:image" content="/logo.jpeg" />
+    <meta name="twitter:image" content="https://adtextile.com/logo.jpeg" />
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TM2EEXVJJC"></script>
+    <!-- Loaded unconditionally, but NOT configured here: `gtag('config', ...)`
+         is what actually starts sending data, and is deliberately deferred to
+         CookieConsentBanner (src/components/common/CookieConsentBanner.jsx)
+         so nothing is tracked until the visitor accepts. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXVKT1HEH7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-TM2EEXVJJC');
     </script>
 
     <script type="application/ld+json">
@@ -56,6 +58,8 @@
         "@type": "Organization",
         "name": "A D Textile",
         "legalName": "Angayeeammal Devarajan Textile Pvt. Ltd.",
+        "url": "https://adtextile.com",
+        "logo": "https://adtextile.com/logo.jpeg",
         "description": "Vertically integrated home textile manufacturer and exporter producing kitchen, table, bed and living linen for global retail brands since 1990.",
         "foundingDate": "1990",
         "address": {
@@ -66,7 +70,8 @@
           "addressRegion": "Tamil Nadu",
           "addressCountry": "IN"
         },
-        "email": "deepak@adtextile.com"
+        "email": "deepak@adtextile.com",
+        "telephone": "+919790557077"
       }
     </script>
   </head>
