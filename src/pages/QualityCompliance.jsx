@@ -404,18 +404,24 @@ function QualityCompliance() {
       {/* Documentation CTA */}
       <section className="py-section-gap-lg bg-surface-container">
         <Container>
-          <div className="bg-primary rounded-2xl p-16 flex flex-col md:flex-row justify-between items-center gap-12 text-white shadow-lg">
-            <div className="max-w-2xl">
+          <div className="bg-primary rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 text-white shadow-lg">
+            <div className="max-w-2xl text-center md:text-left">
               <h2 className="font-headline-xl text-3xl mb-4 leading-tight text-white">Need Documentation?</h2>
               <p className="text-white/80 text-[0.88rem] leading-relaxed">
                 Need certification documentation for a specific order? Contact our export team and we'll provide the
                 relevant reports directly.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-6 w-full md:w-auto shrink-0">
-              <Button to="/contact" variant="primary" className="!bg-white !text-primary flex items-center gap-3">
-                <Icon name="mail" />
-                Contact Export Team
+            <div className="w-full md:w-auto shrink-0">
+              <Button
+                to="/contact"
+                variant="primary"
+                className="!bg-white !text-primary w-full sm:w-auto"
+              >
+                <span className="inline-flex items-center justify-center gap-3">
+                  <Icon name="mail" />
+                  Contact Export Team
+                </span>
               </Button>
             </div>
           </div>
