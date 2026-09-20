@@ -12,11 +12,15 @@
     />
 
     <title>A D Textile | Global Excellence in Manufacturing</title>
-    <!-- No static <meta name="description"> here: every route renders its own
-         via <Seo> (src/components/common/Seo.jsx). React only de-duplicates
-         title/meta/link tags it rendered itself, not pre-existing static
-         markup — a static description tag here would sit alongside the
-         per-route one instead of being replaced by it. -->
+    <!-- Static fallback for crawlers/scanners that read the served HTML
+         without executing JS (this is a client-rendered SPA with no SSR).
+         Every route also renders its own via <Seo> (src/components/common/Seo.jsx),
+         which JS-executing crawlers and browsers see instead — same tradeoff
+         already accepted for <title> above, which this mirrors. -->
+    <meta
+      name="description"
+      content="A D Textile is a vertically integrated home textile manufacturer and exporter based in Karur, India, producing kitchen, table, bed and living linen for global retail brands since 1990."
+    />
     <meta name="theme-color" content="#0F172A" />
 
     <!-- Open Graph / social share defaults. Static (not per-route): this is a
