@@ -30,7 +30,7 @@ function Footer() {
       >
         <div>
           <Link className="font-headline-lg text-[1.75rem] font-bold text-white mb-4 inline-block" to="/">
-            AD <span className="text-secondary">Textile</span>
+            A D <span className="text-secondary">Textile</span>
           </Link>
           <p className="text-[0.80rem] text-white/65 leading-[1.82] max-w-[30ch]">
             Manufacturing premium home textiles for global excellence since 1990. Exporting worldwide since 1992.

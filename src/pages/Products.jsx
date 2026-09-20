@@ -146,7 +146,7 @@ function Products() {
         <Container className="text-center">
           <div className="border-y border-outline-variant/30 py-24">
             <h2 className="section-title mb-8">
-              Ready to Partner with AD <em>Textile</em>?
+              Ready to Partner with A D <em>Textile</em>?
             </h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">
               Discuss your procurement needs with our specialist team and discover how our manufacturing scale can
