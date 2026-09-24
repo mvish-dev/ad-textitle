@@ -385,17 +385,10 @@ function Manufacturing() {
             media={<img src={cuttingHero} alt="Precision fabric fabrication at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
             reverse
           >
-            <ul className="space-y-3 mb-8">
-              {['Accurate Pattern Cutting', 'Uniform Dimensions', 'Minimal Material Wastage'].map((label) => (
-                <li key={label} className="flex items-center gap-4">
-                  <Icon name="check_circle" className="text-secondary text-xl" />
-                  <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">{label}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-wrap gap-4">
-              <Button to="/contact" variant="primary">Get In Touch</Button>
-              <Button to="/contact" variant="outline" className="text-primary border-primary">Request Details</Button>
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="content_cut" label="Accurate Pattern Cutting" sub="Precision Fabrication" />
+              <StatTile icon="straighten" label="Uniform Dimensions" sub="Consistent Across Batches" />
+              <StatTile icon="eco" label="Minimal Material Wastage" sub="Efficient Fabric Usage" />
             </div>
           </Chapter>
 
@@ -406,14 +399,11 @@ function Manufacturing() {
             title={<em>Embroidery</em>}
             media={<img src={embroideryHero} alt="Embroidery detailing at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
-            <ul className="space-y-3">
-              {['Garuda & Toshiba, 54 Heads (10–12 Colours)', 'Precision Digitising', 'Dedicated Sampling Capabilities'].map((label) => (
-                <li key={label} className="flex items-center gap-4">
-                  <Icon name="check_circle" className="text-secondary text-xl" />
-                  <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">{label}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="auto_awesome" label="Garuda & Toshiba" sub="54 Heads (10–12 Colours)" />
+              <StatTile icon="design_services" label="Precision Digitising" sub="Accurate Pattern Rendering" />
+              <StatTile icon="palette" label="Dedicated Sampling" sub="Rapid Sample Turnaround" />
+            </div>
           </Chapter>
 
           <Chapter
@@ -437,22 +427,10 @@ function Manufacturing() {
             title={<>Checking &amp; Quality <em>Control</em></>}
             media={<img src={checkingHero} alt="Quality inspection and finishing at A D Textile" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover kenburns" />}
           >
-            <div className="space-y-5">
-              {[
-                { n: '01', title: 'Online Inspection', sub: 'Layer 1: online inspection at every stage of production.' },
-                { n: '02', title: 'Quality Inspection', sub: 'Layer 2: quality inspection of finished output.' },
-                { n: '03', title: 'Final AQL Inspection', sub: 'Layer 3: final AQL inspection before dispatch.' },
-              ].map((row) => (
-                <div key={row.n} className="flex items-start gap-5">
-                  <div className="w-11 h-11 flex items-center justify-center rounded-full bg-primary text-white shrink-0 font-bold text-sm shadow-md">
-                    {row.n}
-                  </div>
-                  <div>
-                    <p className="font-label-md text-sm uppercase tracking-widest text-primary font-semibold mb-1">{row.title}</p>
-                    <p className="text-xs text-on-surface-variant">{row.sub}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <StatTile icon="visibility" label="Online Inspection" sub="Layer 1: At Every Stage Of Production" />
+              <StatTile icon="fact_check" label="Quality Inspection" sub="Layer 2: Of Finished Output" />
+              <StatTile icon="verified" label="Final AQL Inspection" sub="Layer 3: Before Dispatch" />
             </div>
           </Chapter>
 
