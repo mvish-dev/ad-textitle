@@ -53,5 +53,8 @@
 		"globals": "^17.7.0",
 		"playwright": "^1.62.1",
 		"vite": "^8.1.1"
+	},
+	"overrides": {
+		"d3-color": "^3.1.0"
 	}
 }
