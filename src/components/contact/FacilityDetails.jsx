@@ -19,6 +19,8 @@ function FacilityDetails({ copied, onCopyAddress }) {
           <img
             src={facilityGate}
             alt="A D Textile facility entrance in Karur, India"
+            width={800}
+            height={450}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"

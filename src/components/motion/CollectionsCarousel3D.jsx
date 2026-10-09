@@ -4,7 +4,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import Icon from '../ui/Icon.jsx'
 import { prefersReducedMotion } from '../../lib/motion.js'
 
-const X_STEP = 52
+const X_STEP = 64
 const SPRING = { type: 'spring', stiffness: 260, damping: 30, mass: 0.9 }
 
 function cardGeometry(diff) {
@@ -53,7 +53,7 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="relative h-[360px] sm:h-[420px] md:h-[460px] lg:h-[500px] overflow-hidden"
+        className="relative h-[clamp(380px,calc(58svh+40px),620px)] overflow-hidden"
         style={{ perspective: 1600 }}
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-background to-transparent z-20" />
@@ -78,7 +78,7 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
             return (
               <motion.div
                 key={item.title}
-                className="absolute top-1/2 left-1/2 w-[230px] sm:w-[280px] md:w-[310px] lg:w-[340px] xl:w-[380px] aspect-[4/5]"
+                className="absolute top-1/2 left-1/2 h-[clamp(340px,calc(52svh+40px),560px)] max-w-[80vw] aspect-[4/5]"
                 style={{ zIndex: total - Math.abs(diff), transformStyle: 'preserve-3d' }}
                 animate={geometry}
                 transition={SPRING}
@@ -96,17 +96,19 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
                     src={item.image}
                     alt={item.alt}
                     draggable={false}
+                    width={800}
+                    height={1000}
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A101E]/95 via-[#0A101E]/35 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A101E]/90 via-[#0A101E]/20 via-35% to-transparent to-60%" />
 
                   <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                     <Icon name={item.icon} className="text-secondary text-lg" />
                   </div>
 
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 md:p-7 flex flex-col">
-                    <h3 className="font-serif text-lg sm:text-xl text-white font-bold mb-1.5">{item.title}</h3>
+                    <h3 className="font-serif text-xl sm:text-2xl text-white font-bold mb-1.5">{item.title}</h3>
                     <p
                       className={`text-[11px] sm:text-xs text-white/70 leading-relaxed transition-all duration-300 overflow-hidden ${
                         isActive ? 'max-h-20 opacity-100 mb-4' : 'max-h-0 opacity-0 mb-0'
@@ -134,7 +136,7 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
         </motion.div>
       </div>
 
-      <div className="flex items-center justify-center gap-6 mt-8">
+      <div className="flex items-center justify-center gap-6 mt-5">
         <button
           type="button"
           aria-label="Previous collection"

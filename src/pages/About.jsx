@@ -195,6 +195,8 @@ function About() {
                 {/* Fallback image as backdrop */}
                 <img
                   src={videoPoster}
+                  width={1280}
+                  height={720}
                   alt="Corporate facility"
                   loading="lazy"
                   decoding="async"
@@ -337,6 +339,8 @@ function About() {
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
         <img
           src={aerialCampusWide}
+          width={1920}
+          height={1080}
           alt="Aerial view of the A D Textile manufacturing campus in Karur, India"
           loading="lazy"
           decoding="async"

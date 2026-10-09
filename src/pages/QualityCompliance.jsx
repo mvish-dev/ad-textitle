@@ -246,6 +246,8 @@ function QualityCompliance() {
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     src={step.image}
+                    width={800}
+                    height={1000}
                     alt={step.alt}
                     loading="lazy"
                     decoding="async"
@@ -291,6 +293,8 @@ function QualityCompliance() {
                   <div className="w-28 h-28 mb-6 flex items-center justify-center">
                     <img
                       src={cert.logo}
+                      width={112}
+                      height={112}
                       alt={cert.name}
                       className="max-w-full max-h-full object-contain"
                       loading="lazy"
@@ -322,6 +326,8 @@ function QualityCompliance() {
                 <div className="flex flex-col items-center gap-3">
                   <img
                     src={item.src}
+                    width={128}
+                    height={128}
                     alt={item.alt}
                     className="h-[var(--logoloop-logoHeight)] w-auto object-contain"
                     loading="lazy"

@@ -257,6 +257,8 @@ const DriftWall = ({
         <img
           src={item.image}
           alt={item.title ?? ''}
+          width={600}
+          height={600}
           loading="lazy"
           decoding="async"
           draggable={false}

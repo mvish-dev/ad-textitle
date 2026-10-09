@@ -295,8 +295,8 @@ export const LogoLoop = memo(
             src={item.src}
             srcSet={item.srcSet}
             sizes={item.sizes}
-            width={item.width}
-            height={item.height}
+            width={item.width ?? logoHeight}
+            height={item.height ?? logoHeight}
             alt={item.alt ?? ''}
             title={item.title}
             loading="lazy"
@@ -340,7 +340,7 @@ export const LogoLoop = memo(
           </li>
         );
       },
-      [isVertical, scaleOnHover, renderItem]
+      [isVertical, scaleOnHover, renderItem, logoHeight]
     );
 
     const logoLists = useMemo(

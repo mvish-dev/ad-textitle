@@ -1,6 +1,8 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { forwardRef, useRef, useMemo, useLayoutEffect, useEffect } from 'react';
-import { Color } from 'three';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { Renderer, Program, Mesh, Triangle } from 'ogl';
+
+// Rendered with ogl rather than three.js + @react-three/fiber: this is a
+// single full-screen shader, and three/r3f added ~850 kB to the chunk for it.
 
 const hexToNormalizedRGB = hex => {
   hex = hex.replace('#', '');
@@ -11,20 +13,23 @@ const hexToNormalizedRGB = hex => {
   ];
 };
 
+// Full-screen triangle: within the visible area uv spans 0..1, matching the
+// viewport-sized plane the three.js version used.
 const vertexShader = `
+attribute vec2 position;
+attribute vec2 uv;
 varying vec2 vUv;
-varying vec3 vPosition;
 
 void main() {
-  vPosition = position;
   vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
 
 const fragmentShader = `
+precision highp float;
+
 varying vec2 vUv;
-varying vec3 vPosition;
 
 uniform float uTime;
 uniform vec3  uColor;
@@ -68,63 +73,90 @@ void main() {
 }
 `;
 
-const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
-  const { viewport } = useThree();
+const Silk = ({ className = '', speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, rotation = 0 }) => {
+  const containerRef = useRef(null);
 
+  // Keep the latest props in a ref so updating them mutates the live shader
+  // uniforms instead of tearing down and rebuilding the whole WebGL context.
+  const propsRef = useRef({ speed, scale, color, noiseIntensity, rotation });
   useLayoutEffect(() => {
-    if (ref.current) {
-      ref.current.scale.set(viewport.width, viewport.height, 1);
-    }
-  }, [ref, viewport]);
-
-  useFrame((_, delta) => {
-    ref.current.material.uniforms.uTime.value += 0.1 * delta;
+    propsRef.current = { speed, scale, color, noiseIntensity, rotation };
   });
 
-  return (
-    <mesh ref={ref}>
-      <planeGeometry args={[1, 1, 1, 1]} />
-      <shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader} />
-    </mesh>
-  );
-});
-SilkPlane.displayName = 'SilkPlane';
-
-const Silk = ({ className = '', speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, rotation = 0 }) => {
-  const meshRef = useRef();
-
-  const uniforms = useMemo(
-    () => ({
-      uSpeed: { value: speed },
-      uScale: { value: scale },
-      uNoiseIntensity: { value: noiseIntensity },
-      uColor: { value: new Color(...hexToNormalizedRGB(color)) },
-      uRotation: { value: rotation },
-      uTime: { value: 0 }
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
   useEffect(() => {
-    // Mutating uniform.value in place (rather than replacing the uniforms
-    // object) is the standard three.js/WebGL update pattern — recreating it
-    // would rebuild the shader material every render.
-    /* eslint-disable react-hooks/immutability */
-    uniforms.uSpeed.value = speed;
-    uniforms.uScale.value = scale;
-    uniforms.uNoiseIntensity.value = noiseIntensity;
-    uniforms.uColor.value.setRGB(...hexToNormalizedRGB(color));
-    uniforms.uRotation.value = rotation;
-    /* eslint-enable react-hooks/immutability */
-  }, [speed, scale, noiseIntensity, color, rotation, uniforms]);
+    const container = containerRef.current;
+    if (!container) return undefined;
+
+    const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio || 1, 2) });
+    const gl = renderer.gl;
+    gl.canvas.style.display = 'block';
+    gl.canvas.style.width = '100%';
+    gl.canvas.style.height = '100%';
+    container.appendChild(gl.canvas);
+
+    const program = new Program(gl, {
+      vertex: vertexShader,
+      fragment: fragmentShader,
+      uniforms: {
+        uTime: { value: 0 },
+        uColor: { value: hexToNormalizedRGB(propsRef.current.color) },
+        uSpeed: { value: propsRef.current.speed },
+        uScale: { value: propsRef.current.scale },
+        uRotation: { value: propsRef.current.rotation },
+        uNoiseIntensity: { value: propsRef.current.noiseIntensity }
+      }
+    });
+    const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
+
+    const resize = () => renderer.setSize(container.clientWidth, container.clientHeight);
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
+    resize();
+
+    // Only animate while the canvas is on screen and the tab is visible.
+    let isVisible = true;
+    const intersectionObserver = new IntersectionObserver(entries => {
+      isVisible = entries[0].isIntersecting;
+    });
+    intersectionObserver.observe(container);
+
+    let frameId = 0;
+    let last = performance.now();
+    const update = now => {
+      frameId = requestAnimationFrame(update);
+      const delta = (now - last) / 1000;
+      last = now;
+      if (!isVisible || document.hidden) return;
+
+      const { speed, scale, color, noiseIntensity, rotation } = propsRef.current;
+      const u = program.uniforms;
+      // Same clock as the three.js version: 0.1 shader-seconds per second.
+      u.uTime.value += 0.1 * delta;
+      u.uSpeed.value = speed;
+      u.uScale.value = scale;
+      u.uColor.value = hexToNormalizedRGB(color);
+      u.uRotation.value = rotation;
+      u.uNoiseIntensity.value = noiseIntensity;
+
+      renderer.render({ scene: mesh });
+    };
+    frameId = requestAnimationFrame(update);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
+    };
+  }, []);
 
   return (
-    <div className={`silk-container ${className}`} style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-      <Canvas dpr={[1, 2]} frameloop="always">
-        <SilkPlane ref={meshRef} uniforms={uniforms} />
-      </Canvas>
-    </div>
+    <div
+      ref={containerRef}
+      className={`silk-container ${className}`}
+      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+    />
   );
 };
 
