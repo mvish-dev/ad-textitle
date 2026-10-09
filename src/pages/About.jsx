@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
 import Container from '../components/ui/Container.jsx'
 import Icon from '../components/ui/Icon.jsx'
 import RevealText from '../components/motion/RevealText.jsx'
-import ThreadPath from '../components/motion/ThreadPath.jsx'
-import WebGLScene from '../components/motion/WebGLScene.jsx'
-import SpotlightCard from '../components/ui/SpotlightCard.jsx'
+import LottieIcon from '../components/motion/LottieIcon.jsx'
+import pulseRing from '../components/motion/pulse-ring.json'
+import { gsap } from '../lib/motion.js'
 import TiltedCard from '../components/ui/TiltedCard.jsx'
 import Masonry from '../components/motion/Masonry.jsx'
 import Seo from '../components/common/Seo.jsx'
@@ -32,33 +33,31 @@ import windingCreelOperator from '../assets/images/our-people/winding-creel-oper
 const TIMELINE = [
   {
     year: '1990',
+    icon: 'flag',
     title: 'The Beginning',
     description:
       'A D Textile was established in Karur, building its foundation in textile manufacturing.',
-    align: 'right',
   },
   {
     year: '1992',
+    icon: 'public',
     title: 'Entering Global Markets',
     description:
       'We began exporting, taking our textile expertise to international customers.',
-    align: 'left',
   },
   {
     year: '30+ Years',
+    icon: 'trending_up',
     title: 'Growing with Experience',
     description:
       'Over three decades, we have expanded our manufacturing capabilities, product range and global presence while staying committed to quality and customer requirements.',
-    align: 'right',
-    small: true,
   },
   {
     year: 'Today',
+    icon: 'language',
     title: 'Built for the World',
     description:
       'We combine 30+ years of textile expertise, integrated manufacturing capabilities and global market experience to deliver reliable textile solutions to customers worldwide.',
-    align: 'left',
-    small: true,
   },
 ]
 
@@ -79,41 +78,113 @@ const PEOPLE_GALLERY = [
 ]
 
 function About() {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  const [isVideoActive, setIsVideoActive] = useState(false)
+  const videoRef = useRef(null)
   const timelineRef = useRef(null)
-  
-  // Real-time active scroll tracker for timeline elements
-  const [activeMilestone, setActiveMilestone] = useState('')
-  const milestoneRefs = useRef({})
+  const timelineListRef = useRef(null)
+  const timelineRailTrackRef = useRef(null)
+  const timelineRailFillRef = useRef(null)
 
+  // Pause the inline story video once its card scrolls out of view
   useEffect(() => {
-    const handleScroll = () => {
-      const threshold = window.innerHeight * 0.55 // Target activation height: center-ish of screen
-      let currentActive = ''
-      let minDistance = Infinity
+    const video = videoRef.current
+    if (!isVideoActive || !video) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !video.paused) video.pause()
+      },
+      { threshold: 0.25 }
+    )
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [isVideoActive])
 
-      Object.entries(milestoneRefs.current).forEach(([year, element]) => {
-        if (!element) return
-        const rect = element.getBoundingClientRect()
-        const elementCenter = rect.top + rect.height / 2
-        const distance = Math.abs(elementCenter - threshold)
+  // Horizontal milestone rail, styled after the Home journey row. On desktop
+  // the section pins and the row slides sideways as the page scrolls.
+  useGSAP(
+    () => {
+      const section = timelineRef.current
+      const list = timelineListRef.current
+      const track = timelineRailTrackRef.current
+      const fill = timelineRailFillRef.current
+      if (!section || !list || !track || !fill) return undefined
 
-        // Select the element closest to the center line that is within active viewport range
-        if (distance < minDistance && rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2) {
-          minDistance = distance
-          currentActive = year
+      const nodes = gsap.utils.toArray(list.querySelectorAll('.milestone-node'))
+      if (!nodes.length) return undefined
+      const bubbles = nodes.map((node) => node.querySelector('.milestone-bubble'))
+
+      // Rail spans first bubble center to last bubble center
+      const syncRail = () => {
+        const first = bubbles[0]
+        const last = bubbles[bubbles.length - 1]
+        const start = first.parentElement.offsetLeft + first.offsetLeft + first.offsetWidth / 2
+        const end = last.parentElement.offsetLeft + last.offsetLeft + last.offsetWidth / 2
+        const top = first.parentElement.offsetTop + first.offsetTop + first.offsetHeight / 2
+        for (const rail of [track, fill]) {
+          rail.style.left = `${start}px`
+          rail.style.width = `${end - start}px`
+          rail.style.top = `${top}px`
         }
+      }
+      syncRail()
+      window.addEventListener('resize', syncRail)
+
+      const mm = gsap.matchMedia()
+
+      mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+        gsap.set(fill, { scaleX: 0, transformOrigin: 'left center' })
+        gsap.set(bubbles, { backgroundColor: '#ffffff', borderColor: 'rgba(197, 157, 95, 0.3)', boxShadow: 'none', scale: 1 })
+
+        // Three milestones fit in view at a time, so the row overflows by one;
+        // the scroll length is padded so the reveal doesn't feel rushed.
+        const distance = () => Math.max(0, list.scrollWidth - window.innerWidth)
+        const tl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${Math.max(distance(), window.innerHeight * 0.8)}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        tl.to(list, { x: () => -distance(), duration: 1 }, 0)
+        tl.to(fill, { scaleX: 1, duration: 1 }, 0)
+
+        // Each milestone lights up as the fill reaches it, and stays lit
+        nodes.forEach((node, index) => {
+          const progress = nodes.length > 1 ? index / (nodes.length - 1) : 0
+          const icon = node.querySelector('.milestone-icon')
+          tl.to(
+            bubbles[index],
+            {
+              backgroundColor: '#C59D5F',
+              borderColor: '#C59D5F',
+              boxShadow: '0 0 24px rgba(197, 157, 95, 0.45)',
+              scale: 1.1,
+              duration: 0.06,
+            },
+            progress * 0.94
+          )
+          tl.to(icon, { color: '#ffffff', duration: 0.06 }, progress * 0.94)
+        })
       })
 
-      if (currentActive) {
-        setActiveMilestone(currentActive)
-      }
-    }
+      // Mobile / reduced motion: native swipeable row, rail shown complete
+      mm.add('(max-width: 1023px), (prefers-reduced-motion: reduce)', () => {
+        gsap.set(fill, { scaleX: 1 })
+      })
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Trigger initially to capture starting position
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      return () => {
+        mm.revert()
+        window.removeEventListener('resize', syncRail)
+      }
+    },
+    { scope: timelineRef }
+  )
 
   return (
     <>
@@ -123,41 +194,36 @@ function About() {
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/45 to-transparent z-10" />
-        <WebGLScene
-          loader={() => import('../components/motion/Particles.jsx')}
-          className="absolute inset-0"
-          fallback={<div className="absolute inset-0 bg-primary" />}
-          particleColors={['#C59D5F', '#F4E4C8', '#ffffff']}
-          particleCount={260}
-          particleSpread={11}
-          speed={0.08}
-          particleBaseSize={90}
-          alphaParticles
-          disableRotation={false}
+        <img
+          src={aerialCampusWide}
+          width={1920}
+          height={1080}
+          alt="Aerial view of the A D Textile manufacturing campus in Karur, India"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        
-        <div className="relative z-20 text-center px-margin-mobile w-full max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="bg-primary/60 backdrop-blur-md border border-white/10 p-12 md:p-16 rounded-2xl shadow-2xl space-y-6 max-w-2xl mx-auto"
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/15 to-primary/40 z-10" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-20 h-full w-full flex flex-col items-center justify-end text-center pb-16 md:pb-20 px-6"
+        >
+          <span className="eyebrow !text-secondary mb-4 block">Established in 1990</span>
+          <RevealText
+            as="h1"
+            scrollTriggered={false}
+            delay={0.2}
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight max-w-3xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
           >
-            <span className="font-label-md text-xs uppercase tracking-[0.25em] text-secondary mb-2 block font-semibold">
-              Established in 1990
-            </span>
-            <RevealText
-              as="h1"
-              scrollTriggered={false}
-              delay={0.2}
-              className="font-display-lg text-display-lg-mobile md:text-5xl text-white leading-tight font-light"
-            >
-              Rooted in Textiles. Built for <span className="italic font-normal text-secondary">the World</span>.
-            </RevealText>
-            <div className="w-24 h-[1.5px] bg-secondary mx-auto mt-4" />
-          </motion.div>
-        </div>
+            Rooted in Textiles. Built for <em className="italic text-secondary font-serif font-normal">the World</em>.
+          </RevealText>
+          <p className="font-body-md text-white/80 text-sm md:text-base max-w-xl mt-4">
+            Karur, Tamil Nadu — every stage of production, under one roof.
+          </p>
+        </motion.div>
       </section>
 
       {/* Company Story */}
@@ -187,9 +253,24 @@ function About() {
 
           {/* Right Video Trigger Card */}
           <div className="lg:col-span-6 flex justify-center">
+            {isVideoActive ? (
+              <div className="w-full max-w-lg">
+                <div className="aspect-video sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative border border-outline-variant/35 bg-black">
+                  <video
+                    ref={videoRef}
+                    src={companyVideo}
+                    poster={videoPoster}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            ) : (
             <TiltedCard tiltMax={8} className="w-full max-w-lg">
               <div
-                onClick={() => setIsVideoModalOpen(true)}
+                onClick={() => setIsVideoActive(true)}
                 className="aspect-video sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative border border-outline-variant/35 bg-primary cursor-pointer group"
               >
                 {/* Fallback image as backdrop */}
@@ -217,149 +298,74 @@ function About() {
                 </div>
               </div>
             </TiltedCard>
+            )}
           </div>
 
         </Container>
       </section>
 
-      {/* Milestones Scroll Timeline Section */}
-      <section className="py-24 bg-white" id="journey" ref={timelineRef}>
+      {/* Milestones Timeline Section — horizontal row, styled after the Home journey.
+          The plain block wrapper keeps GSAP pinSpacing working inside the
+          page's flex column (same as Home). */}
+      <div>
+      <section
+        className="pt-24 pb-32 lg:pt-24 lg:pb-36 lg:h-screen lg:flex lg:flex-col lg:justify-center bg-white overflow-hidden"
+        id="journey"
+        ref={timelineRef}
+      >
         <Container>
-          <div className="text-center mb-20 space-y-4 max-w-lg mx-auto">
+          <div className="text-center mb-14 lg:mb-16 space-y-4 max-w-lg mx-auto">
             <span className="eyebrow">Our Journey</span>
             <RevealText as="h2" className="section-title text-3xl font-light text-primary leading-tight">
               From Textile Roots to <em className="italic text-secondary font-normal font-serif">Global Reach</em>
             </RevealText>
             <div className="divider mx-auto" />
           </div>
+        </Container>
 
-          <div className="relative space-y-20 md:space-y-24">
-            
-            {/* Thread Path Line */}
-            <ThreadPath
-              d="M4,0 L4,1000"
-              viewBox="0 0 8 1000"
-              trigger={timelineRef}
-              start="top 65%"
-              end="bottom 50%"
-              scrub={0.6}
-              strokeWidth={3}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] h-full text-secondary hidden md:block opacity-60"
+        {/* Below lg this is a native swipeable row; on lg+ three milestones
+            fill the container width and GSAP slides the row to reveal the rest. */}
+        <div className="overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory scroll-pl-margin-mobile md:scroll-pl-margin-desktop lg:snap-none">
+          <div
+            ref={timelineListRef}
+            className="relative flex w-max gap-8 lg:gap-12 px-margin-mobile md:px-margin-desktop lg:px-[max(64px,calc((100vw-1280px)/2+64px))]"
+          >
+            {/* Rail track — position and width are set in JS to span bubble centers */}
+            <div ref={timelineRailTrackRef} className="absolute h-px bg-primary/10" />
+            {/* Rail fill — scrubbed with scroll via GSAP */}
+            <div
+              ref={timelineRailFillRef}
+              className="absolute h-px bg-gradient-to-r from-secondary via-secondary to-secondary/20"
             />
 
-            {TIMELINE.map((event) => {
-              const isActive = activeMilestone === event.year
-              return (
-                <motion.div
-                  key={event.year}
-                  ref={(el) => {
-                    milestoneRefs.current[event.year] = el
-                  }}
-                  className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative"
-                >
-                  {event.align === 'right' ? (
-                    <>
-                      {/* Left: Card content */}
-                      <div className="w-full md:w-[45%] md:text-right transition-all duration-300">
-                        <SpotlightCard
-                          className={`p-8 rounded-2xl border transition-all duration-500 text-left ${
-                            isActive
-                              ? 'bg-slate-50/80 border-secondary shadow-lg scale-103'
-                              : 'bg-background/40 border-outline-variant/20 opacity-70'
-                          }`}
-                        >
-                          <span
-                            className={`font-display-lg text-4xl md:text-5xl block mb-2 font-bold tracking-tight transition-all duration-300 ${
-                              isActive ? 'text-secondary drop-shadow-[0_2px_8px_rgba(197,157,95,0.2)]' : 'text-slate-300'
-                            }`}
-                          >
-                            {event.year}
-                          </span>
-                          <h3 className="font-serif text-xl font-bold text-primary mb-3">{event.title}</h3>
-                          <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
-                            {event.description}
-                          </p>
-                        </SpotlightCard>
-                      </div>
+            {TIMELINE.map((event) => (
+              <motion.div
+                key={event.year}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="milestone-node relative w-[260px] md:w-[300px] lg:w-[calc((min(100vw,1280px)-224px)/3)] shrink-0 snap-start"
+              >
+                <div className="milestone-bubble relative w-12 h-12 md:w-14 md:h-14 mb-6 rounded-full bg-white border border-secondary/30 flex items-center justify-center z-10">
+                  <LottieIcon animationData={pulseRing} className="absolute inset-0 w-full h-full opacity-50" />
+                  <Icon name={event.icon} className="milestone-icon relative text-secondary text-xl md:text-2xl" />
+                </div>
 
-                      {/* Timeline Central Node */}
-                      <div
-                        className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full hidden md:block z-20 shadow-md border-4 border-white transition-all duration-300 ${
-                          isActive ? 'bg-secondary scale-130' : 'bg-primary'
-                        }`}
-                      />
-                      
-                      {/* Right empty spacer */}
-                      <div className="w-full md:w-[45%] hidden md:block" />
-                    </>
-                  ) : (
-                    <>
-                      {/* Left empty spacer */}
-                      <div className="w-full md:w-[45%] hidden md:block" />
-
-                      {/* Timeline Central Node */}
-                      <div
-                        className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full hidden md:block z-20 shadow-md border-4 border-white transition-all duration-300 ${
-                          isActive ? 'bg-secondary scale-130' : 'bg-primary'
-                        }`}
-                      />
-
-                      {/* Right: Card content */}
-                      <div className="w-full md:w-[45%] md:text-left transition-all duration-300">
-                        <SpotlightCard
-                          className={`p-8 rounded-2xl border transition-all duration-500 text-left ${
-                            isActive
-                              ? 'bg-slate-50/80 border-secondary shadow-lg scale-103'
-                              : 'bg-background/40 border-outline-variant/20 opacity-70'
-                          }`}
-                        >
-                          <span
-                            className={`font-display-lg text-4xl md:text-5xl block mb-2 font-bold tracking-tight transition-all duration-300 ${
-                              isActive ? 'text-secondary drop-shadow-[0_2px_8px_rgba(197,157,95,0.2)]' : 'text-slate-300'
-                            }`}
-                          >
-                            {event.year}
-                          </span>
-                          <h3 className="font-serif text-xl font-bold text-primary mb-3">{event.title}</h3>
-                          <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">
-                            {event.description}
-                          </p>
-                        </SpotlightCard>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
-              )
-            })}
+                <span className="block font-display-lg text-3xl md:text-4xl font-bold tracking-tight text-secondary mb-2">
+                  {event.year}
+                </span>
+                <h3 className="font-serif text-xl md:text-2xl text-primary font-bold mb-2">{event.title}</h3>
+                <p className="text-on-surface-variant text-sm leading-relaxed">{event.description}</p>
+              </motion.div>
+            ))}
           </div>
-        </Container>
-      </section>
-
-      {/* Facility From Above */}
-      <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
-        <img
-          src={aerialCampusWide}
-          width={1920}
-          height={1080}
-          alt="Aerial view of the A D Textile manufacturing campus in Karur, India"
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/15 to-primary/40" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-end text-center pb-16 px-6">
-          <span className="eyebrow !text-secondary mb-4 block">From Above</span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight max-w-2xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
-            One Facility, <em className="italic text-secondary font-serif font-normal">Fully Integrated</em>
-          </h2>
-          <p className="font-body-md text-white/80 text-sm md:text-base max-w-xl mt-4">
-            Karur, Tamil Nadu — since 1990. Every stage of production, under one roof.
-          </p>
         </div>
       </section>
+      </div>
 
       {/* Mission & Vision Section */}
-      <section className="py-24 md:py-32 bg-primary text-white relative overflow-hidden">
+      <section className="pt-16 md:pt-20 pb-24 md:pb-32 bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-radial-gradient from-secondary/5 to-transparent pointer-events-none" />
         <Container className="relative">
           <div className="text-center mb-20 space-y-4 max-w-xl mx-auto">
@@ -448,41 +454,6 @@ function About() {
           </div>
         </Container>
       </section>
-
-      {/* Video Lightbox Modal */}
-      <AnimatePresence>
-        {isVideoModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/85 backdrop-blur-sm"
-              onClick={() => setIsVideoModalOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden z-10 shadow-2xl aspect-video border border-white/10"
-            >
-              <button
-                onClick={() => setIsVideoModalOpen(false)}
-                className="absolute top-4 right-4 p-2 bg-black/60 hover:bg-black/80 rounded-full text-white/80 hover:text-white transition-all cursor-pointer z-20 border border-white/10"
-                aria-label="Close video"
-              >
-                <Icon name="close" className="text-xl" />
-              </button>
-              <video
-                src={companyVideo}
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-              />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </>
   )
 }

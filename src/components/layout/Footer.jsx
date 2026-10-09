@@ -29,8 +29,8 @@ function Footer() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr] gap-10 max-w-container-max mx-auto pb-6 border-b border-white/7"
       >
         <div>
-          <Link className="mb-4 inline-flex rounded-md bg-white p-1.5" to="/">
-            <img src="/logo.jpeg" alt="A D Textile" className="h-10 w-auto" />
+          <Link className="mb-4 inline-flex" to="/">
+            <img src="/footer-logo.webp" alt="A D Textile" className="h-12 w-auto" />
           </Link>
           <p className="text-[0.9rem] text-white/65 leading-[1.82] max-w-[34ch]">
             Manufacturing premium home textiles for global excellence since 1990. Exporting worldwide since 1992.

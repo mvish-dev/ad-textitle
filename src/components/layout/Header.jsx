@@ -73,9 +73,7 @@ function Header() {
         <div className="flex justify-between items-center gap-8 2xl:gap-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
           <Link className={logoClass} to="/" onClick={() => setMenuOpen(false)}>
             <img src="/logo.jpeg" alt="" className="h-11 2xl:h-12 w-auto" />
-            <span>
-              A D <span className="text-secondary">Textile</span>
-            </span>
+            <span className="text-secondary">A D Textile</span>
           </Link>
 
           <div className="hidden xl:flex flex-1 justify-between items-center gap-8 mx-10">
