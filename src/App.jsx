@@ -8,6 +8,7 @@ import ErrorBoundary from './components/common/ErrorBoundary.jsx'
 const Home = lazy(() => import('./pages/Home.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
+const ProductCategory = lazy(() => import('./pages/ProductCategory.jsx'))
 const Manufacturing = lazy(() => import('./pages/Manufacturing.jsx'))
 const QualityCompliance = lazy(() => import('./pages/QualityCompliance.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
@@ -33,6 +34,7 @@ function App() {
               <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
               <Route path="about" element={<AnimatedPage><About /></AnimatedPage>} />
               <Route path="products" element={<AnimatedPage><Products /></AnimatedPage>} />
+              <Route path="products/:categoryId" element={<AnimatedPage><ProductCategory /></AnimatedPage>} />
               <Route path="manufacturing" element={<AnimatedPage><Manufacturing /></AnimatedPage>} />
               <Route path="quality-compliance" element={<AnimatedPage><QualityCompliance /></AnimatedPage>} />
               <Route path="sustainability" element={<Navigate to="/quality-compliance" replace />} />

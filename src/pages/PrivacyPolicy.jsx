@@ -1,6 +1,5 @@
 import Container from '../components/ui/Container.jsx'
 import Button from '../components/ui/Button.jsx'
-import Breadcrumbs from '../components/ui/Breadcrumbs.jsx'
 import Seo from '../components/common/Seo.jsx'
 
 const LAST_UPDATED = 'September 18, 2026'
@@ -53,12 +52,6 @@ function PrivacyPolicy() {
           <p className="font-label-md text-[0.68rem] text-on-surface-variant/70 uppercase tracking-widest mt-6">
             Last updated: {LAST_UPDATED}
           </p>
-        </Container>
-      </section>
-
-      <section className="bg-background">
-        <Container className="py-1">
-          <Breadcrumbs items={[{ label: 'Privacy Policy & Terms' }]} />
         </Container>
       </section>
 

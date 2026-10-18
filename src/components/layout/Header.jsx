@@ -54,7 +54,8 @@ function Header() {
     'flex shrink-0 flex-col items-center gap-1 whitespace-nowrap font-headline-lg text-[0.8rem] 2xl:text-[0.85rem] leading-none font-bold tracking-[0.12em] uppercase text-primary'
 
   // Shared hover/active underline treatment for every top-level nav link.
-  const isLinkActive = (item) => item.to === location.pathname
+  // Also active on nested routes, e.g. /products/living-decor under Products.
+  const isLinkActive = (item) => location.pathname === item.to || location.pathname.startsWith(`${item.to}/`)
   const linkClass = (item) => {
     const baseClass =
       'relative inline-flex items-center whitespace-nowrap text-[1rem] 2xl:text-[1.05rem] font-medium uppercase tracking-wide text-[#2C4A6E] transition-colors duration-300 py-1 ' +
@@ -72,7 +73,10 @@ function Header() {
         <nav id="navbar" className={navClass} role="navigation" aria-label="Main navigation">
         <div className="flex justify-between items-center gap-8 2xl:gap-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
           <Link className={logoClass} to="/" onClick={() => setMenuOpen(false)}>
-            <img src="/logo.jpeg" alt="" className="h-11 2xl:h-12 w-auto" />
+            {/* logo.jpeg has ~32px of whitespace on the left vs ~9px on the right
+                (252px wide), so nudge it left by that half-difference (~4.4% of its
+                own width) to optically center the artwork over the text below. */}
+            <img src="/logo.jpeg" alt="" className="h-11 2xl:h-12 w-auto -translate-x-[4.4%]" />
             <span className="text-secondary">A D Textile</span>
           </Link>
 

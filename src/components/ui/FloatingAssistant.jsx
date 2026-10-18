@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon from './Icon.jsx'
 import WhatsAppIcon from './WhatsAppIcon.jsx'
+import { whatsappUrl } from '../../lib/contact.js'
 
-const WHATSAPP_NUMBER = '919790557077'
-const WHATSAPP_MESSAGE = "Hi, I'd like to enquire about A D Textile's manufacturing capabilities."
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+const WHATSAPP_URL = whatsappUrl("Hi, I'd like to enquire about A D Textile's manufacturing capabilities.")
 
 const CHAT_API_URL = 'https://adtextile-chatbot.vishfunfacts.workers.dev/api/chat'
 const CHAT_ERROR_MESSAGE = "Sorry, I'm having trouble responding right now. Please try again."
