@@ -1,15 +1,8 @@
 import { motion } from 'framer-motion'
 import Container from '../components/ui/Container.jsx'
-import Button from '../components/ui/Button.jsx'
 import Icon from '../components/ui/Icon.jsx'
-import RevealText from '../components/motion/RevealText.jsx'
-import WebGLScene from '../components/motion/WebGLScene.jsx'
 import LogoLoop from '../components/motion/LogoLoop.jsx'
 import Seo from '../components/common/Seo.jsx'
-
-import checkingInline from '../assets/images/manufacturing/checking/checking-inline.webp'
-import checkingDetail from '../assets/images/manufacturing/checking/checking-detail.webp'
-import checkingFinalAql from '../assets/images/manufacturing/checking/checking-final-aql.webp'
 
 import sa8000 from '../assets/images/certificates/sa8000.png'
 import bci from '../assets/images/certificates/bci.png'
@@ -26,27 +19,6 @@ import iso90012015 from '../assets/images/certificates/organization-iso-9000-iso
 import oekoTexMadeInGreen from '../assets/images/certificates/oeko-tex-made-in-green.png'
 import nsfIsr from '../assets/images/certificates/nsf-isr.png'
 import sedexSmeta from '../assets/images/certificates/sedex-smeta.png'
-
-const VERIFICATION_STEPS = [
-  {
-    layer: 'Layer 1',
-    title: 'Online Inspection',
-    image: checkingInline,
-    alt: 'Online in-line inspection during production',
-  },
-  {
-    layer: 'Layer 2',
-    title: 'Quality Inspection',
-    image: checkingDetail,
-    alt: 'Quality inspection review of finished output',
-  },
-  {
-    layer: 'Layer 3',
-    title: 'Final AQL Inspection',
-    image: checkingFinalAql,
-    alt: 'Final AQL-standard inspection before dispatch',
-  },
-]
 
 const SOCIAL_PROGRAMS = [
   { icon: 'gavel', label: 'Fair wages and lawful working hours across all facilities' },
@@ -170,108 +142,14 @@ function QualityCompliance() {
         title="Quality & Compliance"
         description="A D Textile maintains quality and compliance across every stage of production — from raw materials to finished products, meeting buyer specifications and international requirements."
       />
-      {/* Hero Section */}
-      <section className="relative min-h-[max(80vh,600px)] flex items-center overflow-hidden pt-20 pb-12 bg-primary">
-        <div className="absolute inset-0 z-0">
-          <WebGLScene
-            loader={() => import('../components/motion/Lightfall.jsx')}
-            className="absolute inset-0"
-            fallback={<div className="absolute inset-0 bg-primary" />}
-            colors={['#F4E4C8', '#C59D5F', '#8A6D3B']}
-            backgroundColor="#0F172A"
-            speed={0.55}
-            streakCount={3}
-            glow={1.3}
-            density={0.5}
-            zoom={3.4}
-            backgroundGlow={0.35}
-          />
-          <div className="absolute inset-0 bg-primary/40" />
-        </div>
-        <Container className="relative z-10 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl bg-primary/80 backdrop-blur-md p-10 md:p-12 text-white border-l-4 border-secondary rounded-r-2xl"
-          >
-            <span className="font-label-md text-secondary uppercase tracking-[0.2em] mb-4 block">
-              Quality &amp; Compliance
-            </span>
-            <RevealText
-              as="h1"
-              scrollTriggered={false}
-              delay={0.2}
-              className="font-display-lg text-[clamp(1.7rem,8.5vw,2.5rem)] md:text-5xl leading-tight mb-8"
-            >
-              Quality. Consistency. Compliance.
-            </RevealText>
-            <p className="font-body-lg text-body-lg text-white/80 mb-8 max-w-xl">
-              We maintain quality and compliance across every stage of production — from raw materials to finished
-              products. Our integrated manufacturing capabilities help us deliver consistent quality while meeting
-              buyer specifications and international requirements.
-            </p>
-            <div className="flex gap-4">
-              <Button href="#certifications" variant="secondary">
-                View Certificates
-              </Button>
-            </div>
-          </motion.div>
-        </Container>
-      </section>
-
-      {/* Quality Verification */}
-      <section className="py-section-gap-lg bg-background" id="quality-control">
+      {/* Certifications — first section now that the hero is gone, so it
+          clears the fixed header and carries the page's h1. */}
+      <section className="pt-28 md:pt-32 pb-10 md:pb-20 bg-white" id="certifications">
         <Container>
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <span className="eyebrow">Quality Control</span>
-            <h2 className="section-title">Verified at <em>Every Stage</em></h2>
-            <div className="divider mx-auto" />
-            <p className="text-on-surface-variant font-body-lg mt-6 leading-relaxed">
-              A 3-layer inspection system checks every order from the production floor through to final dispatch.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {VERIFICATION_STEPS.map((step, idx) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg transition-all"
-              >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    src={step.image}
-                    width={800}
-                    height={1000}
-                    alt={step.alt}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-6 pt-16">
-                  <span className="font-label-md text-[0.65rem] uppercase tracking-[0.25em] text-secondary font-bold block mb-1">
-                    {step.layer}
-                  </span>
-                  <h3 className="font-headline-lg text-xl text-white font-semibold">{step.title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Certifications */}
-      <section className="py-section-gap-lg bg-white" id="certifications">
-        <Container>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
             <div className="max-w-xl">
               <span className="eyebrow">Certificates</span>
-              <h2 className="section-title mb-6">Global <em>Standards</em></h2>
+              <h1 className="section-title mb-3">Global <em>Standards</em></h1>
               <p className="text-on-surface-variant font-body-lg leading-relaxed">
                 Our certifications and industry standards include ISO, OEKO-TEX®, SEDEX/SMETA, GOTS and amfori BSCI,
                 supporting our commitment to quality, responsible sourcing and compliance. OEKO-TEX® STANDARD 100
@@ -279,7 +157,7 @@ function QualityCompliance() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
             {CERTIFICATE_DETAILS.map((cert, idx) => (
               <motion.div
                 key={cert.name}
@@ -287,10 +165,10 @@ function QualityCompliance() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (idx % 3) * 0.05 }}
-                className="group border border-outline-variant/30 rounded-xl p-10 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-white shadow-sm hover:shadow-md"
+                className="group border border-outline-variant/30 rounded-xl p-5 md:p-6 hover:border-secondary transition-all duration-300 flex flex-col h-full bg-white shadow-sm hover:shadow-md"
               >
-                <div className="mb-8">
-                  <div className="w-28 h-28 mb-6 flex items-center justify-center">
+                <div className="mb-4">
+                  <div className="w-28 h-28 mb-3 flex items-center justify-center">
                     <img
                       src={cert.logo}
                       width={112}
@@ -312,7 +190,7 @@ function QualityCompliance() {
               </motion.div>
             ))}
           </div>
-          <div className="bg-white border border-outline-variant/30 rounded-2xl py-14 overflow-hidden">
+          <div className="bg-white border border-outline-variant/30 rounded-2xl py-7 overflow-hidden">
             <LogoLoop
               logos={CERTIFICATE_LOGOS}
               speed={45}
@@ -345,13 +223,13 @@ function QualityCompliance() {
       </section>
 
       {/* Social Compliance */}
-      <section className="py-section-gap-lg bg-background" id="social-compliance">
+      <section className="py-10 md:py-20 bg-background" id="social-compliance">
         <Container>
-          <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="text-center mb-8 max-w-3xl mx-auto">
             <span className="eyebrow">People First</span>
             <h2 className="section-title">Social <em>Compliance</em></h2>
             <div className="divider mx-auto" />
-            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
+            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-3">
               We are committed to safe working conditions, employee welfare, ethical practices and responsible
               workplace standards.
             </p>
@@ -364,7 +242,7 @@ function QualityCompliance() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col items-center text-center gap-4 p-6 bg-white border border-outline-variant/30 rounded-xl shadow-sm"
+                className="flex flex-col items-center text-center gap-2 p-4 bg-white border border-outline-variant/30 rounded-xl shadow-sm"
               >
                 <div className="w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
                   <Icon name={program.icon} className="text-3xl text-secondary" />
@@ -377,13 +255,13 @@ function QualityCompliance() {
       </section>
 
       {/* Product Compliance */}
-      <section className="py-section-gap-lg bg-white" id="product-compliance">
+      <section className="py-10 md:py-20 bg-white" id="product-compliance">
         <Container>
-          <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="text-center mb-8 max-w-3xl mx-auto">
             <span className="eyebrow">At the Product Level</span>
             <h2 className="section-title">Product <em>Compliance</em></h2>
             <div className="divider mx-auto" />
-            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-6">
+            <p className="font-body-lg text-[0.95rem] text-on-surface-variant leading-relaxed mt-3">
               We work with buyers to meet product specifications, labelling, testing, packaging and market-specific
               compliance requirements.
             </p>
@@ -392,14 +270,14 @@ function QualityCompliance() {
             {PRODUCT_COMPLIANCE_POINTS.map((point, index) => (
               <div
                 key={point.title}
-                className={`text-center p-8 bg-background border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
+                className={`text-center p-4 md:p-5 bg-background border border-outline-variant/30 rounded-xl transition-all duration-300 hover:shadow-md ${
                   index < PRODUCT_COMPLIANCE_POINTS.length - 1 ? 'border-b md:border-b-0 md:border-r' : ''
                 }`}
               >
-                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-6">
+                <div className="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-lg mx-auto mb-3">
                   <Icon name={point.icon} className="text-3xl text-secondary" />
                 </div>
-                <h4 className="font-headline-lg text-xl text-primary mb-4 font-semibold">{point.title}</h4>
+                <h4 className="font-headline-lg text-xl text-primary mb-2 font-semibold">{point.title}</h4>
                 <p className="font-body-md text-xs text-on-surface-variant leading-relaxed">{point.description}</p>
               </div>
             ))}
@@ -407,32 +285,6 @@ function QualityCompliance() {
         </Container>
       </section>
 
-      {/* Documentation CTA */}
-      <section className="py-section-gap-lg bg-surface-container">
-        <Container>
-          <div className="bg-primary rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 text-white shadow-lg">
-            <div className="max-w-2xl text-center md:text-left">
-              <h2 className="font-headline-xl text-3xl mb-4 leading-tight text-white">Need Documentation?</h2>
-              <p className="text-white/80 text-[0.88rem] leading-relaxed">
-                Need certification documentation for a specific order? Contact our export team and we'll provide the
-                relevant reports directly.
-              </p>
-            </div>
-            <div className="w-full md:w-auto shrink-0">
-              <Button
-                to="/contact"
-                variant="primary"
-                className="!bg-white !text-primary w-full sm:w-auto"
-              >
-                <span className="inline-flex items-center justify-center gap-3">
-                  <Icon name="mail" />
-                  Contact Export Team
-                </span>
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
     </>
   )
 }

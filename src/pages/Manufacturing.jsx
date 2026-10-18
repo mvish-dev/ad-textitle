@@ -75,9 +75,9 @@ const MARQUEE_ITEMS = [
 ].map((item, i) => ({
   id: i,
   node: (
-    <span className="inline-flex items-center gap-2.5 text-white/70">
-      <Icon name={item.icon} className="text-secondary text-lg" />
-      <span className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] whitespace-nowrap">{item.label}</span>
+    <span className="inline-flex items-center gap-2.5 text-primary">
+      <Icon name={item.icon} className="text-primary text-xl" />
+      <span className="text-[0.8rem] md:text-sm font-bold uppercase tracking-[0.14em] whitespace-nowrap">{item.label}</span>
     </span>
   ),
 }))
@@ -123,15 +123,15 @@ const CAPABILITY_ITEMS = [
 // hidden at initial paint the way the previous pinned timeline could be.
 function Chapter({ id, num, eyebrow, title, description, media, reverse, children }) {
   return (
-    <section id={id} className="mfg-chapter relative w-full py-20 md:py-28 scroll-mt-24">
-      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <section id={id} className="mfg-chapter relative w-full py-10 md:py-14 scroll-mt-24">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
         <AnimatedContent direction="horizontal" reverse={reverse} distance={60} className={reverse ? 'md:order-2' : ''}>
-          <span className="eyebrow mb-4 block">
+          <span className="eyebrow mb-2 block">
             {num} / {eyebrow}
           </span>
-          <h2 className={`section-title ${description ? 'mb-6' : 'mb-8'}`}>{title}</h2>
+          <h2 className={`section-title ${description ? 'mb-3' : 'mb-4'}`}>{title}</h2>
           {description && (
-            <p className="font-body-md text-[0.9rem] text-on-surface-variant mb-10 max-w-lg leading-relaxed">
+            <p className="font-body-md text-[0.9rem] text-on-surface-variant mb-5 max-w-lg leading-relaxed">
               {description}
             </p>
           )}
@@ -207,8 +207,11 @@ function Manufacturing() {
         description="From dyeing and weaving to stitching, checking and packing, explore A D Textile's fully integrated manufacturing process across every production chapter."
       />
 
-      {/* Hero */}
-      <section className="relative h-screen min-h-[640px] w-full flex items-end overflow-hidden bg-primary text-white">
+      {/* Hero + marquee together fill exactly one viewport, matching Home */}
+      <div className="flex flex-col min-h-[100svh]">
+      {/* pt offsets the fixed header so content centres in the visible area
+          between header and marquee */}
+      <section className="relative flex-1 min-h-[520px] w-full flex items-center overflow-hidden bg-primary text-white pt-20 2xl:pt-24">
         <WebGLScene
           loader={() => import('../components/motion/Threads.jsx')}
           className="absolute inset-0"
@@ -219,22 +222,22 @@ function Manufacturing() {
           fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary via-[#1e293b] to-primary" />}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-primary/10 pointer-events-none" />
-        <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-20 md:pb-28">
-          <span className="eyebrow !text-secondary mb-5 block">Manufacturing Capabilities</span>
+        <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 flex flex-col items-center text-center">
+          <span className="eyebrow !text-secondary mb-3 block">Manufacturing Capabilities</span>
           <SplitTextReveal
             tag="h1"
             text="From Fibre to Finished Product"
             splitType="words"
             delay={40}
             duration={1}
-            textAlign="left"
-            className="font-headline-xl text-white text-[clamp(2.2rem,1.7rem+3vw,4.75rem)] leading-[1.08] font-bold mb-8 max-w-4xl"
+            textAlign="center"
+            className="!block font-headline-xl text-white text-[clamp(2.2rem,1.7rem+3vw,4.75rem)] leading-[1.08] font-bold mb-4 max-w-4xl"
           />
-          <p className="font-body-md text-white/75 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
+          <p className="font-body-md text-white/75 text-base md:text-lg max-w-xl mb-6 leading-relaxed">
             Nine fully integrated production stages — dyeing, weaving, knitting, fabrication, embroidery, stitching,
             checking, packing and warehousing — under one roof in Karur, India.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Button to="#dyeing" variant="primary" size="lg">
               Explore The Process
             </Button>
@@ -246,17 +249,18 @@ function Manufacturing() {
       </section>
 
       {/* Looping capability marquee */}
-      <section className="bg-primary py-6 border-y border-white/10 overflow-hidden">
+      <section className="bg-secondary py-4 overflow-hidden shadow-md">
         <LogoLoop
           logos={MARQUEE_ITEMS}
           speed={55}
           gap={56}
-          logoHeight={20}
+          logoHeight={22}
           fadeOut
-          fadeOutColor="#0F172A"
+          fadeOutColor="#C59D5F"
           ariaLabel="Manufacturing capabilities and certifications"
         />
       </section>
+      </div>
 
       {/* SideNavBar — progress rail highlighted via IntersectionObserver */}
       <aside className="fixed left-3 xl:left-4 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 items-center bg-transparent hidden md:flex">
@@ -296,45 +300,7 @@ function Manufacturing() {
       </aside>
 
       <main className="w-full bg-background">
-        {/* Watch Our Process — video trailer */}
-        <section className="w-full bg-background py-20 md:py-28">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="eyebrow mb-4 block">See It In Motion</span>
-              <h2 className="section-title mb-4">
-                Watch Our <em>Process</em>
-              </h2>
-              <p className="text-on-surface-variant text-sm">
-                A tour through the A D Textile facility, from dyeing and weaving to finishing and dispatch.
-              </p>
-            </div>
-            <div
-              onClick={() => setIsVideoModalOpen(true)}
-              className="relative aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/20 bg-primary cursor-pointer group"
-            >
-              <img
-                src={dyeingHallWide}
-                width={1600}
-                height={900}
-                alt="A D Textile manufacturing facility"
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
-              />
-              <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-all duration-300" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white gap-4">
-                <div className="w-20 h-20 rounded-full bg-white/10 group-hover:bg-secondary/90 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/20 group-hover:border-transparent transition-all duration-300">
-                  <Icon name="play_arrow" className="text-4xl translate-x-0.5" />
-                </div>
-                <span className="font-label-md text-xs font-semibold uppercase tracking-widest drop-shadow-md">
-                  Watch The Full Tour
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div ref={journeyRef} className="relative">
+        <div ref={journeyRef} className="relative pt-5 md:pt-7">
           <Chapter
             id="dyeing"
             num="01"
@@ -478,7 +444,7 @@ function Manufacturing() {
             pauseOnHover
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-            <span className="eyebrow !text-secondary mb-4">Inside The Facility</span>
+            <span className="eyebrow !text-secondary mb-2">Inside The Facility</span>
             <h2 className="section-title !text-white max-w-2xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
               A Living Look at the <em>Production Floor</em>
             </h2>
@@ -486,11 +452,11 @@ function Manufacturing() {
         </section>
 
         {/* Stats & Footer CTA */}
-        <section className="w-full relative flex flex-col justify-center py-section-gap-lg" id="cta">
+        <section className="w-full relative flex flex-col justify-center pt-20 pb-10 md:pb-14" id="cta">
           <div className="max-w-container-max px-margin-mobile md:px-margin-desktop w-full mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="eyebrow mb-4 block">Capabilities</span>
-              <h2 className="section-title mb-4">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <span className="eyebrow mb-2 block">Capabilities</span>
+              <h2 className="section-title mb-2">
                 Complete In-House <em>Manufacturing</em>
               </h2>
               <p className="text-on-surface-variant text-sm">
@@ -498,7 +464,7 @@ function Manufacturing() {
               </p>
             </div>
             <AnimatedContent direction="vertical" distance={40}>
-              <div className="border-y border-outline-variant/30 bg-white rounded-2xl shadow-sm py-10 md:py-12">
+              <div className="border-y border-outline-variant/30 bg-white rounded-2xl shadow-sm py-5 md:py-6">
                 <div className="flex flex-wrap justify-center divide-x divide-outline-variant/30">
                   {CAPABILITY_ITEMS.map((item) => (
                     <div key={item.id} className="w-1/2 sm:w-1/3 lg:w-1/4">
@@ -508,6 +474,44 @@ function Manufacturing() {
                 </div>
               </div>
             </AnimatedContent>
+          </div>
+        </section>
+
+        {/* Watch Our Process — video trailer */}
+        <section className="w-full bg-background pt-10 md:pt-14 pb-20">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <span className="eyebrow mb-2 block">See It In Motion</span>
+              <h2 className="section-title mb-2">
+                Watch Our <em>Process</em>
+              </h2>
+              <p className="text-on-surface-variant text-sm">
+                A tour through the A D Textile facility, from dyeing and weaving to finishing and dispatch.
+              </p>
+            </div>
+            <div
+              onClick={() => setIsVideoModalOpen(true)}
+              className="relative aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/20 bg-primary cursor-pointer group"
+            >
+              <img
+                src={dyeingHallWide}
+                width={1600}
+                height={900}
+                alt="A D Textile manufacturing facility"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-75"
+              />
+              <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-all duration-300" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white gap-4">
+                <div className="w-20 h-20 rounded-full bg-white/10 group-hover:bg-secondary/90 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/20 group-hover:border-transparent transition-all duration-300">
+                  <Icon name="play_arrow" className="text-4xl translate-x-0.5" />
+                </div>
+                <span className="font-label-md text-xs font-semibold uppercase tracking-widest drop-shadow-md">
+                  Watch The Full Tour
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
