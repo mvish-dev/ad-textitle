@@ -12,13 +12,38 @@
 //                Empty → the popup shows the sub-category's own photo.
 //   - `sustainable: true` (sub-category): adds an eco "Sustainable" badge.
 //
-// Categories and sub-categories currently use Unsplash stock imagery (like
-// the Home hero) — swap in client photos. `image` feeds the cards;
+// Kitchen & Dining uses client photos (originals in src/assets/products/,
+// converted to .webp in src/assets/images/products/kitchen-dining/). The
+// other categories still use Unsplash stock imagery — swap in client photos. `image` feeds the cards;
 // `largeImage` is the bigger version used for the category page hero and
 // the "View Products" popup.
 
+import tableClothRunnerPlacemats from '../assets/images/products/kitchen-dining/table-cloth-runner-placemats.webp'
+import fourSeaterTableCloth from '../assets/images/products/kitchen-dining/four-seater-table-cloth.webp'
+import floralPrintedTableCloth from '../assets/images/products/kitchen-dining/floral-printed-table-cloth.webp'
+import roundTableClothFrillEdges from '../assets/images/products/kitchen-dining/round-table-cloth-frill-edges.webp'
+import roundTableClothPlainEdges from '../assets/images/products/kitchen-dining/round-table-cloth-plain-edges.webp'
+import cottonTableRunner from '../assets/images/products/kitchen-dining/cotton-table-runner.webp'
+import embroideredTableRunner from '../assets/images/products/kitchen-dining/embroidered-table-runner.webp'
+import printedTableRunner from '../assets/images/products/kitchen-dining/printed-table-runner.webp'
+import stripedCottonTableRunner from '../assets/images/products/kitchen-dining/striped-cotton-table-runner.webp'
+import placematsWithNapkins from '../assets/images/products/kitchen-dining/placemats-with-napkins.webp'
+import kitchenTeaTowel from '../assets/images/products/kitchen-dining/kitchen-tea-towel.webp'
+import kitchenHandTowel from '../assets/images/products/kitchen-dining/kitchen-hand-towel.webp'
+import kitchenTerryTowel from '../assets/images/products/kitchen-dining/kitchen-terry-towel.webp'
+import terryKitchenTowel from '../assets/images/products/kitchen-dining/terry-kitchen-towel.webp'
+import waffleKitchenTowel from '../assets/images/products/kitchen-dining/waffle-kitchen-towel.webp'
+import stripedKitchenTowel from '../assets/images/products/kitchen-dining/striped-kitchen-towel.webp'
+import embroideredKitchenTowel from '../assets/images/products/kitchen-dining/embroidered-kitchen-towel.webp'
+import fabricDyedSet from '../assets/images/products/kitchen-dining/fabric-dyed-set.webp'
+import floralPrintedSet from '../assets/images/products/kitchen-dining/floral-printed-set.webp'
+import apronOvenMittsComboSet from '../assets/images/products/kitchen-dining/apron-oven-mitts-combo-set.webp'
+import checkeredCottonApron from '../assets/images/products/kitchen-dining/checkered-cotton-apron.webp'
+
 const unsplash = (id, width) => `https://images.unsplash.com/photo-${id}?w=${width}&q=80&auto=format&fit=crop`
 const stock = (id) => ({ image: unsplash(id, 900), largeImage: unsplash(id, 2000) })
+// Client photos are a single .webp (≤1600px) used for both card and popup.
+const photo = (src) => ({ image: src, largeImage: src })
 
 export const PRODUCT_CATEGORIES = [
   {
@@ -28,28 +53,52 @@ export const PRODUCT_CATEGORIES = [
     tagline: 'Functional textiles for the everyday kitchen and the well-set table.',
     description:
       'Absorbent towels, heat-protective mitts and coordinated table linen — woven, dyed and finished in-house for retail programmes that need consistent quality across every colourway.',
-    ...stock('1649015352520-45cb10548a3d'),
+    ...photo(tableClothRunnerPlacemats),
     subcategories: [
+      {
+        name: 'Dining Sets',
+        icon: 'table_restaurant',
+        description: 'Table cloths, runners, placemats and napkins in printed, woven and embroidered finishes to dress the table for every occasion.',
+        ...photo(tableClothRunnerPlacemats),
+        children: [
+          { name: 'Table Cloth with Runner & Placemats', ...photo(tableClothRunnerPlacemats) },
+          { name: '4 Seater Table Cloth', ...photo(fourSeaterTableCloth) },
+          { name: 'Floral Printed Table Cloth', ...photo(floralPrintedTableCloth) },
+          { name: 'Round Table Cloth with Frill Edges', ...photo(roundTableClothFrillEdges) },
+          { name: 'Round Table Cloth with Plain Edges', ...photo(roundTableClothPlainEdges) },
+          { name: 'Cotton Table Runner', ...photo(cottonTableRunner) },
+          { name: 'Embroidered Table Runner', ...photo(embroideredTableRunner) },
+          { name: 'Printed Table Runner', ...photo(printedTableRunner) },
+          { name: 'Striped Cotton Table Runner', ...photo(stripedCottonTableRunner) },
+          { name: 'Placemats with Napkins', ...photo(placematsWithNapkins) },
+        ],
+      },
       {
         name: 'Towels',
         icon: 'dry_cleaning',
-        description: 'Absorbent, quick-drying kitchen and tea towels in terry, waffle, yarn-dyed and printed constructions.',
-        ...stock('1593371308790-047b42532abe'),
-        children: [],
+        description: 'Absorbent, quick-drying kitchen and tea towels in terry, waffle, yarn-dyed and embroidered constructions.',
+        ...photo(kitchenTeaTowel),
+        children: [
+          { name: 'Kitchen Tea Towel', ...photo(kitchenTeaTowel) },
+          { name: 'Kitchen Hand Towel', ...photo(kitchenHandTowel) },
+          { name: 'Kitchen Terry Towel', ...photo(kitchenTerryTowel) },
+          { name: 'Terry Kitchen Towel', ...photo(terryKitchenTowel) },
+          { name: 'Waffle Kitchen Towel', ...photo(waffleKitchenTowel) },
+          { name: 'Striped Kitchen Towel', ...photo(stripedKitchenTowel) },
+          { name: 'Embroidered Kitchen Towel', ...photo(embroideredKitchenTowel) },
+        ],
       },
       {
-        name: 'Oven & Mitts',
+        name: 'Apron & Mitts',
         icon: 'oven_gen',
-        description: 'Heat-protective oven gloves, mitts and pot holders that pair practical padding with coordinated design.',
-        ...stock('1780399370208-4832d7b29e7d'),
-        children: [],
-      },
-      {
-        name: 'Table Runners & Placemats',
-        icon: 'table_restaurant',
-        description: 'Runners and placemats in woven, printed and textured finishes to dress the table for every occasion.',
-        ...stock('1758810741403-194444e8447f'),
-        children: [],
+        description: 'Aprons, oven mitts and pot holders — sold singly or as coordinated sets — that pair practical padding with matching design.',
+        ...photo(fabricDyedSet),
+        children: [
+          { name: 'Fabric Dyed Set', ...photo(fabricDyedSet) },
+          { name: 'Floral Printed Set', ...photo(floralPrintedSet) },
+          { name: 'Apron & Oven Mitts Combo Set', ...photo(apronOvenMittsComboSet) },
+          { name: 'Checkered Cotton Apron', ...photo(checkeredCottonApron) },
+        ],
       },
     ],
   },
