@@ -177,6 +177,20 @@ function ProductModal({ category, subcategory, onClose }) {
 
   const step = (dir) => setIndex((i) => (i + dir + products.length) % products.length)
 
+  // Natural aspect ratio of each photo, so the frame can match it exactly
+  // (whole image, no crop, no empty bands). Also preloads the gallery.
+  const [ratios, setRatios] = useState({})
+  useEffect(() => {
+    products.forEach(({ image }) => {
+      if (!image) return
+      const img = new Image()
+      img.onload = () => setRatios((r) => ({ ...r, [image]: img.naturalWidth / img.naturalHeight }))
+      img.src = image
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subcategory])
+  const ratio = ratios[product.image] ?? 4 / 3
+
   // Lock page scroll (Lenis + native) while open, and wire Esc / arrow keys.
   useEffect(() => {
     const lenis = getLenis()
@@ -224,7 +238,9 @@ function ProductModal({ category, subcategory, onClose }) {
         exit={{ opacity: 0, y: 16, scale: 0.97 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         data-lenis-prevent
-        className="relative z-10 w-full max-w-4xl max-h-[94vh] overflow-y-auto bg-white rounded-2xl shadow-2xl"
+        className={`relative z-10 max-h-[94vh] overflow-y-auto bg-white rounded-2xl shadow-2xl ${
+          view === 'gallery' ? 'w-fit' : 'w-full max-w-4xl'
+        }`}
       >
         <button
           ref={closeRef}
@@ -243,9 +259,12 @@ function ProductModal({ category, subcategory, onClose }) {
         <AnimatePresence mode="wait" initial={false}>
           {view === 'gallery' ? (
             <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-              {/* Image stage: blurred copy fills the frame, the photo itself is
-                  shown whole (object-contain) so no product detail is cropped. */}
-              <div className="relative h-[52vh] md:h-[62vh] bg-surface-container-low overflow-hidden">
+              {/* Image stage: sized to the photo's own aspect ratio (capped by
+                  viewport height and width), so it shows whole and fills the frame. */}
+              <div
+                className="relative bg-surface-container-low overflow-hidden transition-[width] duration-300 ease-out"
+                style={{ width: `min(calc(100vw - 3rem), 64rem, calc(62vh * ${ratio}))`, aspectRatio: ratio }}
+              >
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={product.image || index}
@@ -256,10 +275,7 @@ function ProductModal({ category, subcategory, onClose }) {
                     className="absolute inset-0"
                   >
                     {product.image ? (
-                      <>
-                        <img src={product.image} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-50" />
-                        <img src={product.image} alt={product.name} className="relative w-full h-full object-contain" />
-                      </>
+                      <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <Icon name={subcategory.icon} className="text-7xl text-secondary/60" />
@@ -302,8 +318,10 @@ function ProductModal({ category, subcategory, onClose }) {
               </div>
 
               {/* Name + actions */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-5 py-5 md:px-8">
-                <div className="min-w-0">
+              {/* w-0 min-w-full: the bar takes the image's width instead of
+                  widening the popup, and wraps when it doesn't fit. */}
+              <div className="w-0 min-w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-4 px-5 py-5 md:px-8">
+                <div className="min-w-0 flex-1 basis-56">
                   <span className="eyebrow block mb-1">
                     {category.title}
                     {product.name !== subcategory.name && ` · ${subcategory.name}`}
@@ -311,11 +329,11 @@ function ProductModal({ category, subcategory, onClose }) {
                   </span>
                   <h3 className="font-headline-lg text-xl md:text-2xl font-semibold text-primary truncate">{product.name}</h3>
                 </div>
-                <div className="flex gap-3 shrink-0">
+                <div className="flex gap-3 shrink-0 max-sm:w-full">
                   <button
                     type="button"
                     onClick={() => setView('enquiry')}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-br from-secondary to-[#A8834A] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider shadow-[0_8px_24px_rgba(197,157,95,0.3)] hover:shadow-[0_12px_32px_rgba(197,157,95,0.45)] transition-shadow cursor-pointer"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gradient-to-br from-secondary to-[#A8834A] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider shadow-[0_8px_24px_rgba(197,157,95,0.3)] hover:shadow-[0_12px_32px_rgba(197,157,95,0.45)] transition-shadow cursor-pointer"
                   >
                     <Icon name="mail" className="text-base" />
                     Enquire Now
@@ -324,7 +342,7 @@ function ProductModal({ category, subcategory, onClose }) {
                     href={whatsappUrl(whatsappMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider hover:bg-[#1EBE5A] transition-colors"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider hover:bg-[#1EBE5A] transition-colors"
                   >
                     <WhatsAppIcon className="text-base" />
                     WhatsApp
