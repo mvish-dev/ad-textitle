@@ -18,9 +18,9 @@
 // `largeImage` is the bigger version used for the category page hero and
 // the "View Products" popup.
 
-import tableClothRunnerPlacemats from '../assets/images/products/kitchen-dining/table-cloth-runner-placemats.webp'
+import tableClothRunnerPlacemats from '../assets/products/Kitchen & Dining/table-cloth-runner-placemats.jpeg'
 import fourSeaterTableCloth from '../assets/images/products/kitchen-dining/four-seater-table-cloth.webp'
-import floralPrintedTableCloth from '../assets/images/products/kitchen-dining/floral-printed-table-cloth.webp'
+import floralPrintedTableCloth from '../assets/products/Kitchen & Dining/floral-printed-table-cloth.jpeg'
 import roundTableClothFrillEdges from '../assets/images/products/kitchen-dining/round-table-cloth-frill-edges.webp'
 import roundTableClothPlainEdges from '../assets/images/products/kitchen-dining/round-table-cloth-plain-edges.webp'
 import cottonTableRunner from '../assets/images/products/kitchen-dining/cotton-table-runner.webp'

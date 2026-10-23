@@ -177,19 +177,13 @@ function ProductModal({ category, subcategory, onClose }) {
 
   const step = (dir) => setIndex((i) => (i + dir + products.length) % products.length)
 
-  // Natural aspect ratio of each photo, so the frame can match it exactly
-  // (whole image, no crop, no empty bands). Also preloads the gallery.
-  const [ratios, setRatios] = useState({})
+  // Preload the gallery so stepping between products doesn't flash.
   useEffect(() => {
     products.forEach(({ image }) => {
-      if (!image) return
-      const img = new Image()
-      img.onload = () => setRatios((r) => ({ ...r, [image]: img.naturalWidth / img.naturalHeight }))
-      img.src = image
+      if (image) new Image().src = image
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subcategory])
-  const ratio = ratios[product.image] ?? 4 / 3
 
   // Lock page scroll (Lenis + native) while open, and wire Esc / arrow keys.
   useEffect(() => {
@@ -259,11 +253,11 @@ function ProductModal({ category, subcategory, onClose }) {
         <AnimatePresence mode="wait" initial={false}>
           {view === 'gallery' ? (
             <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-              {/* Image stage: sized to the photo's own aspect ratio (capped by
-                  viewport height and width), so it shows whole and fills the frame. */}
+              {/* Image stage: fixed 4:3 frame (capped by viewport height and
+                  width) — the modal never resizes per photo; images cover it. */}
               <div
-                className="relative bg-surface-container-low overflow-hidden transition-[width] duration-300 ease-out"
-                style={{ width: `min(calc(100vw - 3rem), 64rem, calc(62vh * ${ratio}))`, aspectRatio: ratio }}
+                className="relative bg-surface-container-low overflow-hidden aspect-[4/3]"
+                style={{ width: 'min(calc(100vw - 3rem), 64rem, calc(62vh * 4 / 3))' }}
               >
                 <AnimatePresence initial={false}>
                   <motion.div
