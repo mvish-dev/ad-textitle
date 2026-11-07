@@ -12,17 +12,19 @@
 //                Empty → the popup shows the sub-category's own photo.
 //   - `sustainable: true` (sub-category): adds an eco "Sustainable" badge.
 //
-// Kitchen & Dining uses client photos (originals in src/assets/products/,
-// converted to .webp in src/assets/images/products/kitchen-dining/). The
-// other categories still use Unsplash stock imagery — swap in client photos. `image` feeds the cards;
+// Kitchen & Dining and Living & Decor (curtains, cushions) use client photos,
+// converted to .webp in src/assets/images/products/<category-id>/ (originals
+// are backed up in the cloud, not kept in the repo). Everything else still uses
+// Unsplash stock imagery — swap in client photos. `image` feeds the cards;
 // `largeImage` is the bigger version used for the category page hero and
 // the "View Products" popup.
 
-import tableClothRunnerPlacemats from '../assets/products/Kitchen & Dining/table-cloth-runner-placemats.jpeg'
-import fourSeaterTableCloth from '../assets/images/products/kitchen-dining/four-seater-table-cloth.webp'
-import floralPrintedTableCloth from '../assets/products/Kitchen & Dining/floral-printed-table-cloth.jpeg'
-import roundTableClothFrillEdges from '../assets/images/products/kitchen-dining/round-table-cloth-frill-edges.webp'
-import roundTableClothPlainEdges from '../assets/images/products/kitchen-dining/round-table-cloth-plain-edges.webp'
+import tableClothRunnerPlacemats from '../assets/images/products/kitchen-dining/table-cloth-runner-placemats.webp'
+import classicWhiteTableCover from '../assets/images/products/kitchen-dining/classic-white-table-cover.webp'
+import floralPrintedTableCloth from '../assets/images/products/kitchen-dining/floral-printed-table-cloth.webp'
+import frillEdgedSixSeaterTableCloth from '../assets/images/products/kitchen-dining/frill-edged-six-seater-table-cloth.webp'
+import partyTableCloth from '../assets/images/products/kitchen-dining/party-table-cloth.webp'
+import spookySeasonTableCover from '../assets/images/products/kitchen-dining/spooky-season-table-cover.webp'
 import cottonTableRunner from '../assets/images/products/kitchen-dining/cotton-table-runner.webp'
 import embroideredTableRunner from '../assets/images/products/kitchen-dining/embroidered-table-runner.webp'
 import printedTableRunner from '../assets/images/products/kitchen-dining/printed-table-runner.webp'
@@ -30,15 +32,32 @@ import stripedCottonTableRunner from '../assets/images/products/kitchen-dining/s
 import placematsWithNapkins from '../assets/images/products/kitchen-dining/placemats-with-napkins.webp'
 import kitchenTeaTowel from '../assets/images/products/kitchen-dining/kitchen-tea-towel.webp'
 import kitchenHandTowel from '../assets/images/products/kitchen-dining/kitchen-hand-towel.webp'
-import kitchenTerryTowel from '../assets/images/products/kitchen-dining/kitchen-terry-towel.webp'
 import terryKitchenTowel from '../assets/images/products/kitchen-dining/terry-kitchen-towel.webp'
 import waffleKitchenTowel from '../assets/images/products/kitchen-dining/waffle-kitchen-towel.webp'
-import stripedKitchenTowel from '../assets/images/products/kitchen-dining/striped-kitchen-towel.webp'
-import embroideredKitchenTowel from '../assets/images/products/kitchen-dining/embroidered-kitchen-towel.webp'
+import classicStripedKitchenTowel from '../assets/images/products/kitchen-dining/classic-striped-kitchen-towel.webp'
+import themePrintedKitchenTowel from '../assets/images/products/kitchen-dining/theme-printed-kitchen-towel.webp'
+import vintagePlaidTeaTowel from '../assets/images/products/kitchen-dining/vintage-plaid-tea-towel.webp'
 import fabricDyedSet from '../assets/images/products/kitchen-dining/fabric-dyed-set.webp'
 import floralPrintedSet from '../assets/images/products/kitchen-dining/floral-printed-set.webp'
 import apronOvenMittsComboSet from '../assets/images/products/kitchen-dining/apron-oven-mitts-combo-set.webp'
-import checkeredCottonApron from '../assets/images/products/kitchen-dining/checkered-cotton-apron.webp'
+import traditionalCheckeredApron from '../assets/images/products/kitchen-dining/traditional-checkered-apron.webp'
+import floralPrintedCurtains from '../assets/images/products/living-decor/floral-printed-curtains.webp'
+import leafPrintedCurtains from '../assets/images/products/living-decor/leaf-printed-curtains.webp'
+import printedCurtains from '../assets/images/products/living-decor/printed-curtains.webp'
+import stripeLinedCurtains from '../assets/images/products/living-decor/stripe-lined-curtains.webp'
+import curatedCushions from '../assets/images/products/living-decor/curated-cushions.webp'
+import decorativeCushionCover from '../assets/images/products/living-decor/decorative-cushion-cover.webp'
+import embroideredTextCushion from '../assets/images/products/living-decor/embroidered-text-cushion.webp'
+import floorCushions from '../assets/images/products/living-decor/floor-cushions.webp'
+import linenCushion from '../assets/images/products/living-decor/linen-cushion.webp'
+import luxuryTexturedCushionCover from '../assets/images/products/living-decor/luxury-textured-cushion-cover.webp'
+import patchworkCushions from '../assets/images/products/living-decor/patchwork-cushions.webp'
+import printedCushions from '../assets/images/products/living-decor/printed-cushions.webp'
+import statementCushion from '../assets/images/products/living-decor/statement-cushion.webp'
+import texturedCushion from '../assets/images/products/living-decor/textured-cushion.webp'
+import wovenCushion from '../assets/images/products/living-decor/woven-cushion.webp'
+import wovenCushions from '../assets/images/products/living-decor/woven-cushions.webp'
+import yarnDyedCushion from '../assets/images/products/living-decor/yarn-dyed-cushion.webp'
 
 const unsplash = (id, width) => `https://images.unsplash.com/photo-${id}?w=${width}&q=80&auto=format&fit=crop`
 const stock = (id) => ({ image: unsplash(id, 900), largeImage: unsplash(id, 2000) })
@@ -61,15 +80,16 @@ export const PRODUCT_CATEGORIES = [
         description: 'Table cloths, runners, placemats and napkins in printed, woven and embroidered finishes to dress the table for every occasion.',
         ...photo(tableClothRunnerPlacemats),
         children: [
-          { name: 'Table Cloth with Runner & Placemats', ...photo(tableClothRunnerPlacemats) },
-          { name: '4 Seater Table Cloth', ...photo(fourSeaterTableCloth) },
+          { name: 'Table Cloth with Placemat & Runner', ...photo(tableClothRunnerPlacemats) },
+          { name: 'Classic White Table Cover', ...photo(classicWhiteTableCover) },
           { name: 'Floral Printed Table Cloth', ...photo(floralPrintedTableCloth) },
-          { name: 'Round Table Cloth with Frill Edges', ...photo(roundTableClothFrillEdges) },
-          { name: 'Round Table Cloth with Plain Edges', ...photo(roundTableClothPlainEdges) },
+          { name: 'Frill Edged 6 Seater Table Cloth', ...photo(frillEdgedSixSeaterTableCloth) },
+          { name: 'Party Table Cloth', ...photo(partyTableCloth) },
+          { name: 'Spooky Season Table Cover', ...photo(spookySeasonTableCover) },
           { name: 'Cotton Table Runner', ...photo(cottonTableRunner) },
           { name: 'Embroidered Table Runner', ...photo(embroideredTableRunner) },
           { name: 'Printed Table Runner', ...photo(printedTableRunner) },
-          { name: 'Striped Cotton Table Runner', ...photo(stripedCottonTableRunner) },
+          { name: 'Stripe Designed Cotton Runner', ...photo(stripedCottonTableRunner) },
           { name: 'Placemats with Napkins', ...photo(placematsWithNapkins) },
         ],
       },
@@ -81,11 +101,11 @@ export const PRODUCT_CATEGORIES = [
         children: [
           { name: 'Kitchen Tea Towel', ...photo(kitchenTeaTowel) },
           { name: 'Kitchen Hand Towel', ...photo(kitchenHandTowel) },
-          { name: 'Kitchen Terry Towel', ...photo(kitchenTerryTowel) },
           { name: 'Terry Kitchen Towel', ...photo(terryKitchenTowel) },
           { name: 'Waffle Kitchen Towel', ...photo(waffleKitchenTowel) },
-          { name: 'Striped Kitchen Towel', ...photo(stripedKitchenTowel) },
-          { name: 'Embroidered Kitchen Towel', ...photo(embroideredKitchenTowel) },
+          { name: 'Classic Striped Kitchen Towel', ...photo(classicStripedKitchenTowel) },
+          { name: 'Theme Printed Kitchen Towel', ...photo(themePrintedKitchenTowel) },
+          { name: 'Vintage Plaid Tea Towel', ...photo(vintagePlaidTeaTowel) },
         ],
       },
       {
@@ -97,7 +117,7 @@ export const PRODUCT_CATEGORIES = [
           { name: 'Fabric Dyed Set', ...photo(fabricDyedSet) },
           { name: 'Floral Printed Set', ...photo(floralPrintedSet) },
           { name: 'Apron & Oven Mitts Combo Set', ...photo(apronOvenMittsComboSet) },
-          { name: 'Checkered Cotton Apron', ...photo(checkeredCottonApron) },
+          { name: 'Traditional Checkered Apron', ...photo(traditionalCheckeredApron) },
         ],
       },
     ],
@@ -109,21 +129,40 @@ export const PRODUCT_CATEGORIES = [
     tagline: 'Texture, drape and colour for living spaces.',
     description:
       'Curtains, cushions, throws and rugs designed to layer together — from yarn-dyed and jacquard weaves to embroidered and printed finishes.',
-    ...stock('1531877025030-f7696a50770f'),
+    ...photo(floralPrintedCurtains),
     subcategories: [
       {
         name: 'Curtains',
         icon: 'curtains',
         description: 'Drapery in printed, textured and woven designs, made for the right fall, light control and finish.',
-        ...stock('1757382603619-7682803cfc5d'),
-        children: [],
+        ...photo(floralPrintedCurtains),
+        children: [
+          { name: 'Floral Printed Curtains', ...photo(floralPrintedCurtains) },
+          { name: 'Leaf Printed Curtains', ...photo(leafPrintedCurtains) },
+          { name: 'Printed Curtains', ...photo(printedCurtains) },
+          { name: 'Stripe Lined Curtains', ...photo(stripeLinedCurtains) },
+        ],
       },
       {
         name: 'Cushions',
         icon: 'chair',
         description: 'Decorative cushion covers and fillers — printed, yarn-dyed, woven and embroidered — to accent any room.',
-        ...stock('1538577880403-f9998e75dd06'),
-        children: [],
+        ...photo(printedCushions),
+        children: [
+          { name: 'Curated Cushions', ...photo(curatedCushions) },
+          { name: 'Decorative Cushion Cover', ...photo(decorativeCushionCover) },
+          { name: 'Embroidered & Text Cushion', ...photo(embroideredTextCushion) },
+          { name: 'Floor Cushions', ...photo(floorCushions) },
+          { name: 'Linen Cushion', ...photo(linenCushion) },
+          { name: 'Luxury Textured Cushion Cover', ...photo(luxuryTexturedCushionCover) },
+          { name: 'Patchwork Cushions', ...photo(patchworkCushions) },
+          { name: 'Printed Cushions', ...photo(printedCushions) },
+          { name: 'Statement Cushion', ...photo(statementCushion) },
+          { name: 'Textured Cushion', ...photo(texturedCushion) },
+          { name: 'Woven Cushion', ...photo(wovenCushion) },
+          { name: 'Woven Cushions', ...photo(wovenCushions) },
+          { name: 'Yarn Dyed Cushion', ...photo(yarnDyedCushion) },
+        ],
       },
       {
         name: 'Throws',
