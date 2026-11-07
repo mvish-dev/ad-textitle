@@ -253,12 +253,11 @@ function ProductModal({ category, subcategory, onClose }) {
         <AnimatePresence mode="wait" initial={false}>
           {view === 'gallery' ? (
             <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-              {/* Image stage: fixed 4:3 frame (capped by viewport height and
-                  width) — the modal never resizes per photo; images cover it. */}
-              <div
-                className="relative bg-surface-container-low overflow-hidden aspect-[4/3]"
-                style={{ width: 'min(calc(100vw - 3rem), 64rem, calc(62vh * 4 / 3))' }}
-              >
+              {/* Image stage: fixed frame (4:5 on phones, 4:3 above; capped by
+                  viewport height and width) so the modal never resizes per
+                  photo. Each photo is shown whole (contain), over a blurred
+                  copy of itself that fills any leftover space. */}
+              <div className="relative bg-surface-container-low overflow-hidden aspect-[4/5] sm:aspect-[4/3] w-[min(calc(100vw_-_3rem),calc(66vh*4/5))] sm:w-[min(calc(100vw_-_3rem),64rem,calc(68vh*4/3))]">
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={product.image || index}
@@ -269,7 +268,15 @@ function ProductModal({ category, subcategory, onClose }) {
                     className="absolute inset-0"
                   >
                     {product.image ? (
-                      <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                      <>
+                        <img
+                          src={product.image}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
+                        />
+                        <img src={product.image} alt={product.name} className="relative w-full h-full object-contain" />
+                      </>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <Icon name={subcategory.icon} className="text-7xl text-secondary/60" />
@@ -313,33 +320,38 @@ function ProductModal({ category, subcategory, onClose }) {
 
               {/* Name + actions */}
               {/* w-0 min-w-full: the bar takes the image's width instead of
-                  widening the popup, and wraps when it doesn't fit. */}
-              <div className="w-0 min-w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-4 px-5 py-5 md:px-8">
-                <div className="min-w-0 flex-1 basis-56">
-                  <span className="eyebrow block mb-1">
+                  widening the popup. The name wraps (never truncates); the
+                  icon-only actions stay pinned to the right. */}
+              <div className="w-0 min-w-full flex items-center gap-3 px-4 py-3 md:px-5">
+                <div className="min-w-0 flex-1">
+                  <span className="eyebrow block mb-0.5 text-[0.62rem]! md:text-[0.68rem]!">
                     {category.title}
                     {product.name !== subcategory.name && ` · ${subcategory.name}`}
                     {hasMany && ` · ${index + 1} / ${products.length}`}
                   </span>
-                  <h3 className="font-headline-lg text-xl md:text-2xl font-semibold text-primary truncate">{product.name}</h3>
+                  <h3 className="font-headline-lg text-lg md:text-2xl font-semibold text-primary leading-snug break-words">
+                    {product.name}
+                  </h3>
                 </div>
-                <div className="flex gap-3 shrink-0 max-sm:w-full">
+                <div className="flex gap-2 shrink-0">
                   <button
                     type="button"
                     onClick={() => setView('enquiry')}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gradient-to-br from-secondary to-[#A8834A] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider shadow-[0_8px_24px_rgba(197,157,95,0.3)] hover:shadow-[0_12px_32px_rgba(197,157,95,0.45)] transition-shadow cursor-pointer"
+                    aria-label="Enquire now"
+                    title="Enquire now"
+                    className="w-11 h-11 rounded-full inline-flex items-center justify-center bg-gradient-to-br from-secondary to-[#A8834A] text-white shadow-[0_6px_18px_rgba(197,157,95,0.3)] hover:shadow-[0_10px_26px_rgba(197,157,95,0.45)] transition-shadow cursor-pointer"
                   >
-                    <Icon name="mail" className="text-base" />
-                    Enquire Now
+                    <Icon name="mail" className="text-xl" />
                   </button>
                   <a
                     href={whatsappUrl(whatsappMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white font-label-md text-[0.72rem] font-semibold uppercase tracking-wider hover:bg-[#1EBE5A] transition-colors"
+                    aria-label="Enquire on WhatsApp"
+                    title="Enquire on WhatsApp"
+                    className="w-11 h-11 rounded-full inline-flex items-center justify-center bg-[#25D366] text-white hover:bg-[#1EBE5A] transition-colors"
                   >
-                    <WhatsAppIcon className="text-base" />
-                    WhatsApp
+                    <WhatsAppIcon className="text-xl" />
                   </a>
                 </div>
               </div>
