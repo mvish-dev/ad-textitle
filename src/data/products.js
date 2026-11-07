@@ -6,7 +6,8 @@
 // render whatever is here:
 //   - `image`    (category, sub-category or child): import a .webp from
 //                src/assets/images/products/ and set it here. Without one, a
-//                styled placeholder (the `icon` on a tinted panel) is shown.
+//                "Coming Soon" placeholder (the `icon` on a tinted panel) is
+//                shown. Only client photos go on sub-categories and children.
 //   - `children` (sub-category): the products shown in its "View Products"
 //                popup, each { name: 'Terry Towels', image: towelsPhoto }.
 //                Empty → the popup shows the sub-category's own photo.
@@ -14,8 +15,9 @@
 //
 // Kitchen & Dining and Living & Decor (curtains, cushions) use client photos,
 // converted to .webp in src/assets/images/products/<category-id>/ (originals
-// are backed up in the cloud, not kept in the repo). Everything else still uses
-// Unsplash stock imagery — swap in client photos. `image` feeds the cards;
+// are backed up in the cloud, not kept in the repo). The other category
+// heroes/cards still use Unsplash stock imagery; their sub-categories show
+// "Coming Soon" until client photos arrive. `image` feeds the cards;
 // `largeImage` is the bigger version used for the category page hero and
 // the "View Products" popup.
 
@@ -168,14 +170,12 @@ export const PRODUCT_CATEGORIES = [
         name: 'Throws',
         icon: 'airline_seat_flat',
         description: 'Soft, versatile throws that add warmth and texture to sofas, beds and reading corners.',
-        ...stock('1674475760738-8c7af859f821'),
         children: [],
       },
       {
         name: 'Rugs',
         icon: 'texture',
         description: 'Woven rugs and mats in durable constructions, designed to ground a room with colour and pattern.',
-        ...stock('1603913996638-c01100417b4a'),
         children: [],
       },
     ],
@@ -193,7 +193,6 @@ export const PRODUCT_CATEGORIES = [
         name: 'Shape Cushions',
         icon: 'toys',
         description: 'Fun, character and shape cushions in soft, skin-friendly fabrics — made to be hugged, washed and loved.',
-        ...stock('1780399382189-d417eb8bd907'),
         children: [],
       },
     ],
@@ -211,7 +210,6 @@ export const PRODUCT_CATEGORIES = [
         name: 'Blankets',
         icon: 'camping',
         description: 'Picnic, travel and outdoor blankets that balance warmth, durability and easy care.',
-        ...stock('1593034509785-5b17ba49f683'),
         children: [],
       },
     ],
@@ -229,21 +227,18 @@ export const PRODUCT_CATEGORIES = [
         name: 'Socks',
         icon: 'steps',
         description: 'Everyday, sports and performance socks with cushioned, plain and jacquard constructions.',
-        ...stock('1615486364462-ef6363adbc18'),
         children: [],
       },
       {
         name: 'Arm Sleeves',
         icon: 'sports_handball',
         description: 'Compression and sun-protective arm sleeves built for stretch, recovery and all-day comfort.',
-        ...stock('1749094697076-ca9fb48ebe70'),
         children: [],
       },
       {
         name: 'Bamboo Arm Sleeves',
         icon: 'eco',
         description: 'Arm sleeves knitted from bamboo blends — naturally breathable, soft and cool against the skin.',
-        ...stock('1532920161727-344adb090f7f'),
         children: [],
         sustainable: true,
       },
@@ -251,7 +246,6 @@ export const PRODUCT_CATEGORIES = [
         name: 'Bamboo Socks',
         icon: 'eco',
         description: 'Bamboo-blend socks that stay soft, breathable and fresh through the day.',
-        ...stock('1640026199235-c24aa417b552'),
         children: [],
         sustainable: true,
       },
@@ -259,7 +253,6 @@ export const PRODUCT_CATEGORIES = [
         name: 'Tights',
         icon: 'eco',
         description: 'Comfortable, sustainable tights with a smooth knit and lasting stretch.',
-        ...stock('1761393956376-98c280da9698'),
         children: [],
         sustainable: true,
       },

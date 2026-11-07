@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Icon from '../ui/Icon.jsx'
 import WhatsAppIcon from '../ui/WhatsAppIcon.jsx'
+import ProductMedia from './ProductMedia.jsx'
 import { getLenis } from '../../lib/lenis.js'
 import { API_BASE_URL, whatsappUrl } from '../../lib/contact.js'
 
@@ -278,9 +279,7 @@ function ProductModal({ category, subcategory, onClose }) {
                         <img src={product.image} alt={product.name} className="relative w-full h-full object-contain" />
                       </>
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Icon name={subcategory.icon} className="text-7xl text-secondary/60" />
-                      </div>
+                      <ProductMedia icon={subcategory.icon} alt={product.name} />
                     )}
                   </motion.div>
                 </AnimatePresence>

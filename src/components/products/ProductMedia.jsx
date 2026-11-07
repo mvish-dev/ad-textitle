@@ -1,8 +1,8 @@
 import Icon from '../ui/Icon.jsx'
 
 // Shows the product photo when one has been supplied, otherwise a tinted
-// placeholder built from the item's icon so the layout reads as finished
-// while photography is still pending. Hover zoom keys off a `group` parent.
+// "Coming Soon" placeholder built from the item's icon so the layout reads as
+// finished while photography is still pending. Hover zoom keys off a `group` parent.
 function ProductMedia({ image, icon, alt, size = 'lg', className = '' }) {
   if (image) {
     return (
@@ -17,7 +17,7 @@ function ProductMedia({ image, icon, alt, size = 'lg', className = '' }) {
 
   return (
     <div
-      className={`relative w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-container-low via-background to-secondary/10 ${className}`}
+      className={`relative w-full h-full flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-surface-container-low via-background to-secondary/10 ${className}`}
       role="img"
       aria-label={`${alt} — photo coming soon`}
     >
@@ -36,6 +36,13 @@ function ProductMedia({ image, icon, alt, size = 'lg', className = '' }) {
       >
         <Icon name={icon} className={`text-secondary ${size === 'lg' ? 'text-4xl' : 'text-[1.75rem]'}`} />
       </div>
+      <span
+        className={`relative font-label-md font-semibold uppercase tracking-[0.2em] text-secondary ${
+          size === 'lg' ? 'text-[0.75rem]' : 'text-[0.65rem]'
+        }`}
+      >
+        Coming Soon
+      </span>
     </div>
   )
 }
