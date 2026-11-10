@@ -13,7 +13,7 @@
 //                Empty → the popup shows the sub-category's own photo.
 //   - `sustainable: true` (sub-category): adds an eco "Sustainable" badge.
 //
-// Kitchen & Dining and Living & Decor (curtains, cushions) use client photos,
+// Kitchen & Dining, Living & Decor (curtains, cushions) and Kids & Nursery use client photos,
 // converted to .webp in src/assets/images/products/<category-id>/ (originals
 // are backed up in the cloud, not kept in the repo). The other category
 // heroes/cards still use Unsplash stock imagery; their sub-categories show
@@ -60,6 +60,11 @@ import texturedCushion from '../assets/images/products/living-decor/textured-cus
 import wovenCushion from '../assets/images/products/living-decor/woven-cushion.webp'
 import wovenCushions from '../assets/images/products/living-decor/woven-cushions.webp'
 import yarnDyedCushion from '../assets/images/products/living-decor/yarn-dyed-cushion.webp'
+import shapedCushion from '../assets/images/products/kids-nursery/shaped-cushion.webp'
+import cushionToys from '../assets/images/products/kids-nursery/cushion-toys.webp'
+import shapeToys from '../assets/images/products/kids-nursery/shape-toys.webp'
+import hangingToys from '../assets/images/products/kids-nursery/hanging-toys.webp'
+import hangingPocketOrganisers from '../assets/images/products/kids-nursery/hanging-pocket-organisers.webp'
 
 const unsplash = (id, width) => `https://images.unsplash.com/photo-${id}?w=${width}&q=80&auto=format&fit=crop`
 const stock = (id) => ({ image: unsplash(id, 900), largeImage: unsplash(id, 2000) })
@@ -187,13 +192,20 @@ export const PRODUCT_CATEGORIES = [
     tagline: 'Soft, playful pieces made with care for little ones.',
     description:
       'Playful shaped cushions and nursery textiles made from skin-friendly materials, built to the safety and compliance standards children’s products demand.',
-    ...stock('1780399382189-d417eb8bd907'),
+    ...photo(shapedCushion),
     subcategories: [
       {
         name: 'Shape Cushions',
         icon: 'toys',
         description: 'Fun, character and shape cushions in soft, skin-friendly fabrics — made to be hugged, washed and loved.',
-        children: [],
+        ...photo(shapedCushion),
+        children: [
+          { name: 'Shaped Cushions', ...photo(shapedCushion) },
+          { name: 'Cushion Toys', ...photo(cushionToys) },
+          { name: 'Shape Toys', ...photo(shapeToys) },
+          { name: 'Hanging Toys', ...photo(hangingToys) },
+          { name: 'Hanging Pocket Organisers', ...photo(hangingPocketOrganisers) },
+        ],
       },
     ],
   },
