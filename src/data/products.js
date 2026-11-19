@@ -13,7 +13,7 @@
 //                Empty → the popup shows the sub-category's own photo.
 //   - `sustainable: true` (sub-category): adds an eco "Sustainable" badge.
 //
-// Kitchen & Dining, Living & Decor (curtains, cushions) and Kids & Nursery use client photos,
+// Kitchen & Dining, Living & Decor (curtains, cushions), Kids & Nursery and Performance Knitwear use client photos,
 // converted to .webp in src/assets/images/products/<category-id>/ (originals
 // are backed up in the cloud, not kept in the repo). The other category
 // heroes/cards still use Unsplash stock imagery; their sub-categories show
@@ -43,28 +43,71 @@ import fabricDyedSet from '../assets/images/products/kitchen-dining/fabric-dyed-
 import floralPrintedSet from '../assets/images/products/kitchen-dining/floral-printed-set.webp'
 import apronOvenMittsComboSet from '../assets/images/products/kitchen-dining/apron-oven-mitts-combo-set.webp'
 import traditionalCheckeredApron from '../assets/images/products/kitchen-dining/traditional-checkered-apron.webp'
+import blackCheckeredApron from '../assets/images/products/kitchen-dining/black-checkered-apron.webp'
+import blackCheckeredApron2 from '../assets/images/products/kitchen-dining/black-checkered-apron-2.webp'
+import blackApron from '../assets/images/products/kitchen-dining/black-apron.webp'
+import blackApron2 from '../assets/images/products/kitchen-dining/black-apron-2.webp'
+import brownCheckeredApron from '../assets/images/products/kitchen-dining/brown-checkered-apron.webp'
+import brownWhiteCheckeredApron from '../assets/images/products/kitchen-dining/brown-white-checkered-apron.webp'
+import greenCheckeredApron from '../assets/images/products/kitchen-dining/green-checkered-apron.webp'
+import oliveGreenCheckeredApron from '../assets/images/products/kitchen-dining/olive-green-checkered-apron.webp'
+import oliveGreenLinePatternApron from '../assets/images/products/kitchen-dining/olive-green-line-pattern-apron.webp'
+import orangeBoxPatternApron from '../assets/images/products/kitchen-dining/orange-box-pattern-apron.webp'
+import pistaGreenApron from '../assets/images/products/kitchen-dining/pista-green-apron.webp'
+import pistaGreenApron2 from '../assets/images/products/kitchen-dining/pista-green-apron-2.webp'
+import pistaGreenApron3 from '../assets/images/products/kitchen-dining/pista-green-apron-3.webp'
+import pistaGreenApron4 from '../assets/images/products/kitchen-dining/pista-green-apron-4.webp'
+import redBoxPatternApron from '../assets/images/products/kitchen-dining/red-box-pattern-apron.webp'
+import redBoxBlueLineApron from '../assets/images/products/kitchen-dining/red-box-blue-line-apron.webp'
+import redCheckeredApron from '../assets/images/products/kitchen-dining/red-checkered-apron.webp'
+import redFloralApron from '../assets/images/products/kitchen-dining/red-floral-apron.webp'
+import saffronApron from '../assets/images/products/kitchen-dining/saffron-apron.webp'
+import sandalApron from '../assets/images/products/kitchen-dining/sandal-apron.webp'
+import sandalRedFloralPocketApron from '../assets/images/products/kitchen-dining/sandal-red-floral-pocket-apron.webp'
+import whiteBlueLeafApron from '../assets/images/products/kitchen-dining/white-blue-leaf-apron.webp'
 import floralPrintedCurtains from '../assets/images/products/living-decor/floral-printed-curtains.webp'
 import leafPrintedCurtains from '../assets/images/products/living-decor/leaf-printed-curtains.webp'
 import printedCurtains from '../assets/images/products/living-decor/printed-curtains.webp'
 import stripeLinedCurtains from '../assets/images/products/living-decor/stripe-lined-curtains.webp'
 import curatedCushions from '../assets/images/products/living-decor/curated-cushions.webp'
-import decorativeCushionCover from '../assets/images/products/living-decor/decorative-cushion-cover.webp'
-import embroideredTextCushion from '../assets/images/products/living-decor/embroidered-text-cushion.webp'
+import embroideredTextCushions from '../assets/images/products/living-decor/embroidered-text-cushions.webp'
+import embroideredTextCushions2 from '../assets/images/products/living-decor/embroidered-text-cushions-2.webp'
 import floorCushions from '../assets/images/products/living-decor/floor-cushions.webp'
-import linenCushion from '../assets/images/products/living-decor/linen-cushion.webp'
-import luxuryTexturedCushionCover from '../assets/images/products/living-decor/luxury-textured-cushion-cover.webp'
+import floorCushions2 from '../assets/images/products/living-decor/floor-cushions-2.webp'
+import floorCushions3 from '../assets/images/products/living-decor/floor-cushions-3.webp'
+import jacquardCushions from '../assets/images/products/living-decor/jacquard-cushions.webp'
+import linenCushions from '../assets/images/products/living-decor/linen-cushions.webp'
 import patchworkCushions from '../assets/images/products/living-decor/patchwork-cushions.webp'
 import printedCushions from '../assets/images/products/living-decor/printed-cushions.webp'
-import statementCushion from '../assets/images/products/living-decor/statement-cushion.webp'
-import texturedCushion from '../assets/images/products/living-decor/textured-cushion.webp'
-import wovenCushion from '../assets/images/products/living-decor/woven-cushion.webp'
+import statementCushions from '../assets/images/products/living-decor/statement-cushions.webp'
+import texturedCushions from '../assets/images/products/living-decor/textured-cushions.webp'
 import wovenCushions from '../assets/images/products/living-decor/woven-cushions.webp'
-import yarnDyedCushion from '../assets/images/products/living-decor/yarn-dyed-cushion.webp'
+import yarnDyedCushions from '../assets/images/products/living-decor/yarn-dyed-cushions.webp'
 import shapedCushion from '../assets/images/products/kids-nursery/shaped-cushion.webp'
 import cushionToys from '../assets/images/products/kids-nursery/cushion-toys.webp'
 import shapeToys from '../assets/images/products/kids-nursery/shape-toys.webp'
 import hangingToys from '../assets/images/products/kids-nursery/hanging-toys.webp'
 import hangingPocketOrganisers from '../assets/images/products/kids-nursery/hanging-pocket-organisers.webp'
+import cottonAnkleSocks from '../assets/images/products/performance-knitwear/cotton-ankle-socks.webp'
+import cottonAnkleSocks2 from '../assets/images/products/performance-knitwear/cotton-ankle-socks-2.webp'
+import cottonAnkleSocks3 from '../assets/images/products/performance-knitwear/cotton-ankle-socks-3.webp'
+import cottonQuarterSocks from '../assets/images/products/performance-knitwear/cotton-quarter-socks.webp'
+import cottonQuarterSocks2 from '../assets/images/products/performance-knitwear/cotton-quarter-socks-2.webp'
+import cottonQuarterSocks3 from '../assets/images/products/performance-knitwear/cotton-quarter-socks-3.webp'
+import kidsSocks from '../assets/images/products/performance-knitwear/kids-socks.webp'
+import kidsSocks2 from '../assets/images/products/performance-knitwear/kids-socks-2.webp'
+import kidsSocks3 from '../assets/images/products/performance-knitwear/kids-socks-3.webp'
+import kidsSocks4 from '../assets/images/products/performance-knitwear/kids-socks-4.webp'
+import bambooArmSleeve from '../assets/images/products/performance-knitwear/bamboo-arm-sleeve.webp'
+import bambooArmSleeve2 from '../assets/images/products/performance-knitwear/bamboo-arm-sleeve-2.webp'
+import bambooAnkleSocks from '../assets/images/products/performance-knitwear/bamboo-ankle-socks.webp'
+import bambooAnkleSocks2 from '../assets/images/products/performance-knitwear/bamboo-ankle-socks-2.webp'
+import bambooAnkleSocks3 from '../assets/images/products/performance-knitwear/bamboo-ankle-socks-3.webp'
+import bambooQuarterSocks from '../assets/images/products/performance-knitwear/bamboo-quarter-socks.webp'
+import bambooQuarterSocks2 from '../assets/images/products/performance-knitwear/bamboo-quarter-socks-2.webp'
+import bambooQuarterSocks3 from '../assets/images/products/performance-knitwear/bamboo-quarter-socks-3.webp'
+import bambooTerrySocks from '../assets/images/products/performance-knitwear/bamboo-terry-socks.webp'
+import bambooTerrySocks2 from '../assets/images/products/performance-knitwear/bamboo-terry-socks-2.webp'
 
 const unsplash = (id, width) => `https://images.unsplash.com/photo-${id}?w=${width}&q=80&auto=format&fit=crop`
 const stock = (id) => ({ image: unsplash(id, 900), largeImage: unsplash(id, 2000) })
@@ -125,6 +168,28 @@ export const PRODUCT_CATEGORIES = [
           { name: 'Floral Printed Set', ...photo(floralPrintedSet) },
           { name: 'Apron & Oven Mitts Combo Set', ...photo(apronOvenMittsComboSet) },
           { name: 'Traditional Checkered Apron', ...photo(traditionalCheckeredApron) },
+          { name: 'Black Checkered Apron', ...photo(blackCheckeredApron) },
+          { name: 'Black Checkered Apron', ...photo(blackCheckeredApron2) },
+          { name: 'Black Apron', ...photo(blackApron) },
+          { name: 'Black Apron', ...photo(blackApron2) },
+          { name: 'Brown Checkered Apron', ...photo(brownCheckeredApron) },
+          { name: 'Brown & White Checkered Apron', ...photo(brownWhiteCheckeredApron) },
+          { name: 'Green Checkered Apron', ...photo(greenCheckeredApron) },
+          { name: 'Olive Green Checkered Apron', ...photo(oliveGreenCheckeredApron) },
+          { name: 'Olive Green Line Pattern Apron', ...photo(oliveGreenLinePatternApron) },
+          { name: 'Orange Box Pattern Apron', ...photo(orangeBoxPatternApron) },
+          { name: 'Pista Green Apron', ...photo(pistaGreenApron) },
+          { name: 'Pista Green Apron', ...photo(pistaGreenApron2) },
+          { name: 'Pista Green Apron', ...photo(pistaGreenApron3) },
+          { name: 'Pista Green Apron', ...photo(pistaGreenApron4) },
+          { name: 'Red Box Pattern Apron', ...photo(redBoxPatternApron) },
+          { name: 'Red Box with Blue Line Apron', ...photo(redBoxBlueLineApron) },
+          { name: 'Red Checkered Apron', ...photo(redCheckeredApron) },
+          { name: 'Red Floral Apron', ...photo(redFloralApron) },
+          { name: 'Saffron Apron', ...photo(saffronApron) },
+          { name: 'Sandal Apron', ...photo(sandalApron) },
+          { name: 'Sandal Apron with Red Floral Pocket', ...photo(sandalRedFloralPocketApron) },
+          { name: 'White with Blue Leaf Apron', ...photo(whiteBlueLeafApron) },
         ],
       },
     ],
@@ -157,18 +222,19 @@ export const PRODUCT_CATEGORIES = [
         ...photo(printedCushions),
         children: [
           { name: 'Curated Cushions', ...photo(curatedCushions) },
-          { name: 'Decorative Cushion Cover', ...photo(decorativeCushionCover) },
-          { name: 'Embroidered & Text Cushion', ...photo(embroideredTextCushion) },
+          { name: 'Embroidered & Text Cushions', ...photo(embroideredTextCushions) },
+          { name: 'Embroidered & Text Cushions', ...photo(embroideredTextCushions2) },
           { name: 'Floor Cushions', ...photo(floorCushions) },
-          { name: 'Linen Cushion', ...photo(linenCushion) },
-          { name: 'Luxury Textured Cushion Cover', ...photo(luxuryTexturedCushionCover) },
+          { name: 'Floor Cushions', ...photo(floorCushions2) },
+          { name: 'Floor Cushions', ...photo(floorCushions3) },
+          { name: 'Jacquard Cushions', ...photo(jacquardCushions) },
+          { name: 'Linen Cushions', ...photo(linenCushions) },
           { name: 'Patchwork Cushions', ...photo(patchworkCushions) },
           { name: 'Printed Cushions', ...photo(printedCushions) },
-          { name: 'Statement Cushion', ...photo(statementCushion) },
-          { name: 'Textured Cushion', ...photo(texturedCushion) },
-          { name: 'Woven Cushion', ...photo(wovenCushion) },
+          { name: 'Statement Cushions', ...photo(statementCushions) },
+          { name: 'Textured Cushions', ...photo(texturedCushions) },
           { name: 'Woven Cushions', ...photo(wovenCushions) },
-          { name: 'Yarn Dyed Cushion', ...photo(yarnDyedCushion) },
+          { name: 'Yarn Dyed Cushions', ...photo(yarnDyedCushions) },
         ],
       },
       {
@@ -233,13 +299,25 @@ export const PRODUCT_CATEGORIES = [
     tagline: 'Engineered knits for movement — including a sustainable bamboo range.',
     description:
       'Socks, arm sleeves and tights knitted on our in-house single-cylinder machines, with a sustainable range in bamboo blends for breathability and natural softness.',
-    ...stock('1582966772680-860e372bb558'),
+    ...photo(bambooArmSleeve),
     subcategories: [
       {
         name: 'Socks',
         icon: 'steps',
         description: 'Everyday, sports and performance socks with cushioned, plain and jacquard constructions.',
-        children: [],
+        ...photo(cottonAnkleSocks),
+        children: [
+          { name: 'Cotton Ankle Socks', ...photo(cottonAnkleSocks) },
+          { name: 'Cotton Ankle Socks', ...photo(cottonAnkleSocks2) },
+          { name: 'Cotton Ankle Socks', ...photo(cottonAnkleSocks3) },
+          { name: 'Cotton Quarter Socks', ...photo(cottonQuarterSocks) },
+          { name: 'Cotton Quarter Socks', ...photo(cottonQuarterSocks2) },
+          { name: 'Cotton Quarter Socks', ...photo(cottonQuarterSocks3) },
+          { name: 'Kids Socks', ...photo(kidsSocks) },
+          { name: 'Kids Socks', ...photo(kidsSocks2) },
+          { name: 'Kids Socks', ...photo(kidsSocks3) },
+          { name: 'Kids Socks', ...photo(kidsSocks4) },
+        ],
       },
       {
         name: 'Arm Sleeves',
@@ -251,14 +329,28 @@ export const PRODUCT_CATEGORIES = [
         name: 'Bamboo Arm Sleeves',
         icon: 'eco',
         description: 'Arm sleeves knitted from bamboo blends — naturally breathable, soft and cool against the skin.',
-        children: [],
+        ...photo(bambooArmSleeve),
+        children: [
+          { name: 'Bamboo Arm Sleeves', ...photo(bambooArmSleeve) },
+          { name: 'Bamboo Arm Sleeves', ...photo(bambooArmSleeve2) },
+        ],
         sustainable: true,
       },
       {
         name: 'Bamboo Socks',
         icon: 'eco',
         description: 'Bamboo-blend socks that stay soft, breathable and fresh through the day.',
-        children: [],
+        ...photo(bambooAnkleSocks),
+        children: [
+          { name: 'Bamboo Ankle Socks', ...photo(bambooAnkleSocks) },
+          { name: 'Bamboo Ankle Socks', ...photo(bambooAnkleSocks2) },
+          { name: 'Bamboo Ankle Socks', ...photo(bambooAnkleSocks3) },
+          { name: 'Bamboo Quarter Socks', ...photo(bambooQuarterSocks) },
+          { name: 'Bamboo Quarter Socks', ...photo(bambooQuarterSocks2) },
+          { name: 'Bamboo Quarter Socks', ...photo(bambooQuarterSocks3) },
+          { name: 'Bamboo Terry Socks', ...photo(bambooTerrySocks) },
+          { name: 'Bamboo Terry Socks', ...photo(bambooTerrySocks2) },
+        ],
         sustainable: true,
       },
       {

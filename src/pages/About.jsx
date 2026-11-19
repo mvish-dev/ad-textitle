@@ -84,6 +84,12 @@ function About() {
   const timelineListRef = useRef(null)
   const timelineRailTrackRef = useRef(null)
   const timelineRailFillRef = useRef(null)
+  // Below lg the next milestone only peeks in from the edge, so reveal each
+  // as soon as any of it is on screen — otherwise the peeking one stays
+  // invisible until it's well into view.
+  const [timelineRevealAmount] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches ? 0.4 : 0
+  )
 
   // Pause the inline story video once its card scrolls out of view
   useEffect(() => {
@@ -99,8 +105,8 @@ function About() {
     return () => observer.disconnect()
   }, [isVideoActive])
 
-  // Horizontal milestone rail, styled after the Home journey row. On desktop
-  // the section pins and the row slides sideways as the page scrolls.
+  // Horizontal milestone rail, styled after the Home journey row. The
+  // section pins and the row slides sideways as the page scrolls.
   useGSAP(
     () => {
       const section = timelineRef.current
@@ -131,7 +137,7 @@ function About() {
 
       const mm = gsap.matchMedia()
 
-      mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.set(fill, { scaleX: 0, transformOrigin: 'left center' })
         gsap.set(bubbles, { backgroundColor: '#ffffff', borderColor: 'rgba(197, 157, 95, 0.3)', boxShadow: 'none', scale: 1 })
 
@@ -146,6 +152,7 @@ function About() {
             end: () => `+=${Math.max(distance(), window.innerHeight * 0.8)}`,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
@@ -173,8 +180,8 @@ function About() {
         })
       })
 
-      // Mobile / reduced motion: native swipeable row, rail shown complete
-      mm.add('(max-width: 1023px), (prefers-reduced-motion: reduce)', () => {
+      // Reduced motion: native swipeable row, rail shown complete
+      mm.add('(prefers-reduced-motion: reduce)', () => {
         gsap.set(fill, { scaleX: 1 })
       })
 
@@ -309,7 +316,7 @@ function About() {
           page's flex column (same as Home). */}
       <div>
       <section
-        className="pt-24 pb-32 lg:pt-24 lg:pb-36 lg:h-screen lg:flex lg:flex-col lg:justify-center bg-white overflow-hidden"
+        className="pt-24 pb-32 motion-safe:pb-16 lg:motion-safe:pb-36 motion-safe:h-svh motion-safe:flex motion-safe:flex-col motion-safe:justify-center bg-white overflow-hidden"
         id="journey"
         ref={timelineRef}
       >
@@ -323,9 +330,10 @@ function About() {
           </div>
         </Container>
 
-        {/* Below lg this is a native swipeable row; on lg+ three milestones
-            fill the container width and GSAP slides the row to reveal the rest. */}
-        <div className="overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory scroll-pl-margin-mobile md:scroll-pl-margin-desktop lg:snap-none">
+        {/* GSAP pins the section and slides the row as the page scrolls (on
+            lg+ three milestones fill the container width). With reduced
+            motion it's a native swipeable row instead. */}
+        <div className="no-scrollbar motion-reduce:overflow-x-auto motion-reduce:snap-x motion-reduce:snap-mandatory motion-reduce:scroll-pl-margin-mobile motion-reduce:md:scroll-pl-margin-desktop">
           <div
             ref={timelineListRef}
             className="relative flex w-max gap-8 lg:gap-12 px-margin-mobile md:px-margin-desktop lg:px-[max(64px,calc((100vw-1280px)/2+64px))]"
@@ -343,7 +351,7 @@ function About() {
                 key={event.year}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: timelineRevealAmount }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="milestone-node relative w-[260px] md:w-[300px] lg:w-[calc((min(100vw,1280px)-224px)/3)] shrink-0 snap-start"
               >

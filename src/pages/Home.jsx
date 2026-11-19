@@ -224,6 +224,12 @@ function Home() {
   const journeyListRef = useRef(null)
   const journeyRailTrackRef = useRef(null)
   const journeyRailFillRef = useRef(null)
+  // Below lg the next step only peeks in from the edge, so reveal each one
+  // as soon as any of it is on screen — otherwise the peeking step stays
+  // invisible until it's well into view.
+  const [journeyRevealAmount] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches ? 0.4 : 0
+  )
 
   // Autoplay the hero carousel. Keyed on the current slide so a manual
   // arrow click restarts the countdown instead of jumping again right away.
@@ -270,9 +276,9 @@ function Home() {
 
       const mm = gsap.matchMedia()
 
-      // Desktop: pin the section and translate the row sideways as the page
-      // scrolls vertically, so the journey reads left-to-right.
-      mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      // Pin the section and translate the row sideways as the page scrolls
+      // vertically (phones included), so the journey reads left-to-right.
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
         const distance = () => Math.max(0, list.scrollWidth - window.innerWidth)
 
         gsap.set(fill, { scaleX: 0, transformOrigin: 'left center' })
@@ -291,6 +297,7 @@ function Home() {
             end: () => `+=${distance()}`,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
@@ -320,9 +327,9 @@ function Home() {
         })
       })
 
-      // Mobile / reduced motion: the row is a native swipeable scroller,
-      // so the rail is simply shown complete.
-      mm.add('(max-width: 1023px), (prefers-reduced-motion: reduce)', () => {
+      // Reduced motion: the row is a native swipeable scroller, so the rail
+      // is simply shown complete.
+      mm.add('(prefers-reduced-motion: reduce)', () => {
         gsap.set(fill, { scaleX: 1 })
       })
 
@@ -468,7 +475,7 @@ function Home() {
       <div>
       <section
         ref={journeySectionRef}
-        className="py-24 lg:py-0 lg:pt-24 lg:h-screen lg:flex lg:flex-col lg:justify-center bg-primary text-white relative overflow-hidden"
+        className="py-24 motion-safe:py-0 motion-safe:pt-24 motion-safe:h-svh motion-safe:flex motion-safe:flex-col motion-safe:justify-center bg-primary text-white relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-radial-gradient from-secondary/5 to-transparent pointer-events-none" />
         <Container>
@@ -479,9 +486,10 @@ function Home() {
           </div>
         </Container>
 
-        {/* Below lg this is a native swipeable row; on lg+ GSAP pins the
-            section and translates the row itself, so overflow stays hidden. */}
-        <div className="overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory scroll-pl-margin-mobile md:scroll-pl-margin-desktop lg:snap-none">
+        {/* GSAP pins the section and translates the row itself as the page
+            scrolls, so overflow stays hidden. With reduced motion it's a
+            native swipeable row instead. */}
+        <div className="no-scrollbar motion-reduce:overflow-x-auto motion-reduce:snap-x motion-reduce:snap-mandatory motion-reduce:scroll-pl-margin-mobile motion-reduce:md:scroll-pl-margin-desktop">
           <div
             ref={journeyListRef}
             className="relative flex w-max gap-8 lg:gap-12 px-margin-mobile md:px-margin-desktop lg:px-[max(64px,calc((100vw-1280px)/2+64px))]"
@@ -499,7 +507,7 @@ function Home() {
                 key={step.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: journeyRevealAmount }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="journey-step-node relative w-[260px] md:w-[300px] shrink-0 snap-start"
               >

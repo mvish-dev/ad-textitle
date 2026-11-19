@@ -173,16 +173,53 @@ function ProductModal({ category, subcategory, onClose }) {
   const [index, setIndex] = useState(0)
   const [view, setView] = useState('gallery') // gallery | enquiry
   const closeRef = useRef(null)
+  const stripRef = useRef(null)
+  const touchRef = useRef(null)
   const product = products[index]
   const hasMany = products.length > 1
 
   const step = (dir) => setIndex((i) => (i + dir + products.length) % products.length)
 
-  // Preload the gallery so stepping between products doesn't flash.
+  // Swipe left/right on the photo to step (phones); mostly-vertical drags
+  // are left alone so the popup can still scroll.
+  const onTouchStart = (e) => {
+    const t = e.touches[0]
+    touchRef.current = { x: t.clientX, y: t.clientY }
+  }
+  const onTouchEnd = (e) => {
+    if (!touchRef.current) return
+    const t = e.changedTouches[0]
+    const dx = t.clientX - touchRef.current.x
+    const dy = t.clientY - touchRef.current.y
+    touchRef.current = null
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1)
+  }
+
+  // Keep the active thumbnail centred in the phone strip. Scrolls the strip
+  // only (not scrollIntoView, which would also scroll the popup/page).
   useEffect(() => {
-    products.forEach(({ image }) => {
-      if (image) new Image().src = image
+    const strip = stripRef.current
+    const thumb = strip?.children[index]
+    if (!thumb) return
+    strip.scrollTo({ left: thumb.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2, behavior: 'smooth' })
+  }, [index, view])
+
+  // Preload the gallery so stepping between products doesn't flash, and
+  // once loaded, pick the phone frame shape from the photos: portrait if
+  // most are portrait (e.g. aprons), else landscape like the desktop frame.
+  const [portrait, setPortrait] = useState(false)
+  useEffect(() => {
+    const imgs = products.filter((p) => p.image).map((p) => Object.assign(new Image(), { src: p.image }))
+    const settle = () => {
+      if (!imgs.every((img) => img.complete)) return
+      const loaded = imgs.filter((img) => img.naturalWidth)
+      setPortrait(loaded.filter((img) => img.naturalHeight > img.naturalWidth).length * 2 > loaded.length)
+    }
+    imgs.forEach((img) => {
+      img.onload = settle
+      img.onerror = settle
     })
+    settle()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subcategory])
 
@@ -254,11 +291,19 @@ function ProductModal({ category, subcategory, onClose }) {
         <AnimatePresence mode="wait" initial={false}>
           {view === 'gallery' ? (
             <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-              {/* Image stage: fixed frame (4:5 on phones, 4:3 above; capped by
-                  viewport height and width) so the modal never resizes per
-                  photo. Each photo is shown whole (contain), over a blurred
+              {/* Image stage: fixed frame (4:3, or 4:5 on phones for portrait
+                  galleries; capped by viewport height and width) so the modal
+                  never resizes per photo. Each photo is shown whole (contain), over a blurred
                   copy of itself that fills any leftover space. */}
-              <div className="relative bg-surface-container-low overflow-hidden aspect-[4/5] sm:aspect-[4/3] w-[min(calc(100vw_-_3rem),calc(66vh*4/5))] sm:w-[min(calc(100vw_-_3rem),64rem,calc(68vh*4/3))]">
+              <div
+                onTouchStart={hasMany ? onTouchStart : undefined}
+                onTouchEnd={hasMany ? onTouchEnd : undefined}
+                className={`relative bg-surface-container-low overflow-hidden sm:aspect-[4/3] sm:w-[min(calc(100vw_-_3rem),64rem,calc(68vh*4/3))] ${
+                  portrait
+                    ? 'aspect-[4/5] w-[min(calc(100vw_-_3rem),calc(66vh*4/5))]'
+                    : 'aspect-[4/3] w-[min(calc(100vw_-_3rem),calc(66vh*4/3))]'
+                }`}
+              >
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={product.image || index}
@@ -302,10 +347,11 @@ function ProductModal({ category, subcategory, onClose }) {
                     >
                       <Icon name="chevron_right" />
                     </button>
-                    <div className="absolute bottom-3 inset-x-0 z-10 flex justify-center gap-1.5">
+                    {/* Dots on tablet/desktop; phones get the thumbnail strip below. */}
+                    <div className="absolute bottom-3 inset-x-0 z-10 hidden sm:flex justify-center gap-1.5">
                       {products.map((p, i) => (
                         <button
-                          key={p.name}
+                          key={`${p.name}-${i}`}
                           type="button"
                           onClick={() => setIndex(i)}
                           aria-label={`Show ${p.name}`}
@@ -316,6 +362,34 @@ function ProductModal({ category, subcategory, onClose }) {
                   </>
                 )}
               </div>
+
+              {/* Phone thumbnail strip: scrolls sideways, active one centred.
+                  w-0 min-w-full keeps it to the image's width. */}
+              {hasMany && (
+                <div
+                  ref={stripRef}
+                  className="sm:hidden w-0 min-w-full flex gap-2 overflow-x-auto no-scrollbar px-4 pt-3 pb-1"
+                >
+                  {products.map((p, i) => (
+                    <button
+                      key={`${p.name}-${i}`}
+                      type="button"
+                      onClick={() => setIndex(i)}
+                      aria-label={`Show ${p.name}`}
+                      aria-current={i === index}
+                      className={`relative shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-surface-container-low transition-all cursor-pointer ${
+                        i === index ? 'ring-2 ring-secondary ring-offset-1' : 'opacity-60'
+                      }`}
+                    >
+                      {p.image ? (
+                        <img src={p.image} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                      ) : (
+                        <Icon name={subcategory.icon} className="text-lg text-on-surface-variant" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {/* Name + actions */}
               {/* w-0 min-w-full: the bar takes the image's width instead of
