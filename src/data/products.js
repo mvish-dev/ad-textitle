@@ -39,50 +39,29 @@ import waffleKitchenTowel from '../assets/images/products/kitchen-dining/waffle-
 import classicStripedKitchenTowel from '../assets/images/products/kitchen-dining/classic-striped-kitchen-towel.webp'
 import themePrintedKitchenTowel from '../assets/images/products/kitchen-dining/theme-printed-kitchen-towel.webp'
 import vintagePlaidTeaTowel from '../assets/images/products/kitchen-dining/vintage-plaid-tea-towel.webp'
-import fabricDyedSet from '../assets/images/products/kitchen-dining/fabric-dyed-set.webp'
-import floralPrintedSet from '../assets/images/products/kitchen-dining/floral-printed-set.webp'
 import apronOvenMittsComboSet from '../assets/images/products/kitchen-dining/apron-oven-mitts-combo-set.webp'
-import traditionalCheckeredApron from '../assets/images/products/kitchen-dining/traditional-checkered-apron.webp'
-import blackCheckeredApron from '../assets/images/products/kitchen-dining/black-checkered-apron.webp'
-import blackCheckeredApron2 from '../assets/images/products/kitchen-dining/black-checkered-apron-2.webp'
-import blackApron from '../assets/images/products/kitchen-dining/black-apron.webp'
-import blackApron2 from '../assets/images/products/kitchen-dining/black-apron-2.webp'
-import brownCheckeredApron from '../assets/images/products/kitchen-dining/brown-checkered-apron.webp'
-import brownWhiteCheckeredApron from '../assets/images/products/kitchen-dining/brown-white-checkered-apron.webp'
-import greenCheckeredApron from '../assets/images/products/kitchen-dining/green-checkered-apron.webp'
-import oliveGreenCheckeredApron from '../assets/images/products/kitchen-dining/olive-green-checkered-apron.webp'
-import oliveGreenLinePatternApron from '../assets/images/products/kitchen-dining/olive-green-line-pattern-apron.webp'
-import orangeBoxPatternApron from '../assets/images/products/kitchen-dining/orange-box-pattern-apron.webp'
-import pistaGreenApron from '../assets/images/products/kitchen-dining/pista-green-apron.webp'
-import pistaGreenApron2 from '../assets/images/products/kitchen-dining/pista-green-apron-2.webp'
-import pistaGreenApron3 from '../assets/images/products/kitchen-dining/pista-green-apron-3.webp'
-import pistaGreenApron4 from '../assets/images/products/kitchen-dining/pista-green-apron-4.webp'
-import redBoxPatternApron from '../assets/images/products/kitchen-dining/red-box-pattern-apron.webp'
-import redBoxBlueLineApron from '../assets/images/products/kitchen-dining/red-box-blue-line-apron.webp'
-import redCheckeredApron from '../assets/images/products/kitchen-dining/red-checkered-apron.webp'
-import redFloralApron from '../assets/images/products/kitchen-dining/red-floral-apron.webp'
-import saffronApron from '../assets/images/products/kitchen-dining/saffron-apron.webp'
-import sandalApron from '../assets/images/products/kitchen-dining/sandal-apron.webp'
-import sandalRedFloralPocketApron from '../assets/images/products/kitchen-dining/sandal-red-floral-pocket-apron.webp'
-import whiteBlueLeafApron from '../assets/images/products/kitchen-dining/white-blue-leaf-apron.webp'
+import coordinatedKitchenSet from '../assets/images/products/kitchen-dining/coordinated-kitchen-set.webp'
+import coordinatedKitchenSet2 from '../assets/images/products/kitchen-dining/coordinated-kitchen-set-2.webp'
+import cottonApronCheckered from '../assets/images/products/kitchen-dining/cotton-apron-checkered.webp'
+import cottonApronCheckered2 from '../assets/images/products/kitchen-dining/cotton-apron-checkered-2.webp'
+import cottonApronCheckered3 from '../assets/images/products/kitchen-dining/cotton-apron-checkered-3.webp'
 import floralPrintedCurtains from '../assets/images/products/living-decor/floral-printed-curtains.webp'
 import leafPrintedCurtains from '../assets/images/products/living-decor/leaf-printed-curtains.webp'
 import printedCurtains from '../assets/images/products/living-decor/printed-curtains.webp'
 import stripeLinedCurtains from '../assets/images/products/living-decor/stripe-lined-curtains.webp'
 import curatedCushions from '../assets/images/products/living-decor/curated-cushions.webp'
-import embroideredTextCushions from '../assets/images/products/living-decor/embroidered-text-cushions.webp'
-import embroideredTextCushions2 from '../assets/images/products/living-decor/embroidered-text-cushions-2.webp'
+import decorativeCushion from '../assets/images/products/living-decor/decorative-cushion.webp'
+import embroideredTextCushion from '../assets/images/products/living-decor/embroidered-text-cushion.webp'
 import floorCushions from '../assets/images/products/living-decor/floor-cushions.webp'
-import floorCushions2 from '../assets/images/products/living-decor/floor-cushions-2.webp'
-import floorCushions3 from '../assets/images/products/living-decor/floor-cushions-3.webp'
-import jacquardCushions from '../assets/images/products/living-decor/jacquard-cushions.webp'
-import linenCushions from '../assets/images/products/living-decor/linen-cushions.webp'
-import patchworkCushions from '../assets/images/products/living-decor/patchwork-cushions.webp'
-import printedCushions from '../assets/images/products/living-decor/printed-cushions.webp'
-import statementCushions from '../assets/images/products/living-decor/statement-cushions.webp'
-import texturedCushions from '../assets/images/products/living-decor/textured-cushions.webp'
+import linenCushion from '../assets/images/products/living-decor/linen-cushion.webp'
+import luxuryTexturedCushionCover from '../assets/images/products/living-decor/luxury-textured-cushion-cover.webp'
+import patchWorkCushions from '../assets/images/products/living-decor/patch-work-cushions.webp'
+import printedCushion from '../assets/images/products/living-decor/printed-cushion.webp'
+import statementCushion from '../assets/images/products/living-decor/statement-cushion.webp'
+import texturedCushion from '../assets/images/products/living-decor/textured-cushion.webp'
+import wovenCushion from '../assets/images/products/living-decor/woven-cushion.webp'
 import wovenCushions from '../assets/images/products/living-decor/woven-cushions.webp'
-import yarnDyedCushions from '../assets/images/products/living-decor/yarn-dyed-cushions.webp'
+import yarnDyedCushion from '../assets/images/products/living-decor/yarn-dyed-cushion.webp'
 import shapedCushion from '../assets/images/products/kids-nursery/shaped-cushion.webp'
 import cushionToys from '../assets/images/products/kids-nursery/cushion-toys.webp'
 import shapeToys from '../assets/images/products/kids-nursery/shape-toys.webp'
@@ -162,34 +141,14 @@ export const PRODUCT_CATEGORIES = [
         name: 'Apron & Mitts',
         icon: 'oven_gen',
         description: 'Aprons, oven mitts and pot holders — sold singly or as coordinated sets — that pair practical padding with matching design.',
-        ...photo(fabricDyedSet),
+        ...photo(coordinatedKitchenSet2),
         children: [
-          { name: 'Fabric Dyed Set', ...photo(fabricDyedSet) },
-          { name: 'Floral Printed Set', ...photo(floralPrintedSet) },
           { name: 'Apron & Oven Mitts Combo Set', ...photo(apronOvenMittsComboSet) },
-          { name: 'Traditional Checkered Apron', ...photo(traditionalCheckeredApron) },
-          { name: 'Black Checkered Apron', ...photo(blackCheckeredApron) },
-          { name: 'Black Checkered Apron', ...photo(blackCheckeredApron2) },
-          { name: 'Black Apron', ...photo(blackApron) },
-          { name: 'Black Apron', ...photo(blackApron2) },
-          { name: 'Brown Checkered Apron', ...photo(brownCheckeredApron) },
-          { name: 'Brown & White Checkered Apron', ...photo(brownWhiteCheckeredApron) },
-          { name: 'Green Checkered Apron', ...photo(greenCheckeredApron) },
-          { name: 'Olive Green Checkered Apron', ...photo(oliveGreenCheckeredApron) },
-          { name: 'Olive Green Line Pattern Apron', ...photo(oliveGreenLinePatternApron) },
-          { name: 'Orange Box Pattern Apron', ...photo(orangeBoxPatternApron) },
-          { name: 'Pista Green Apron', ...photo(pistaGreenApron) },
-          { name: 'Pista Green Apron', ...photo(pistaGreenApron2) },
-          { name: 'Pista Green Apron', ...photo(pistaGreenApron3) },
-          { name: 'Pista Green Apron', ...photo(pistaGreenApron4) },
-          { name: 'Red Box Pattern Apron', ...photo(redBoxPatternApron) },
-          { name: 'Red Box with Blue Line Apron', ...photo(redBoxBlueLineApron) },
-          { name: 'Red Checkered Apron', ...photo(redCheckeredApron) },
-          { name: 'Red Floral Apron', ...photo(redFloralApron) },
-          { name: 'Saffron Apron', ...photo(saffronApron) },
-          { name: 'Sandal Apron', ...photo(sandalApron) },
-          { name: 'Sandal Apron with Red Floral Pocket', ...photo(sandalRedFloralPocketApron) },
-          { name: 'White with Blue Leaf Apron', ...photo(whiteBlueLeafApron) },
+          { name: 'Coordinated Kitchen Set', ...photo(coordinatedKitchenSet) },
+          { name: 'Coordinated Kitchen Set', ...photo(coordinatedKitchenSet2) },
+          { name: 'Cotton Apron Checkered', ...photo(cottonApronCheckered) },
+          { name: 'Cotton Apron Checkered', ...photo(cottonApronCheckered2) },
+          { name: 'Cotton Apron Checkered', ...photo(cottonApronCheckered3) },
         ],
       },
     ],
@@ -219,22 +178,21 @@ export const PRODUCT_CATEGORIES = [
         name: 'Cushions',
         icon: 'chair',
         description: 'Decorative cushion covers and fillers — printed, yarn-dyed, woven and embroidered — to accent any room.',
-        ...photo(printedCushions),
+        ...photo(printedCushion),
         children: [
           { name: 'Curated Cushions', ...photo(curatedCushions) },
-          { name: 'Embroidered & Text Cushions', ...photo(embroideredTextCushions) },
-          { name: 'Embroidered & Text Cushions', ...photo(embroideredTextCushions2) },
+          { name: 'Decorative Cushion', ...photo(decorativeCushion) },
+          { name: 'Embroidered & Text Cushion', ...photo(embroideredTextCushion) },
           { name: 'Floor Cushions', ...photo(floorCushions) },
-          { name: 'Floor Cushions', ...photo(floorCushions2) },
-          { name: 'Floor Cushions', ...photo(floorCushions3) },
-          { name: 'Jacquard Cushions', ...photo(jacquardCushions) },
-          { name: 'Linen Cushions', ...photo(linenCushions) },
-          { name: 'Patchwork Cushions', ...photo(patchworkCushions) },
-          { name: 'Printed Cushions', ...photo(printedCushions) },
-          { name: 'Statement Cushions', ...photo(statementCushions) },
-          { name: 'Textured Cushions', ...photo(texturedCushions) },
+          { name: 'Linen Cushion', ...photo(linenCushion) },
+          { name: 'Luxury Textured Cushion Cover', ...photo(luxuryTexturedCushionCover) },
+          { name: 'Patch Work Cushions', ...photo(patchWorkCushions) },
+          { name: 'Printed Cushion', ...photo(printedCushion) },
+          { name: 'Statement Cushion', ...photo(statementCushion) },
+          { name: 'Textured Cushion', ...photo(texturedCushion) },
+          { name: 'Woven Cushion', ...photo(wovenCushion) },
           { name: 'Woven Cushions', ...photo(wovenCushions) },
-          { name: 'Yarn Dyed Cushions', ...photo(yarnDyedCushions) },
+          { name: 'Yarn Dyed Cushion', ...photo(yarnDyedCushion) },
         ],
       },
       {
