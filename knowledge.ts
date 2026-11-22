@@ -22,15 +22,42 @@ Core Values:
 A D Textile also has a sister company that manufactures garments, sold via a separate website: adtsaral.in. Garment enquiries should be directed there, not to A D Textile's home textile team.
 
 Products:
-A D Textile manufactures four core home textile categories:
-- Kitchen Linen — aprons, mittens and kitchen sets.
-- Table Linen — tablecloths, mats, runners and chair pads.
-- Bed Linen (Heritage Bed Linen) — bedspreads, bedding, cushions, quilts and rest bedding.
-- Living Linen — curtains crafted for texture, drape and everyday living spaces.
+The website's Products page (/products) lists five product categories. Each category has its own page (/products/<category-id>) showing its sub-categories, and a "View Products" popup lists the individual products.
+
+1. Kitchen & Dining (/products/kitchen-dining) — Functional textiles for the everyday kitchen and the well-set table. Absorbent towels, heat-protective mitts and coordinated table linen, woven, dyed and finished in-house for retail programmes that need consistent quality across every colourway.
+   - Dining Sets — table cloths, runners, placemats and napkins in printed, woven and embroidered finishes. Products: Table Cloth with Placemat & Runner, Classic White Table Cover, Floral Printed Table Cloth, Frill Edged 6 Seater Table Cloth, Party Table Cloth, Spooky Season Table Cover, Cotton Table Runner, Embroidered Table Runner, Printed Table Runner, Stripe Designed Cotton Runner, Placemats with Napkins.
+   - Towels — absorbent, quick-drying kitchen and tea towels in terry, waffle, yarn-dyed and embroidered constructions. Products: Kitchen Tea Towel, Kitchen Hand Towel, Terry Kitchen Towel, Waffle Kitchen Towel, Classic Striped Kitchen Towel, Theme Printed Kitchen Towel, Vintage Plaid Tea Towel.
+   - Apron & Mitts — aprons, oven mitts and pot holders, sold singly or as coordinated sets. Products: Apron & Oven Mitts Combo Set, Coordinated Kitchen Set, Cotton Apron Checkered.
+
+2. Living & Decor (/products/living-decor) — Texture, drape and colour for living spaces. Curtains, cushions, throws and rugs designed to layer together, from yarn-dyed and jacquard weaves to embroidered and printed finishes.
+   - Curtains — drapery in printed, textured and woven designs. Products: Floral Printed Curtains, Leaf Printed Curtains, Printed Curtains, Stripe Lined Curtains.
+   - Cushions — decorative cushion covers and fillers (printed, yarn-dyed, woven and embroidered). Products: Curated Cushions, Decorative Cushion, Embroidered & Text Cushion, Floor Cushions, Linen Cushion, Luxury Textured Cushion Cover, Patch Work Cushions, Printed Cushion, Statement Cushion, Textured Cushion, Woven Cushion, Woven Cushions, Yarn Dyed Cushion.
+   - Throws — soft, versatile throws for sofas, beds and reading corners (product photos coming soon).
+   - Rugs — woven rugs and mats in durable constructions (product photos coming soon).
+
+3. Kids & Nursery (/products/kids-nursery) — Soft, playful pieces made with care for little ones, from skin-friendly materials built to the safety and compliance standards children's products demand.
+   - Shape Cushions — fun, character and shape cushions in soft, skin-friendly fabrics. Products: Shaped Cushions, Cushion Toys, Shape Toys, Hanging Toys, Hanging Pocket Organisers.
+
+4. Outdoor & Lifestyle (/products/outdoor-lifestyle) — Durable comfort for life outdoors.
+   - Blankets — picnic, travel and outdoor blankets that balance warmth, durability and easy care (product photos coming soon).
+
+5. Performance Knitwear (/products/performance-knitwear) — Engineered knits for movement, including a sustainable bamboo range. Socks, arm sleeves and tights knitted on the in-house single-cylinder machines.
+   - Socks — everyday, sports and performance socks in cushioned, plain and jacquard constructions. Products: Cotton Ankle Socks, Cotton Quarter Socks, Kids Socks.
+   - Arm Sleeves — compression and sun-protective arm sleeves (product photos coming soon).
+   - Bamboo Arm Sleeves (Sustainable) — bamboo-blend arm sleeves, naturally breathable, soft and cool against the skin.
+   - Bamboo Socks (Sustainable) — bamboo-blend socks that stay soft, breathable and fresh. Products: Bamboo Ankle Socks, Bamboo Quarter Socks, Bamboo Terry Socks.
+   - Tights (Sustainable) — comfortable, sustainable tights with a smooth knit and lasting stretch (product photos coming soon).
+
+A D Textile does not currently list bath linen (bath towels, bath mats, robes) or bed linen (bedspreads, quilts, bedding) on its website. If asked about these, say they are not part of the current published range and direct the customer to the commercial team to discuss custom requirements.
+
+Capabilities (Products page):
+- Design & Development — a dedicated sampling team develops ranges to the buyer's brief, from colour and construction to trims and packaging, with rapid sample turnaround.
+- Materials & Constructions — cotton and organic cotton; recycled and bamboo blends; yarn-dyed and printed; terry, waffle and jacquard weaves; knitted and embroidered finishes.
+- Sustainable Product Solutions — GOTS, OCS, GRS and BCI certified materials; OEKO-TEX® STANDARD 100; a bamboo-based performance range; SA8000 and ISO 9001:2015 compliant.
 
 The company also produces Custom Fabric on request and offers OEM manufacturing, ODM (design-assisted) solutions, fully custom private-label programs, custom designs (bespoke weaves, dobby patterns and embroidery placements), and custom or retail-ready packaging.
 
-The detailed public product catalogue on the website is currently being rebuilt, so exact SKU-level specifications, pricing and minimum order quantities are not published online. Direct customers to the commercial team for current specs, pricing and lead times rather than inventing product details or SKUs. As a general guide, order volumes are grouped into tiers: 500–1,000 pcs (MOQ tier), 1,000–5,000 pcs, 5,000–10,000 pcs, and 10,000+ pcs (enterprise scale) — the exact minimum depends on the product and specification.
+The website lists product names but does not publish SKU-level specifications, sizes, pricing or minimum order quantities. Direct customers to the commercial team for current specs, pricing and lead times rather than inventing product details or SKUs. As a general guide, order volumes are grouped into tiers: 500–1,000 pcs (MOQ tier), 1,000–5,000 pcs, 5,000–10,000 pcs, and 10,000+ pcs (enterprise scale) — the exact minimum depends on the product and specification.
 
 Garments are manufactured separately by A D Textile's sister company and sold via adtsaral.in — this is a different business from A D Textile's home textile manufacturing.
 
@@ -38,7 +65,7 @@ Manufacturing Processes:
 Production runs through nine fully integrated stages, all at the Karur facility:
 
 1. Dyeing — In-house dyeing using imported Italian Cheese Dyeing Machines, capacity of 3 tons/day. Only Azo-free dyes are used, for strong dye penetration, colour fastness and skin safety.
-2. Weaving — Somet Super Excel Rapier Looms weave premium woven fabric at roughly 1 million metres per month. Manufacturing capability supports finished fabric widths of up to 120 inches.
+2. Weaving — Somet Super Excel Rapier Looms weave terry, full terry and jacquard fabric at roughly 1 million metres per month. Manufacturing capability supports finished fabric widths of up to 120 inches.
 3. Knitting — 50 imported Korean Single Cylinder Knitting Machines produce Full Terry, Half Terry, Plain, Jacquard and Lurex knitted products — from infant baby socks to football socks — at about 5 lakh (500,000) pairs per month, backed by an integrated composite unit for linking, washing, setting and ironing.
 4. Fabrication — In-house precision cutting for accurate pattern cutting, uniform dimensions and minimal material wastage.
 5. Embroidery — Garuda and Toshiba embroidery machines with 54 embroidery heads supporting 10–12 thread colours, plus dedicated sampling and precision digitising.
@@ -52,7 +79,8 @@ Certifications:
 - BCI (Better Cotton Initiative) — Membership supporting more sustainable cotton farming practices across the supply chain.
 - amfori BSCI (Business Social Compliance Initiative) — Membership supporting continuous improvement in labour and social conditions across the supply chain.
 - GOTS (Global Organic Textile Standard) — Covers organic fibre status from raw material through environmentally and socially responsible manufacturing.
-- Organic Content Standard (Blended and 100) — Verifies the presence and percentage of organic material in a product, from raw material through to the finished product.
+- Organic Content Standard 100 — Applies to products containing 95–100% organic material; verifies the presence and amount of organic content and tracks it from source to finished product.
+- Organic Content Standard Blended — Applies to products containing 5–100% organic material; verifies the presence and percentage of organic content and tracks the raw material to the finished product.
 - OEKO-TEX® STANDARD 100 — Product safety certification specifically addressing harmful-substance testing in textiles, confirming fabrics are free from harmful substances at every processing stage, from yarn to finished product.
 - OEKO-TEX® MADE IN GREEN — Product label confirming an article was tested for harmful substances and made in environmentally friendly, socially responsible facilities.
 - GRS (Global Recycled Standard) — Verifies recycled content and tracks it through the supply chain, alongside responsible social, environmental and chemical practices.
@@ -87,7 +115,14 @@ Business Hours (India Standard Time, UTC +5:30):
 - Saturday: 09:00 AM – 01:00 PM IST (half day)
 - Sunday: Closed
 
-Website: the Contact page (/contact) has enquiry and quote-request forms, a facility map, and direct contact cards for both directors.
+Website pages:
+- Home (/) — overview, product categories, production journey and certifications.
+- About (/about) — company story, milestones (1990 founded, 1992 exporting, 30+ years), our people, mission and vision.
+- Manufacturing (/manufacturing) — the nine in-house production stages and a facility video tour.
+- Products (/products) — the five product categories, each with its own page.
+- Quality & Compliance (/quality-compliance) — certifications, the 3-layer inspection system and social programmes.
+- Contact (/contact) — enquiry and quote-request forms, a facility map, and direct contact cards for both directors. A commercial representative follows up on form submissions within 24 business hours.
+- Privacy Policy (/privacy-policy).
 Sister company (garments): adtsaral.in
 
 Frequently Asked Questions:
@@ -99,7 +134,7 @@ Q: Where is A D Textile located?
 A: 1/104, Sanjay Nagar, Erode Road, Athur Post, Karur – 639002, Tamil Nadu, India.
 
 Q: What products does A D Textile manufacture?
-A: Kitchen Linen, Table Linen, Bed Linen (Heritage Bed Linen), and Living Linen (curtains), plus custom fabric and private-label programs. Garments are made by A D Textile's sister company at adtsaral.in, not by A D Textile itself.
+A: Five categories: Kitchen & Dining (dining sets, kitchen towels, aprons and mitts), Living & Decor (curtains, cushions, throws, rugs), Kids & Nursery (shape cushions and toys), Outdoor & Lifestyle (blankets) and Performance Knitwear (socks, arm sleeves and tights, including a sustainable bamboo range), plus custom fabric and private-label programs. Garments are made by A D Textile's sister company at adtsaral.in, not by A D Textile itself.
 
 Q: Is A D Textile's manufacturing vertically integrated?
 A: Yes. Dyeing, weaving, knitting, fabrication, embroidery, stitching, quality checking, packing and warehousing are all done in-house at one facility in Karur, with no subcontracted production stages.
@@ -123,7 +158,7 @@ Q: Is A D Textile sustainable / eco-friendly?
 A: A D Textile uses Azo-free dyes exclusively, operates an Effluent Treatment Plant, Reverse Osmosis Plant and VSEP plant for water treatment and recycling, and holds certifications including the Global Recycled Standard (GRS) and OEKO-TEX®. It also runs community programs including employment for the physically challenged, a feeding programme for around 400 blind and deaf children, and education scholarships for the needy.
 
 Q: How can I request a quote or make an enquiry?
-A: Use the enquiry or quote-request form on the Contact page, email deepak@adtextile.com or senthil@adtextile.com, call or WhatsApp +91 97 90 55 7077 or +91 999 43 99 077, or reach the commercial desk Monday–Friday, 9:00 AM–6:00 PM IST (Saturday half-day until 1:00 PM IST).
+A: Use the enquiry or quote-request form on the Contact page (a commercial representative follows up within 24 business hours), email deepak@adtextile.com or senthil@adtextile.com, call or WhatsApp +91 97 90 55 7077 or +91 999 43 99 077, or reach the commercial desk Monday–Friday, 9:00 AM–6:00 PM IST (Saturday half-day until 1:00 PM IST).
 
 Q: Where can I buy A D Textile's garments?
 A: Garments are manufactured by A D Textile's sister company and sold via a separate website: adtsaral.in.
