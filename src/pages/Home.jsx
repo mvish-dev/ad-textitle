@@ -10,6 +10,7 @@ import CollectionsCarousel3D from '../components/motion/CollectionsCarousel3D.js
 import LogoLoop from '../components/motion/LogoLoop.jsx'
 import { gsap, prefersReducedMotion } from '../lib/motion.js'
 import Seo from '../components/common/Seo.jsx'
+import { PRODUCT_CATEGORIES, productCategoryPath } from '../data/products.js'
 
 
 import sa8000 from '../assets/images/certificates/sa8000.png'
@@ -55,63 +56,15 @@ const HERO_SLIDES = [
 
 const HERO_AUTOPLAY_MS = 6000
 
-const CATEGORIES = [
-  {
-    title: 'Kitchen Linen',
-    description: 'Aprons, mittens and kitchen sets for sophisticated culinary spaces.',
-    href: '/products',
-    icon: 'kitchen',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDNwMAmERcdNtmtoAUEd_p2N3Oa3ieJi4SHc__8Pd3ylDKv60RTfy5EQy10YJKXg2oMzWQd8YL_GLEATGQtvS_-nQMTFRR7QoWTr3MYErLFIFzg2hvsES-4iGgjcqZPSiIlmLjph6PPfdhZ9K6MwRKFQY70-96pCBlSC86TGAOu0GeplWoHKYyXBPU8rYYHmNGXp4wWDZzHmVXm2GaZvAFja1nCHxQ6vM6xbGzt3eM48Ckuwdy6rwscTjAhvN7x3_8mpYjzi_dW9i4',
-    alt: 'Top-down editorial shot of high-quality kitchen linens featuring waffle weave and herringbone textures.',
-  },
-  {
-    title: 'Table Linen',
-    description: 'Table cloths, mats, runners and chair pads for distinguished dining.',
-    href: '/products',
-    icon: 'dining',
-    image:
-      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80&auto=format&fit=crop',
-    alt: 'Elegant table setting with fine linen, white plates and polished cutlery.',
-  },
-  {
-    title: 'Bed Linen',
-    description: 'Bed spreads, bedding, cushions, quilts and rest bedding.',
-    href: '/products',
-    icon: 'bed',
-    image:
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=900&q=80&auto=format&fit=crop',
-    alt: 'Bright bedroom with a neatly made bed dressed in crisp white linen.',
-  },
-  {
-    title: 'Living Linen',
-    description: 'Curtains crafted for texture, drape and everyday living spaces.',
-    href: '/products',
-    icon: 'curtains',
-    image:
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&q=80&auto=format&fit=crop',
-    alt: 'Elegant flowing curtains in a softly lit modern living room.',
-  },
-  // Placeholder copy and stock imagery — swap in client-supplied content.
-  {
-    title: 'Bath Linen',
-    description: 'Terry towels, bath mats and robes woven for softness and absorbency.',
-    href: '/products',
-    icon: 'bathtub',
-    image:
-      'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=900&q=80&auto=format&fit=crop',
-    alt: 'Bright modern bathroom with soft towels hanging beside a freestanding tub.',
-  },
-  {
-    title: 'Socks & Hosiery',
-    description: 'Terry, plain, jacquard and lurex socks — from infant to sports wear.',
-    href: '/products',
-    icon: 'checkroom',
-    image:
-      'https://images.unsplash.com/photo-1582966772680-860e372bb558?w=900&q=80&auto=format&fit=crop',
-    alt: 'Pair of patterned knitted socks laid flat on a teal fabric background.',
-  },
-]
+// Mirrors the Products page so every card links to a real category page.
+const CATEGORIES = PRODUCT_CATEGORIES.map((category) => ({
+  title: category.title,
+  description: category.tagline,
+  href: productCategoryPath(category),
+  icon: category.icon,
+  image: category.image,
+  alt: category.title,
+}))
 
 const JOURNEY_STEPS = [
   {

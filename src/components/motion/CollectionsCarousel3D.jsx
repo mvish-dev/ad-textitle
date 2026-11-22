@@ -53,7 +53,7 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="relative h-[clamp(380px,calc(58svh+40px),620px)] overflow-hidden"
+        className="relative h-[clamp(400px,calc(58svh+40px),620px)] overflow-hidden"
         style={{ perspective: 1600 }}
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-background to-transparent z-20" />
@@ -78,40 +78,41 @@ function CollectionsCarousel3D({ items, autoplayDelay = 4500 }) {
             return (
               <motion.div
                 key={item.title}
-                className="absolute top-1/2 left-1/2 h-[clamp(340px,calc(52svh+40px),560px)] max-w-[80vw] aspect-[4/5]"
+                className="absolute top-1/2 left-1/2 w-[clamp(260px,calc(40svh+100px),480px)] max-w-[80vw]"
                 style={{ zIndex: total - Math.abs(diff), transformStyle: 'preserve-3d' }}
                 animate={geometry}
                 transition={SPRING}
                 onClick={() => !isActive && goTo(i)}
               >
                 <div
-                  className={`group relative w-full h-full overflow-hidden rounded-2xl bg-white border transition-shadow duration-300 ${
+                  className={`group relative w-full flex flex-col overflow-hidden rounded-2xl bg-primary border transition-shadow duration-300 ${
                     isActive
                       ? 'shadow-[0_30px_60px_-15px_rgba(15,23,42,0.45)] border-secondary/40'
                       : 'shadow-lg border-outline-variant/30 cursor-pointer'
                   }`}
                 >
-                  <img
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                    src={item.image}
-                    alt={item.alt}
-                    draggable={false}
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A101E]/90 via-[#0A101E]/20 via-35% to-transparent to-60%" />
-
-                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                    <Icon name={item.icon} className="text-secondary text-lg" />
+                  {/* Image area matches the 4:3 product photos so nothing is cropped. */}
+                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-white">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={item.image}
+                      alt={item.alt}
+                      draggable={false}
+                      width={1200}
+                      height={900}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute top-3 left-3 w-10 h-10 rounded-xl bg-primary/60 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                      <Icon name={item.icon} className="text-secondary text-lg" />
+                    </div>
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 md:p-7 flex flex-col">
+                  <div className="px-5 py-4 sm:px-6 sm:py-5 flex flex-col">
                     <h3 className="font-serif text-xl sm:text-2xl text-white font-bold mb-1.5">{item.title}</h3>
                     <p
-                      className={`text-[11px] sm:text-xs text-white/70 leading-relaxed transition-all duration-300 overflow-hidden ${
-                        isActive ? 'max-h-20 opacity-100 mb-4' : 'max-h-0 opacity-0 mb-0'
+                      className={`text-[11px] sm:text-xs text-white/70 leading-relaxed line-clamp-2 min-h-[2.5rem] mb-3 transition-opacity duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-0'
                       }`}
                     >
                       {item.description}
