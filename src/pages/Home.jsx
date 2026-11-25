@@ -29,28 +29,47 @@ import oekoTexMadeInGreen from '../assets/images/certificates/oeko-tex-made-in-g
 import nsfIsr from '../assets/images/certificates/nsf-isr.png'
 import sedexSmeta from '../assets/images/certificates/sedex-smeta.png'
 
-// Placeholder slides with Unsplash stock imagery — swap in client photos.
+import heroCushions from '../assets/images/hero/cushions-bed-linen.webp'
+import heroKitchen from '../assets/images/hero/kitchen-linen-apron.webp'
+import heroDining from '../assets/images/hero/printed-table-cloth-dining.webp'
+import heroShell from '../assets/images/hero/shell-print-table-cloth.webp'
+import heroVelvet from '../assets/images/hero/velvet-cushions-bedroom.webp'
+
 const HERO_SLIDES = [
   {
-    eyebrow: 'Bed Linen',
+    eyebrow: 'Cushion Covers',
     title: 'Crafted for the Global Market',
     text: 'Premium kitchen, table, bed and living linens — from raw fibre to finished textile.',
     cta: { label: 'Explore Products', to: '/products' },
-    image: 'https://images.unsplash.com/photo-1586105251261-72a756497a11?w=2000&q=80&auto=format&fit=crop',
+    image: heroCushions,
+  },
+  {
+    eyebrow: 'Kitchen Linen',
+    title: 'Woven In-House, Shipped Worldwide',
+    text: 'Aprons, oven mitts and towels made under one roof and exported since 1992.',
+    cta: { label: 'Our Manufacturing', to: '/manufacturing' },
+    image: heroKitchen,
   },
   {
     eyebrow: 'Table Linen',
-    title: 'Woven In-House, Shipped Worldwide',
-    text: 'Table cloths, runners and mats made under one roof and exported since 1992.',
-    cta: { label: 'Our Manufacturing', to: '/manufacturing' },
-    image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=2000&q=80&auto=format&fit=crop',
-  },
-  {
-    eyebrow: 'Hospitality',
     title: 'Quality You Can Certify',
     text: 'SA8000 & ISO 9001:2015 compliant, with 3-layer AQL inspection on every order.',
     cta: { label: 'Quality & Compliance', to: '/quality-compliance' },
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=2000&q=80&auto=format&fit=crop',
+    image: heroDining,
+  },
+  {
+    eyebrow: 'Printed Table Cloths',
+    title: 'Prints That Set the Table',
+    text: 'Custom designs, colourways and sizes for retail and hospitality buyers.',
+    cta: { label: 'Explore Products', to: '/products' },
+    image: heroShell,
+  },
+  {
+    eyebrow: 'Bed & Living',
+    title: 'Comfort in Every Thread',
+    text: 'Velvet, woven and printed cushion covers finished to your specification.',
+    cta: { label: 'Contact Us', to: '/contact' },
+    image: heroVelvet,
   },
 ]
 
@@ -312,7 +331,7 @@ function Home() {
               alt=""
               aria-hidden="true"
               width={2000}
-              height={1333}
+              height={1125}
               loading={i === 0 ? 'eager' : 'lazy'}
               fetchPriority={i === 0 ? 'high' : 'auto'}
               decoding="async"
